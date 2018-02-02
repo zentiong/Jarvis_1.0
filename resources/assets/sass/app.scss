@@ -1,0 +1,362 @@
+// Bootstrap
+// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+/* 
+	h1: 2em/32px;
+	h2: 1.5em/24px;
+	h3: 1.17em/18px;
+	h4: 1em/16px;
+	h5: 0.83em/14px;
+	h6: 0.67em/11px;
+*/
+
+@import "variables";
+@import 'font';
+
+.branding {
+	border: 2px solid $zalora-yellow;
+	color: $zalora-yellow;
+	font-family: "Apercu Regular", sans-serif !important;
+	font-size: 20px;
+	padding: 0 5px;
+}
+
+body.newsletter {
+	background-color: $newsletter-bg;
+	color: $white-2;
+	font-family: "Apercu Regular", sans-serif;
+	padding-top: 70px;
+
+	nav {
+		background-color: $black-1;
+		position: fixed;
+		top: 0;
+		width: 100%;
+
+		ul {
+			list-style-type: none;
+    		margin: 0;
+    		padding: 0;
+    		display: flex;
+			align-items: center;
+			height: 55px;
+
+    		li {
+    			display: inline;
+    			margin: 0 20px;
+
+    			a {
+    				text-decoration: none;
+    				color: $white-2;
+    				font-family: "Apercu Regular", sans-serif;
+    				font-size: 16px;
+    			}
+    		}
+		}
+	}
+
+	.login-popup {
+		display: none;
+		width: 290px;
+		background-color: $white-1;
+		border: 1px solid #95989A;
+		border-radius: 2px;
+		padding: 20px;
+		position: fixed;
+		right: 0;
+		top: 55px;
+
+		form {
+
+			input[type="email"], input[type="password"] {
+				font-family: "Helvetica Neue", sans-serif !important;
+				font-size: 14px;
+				width: 250px;
+				margin-bottom: 20px;
+				border: 1px solid #707070;
+				border-radius: 2px;
+				padding: 5px;
+			}
+
+			input[type="checkbox"] {
+				margin-right: 5px;
+				padding: 15px;
+				height: 15px;
+				width: 15px;
+				vertical-align: middle;
+			}
+
+			label {
+				color: $black-2;
+				font-family: "Helvetica Neue", sans-serif !important;
+			} 
+
+			input::placeholder {
+				color: #BBBBBB;
+			}
+
+		}
+	}
+
+	.section-label {
+		border-top: 5px solid $zalora-yellow;
+		color: $white-2;
+		display: inline-block;
+		font-family: "Rockwell Regular", serif;
+		font-size: 2em;
+		padding-top: 10px;
+		text-transform: uppercase;
+	}
+
+	.subsection-label-container {
+		display: flex;
+		flex-flow: row nowrap;
+		margin: 20px 0;
+	}
+
+	.month-name {
+		margin: 20px 0;
+	}
+
+	.subsection-label {
+		background-color: $zalora-yellow;
+		border: 1px solid #95989A;
+		color: $newsletter-bg;
+		font-family: "Rockwell Regular", serif;
+		font-size: 20px;
+		padding: 5px 15px;
+	}
+
+	.divider-1 {
+		border-style: dashed !important;
+		border-top: 10px solid #090808;
+		flex: auto;
+		margin-right: 20px;
+		opacity: 0.5;
+	}
+
+	.divider-2 {
+		border-style: dotted !important;
+		border-top: 10px solid #48423E;
+		flex: auto;
+		margin-left: 20px;
+		opacity: 0.4
+	}
+
+	.clicked {
+		background-color: $black-1 !important;
+		color: $zalora-yellow !important;
+		border: none !important;
+	} 
+
+	.login-button {
+	    border: 1px solid transparent;
+	    background-color: $zalora-yellow;
+	    color: $newsletter-bg;
+	    cursor: pointer;
+	    display: inline-block;
+	    padding: 5px 15px;
+	    margin-left: auto !important;
+	    border: 1px solid #95989A;
+	    border-radius: 2px;
+	    font-family: "Apercu Bold", sans-serif !important;
+	}
+
+	%section {
+		padding: 40px 0;
+	}
+
+	section:nth-child(odd) {
+		@extend %section;
+		background-color: #1f1f1f;
+	}
+
+	section:nth-child(even) {
+		@extend %section;
+		background-color: none;
+	}
+
+	#calendar-container {
+		table.calendar {
+			background-color: $black-2;
+			border-collapse: separate;
+			border-spacing: 20px;
+			font-family: 'Apercu Regular', sans-serif;
+			margin: 0 auto;
+			table-layout: fixed;
+			width: 90%;
+
+			tr.calendar-row {
+				margin-top: 35px;
+				text-align: center;
+			}
+
+			td.calendar-day-head {
+				color: $white-3;
+				font-size: 20px;
+			}
+
+			td.calendar-day {
+				background-color: #89801B;
+				color: $white-3;
+				height: 100px;
+			}
+		}
+	}
+	
+	.quick-links-container {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-evenly;
+
+		.quick-link {
+			margin-bottom: 15px;
+			max-width: 240px;
+			padding: 10px 5px;
+
+			a:hover {
+				text-decoration: none;
+			}
+
+			.img-container {
+				border: 1px solid $zalora-yellow;
+				border-radius: 50%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 70px;
+				width: 70px;
+
+				img {
+					width: 50%;
+				}
+
+				img.oracle, img.wrike {
+					width: 70%;
+				}
+			}
+
+			.label {
+				color: $zalora-yellow;
+				margin: 10px 0; 
+			}
+
+			span {
+				color: $white-4;
+			}
+		}
+
+		.quick-link:hover {
+			background-color: $black-3;
+			-webkit-transition: background-color 0.3s;
+			transition: background-color 0.3s;
+		}
+	}
+
+	#services-container {
+		.hr-service-label {
+			color: $zalora-yellow;
+			font-family: "Apercu Regular", sans-serif;
+			font-size: 1.25rem;
+			text-transform: uppercase;
+		}
+
+		.service-label-container {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+		}
+
+		.hr-service {
+			background-color: $black-2;
+			border: 1px solid $white-5;
+			border-right: 15px solid $zalora-yellow !important;
+			margin: 20px auto;
+			padding: 5px 5px;
+
+			.link-wrapper {
+				display: flex;
+    			flex-flow: row nowrap;
+    			align-items: center;
+			}
+
+			.link-wrapper:hover {
+				text-decoration: none;
+			}
+
+			img {
+				margin: auto 20px;
+			}
+
+			.text {
+				margin-right: 15px;
+
+				.title {
+					color: $zalora-yellow;
+				}
+				.description {
+					color: $white-4;
+					line-height: 1.2;
+				}	
+			}
+		}
+
+		.hr-service:hover, .other-service:hover {
+			cursor: pointer;
+			background-color: $black-3;
+			-webkit-transition: background-color 0.3s;
+			transition: background-color 0.3s;
+		}
+
+		.other-service-container {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-around;
+
+			.other-service {
+				padding: 5px;
+				border: 1px solid $zalora-yellow;
+				border-radius: 20px;
+				margin-bottom: 20px;
+				max-width: 150px;
+
+				.link-wrapper-2:hover {
+					text-decoration: none;
+				}
+
+				img {
+					height: 58px;
+				}
+
+				.text {
+					margin: 10px 5px;
+				}
+
+				.title {
+					color: $zalora-yellow;
+					text-transform: uppercase;
+				}
+
+				.description {
+					color: $white-4;
+					line-height: 1.2;
+				}
+			}
+		}
+
+
+	}
+
+	footer {
+		background-color: $black-1;
+		color: $white-3;
+		font-family: 'Open Sans', sans-serif;
+		padding: 10px;
+		height: 50px;
+
+		b {
+			color: #54749A;
+		}
+	}
+}
+
