@@ -16,22 +16,30 @@
 .branding {
 	border: 2px solid $zalora-yellow;
 	color: $zalora-yellow;
-	font-family: "Apercu Regular", sans-serif !important;
+	font-family: "Apercu Regular", sans-serif;
 	font-size: 20px;
 	padding: 0 5px;
 }
 
+a {
+	text-decoration: none !important;
+}
+.active {
+	border-top: 3px solid $zalora-yellow;
+	color: $white-1;
+}
 body.newsletter {
 	background-color: $newsletter-bg;
 	color: $white-2;
 	font-family: "Apercu Regular", sans-serif;
 	padding-top: 70px;
+	position: relative;
 
 	nav {
-		background-color: $black-1;
 		position: fixed;
 		top: 0;
 		width: 100%;
+		background-color: $black-1;
 
 		ul {
 			list-style-type: none;
@@ -39,14 +47,13 @@ body.newsletter {
     		padding: 0;
     		display: flex;
 			align-items: center;
-			height: 55px;
+			height: 3.4em;
 
     		li {
     			display: inline;
     			margin: 0 20px;
 
     			a {
-    				text-decoration: none;
     				color: $white-2;
     				font-family: "Apercu Regular", sans-serif;
     				font-size: 16px;
@@ -214,10 +221,6 @@ body.newsletter {
 			max-width: 240px;
 			padding: 10px 5px;
 
-			a:hover {
-				text-decoration: none;
-			}
-
 			.img-container {
 				border: 1px solid $zalora-yellow;
 				border-radius: 50%;
@@ -280,12 +283,9 @@ body.newsletter {
     			align-items: center;
 			}
 
-			.link-wrapper:hover {
-				text-decoration: none;
-			}
-
 			img {
 				margin: auto 20px;
+				min-width: 35px;
 			}
 
 			.text {
@@ -299,13 +299,6 @@ body.newsletter {
 					line-height: 1.2;
 				}	
 			}
-		}
-
-		.hr-service:hover, .other-service:hover {
-			cursor: pointer;
-			background-color: $black-3;
-			-webkit-transition: background-color 0.3s;
-			transition: background-color 0.3s;
 		}
 
 		.other-service-container {
@@ -343,7 +336,194 @@ body.newsletter {
 				}
 			}
 		}
+	}
 
+	#policy-container {
+		margin-top: 30px;
+
+		.policy-portal-container {
+			margin-top: 30px;
+		}
+
+		.policy {
+			margin-bottom: 30px;
+
+			.link-wrapper-3 {
+				display: flex;
+				flex-flow: row nowrap;
+				align-items: center;
+				padding: 5px 10px;
+				min-height: 5em;
+
+				img {
+					margin: auto 20px;
+					min-width: 45px;
+				}
+
+				.text {
+					.title {
+						color: $zalora-yellow;
+					}
+
+					.description {
+						color: $white-4;
+						line-height: 1.2;
+					}
+				}
+			}
+		}
+	}
+
+	#engagements-container {
+
+		.engagement:nth-child(odd) {
+			background-color: $zalora-yellow;
+		}
+		.engagement:nth-child(even) {
+			background-color: $black-1;
+		}
+
+		.bap {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: center;
+			margin-top: 30px;
+
+			* {
+				margin: 0.3em 1em;	
+			}
+
+			span {
+				font-family: "Apercu Bold", sans-serif;
+				font-size: 1.5rem;
+				font-weight: bold;
+				color: $black-1;
+			}
+		}
+
+		.ask-zalora {
+			a {
+				display: flex;
+				flex-flow: row nowrap;
+				justify-content: space-around;
+				align-items: center;
+				color: $zalora-yellow;
+				padding: 1em 0;
+
+				span:first-child {
+					width: 50%;
+					text-align: center;
+					line-height: 1.2;
+				}
+				span:last-child {
+					font-size: 2em;
+				}
+			}
+		}
+
+		.z-library {
+			padding: 0.5em 0;
+
+			.title {
+				color: $black-1;
+				font-family: "Apercu Bold", sans-serif;
+				font-size: 1.5em;
+				font-weight: bold;
+				margin-bottom: 10px;
+			}
+
+			ul {
+				list-style-type: none;
+				padding: 0;
+
+				li {
+					display: inline;
+					padding: 1em;
+
+					img {
+						width: 145px;
+					}
+				}
+			}
+		}
+
+		.learn-up-banner {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+			align-items: center;
+
+			span {
+				border: 4px solid $zalora-yellow;
+				border-radius: 4px;
+				color: $zalora-yellow;
+				font-weight: bold;
+				margin: 1em;
+				padding: 0.8em 1em;
+			}
+		}
+
+		.memoriez-zcoop {
+			font-weight: bold;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+			align-items: center;
+
+			.memoriez, .zcoop {
+				width: 40%;
+				padding: 0 1em;
+			}
+			.memoriez {
+				border-right: 5px solid $black-1;
+			}
+
+			.top-text {
+				color: $black-1;
+				font-size: 1.5em;
+			}
+			.bottom-text {
+				color: $black-1;
+				line-height: 1.2;
+				text-align: center;
+			}
+		}
+	}
+
+	#hr-corp-container {
+
+		.hr-corp-row {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+			align-items: baseline;
+			margin: 1.5em;
+
+			.hr-corp-single {
+				margin: 1em 0.8em 0;
+				text-align: center;
+				flex-basis: 9.3em;
+				flex-grow: 1;
+
+				img {
+					width: 120px;
+					margin-bottom: 1em;
+				}
+
+				.label {
+
+					h6 {
+						color: $zalora-yellow;
+						font-weight: bold;
+					}
+					small {
+						display: block;
+						line-height: 1.2;
+					}
+				}
+			}
+		}
 
 	}
 
@@ -351,12 +531,28 @@ body.newsletter {
 		background-color: $black-1;
 		color: $white-3;
 		font-family: 'Open Sans', sans-serif;
-		padding: 10px;
-		height: 50px;
+		padding: 1em;
+		line-height: 1.2;
 
 		b {
 			color: #54749A;
 		}
+	}
+
+	#services-container .hr-service:hover, #services-container .other-service:hover, #policy-container .policy:hover {
+		cursor: pointer;
+		background-color: $black-3;
+		-webkit-transition: background-color 0.3s;
+		transition: background-color 0.3s;
+	}
+}
+
+body.dashboard {
+	nav {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		background-color: $white-1;
 	}
 }
 
