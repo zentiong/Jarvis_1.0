@@ -29,5 +29,7 @@ Route::get('quizzes/{quiz}/take', 'QuizController@take');
 Route::post('quizzes', 'QuizController@record');
 
 
+Route::resource('training_sessions', 'TrainingSessionController');
+
 Auth::routes();
 
