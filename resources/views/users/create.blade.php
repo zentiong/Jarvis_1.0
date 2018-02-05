@@ -1,13 +1,13 @@
 @extends('templates.newsletter-master')
 
 @section('body')
-<h1>Edit {{ $employee->first_name }} {{ $employee->last_name }}</h1>
+
+<h1>Create a User</h1>
 
 <!-- if there are creation errors, they will show here -->
 {{ Html::ul($errors->all()) }}
 
-
-{{ Form::model($employee, array('route' => array('users.update', $employee->employee_id), 'method' => 'PUT')) }}
+{{ Form::open(array('url' => 'users')) }}
 
     <div class="form-group">
         {{ Form::label('first_name', 'First Name') }}
@@ -22,6 +22,11 @@
     <div class="form-group">
         {{ Form::label('email', 'Email') }}
         {{ Form::email('email', Request::old('email'), array('class' => 'form-control')) }}
+    </div>
+
+    <div class="form-group">
+        {{ Form::label('password', 'Password') }}
+        {{ Form::password('password', Request::old('password'), array('class' => 'form-control')) }}
     </div>
 
     <!-- Hiring Date -->
@@ -58,14 +63,6 @@
         {{ Form::select('position', array('0' => 'Select a Position', '1' => 'President', '2' => 'Secretary', '3' => 'Developer'), Request::old('position'), array('class' => 'form-control')) }}
     </div>
 
-    <!-- HR? -->
-
-    <div class="form-group">
-        {{ Form::label('hr_check', 'HR?') }}
-        {{ Form::checkbox('hr_check', '1', Request::old('hr_check'), array('class' => 'form-control')) }}
-
-        
-    </div>
 
     <!-- Manager? -->
 
@@ -74,9 +71,8 @@
         {{ Form::checkbox('manager_check', '1', Request::old('manager_check'), array('class' => 'form-control')) }}
     </div>
 
-    {{ Form::submit('Create the Employee!', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Create the User!', array('class' => 'btn btn-primary')) }}
 
 {{ Form::close() }}
 
-</div>
 @endsection

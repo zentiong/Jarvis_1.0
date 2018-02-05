@@ -17,15 +17,14 @@ class CreateUserQuizTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-
-
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->integer('quiz_id')->unsigned();
             $table->foreign('quiz_id')->references('quiz_id')->on('quizzes');
 
-            $table->integer('score');
+            $table->integer('score')->default(0);
+
         });
     }
 

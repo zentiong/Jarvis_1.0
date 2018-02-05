@@ -17,26 +17,12 @@
             {{ Form::label('answer_item', 'Answer') }}
             {{ Form::text('answer_item', Request::old('answer_item'), array('class' => 'form-control')) }}
         </div>
-        <button id="add-btn">Add</button>
     </div>
-
-    <script type="text/javascript">
-            function copy_qs(){
-                var orig_div_content = document.getElementById('div1');
-                var new_div_content = document.getElementById('div2');
-                new_div_content.innerHTML = orig_div_content.innerHTML;
-            }
-
-            if (document.getElementById('add-btn').click==true) {
-               alert("button click")
-            };
-            
-        </script>
 
     <br>
     {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
     
 {{ Form::close() }}
 
-</div>
+
 @endsection

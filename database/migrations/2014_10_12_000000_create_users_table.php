@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('position', 255);
 
             $table->boolean('manager_check', 255)->nullable();;
-            $table->boolean('hr_check', 255)->nullable();;
+
             $table->rememberToken();
             $table->timestamps();
         });

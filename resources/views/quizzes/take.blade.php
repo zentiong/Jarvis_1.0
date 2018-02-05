@@ -16,14 +16,15 @@ Take Quiz Implementation:
 
 
 
- <?php $var = 0; ?>
+ 
 
- <?php $answer_attempt = array(); ?>
+<h2> Take quiz ({{ $quiz->topic }}) </h2>
 
-<h2> Take quiz ({{ $quiz->topic }} ) </h2>
+<!--
 <h5> Number of Questions: {{ count($questions) }} </h5>
 
 {{ Auth::user()->id}}
+-->
 
 <!-- will be used to show any messages -->
 @if (Session::has('message'))
@@ -33,18 +34,21 @@ Take Quiz Implementation:
  <br>
  <br>
 
- {{ Form::open(array('url' => 'quizzes')) }}
+    
 
-<?php 
- $id = Auth::user()->id;
+ <!-- {{ Form::open(array('url' => 'quizzes/'.$quiz->quiz_id.'/record')) }} -->
 
- /*
- $request->request->add(['user_id' => $id]);
-*/
+    {{ Form::open(array('url' => 'quizzes/'.$quiz->quiz_id.'/record')) }}
 
-?>
+    {{ Form::hidden('user_id', $value = Auth::user()->id) }}
+    {{ Form::hidden('quiz_id', $value = $quiz->quiz_id) }}
 
+    <?php 
 
+        $var = 0; 
+ 
+    ?>
+    
  
     <table class="table table-striped table-bordered">
     <thead>
@@ -54,8 +58,8 @@ Take Quiz Implementation:
     </thead>
 
     <tbody>
+
    
-    
     @foreach($questions as $key => $value)
 
         <?php 
@@ -77,14 +81,19 @@ Take Quiz Implementation:
                     Assign the value being inputted to answer_attempt
                 -->
 
-                    {{ Form::label('answer_attempt[$var]', 'Answer') }}
-                    {{ Form::text('answer_attempt[$var]', Request::old('answer_attempt[$var]'), array('class' => 'form-control')) }}
+                {{ Form::label('answer_attempt[]', 'Answer') }}
+                {{ Form::text('answer_attempt[]', Request::old('DEFAULT AA'), array('class' => 'form-control')) }}
 
 
                 <?php 
                     $var ++;
                 ?>
                 <!-- Don't know shit about this yet -->
+                <!--
+                <input type="text" name="item[]">
+                -->
+                
+                
             </td>
         </tr>
     @endforeach
@@ -93,11 +102,10 @@ Take Quiz Implementation:
                 
     </table>
 
+    
+
 
    {{ Form::submit('Submit Answers!', array('class' => 'btn btn-primary')) }}
 
    {{ Form::close() }}
-
-
-</div>
 @endsection

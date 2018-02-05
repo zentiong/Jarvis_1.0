@@ -26,8 +26,7 @@ Route::resource('quizzes.questions', 'QuestionController');
 */
 
 Route::get('quizzes/{quiz}/take', 'QuizController@take');
-Route::post('quizzes', 'QuizController@record');
-
+Route::post('quizzes/{quiz}/record', 'QuizController@record');
 
 Route::resource('training_sessions', 'TrainingSessionController');
 

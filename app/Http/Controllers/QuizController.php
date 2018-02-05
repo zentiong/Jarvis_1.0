@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Quiz;
 use App\Question;
 use App\User;
+use App\User_Quiz;
+use App\Attempt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -37,38 +39,62 @@ class QuizController extends Controller
             ->with('questions', $questions);
     }
 
-    public function create()
+    public function record(Request $request)
     {
-        // load the create form (app/views/quizzes/create.blade.php)
-        return View::make('quizzes.create');
-    }
+        $user_quiz = new User_Quiz; // New Instance of User Quiz
+        $quiz_id = Input::get('quiz_id'); // Get Quiz ID
 
-    public function store($quiz_id, Request $request)
-    {
-        $user_quiz = new User_Quiz;
+        $user_quiz->user_id = Input::get('user_id'); //User Quiz Details
+        $user_quiz->quiz_id = $quiz_id; //User Quiz Details
 
-        $user_quiz->user_id = Input::get('user_id');
-        $user_quiz->quiz_id = $quiz_id;
+        $user_quiz->save(); // Save so that its ID can be retreived
 
-        $score = 0;
+        $user_quiz_id = $user_quiz->id; // Get ID User_Quiz ID for attempt
+
+        $score = 0; //instantiate score
+
         $quiz = Quiz::find($quiz_id);
+
         $questions = $quiz->questions()->get();
+
+        //$temp = Input::get('temp');
+        $answer_attempt = Input::get("answer_attempt");
 
         for ($i = 0; $i < count($questions); $i++)
         {
+            // Attempt Instantiation
+            $attempt = new Attempt;
+            $attempt->user_quiz_id = $user_quiz_id;
+            $attempt->question_id = $questions[$i]->id;
+
+            // Error is here
+            $attempt->answer_attempt = $answer_attempt[$i];
+
+            // Get correct answer and attempt answer
             $correct_answer = $questions[$i]->answer_item;
-            $user_answer = Input::get("answer_attempt[$i]");
-            if ($correct_answer == $user_answer)
+            $attempt_answer =  $attempt->answer_attempt;
+
+            if ($correct_answer == $attempt_answer)
             {
                 $score++;
             }
+
+            $attempt->save();
         }
+
+        $temp = Input::get("answer_attempt");
+        
 
         $user_quiz->score = $score;
         $user_quiz->save();
 
         // redirect
-        Session::flash('message', 'Successfully created quiz!');
+        Session::flash('message', 'Successfully taken quiz! Congratulations!'.' Score: '.$score .' Correct Answer: '
+            .$attempt_answer
+
+
+         );
+        
         return Redirect::to('quizzes');
 
     }
@@ -82,10 +108,12 @@ class QuizController extends Controller
     {
          // get all the quizzes
         $quizzes = Quiz::all();
+        $user_quizzes = User_Quiz::all();
 
         // load the view and pass the quizzes
         return View::make('quizzes.index')
-            ->with('quizzes', $quizzes);
+            ->with('quizzes', $quizzes)
+            ->with('user_quizzes', $user_quizzes);
     }
 
     /**
@@ -93,7 +121,11 @@ class QuizController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   
+    public function create()
+    {
+        // load the create form (app/views/quizzes/create.blade.php)
+        return View::make('quizzes.create');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -101,7 +133,7 @@ class QuizController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function record(Request $request)
+    public function store(Request $request)
     {
         // validate
         // read more on validation at http://laravel.com/docs/validation

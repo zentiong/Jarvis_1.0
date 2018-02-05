@@ -16,7 +16,7 @@ class User extends Authenticatable
     use Notifiable;
    
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'hiring_date', 'birth_date', 'department', 'supervisor_id', 'position', 'hr_check', 'manager_check'
+        'first_name', 'last_name', 'email', 'password', 'hiring_date', 'birth_date', 'department', 'supervisor_id', 'position', 'manager_check'
     ];
     protected $primaryKey = 'id';
     
