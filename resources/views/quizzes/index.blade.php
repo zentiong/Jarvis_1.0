@@ -9,6 +9,7 @@
 
 <?php 
 $user_id = Auth::user()->id;
+$taken = false;
 ?>
 
 <table class="table table-striped table-bordered">
