@@ -89,21 +89,31 @@ class QuizController extends Controller
         $user_quiz->save();
 
         // redirect
-        Session::flash('message', 'Successfully taken quiz! Congratulations!'.' Score: '.$score .' Correct Answer: '
-            .$attempt_answer
-
-
+        Session::flash('message', 'Successfully taken quiz! Congratulations!'.' Score: '.$score
          );
         
-        return Redirect::to('quizzes');
+        return Redirect::to('take_quizzes');
 
     }
-    
+
+    public function take_quizzes()
+    {
+         // get all the quizzes
+        $quizzes = Quiz::all();
+        $user_quizzes = User_Quiz::all();
+
+        // load the view and pass the quizzes
+        return View::make('quizzes.take_quizzes')
+            ->with('quizzes', $quizzes)
+            ->with('user_quizzes', $user_quizzes);
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
          // get all the quizzes

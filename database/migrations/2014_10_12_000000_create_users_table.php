@@ -28,11 +28,13 @@ class CreateUsersTable extends Migration
             $table->string('supervisor_id', 255);
             $table->string('position', 255);
 
-            $table->boolean('manager_check', 255)->nullable();;
+            $table->boolean('manager_check', 255)->nullable();
 
             $table->rememberToken();
             $table->timestamps();
         });
+
+        /*Informal Seed*/
 
         DB::table('users')->insert(
         array(
@@ -45,9 +47,36 @@ class CreateUsersTable extends Migration
             'department' => '1',
             'supervisor_id' => '1',
             'position' => '1'
+        )  );
 
-        )
-    );
+        DB::table('users')->insert(
+        array(
+            'first_name' => 'Anferny',
+            'last_name' => 'Vanta',
+            'email' => 'vantanferny@gmail.com',
+            'password' => bcrypt('1'),
+            'hiring_date' => '2018-12-31',
+            'birth_date' => '2018-12-31',
+            'department' => '1',
+            'supervisor_id' => '3', /*Boss ko si Zen*/
+            'position' => '1'
+        ));   
+
+         DB::table('users')->insert(
+        array(
+            'first_name' => 'Zen',
+            'last_name' => 'Tiongson',
+            'email' => 'zt@zt.com',
+            'password' => bcrypt('1'),
+            'hiring_date' => '2018-12-31',
+            'birth_date' => '2018-12-31',
+            'department' => '1',
+            'supervisor_id' => '1', 
+            'position' => '1'
+        ));   
+
+
+  
     }
 
     /**
