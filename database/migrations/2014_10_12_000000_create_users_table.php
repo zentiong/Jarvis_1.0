@@ -46,7 +46,9 @@ class CreateUsersTable extends Migration
             'birth_date' => '2018-12-31',
             'department' => '1',
             'supervisor_id' => '1',
-            'position' => '1'
+            'position' => '1',
+            'manager_check' => 1
+
         )  );
 
         DB::table('users')->insert(
@@ -57,9 +59,10 @@ class CreateUsersTable extends Migration
             'password' => bcrypt('1'),
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
-            'department' => '1',
+            'department' => 'Customer Service',
             'supervisor_id' => '3', /*Boss ko si Zen*/
-            'position' => '1'
+            'position' => '1',
+            'manager_check' => 0
         ));   
 
          DB::table('users')->insert(
@@ -70,9 +73,10 @@ class CreateUsersTable extends Migration
             'password' => bcrypt('1'),
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
-            'department' => '1',
+            'department' => 'Human Resources',
             'supervisor_id' => '1', 
-            'position' => '1'
+            'position' => '1',
+            'manager_check' => 1
         ));   
 
 

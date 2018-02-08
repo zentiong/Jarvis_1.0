@@ -26,11 +26,8 @@ $user_id = Auth::user()->id;
             <td>{{ $value->id }}</td>
             <td>{{ $value->name}}</td>
 
-            <!-- we will also add show, edit, and delete buttons -->
             <td>
 
-                <!-- delete the quiz (uses the destroy method DESTROY /quizzes/{id} -->
-                <!-- we will add this later since its a little more complicated than the other two buttons -->
                     {{ Form::open(array('url' => 'skills/' . $value->id, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
                     {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }}

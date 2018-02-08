@@ -24,6 +24,7 @@ Route::<method>('<url>', '<function>');
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('levels', 'LevelingController');
 
 /* Users */
 
@@ -58,6 +59,7 @@ Route::get('see_assessments', 'AssessmentController@see_assessments'); // Where 
 
 Route::resource('training_sessions', 'TrainingSessionController');
 Route::resource('skills', 'SkillController');
+
 
 /*Auth
 */
