@@ -14,6 +14,15 @@
         {{ Form::text('topic', Request::old('topic'), array('class' => 'form-control')) }}
     </div>
 
+    <!-- 
+		Skill Related
+    -->
+
+    <div class="form-group">
+        {{ Form::label('skill', 'skill') }}
+        {{ Form::select('skill', $skills, old('skill'), ['class' => 'form-control']) }}
+    </div>
+
     {{ Form::submit('Create the Quiz!', array('class' => 'btn btn-primary')) }}
 
 {{ Form::close() }}

@@ -18,6 +18,11 @@ class CreateSkillsTable extends Migration
             $table->timestamps();
             $table->string('name');
         });
+
+        DB::table('skills')->insert(
+        array(
+            'name' => 'Math'
+        )  );
     }
 
     /**

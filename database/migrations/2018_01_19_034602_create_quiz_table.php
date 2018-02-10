@@ -17,12 +17,12 @@ class CreateQuizTable extends Migration
             $table->increments('quiz_id');
             $table->timestamps();
             $table->string('topic', 255);
+
+            $table->integer('skill_id')->unsigned();
+            $table->foreign('skill_id')->references('id')->on('skills');
         });
 
-        DB::table('quizzes')->insert(
-        array(
-            'topic' => 'Math'
-        )  );
+        
     }
 
     /**

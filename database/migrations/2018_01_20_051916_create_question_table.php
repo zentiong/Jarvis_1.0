@@ -21,7 +21,7 @@ class CreateQuestionTable extends Migration
             $table->string('question_item', 255);
             $table->string('answer_item', 255);
         });
-
+        /*
         DB::table('questions')->insert(
         array(
             'quiz_id' => '1',
@@ -35,6 +35,7 @@ class CreateQuestionTable extends Migration
             'question_item' => '4 - 1',
             'answer_item' => '3'
         )  );
+        */
     }
 
     /**

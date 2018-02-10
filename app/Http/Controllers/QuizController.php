@@ -7,6 +7,7 @@ use App\Question;
 use App\User;
 use App\User_Quiz;
 use App\Attempt;
+Use App\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -134,7 +135,10 @@ class QuizController extends Controller
     public function create()
     {
         // load the create form (app/views/quizzes/create.blade.php)
-        return View::make('quizzes.create');
+
+        $skills = Skill::all();
+        return View::make('quizzes.create')
+        ->with('skills', $skills);;
     }
 
     /**
@@ -161,6 +165,7 @@ class QuizController extends Controller
             // store
             $quiz = new Quiz;
             $quiz->topic = Input::get('topic');
+            $quiz->skill_id = Input::get('skill');
             $quiz->save();
 
             // redirect
@@ -231,6 +236,7 @@ class QuizController extends Controller
              // store
             $quiz = Quiz::find($quiz_id);
             $quiz->topic = Input::get('topic');
+            $quiz->skill_id = Input::get('skill');
             $quiz->save();
 
             // redirect
