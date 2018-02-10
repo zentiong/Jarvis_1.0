@@ -19,7 +19,7 @@
 </body> 
 </html>
 
-<nav role="navigation">
+<!-- <nav role="navigation">
         <ul>
         @if (Route::has('login'))
         <li><a href="{{ URL::to('/') }}"><span class="branding">Alfred 3.0</span></a>
@@ -49,4 +49,4 @@
             @endauth
         @endif
     </ul>
-</nav>
+</nav> -->

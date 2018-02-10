@@ -19,6 +19,11 @@
     <noscript>
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     </noscript>
+    
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="none" onload="if(media!='all')media='all'">
+    <noscript>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </noscript>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -27,7 +32,7 @@
 </head>
 
 <body class="dashboard">
-    @extends('templates.newsletter-master')
+    @extends('templates.dashboard-navbar')
     <main>
         <section class="container-fluid">
             <h1>All Employees</h1>
@@ -49,6 +54,7 @@
                         <td>Supervisor ID</td>
                         <td>Position</td>
                         <td>Manager?</td>
+                        <td>Actions</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,19 +72,27 @@
                         <td>{{ $value->manager_check }}</td>
 
                         <!-- we will also add show, edit, and delete buttons -->
-                        <td>
+                        <td class="table-actions">
 
                             <!-- delete the employee (uses the destroy method DESTROY /users/{id} -->
                             <!-- we will add this later since its a little more complicated than the other two buttons -->
-                                {{ Form::open(array('url' => 'users/' . $value->id, 'class' => 'pull-right')) }}
+                                {{ Form::open(array('url' => 'users/' . $value->id)) }}
                                 {{ Form::hidden('_method', 'DELETE') }}
-                                {{ Form::submit('Delete this User', array('class' => 'btn btn-warning')) }}
+                                <div>
+                                    <i class="fa fa-trash-o"></i>
+                                    {{ Form::submit('Delete', array('class' => 'btn delete-btn')) }}
+                                </div>
+                                
                              {{ Form::close() }}
                             <!-- show the employee (uses the show method found at GET /users/{id} -->
-                            <a class="btn btn-small btn-success" href="{{ URL::to('users/' . $value->id) }}">Show this User</a>
+                            <a class="btn show-btn" href="{{ URL::to('users/' . $value->id) }}">
+                                <i class="fa fa-user"></i>Show
+                            </a>
 
                             <!-- edit this employee (uses the edit method found at GET /users/{id}/edit -->
-                            <a class="btn btn-small btn-info" href="{{ URL::to('users/' . $value->id . '/edit') }}">Edit this User</a>
+                            <a class="btn edit-btn" href="{{ URL::to('users/' . $value->id . '/edit') }}">
+                                <i class="fa fa-pencil"></i>Edit
+                            </a>
 
                         </td>
                     </tr>
@@ -87,6 +101,7 @@
             </table>
         </section>
     </main>
+    @extends('templates.dashboard-footer')
 </body>
 
 </html>
