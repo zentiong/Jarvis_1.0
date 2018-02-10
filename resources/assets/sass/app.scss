@@ -35,6 +35,14 @@ body.newsletter {
 	padding-top: 70px;
 	position: relative;
 
+	.branding {
+		border: 2px solid $zalora-yellow;
+		color: $zalora-yellow;
+		font-family: "Apercu Regular", sans-serif;
+		font-size: 1.25em;
+		padding: 0 5px;
+	}
+
 	nav {
 		position: fixed;
 		top: 0;
@@ -564,11 +572,51 @@ body.newsletter {
 }
 
 body.dashboard {
+	color: $black-2;
+	font-family: "Open Sans", sans-serif;
+
+	.branding {
+		border: 2px solid $black-1;
+		color: $black-1;
+		font-family: "Apercu Regular", sans-serif;
+		font-size: 1.25em;
+		padding: 0 5px;
+	}
 	nav {
 		position: fixed;
 		top: 0;
 		width: 100%;
 		background-color: $white-1;
+		border-bottom: 1px solid #95989A;
+
+		ul {
+			list-style-type: none;
+    		margin: 0;
+    		padding: 0;
+    		display: flex;
+			align-items: center;
+			height: 3.4em;
+
+    		li {
+    			display: inline;
+    			margin: 0 1.1em;
+
+    			a {
+    				color: $black-1;
+    				font-family: "Apercu Regular", sans-serif;
+    				font-size: 1em;
+    			}
+    			.logout-link {
+    				color: #2F2F2F;
+    				font-family: "Apercu Bold", sans-serif;
+    			}
+    		}
+		}
 	}
+	
+	.login-button {
+	    margin-left: auto;
+	}
+
 }
 

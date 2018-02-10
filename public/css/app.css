@@ -51,6 +51,12 @@ body.newsletter {
   font-family: "Apercu Regular", sans-serif;
   padding-top: 70px;
   position: relative; }
+  body.newsletter .branding {
+    border: 2px solid #F8E71C;
+    color: #F8E71C;
+    font-family: "Apercu Regular", sans-serif;
+    font-size: 1.25em;
+    padding: 0 5px; }
   body.newsletter nav {
     position: fixed;
     top: 0;
@@ -394,10 +400,39 @@ body.newsletter {
     -webkit-transition: background-color 0.3s;
     transition: background-color 0.3s; }
 
-body.dashboard nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #fff; }
+body.dashboard {
+  color: #1F1F1F;
+  font-family: "Open Sans", sans-serif; }
+  body.dashboard .branding {
+    border: 2px solid #000;
+    color: #000;
+    font-family: "Apercu Regular", sans-serif;
+    font-size: 1.25em;
+    padding: 0 5px; }
+  body.dashboard nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #95989A; }
+    body.dashboard nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      height: 3.4em; }
+      body.dashboard nav ul li {
+        display: inline;
+        margin: 0 1.1em; }
+        body.dashboard nav ul li a {
+          color: #000;
+          font-family: "Apercu Regular", sans-serif;
+          font-size: 1em; }
+        body.dashboard nav ul li .logout-link {
+          color: #2F2F2F;
+          font-family: "Apercu Bold", sans-serif; }
+  body.dashboard .login-button {
+    margin-left: auto; }
 
 /*# sourceMappingURL=app.css.map */
