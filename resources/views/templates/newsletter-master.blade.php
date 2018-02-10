@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>ZALORA Skills Information System</title>
@@ -7,21 +7,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
 </head>
-
-<script type="text/javascript">
-    function hideShowLogin() {
-        var x = document.getElementById('login-popup');
-        var y = document.getElementById('login-button');
-        if (x.style.display === "block") {
-            x.style.display = "none";
-            y.classList.remove('clicked');
-        }
-        else {
-            x.style.display = "block";
-            y.classList.add('clicked');
-        }
-    }
-</script>
 
 
 <body class="newsletter">
@@ -32,7 +17,7 @@
 @extends('templates.newsletter-footer')
 
 </body> 
-</html> -->
+</html>
 
 <nav role="navigation">
         <ul>
