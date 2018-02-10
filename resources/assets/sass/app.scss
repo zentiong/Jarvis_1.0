@@ -17,7 +17,7 @@
 	border: 2px solid $zalora-yellow;
 	color: $zalora-yellow;
 	font-family: "Apercu Regular", sans-serif;
-	font-size: 20px;
+	font-size: 1.25em;
 	padding: 0 5px;
 }
 
@@ -51,12 +51,16 @@ body.newsletter {
 
     		li {
     			display: inline;
-    			margin: 0 20px;
+    			margin: 0 1.1em;
 
     			a {
     				color: $white-2;
     				font-family: "Apercu Regular", sans-serif;
-    				font-size: 16px;
+    				font-size: 1em;
+    			}
+    			.logout-link {
+    				color: #2F2F2F;
+    				font-family: "Apercu Bold", sans-serif;
     			}
     		}
 		}
@@ -74,10 +78,9 @@ body.newsletter {
 		top: 55px;
 
 		form {
-
 			input[type="email"], input[type="password"] {
 				font-family: "Helvetica Neue", sans-serif !important;
-				font-size: 14px;
+				font-size: 0.8em;
 				width: 250px;
 				margin-bottom: 20px;
 				border: 1px solid #707070;
@@ -101,8 +104,19 @@ body.newsletter {
 			input::placeholder {
 				color: #BBBBBB;
 			}
-
 		}
+
+		.help-block {
+			background-color: #dc3545;
+			color: $white-1;
+			font-size: 0.9em;
+			line-height: 1.2;
+			padding: 0.5em;
+		}
+	}
+
+	#welcome-banner .container {
+		margin: 2em auto;
 	}
 
 	.section-label {
@@ -130,7 +144,7 @@ body.newsletter {
 		border: 1px solid #95989A;
 		color: $newsletter-bg;
 		font-family: "Rockwell Regular", serif;
-		font-size: 20px;
+		font-size: 1.25em;
 		padding: 5px 15px;
 	}
 
@@ -173,12 +187,12 @@ body.newsletter {
 		padding: 40px 0;
 	}
 
-	section:nth-child(odd) {
+	section:nth-child(even) {
 		@extend %section;
 		background-color: #1f1f1f;
 	}
 
-	section:nth-child(even) {
+	section:nth-child(odd) {
 		@extend %section;
 		background-color: none;
 	}
@@ -200,7 +214,7 @@ body.newsletter {
 
 			td.calendar-day-head {
 				color: $white-3;
-				font-size: 20px;
+				font-size: 1.25em;
 			}
 
 			td.calendar-day {
@@ -528,6 +542,8 @@ body.newsletter {
 	}
 
 	footer {
+		margin-top: 10em;
+		width: 100%;
 		background-color: $black-1;
 		color: $white-3;
 		font-family: 'Open Sans', sans-serif;

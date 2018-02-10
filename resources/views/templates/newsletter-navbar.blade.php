@@ -8,7 +8,7 @@
 				<li><a href="{{ URL::to('quizzes') }}">VQuiz</a></li>
 				<li><a href="{{ URL::to('quizzes/create') }}">CQuiz</a></li>
 				<li class="login-button" id="login-button">
-					<a href="{{ route('logout') }}" onclick="event.preventDefault();
+					<a class="logout-link" href="{{ route('logout') }}" onclick="event.preventDefault();
 		                                                     document.getElementById('logout-form').submit();">
 		                                                     LOG OUT</a>
 
@@ -38,18 +38,18 @@
 	        	<label for="email">ZALORA Email Address</label>
 	            <input type="email" name="email" id="email" placeholder="name@ph.zalora.com" value="{{ old('email') }}" required>
 	            @if ($errors->has('email'))
-                    <span class="help-block">
+                    <div class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
-                    </span>
+                    </div>
                 @endif
             </div>
             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 	            <label for="password">Password</label>
 	            <input type="password" name="password" id="password" required>
 	            @if ($errors->has('password'))
-                    <span class="help-block">
+                    <div class="help-block">
                         <strong>{{ $errors->first('password') }}</strong>
-                   </span>
+                   </div>
                 @endif
             </div>
 	            <input type="checkbox" name="keep-logged-in" id="keep-logged-in" {{ old('remember') ? 'checked' : '' }}>

@@ -46,6 +46,12 @@
 <body class="newsletter">
     @extends('templates.newsletter-navbar')
     <main>
+        <section class="container-fluid text-center" id="welcome-banner">
+            <div class="container">
+                <h1>ALFRED 3.0</h1>
+                <h5>Your upgraded personal HR Corp Serv assistant.</h5>
+            </div>
+        </section>
         <section class="container-fluid" id="calendar-container" >
             <div class="container">
                 <h1 class="section-label">CALENDAR</h1>

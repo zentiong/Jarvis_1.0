@@ -35,7 +35,7 @@
   border: 2px solid #F8E71C;
   color: #F8E71C;
   font-family: "Apercu Regular", sans-serif;
-  font-size: 20px;
+  font-size: 1.25em;
   padding: 0 5px; }
 
 a {
@@ -65,11 +65,14 @@ body.newsletter {
       height: 3.4em; }
       body.newsletter nav ul li {
         display: inline;
-        margin: 0 20px; }
+        margin: 0 1.1em; }
         body.newsletter nav ul li a {
           color: #ebebeb;
           font-family: "Apercu Regular", sans-serif;
-          font-size: 16px; }
+          font-size: 1em; }
+        body.newsletter nav ul li .logout-link {
+          color: #2F2F2F;
+          font-family: "Apercu Bold", sans-serif; }
   body.newsletter .login-popup {
     display: none;
     width: 290px;
@@ -82,7 +85,7 @@ body.newsletter {
     top: 55px; }
     body.newsletter .login-popup form input[type="email"], body.newsletter .login-popup form input[type="password"] {
       font-family: "Helvetica Neue", sans-serif !important;
-      font-size: 14px;
+      font-size: 0.8em;
       width: 250px;
       margin-bottom: 20px;
       border: 1px solid #707070;
@@ -99,6 +102,14 @@ body.newsletter {
       font-family: "Helvetica Neue", sans-serif !important; }
     body.newsletter .login-popup form input::placeholder {
       color: #BBBBBB; }
+    body.newsletter .login-popup .help-block {
+      background-color: #dc3545;
+      color: #fff;
+      font-size: 0.9em;
+      line-height: 1.2;
+      padding: 0.5em; }
+  body.newsletter #welcome-banner .container {
+    margin: 2em auto; }
   body.newsletter .section-label {
     border-top: 5px solid #F8E71C;
     color: #ebebeb;
@@ -118,7 +129,7 @@ body.newsletter {
     border: 1px solid #95989A;
     color: #2F2F2F;
     font-family: "Rockwell Regular", serif;
-    font-size: 20px;
+    font-size: 1.25em;
     padding: 5px 15px; }
   body.newsletter .divider-1 {
     border-style: dashed !important;
@@ -147,11 +158,11 @@ body.newsletter {
     border: 1px solid #95989A;
     border-radius: 2px;
     font-family: "Apercu Bold", sans-serif !important; }
-  body.newsletter section:nth-child(odd), body.newsletter section:nth-child(even) {
+  body.newsletter section:nth-child(even), body.newsletter section:nth-child(odd) {
     padding: 40px 0; }
-  body.newsletter section:nth-child(odd) {
-    background-color: #1f1f1f; }
   body.newsletter section:nth-child(even) {
+    background-color: #1f1f1f; }
+  body.newsletter section:nth-child(odd) {
     background-color: none; }
   body.newsletter #calendar-container table.calendar {
     background-color: #1F1F1F;
@@ -166,7 +177,7 @@ body.newsletter {
       text-align: center; }
     body.newsletter #calendar-container table.calendar td.calendar-day-head {
       color: #BDBDBD;
-      font-size: 20px; }
+      font-size: 1.25em; }
     body.newsletter #calendar-container table.calendar td.calendar-day {
       background-color: #89801B;
       color: #BDBDBD;
@@ -368,6 +379,8 @@ body.newsletter {
         display: block;
         line-height: 1.2; }
   body.newsletter footer {
+    margin-top: 10em;
+    width: 100%;
     background-color: #000;
     color: #BDBDBD;
     font-family: 'Open Sans', sans-serif;
