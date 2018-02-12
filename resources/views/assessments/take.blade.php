@@ -36,9 +36,26 @@ Take Quiz Implementation:
     {{ Form::hidden('assessment_id', $value = $assessment->id) }}
 
 
-    {{ Form::label('employee_id', 'Employee') }}
-    {{ Form::text('employee_id', Request::old('DEFAULT AA'), array('class' => 'form-control')) }}
+    <div class="form-group">
+        {{ Form::label('user', 'Employee') }}
+  
+        <!-- HERE -->
+   
 
+
+
+        <select id="user" class="form-control" name="user">
+       @foreach($users as $key => $value)
+            <?php 
+                $i = $value->id
+            ?>
+            
+            <option value="<?php echo $value->id ?>">{{$value->first_name}}</option>
+       @endforeach
+       </select>
+
+
+    </div>
 
     <table class="table table-striped table-bordered">
     <thead>
@@ -49,13 +66,13 @@ Take Quiz Implementation:
 
     <tbody>
 
-
+        <?php 
+            $i = 0
+        ?>
    
     @foreach($assessment_items as $key => $value)
 
-        <?php 
 
-        ?>
 
         <tr>
             <td>{{ $value->criteria }}</td>
@@ -72,17 +89,31 @@ Take Quiz Implementation:
                     Assign the value being inputted to answer_attempt
                 -->
 
-                {{ Form::label('grades[]', 'Grade') }}
-                {{ Form::text('grades[]', Request::old('DEFAULT AA'), array('class' => 'form-control')) }}
+                {{ Form::radio('grades['.$i.']', '1' ) }}
+                {{ Form::radio('grades['.$i.']', '2' ) }}
+                {{ Form::radio('grades['.$i.']', '3' ) }}
+                {{ Form::radio('grades['.$i.']', '4' ) }}
+                {{ Form::radio('grades['.$i.']', '5' ) }}
+                {{ Form::radio('grades['.$i.']', '6' ) }}
+                {{ Form::radio('grades['.$i.']', '7' ) }}
+                {{ Form::radio('grades['.$i.']', '8' ) }}
+                {{ Form::radio('grades['.$i.']', '9' ) }}
+                {{ Form::radio('grades['.$i.']', '10' ) }}
+
+
 
                 <!-- Don't know shit about this yet -->
                 <!--
                 <input type="text" name="item[]">
                 -->
-                
+                <?php
+                    echo $i++;
+                ?>
                 
             </td>
         </tr>
+
+        
     @endforeach
     </tbody>
 
