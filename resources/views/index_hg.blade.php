@@ -37,14 +37,74 @@ $trainings = $current_user->training_session_id
 
 </script>
 
-<p>HR LANDING</p>
+<p>HR+MANAGER LANDING</p>
 <div class="tab">
   <button class="tablinks" onclick="openCity(event, 'skills')">My Skills</button>
+  <button class="tablinks" onclick="openCity(event, 'employees')">Employees Under Me</button>
   <button class="tablinks" onclick="openCity(event, 'trainings')">Trainings</button>
 </div>
 
 <div id="skills" class="tabcontent">
   <h5>Skills graph here</h5>
+</div>
+
+<div id="employees" class="tabcontent">
+  <body class="dashboard">
+    <main>
+        <section class="container-fluid">
+            <!-- will be used to show any messages -->
+            @if (Session::has('message'))
+                <div class="alert alert-info">{{ Session::get('message') }}</div>
+            @endif
+
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <td>First Name</td>
+                        <td>Last Name</td>
+                        <td>Email</td>
+                        <td>Hiring Date</td>
+                        <td>Birth Date</td>
+                        <td>Department</td>
+                        <td>Supervisor ID</td>
+                        <td>Position</td>
+                        <td>Manager?</td>
+                        <td>Actions</td>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($users as $key => $value)
+                    @if($value->supervisor_id==$current_id)
+                        <tr>
+                            <td>{{ $value->first_name }}</td>
+                            <td>{{ $value->last_name }}</td>
+                            <td>{{ $value->email }}</td>
+                            <td>{{ $value->hiring_date }}</td>
+                            <td>{{ $value->birth_date }}</td>
+                            <td>{{ $value->department }}</td>
+                            <td>{{ $value->supervisor_id }}</td>
+                            <td>{{ $value->position }}</td>
+
+                            @if ($value->manager_check==1)
+                            <td>Yes</td>
+                            @else
+                            <td>No</td>
+                            @endif
+
+                            <!-- we will also add show, edit, and delete buttons -->
+                            <td class="table-actions">
+                                <a class="btn show-btn" href="{{ URL::to('users/' . $value->id) }}">
+                                    <i class="fa fa-user"></i>View Profile 
+                                </a>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
 </div>
 
 <div id="trainings" class="tabcontent">
