@@ -15,13 +15,14 @@
     </div>
 
     <!-- 
-		Skill Related
+        Skill Related
     -->
 
-    <div class="form-group">
-        {{ Form::label('skill', 'skill') }}
-        {{ Form::select('skill', $skills, old('skill'), ['class' => 'form-control']) }}
-    </div>
+     <select id="skill" class="form-control" name="skill">
+       @foreach($skills as $key => $value)
+            <option value="<?php echo $value->id ?>">{{$value->name}}</option>
+       @endforeach
+       </select>
 
     {{ Form::submit('Create the Quiz!', array('class' => 'btn btn-primary')) }}
 

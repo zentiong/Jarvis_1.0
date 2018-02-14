@@ -26,7 +26,7 @@ class CreateUserAssessmentsTable extends Migration
             $table->integer('assessment_id')->unsigned();
             $table->foreign('assessment_id')->references('id')->on('assessments');
 
-            $table->integer('rating')->default(0);
+            $table->float('rating')->default(0);
 
             $table->longText('feedback')->nullable();
 

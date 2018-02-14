@@ -15,9 +15,7 @@ $user_id = Auth::user()->id; /* Supervisor */
     <thead>
         <tr>
             <td>Assessment Topic</td>
-            <td>Assessment ID</td>
             <td>Employee Name</td>
-            <td>Employee ID</td>
             <td>Rating</td>
             <td>Feedback</td>
         </tr>
@@ -26,21 +24,35 @@ $user_id = Auth::user()->id; /* Supervisor */
     @foreach($user_assessments as $key => $value)
         <tr>
             <td>
-                @foreach(assessments as $key => $topic)
-                Topic {{ $topic->topic }}
+                @foreach($assessments as $key => $topic)
+                <?php
+
+                    $check_assessment_id = $topic->id;
+
+                ?>
+
+                @if($check_assessment_id == $value->assessment_id)
+                   {{ $topic->topic }}
+                @endif
+
                 @endforeach
             </td>
             <td>
-                {{ $value->employee_id }}
+                 @foreach($users as $key => $user)
+                <?php
+
+                    $check_user_id = $user->id;
+
+                ?>
+
+                @if($check_user_id == $value->employee_id)
+                   {{ $user->first_name }} {{ $user->last_name }}
+                @endif
+
+                @endforeach
             </td>
             <td>
-                Name {{ $value->assessment_id }}
-            </td>
-            <td>
-                {{ $value->employee_id }}
-            </td>
-            <td>
-                Rating: {{ $value->rating }}
+                {{ $value->rating }}
             </td>
             <td>
                  {{ $value->feedback }}

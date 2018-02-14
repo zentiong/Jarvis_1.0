@@ -8,6 +8,8 @@ use App\Assessment_Item;
 use App\User_Assessment;
 use App\Grade;
 
+use Auth;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -27,6 +29,7 @@ class AssessmentController extends Controller
         
   // get all the assessments
         $assessment = Assessment::find($id);
+        $users = User::where('supervisor_id',Auth::user()->id)->get();
 
         //working SQL
         //$assessment_items = Question::where('assessment_id', $id)->get();
@@ -37,7 +40,8 @@ class AssessmentController extends Controller
           // show the view and pass the assessment to it
         return View::make('assessments.take')
             ->with('assessment', $assessment)
-            ->with('assessment_items', $assessment_items);
+            ->with('assessment_items', $assessment_items)
+            ->with('users',$users);
     }
 
     public function record(Request $request)
@@ -45,7 +49,9 @@ class AssessmentController extends Controller
         $user_assessment = new User_Assessment; // New Instance of User Assessment
         $assessment_id = Input::get('assessment_id'); // Get Assessment ID
 
-        $user_assessment->employee_id = Input::get('employee_id'); // Employee 
+        // HERE
+        $user_assessment->employee_id =  Input::get('user'); //employee
+
         $user_assessment->supervisor_id = Input::get('supervisor_id'); // Supervisor
         $user_assessment->assessment_id =  $assessment_id; // Assessment
 
@@ -86,17 +92,17 @@ class AssessmentController extends Controller
         Session::flash('message', 'Successfully made an assessment! Congratulations!'.' Rating: '.$grade
          );
         
-        return Redirect::to('take_assessments');
+        return Redirect::to('see_assessments');
 
     }
 
-    public function take_assessments()
+    public function make_assessments()
     {
          // get all the assessments
         $assessments = Assessment::all();
 
         // load the view and pass the assessments
-        return View::make('assessments.take_assessments')
+        return View::make('assessments.make_assessments')
             ->with('assessments', $assessments);
     }
 
@@ -104,7 +110,8 @@ class AssessmentController extends Controller
     {
          // get all the assessments
         $user_assessments = User_Assessment::all();
-
+        $assessments = Assessment::all();
+        $users = User::all();
 
         // load the view and pass the assessments
         return View::make('assessments.see_assessments')
