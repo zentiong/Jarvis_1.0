@@ -22,6 +22,18 @@ class CreateQuizTable extends Migration
             $table->foreign('skill_id')->references('id')->on('skills');
         });
 
+        DB::table('quizzes')->insert(
+        array(
+            'topic' => 'Communication',
+            'skill_id' => '2'
+        )  );
+
+        DB::table('quizzes')->insert(
+        array(
+            'topic' => 'Customer Relations',
+            'skill_id' => '4'
+        )  );
+
         
     }
 

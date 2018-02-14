@@ -7,6 +7,7 @@ use App\Assessment;
 use App\Assessment_Item;
 use App\User_Assessment;
 use App\Grade;
+Use App\Skill;
 
 use Auth;
 
@@ -146,7 +147,10 @@ class AssessmentController extends Controller
     public function create()
     {
         // load the create form (app/views/assessments/create.blade.php)
-        return View::make('assessments.create');
+
+        $skills = Skill::all();
+        return View::make('assessments.create')
+        ->with('skills', $skills);
     }
 
     /**
@@ -173,6 +177,7 @@ class AssessmentController extends Controller
             // store
             $assessment = new Assessment;
             $assessment->topic = Input::get('topic');
+            $assessment->skill_id = Input::get('skill');
             $assessment->save();
 
             // redirect

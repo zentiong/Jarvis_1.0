@@ -22,7 +22,7 @@
        @foreach($skills as $key => $value)
             <option value="<?php echo $value->id ?>">{{$value->name}}</option>
        @endforeach
-       </select>
+      </select>
 
     {{ Form::submit('Create the Quiz!', array('class' => 'btn btn-primary')) }}
 
