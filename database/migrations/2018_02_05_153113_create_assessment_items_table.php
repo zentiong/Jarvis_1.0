@@ -35,6 +35,18 @@ class CreateAssessmentItemsTable extends Migration
             'assessment_id' => '1',
             'criteria' => 'Pronunciation'
         )  );
+
+        DB::table('assessment_items')->insert(
+        array(
+            'assessment_id' => '2',
+            'criteria' => 'Empathy'
+        )  );
+
+        DB::table('assessment_items')->insert(
+        array(
+            'assessment_id' => '2',
+            'criteria' => 'Warmth'
+        )  );
     }
 
     /**

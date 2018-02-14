@@ -21,7 +21,22 @@ class CreateSkillsTable extends Migration
 
         DB::table('skills')->insert(
         array(
-            'name' => 'Math'
+            'name' => 'Math Skills'
+        )  );
+
+         DB::table('skills')->insert(
+        array(
+            'name' => 'Communication Skills'
+        )  );
+
+        DB::table('skills')->insert(
+        array(
+            'name' => 'Theology Skills'
+        )  );
+
+        DB::table('skills')->insert(
+        array(
+            'name' => 'People Skills'
         )  );
     }
 

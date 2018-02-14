@@ -138,7 +138,7 @@ class QuizController extends Controller
 
         $skills = Skill::all();
         return View::make('quizzes.create')
-        ->with('skills', $skills);;
+        ->with('skills', $skills);
     }
 
     /**
