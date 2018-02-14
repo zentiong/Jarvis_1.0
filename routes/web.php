@@ -60,6 +60,7 @@ Route::get('see_assessments', 'AssessmentController@see_assessments'); // Where 
 Route::resource('training_sessions', 'TrainingSessionController');
 Route::resource('skills', 'SkillController');
 
+Route::resource('job_title', 'JobTitleController');
 
 /*Auth
 */

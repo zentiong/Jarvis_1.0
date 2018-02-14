@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('supervisor_id', 255);
             $table->string('position', 255);
 
+
             $table->boolean('manager_check', 255)->nullable();
 
             $table->rememberToken();

@@ -13,7 +13,9 @@
         <tr>
             <td>ID</td>
             <td>Date</td>
-            <td>Description</td>
+            <td>Starting Time</td>  
+            <td>Ending Time</td>            
+            <td>Title</td>
             <td>Speaker</td>
             <td>Venue</td>
         </tr>
@@ -23,24 +25,23 @@
         <tr>
             <td>{{ $value->id }}</td>
             <td>{{ $value->date }}</td>
-            <td>{{ $value->description }}</td>
+            <td>{{ $value->starting_time }}</td>
+            <td>{{ $value->ending_time }}</td>
+            <td>{{ $value->title }}</td>
             <td>{{ $value->speaker }}</td>
             <td>{{ $value->venue }}</td>
 
-            <!-- we will also add show, edit, and delete buttons -->
             <td>
 
-                <!-- delete the employee (uses the destroy method DESTROY /employees/{id} -->
-                <!-- we will add this later since its a little more complicated than the other two buttons -->
-                    {{ Form::open(array('url' => 'users/' . $value->id, 'class' => 'pull-right')) }}
+                    {{ Form::open(array('url' => 'training_sessions/' . $value->id, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete this Employee', array('class' => 'btn btn-warning')) }}
+                    {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }}
                  {{ Form::close() }}
                 <!-- show the employee (uses the show method found at GET /employees/{id} -->
-                <a class="btn btn-small btn-success" href="{{ URL::to('users/' . $value->id) }}">Show this Employee</a>
+                <a class="btn btn-small btn-success" href="{{ URL::to('training_sessions/' . $value->id) }}">Show</a>
 
                 <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
-                <a class="btn btn-small btn-info" href="{{ URL::to('users/' . $value->id . '/edit') }}">Edit this Employee</a>
+                <a class="btn btn-small btn-info" href="{{ URL::to('training_sessions/' . $value->id . '/edit') }}">Edit</a>
 
             </td>
         </tr>

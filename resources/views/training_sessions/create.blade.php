@@ -17,9 +17,19 @@
         {{ Form::date('date', Request::old('date'), array('class' => 'form-control')) }}
     </div>
 
+    <div class="form-group">
+        {{ Form::label('starting_time', 'Starting Time') }}
+        {{ Form::time('starting_time', Request::old('starting_time'), array('class' => 'form-control')) }}
+    </div>
+
+    <div class="form-group">
+        {{ Form::label('ending_time', 'Ending Time') }}
+        {{ Form::time('ending_time', Request::old('ending_time'), array('class' => 'form-control')) }}
+    </div>
+
      <div class="form-group">
-        {{ Form::label('description', 'Description') }}
-        {{ Form::text('description', Request::old('description'), array('class' => 'form-control')) }}
+        {{ Form::label('title', 'Title') }}
+        {{ Form::text('title', Request::old('title'), array('class' => 'form-control')) }}
     </div>
 
     <div class="form-group">

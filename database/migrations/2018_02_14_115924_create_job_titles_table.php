@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTrainingSessionsTable extends Migration
+class CreateJobTitlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateTrainingSessionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('training_sessions', function (Blueprint $table) {
+        Schema::create('job_titles', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->date('date');
-            $table->time('starting_time');
-            $table->time('ending_time');
-            $table->string('title', 255);
-            $table->string('speaker', 255);
-            $table->string('venue', 255);
+            $table->string('name');
         });
     }
 
@@ -32,6 +27,6 @@ class CreateTrainingSessionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('training_sessions');
+        Schema::dropIfExists('job_titles');
     }
 }

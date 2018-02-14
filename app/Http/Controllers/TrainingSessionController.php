@@ -46,8 +46,10 @@ class TrainingSessionController extends Controller
     {
         $rules = array(
             'date'=> 'required',
-            'description' => 'required',
-            'speaker'      => 'required',
+            'starting_time'=> 'required',
+            'ending_time'=> 'required',
+            'title' => 'required',
+            'speaker' => 'required',
             'venue' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
@@ -61,7 +63,9 @@ class TrainingSessionController extends Controller
             // store
             $training_session = new TrainingSession;
             $training_session->date = Input::get('date');
-            $training_session->description = Input::get('description');
+            $training_session->starting_time = Input::get('starting_time');
+            $training_session->ending_time = Input::get('ending_time');
+            $training_session->title = Input::get('title');
             $training_session->speaker = Input::get('speaker');
             $training_session->venue = Input::get('venue');
             $training_session->save();
@@ -80,8 +84,12 @@ class TrainingSessionController extends Controller
      */
     public function show($id)
     {
-        //
+        $training_session = TrainingSession::find($id);
+
+        return View::make('training_sessions.show')
+            ->with('training_session', $training_session);
     }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -91,7 +99,11 @@ class TrainingSessionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $training_session = TrainingSession::find($id);
+
+        // show the edit form and pass the user
+        return View::make('training_sessions.edit')
+            ->with('training_session', $training_session);
     }
 
     /**
@@ -101,9 +113,38 @@ class TrainingSessionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $rules = array(
+            'date'=> 'required',
+            'starting_time'=> 'required',
+            'starting_time'=> 'required',
+            'title' => 'required',
+            'speaker'      => 'required',
+            'venue' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('training_sessions/'.$id.'/create')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+            // store
+            $training_session = TrainingSession::find($id);
+            $training_session->date = Input::get('date');
+            $training_session->starting_time = Input::get('starting_time');
+            $training_session->ending_time = Input::get('ending_time');
+            $training_session->title = Input::get('title');
+            $training_session->speaker = Input::get('speaker');
+            $training_session->venue = Input::get('venue');
+            $training_session->save();
+
+            // redirect
+            Session::flash('message', 'Successfully Updated Training Session!');
+            return Redirect::to('training_sessions');
+            }
     }
 
     /**
@@ -114,6 +155,11 @@ class TrainingSessionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $training_session = TrainingSession::find($id);
+        $training_session->delete();
+
+        // redirect
+        Session::flash('message', 'Deleted Training Session!');
+        return Redirect::to('training_sessions');
     }
 }
