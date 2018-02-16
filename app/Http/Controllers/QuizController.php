@@ -184,6 +184,7 @@ class QuizController extends Controller
     {
         // get the quiz
         $quiz = Quiz::find($quiz_id);
+        $skill = Skill::find($quiz->skill_id);
 
         //$questions = Question::find($quiz_id)->questions();
 
@@ -191,8 +192,9 @@ class QuizController extends Controller
 
         // show the view and pass the quiz to it
         return View::make('quizzes.show')
-            ->with('quiz', $quiz);
-        //    ->with('questions', $questions);
+            ->with('quiz', $quiz)
+            ->with('skill', $skill);
+        //->with('questions', $questions);
     }
 
     /**
@@ -203,12 +205,15 @@ class QuizController extends Controller
      */
     public function edit($quiz_id)
     {
+        //get skills
+        $skills = Skill::all();
          // get the quiz
         $quiz = Quiz::find($quiz_id);
 
         // show the edit form and pass the quiz
         return View::make('quizzes.edit')
-            ->with('quiz', $quiz);
+            ->with('quiz', $quiz)
+            ->with('skills', $skills);
     }
 
     /**

@@ -1,4 +1,4 @@
-@extends('templates.newsletter-master')
+@extends('templates.dashboard-master')
 
 @section('body')
 <h1>Training Sessions</h1>

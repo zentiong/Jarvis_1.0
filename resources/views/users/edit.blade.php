@@ -1,4 +1,4 @@
-@extends('templates.newsletter-master')
+@extends('templates.dashboard-master')
 
 @section('body')
 <h1>Edit {{ $user->first_name }} {{ $user->last_name }}</h1>
