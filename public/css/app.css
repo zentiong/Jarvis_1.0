@@ -443,14 +443,13 @@ body.dashboard {
         text-align: center; }
       body.dashboard main table tbody .table-actions {
         display: flex;
-        flex-flow: column nowrap;
+        flex-flow: row nowrap;
         align-items: flex-start; }
-        body.dashboard main table tbody .table-actions i.fa {
-          margin-right: 0.5em; }
         body.dashboard main table tbody .table-actions .delete-btn {
           background-color: transparent;
+          border: 1px solid #959595;
           border-radius: 15px;
-          color: #F80000;
+          color: #959595;
           display: block;
           font-size: inherit;
           font-weight: 500;
@@ -464,8 +463,9 @@ body.dashboard {
           -webkit-transition: background-color, 0.3s; }
         body.dashboard main table tbody .table-actions .edit-btn {
           background-color: transparent;
+          border: 1px solid #959595;
           border-radius: 15px;
-          color: #03223A;
+          color: #959595;
           display: block;
           font-size: inherit;
           font-weight: 500;
@@ -478,8 +478,9 @@ body.dashboard {
           -webkit-transition: background-color, 0.3s; }
         body.dashboard main table tbody .table-actions .show-btn {
           background-color: transparent;
+          border: 1px solid #959595;
           border-radius: 15px;
-          color: #28a745;
+          color: #959595;
           display: block;
           font-size: inherit;
           font-weight: 500;
@@ -501,5 +502,9 @@ body.dashboard {
     line-height: 1.2; }
     body.dashboard footer b {
       color: #54749A; }
+
+.tooltip-inner {
+  background-color: #1F1F1F;
+  color: #ebebeb; }
 
 /*# sourceMappingURL=app.css.map */

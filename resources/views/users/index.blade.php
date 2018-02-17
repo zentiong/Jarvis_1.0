@@ -1,5 +1,12 @@
 <!-- @extends('templates.dashboard-master') -->
 
+<!-- <script type="text/javascript">
+    // enables Bootstrap tooltips
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+</script> -->
+
 @section('body')
     <main>
         <section class="container-fluid">
@@ -41,26 +48,29 @@
 
                         <!-- we will also add show, edit, and delete buttons -->
                         <td class="table-actions">
+                            <!-- show the employee (uses the show method found at GET /users/{id} -->
+                            <a class="btn show-btn black-tooltip" data-toggle="tooltip" data-placement="bottom" title="Show" data-animation="true" href="{{ URL::to('users/' . $value->id) }}">
+                                <i class="fa fa-user fa-lg"></i>
+                            </a>
 
+                            <!-- edit this employee (uses the edit method found at GET /users/{id}/edit -->
+                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit" data-animation="true" href="{{ URL::to('users/' . $value->id . '/edit') }}">
+                                <i class="fa fa-pencil fa-lg"></i>
+                            </a>
                             <!-- delete the employee (uses the destroy method DESTROY /users/{id} -->
                             <!-- we will add this later since its a little more complicated than the other two buttons -->
                                 {{ Form::open(array('url' => 'users/' . $value->id)) }}
                                 {{ Form::hidden('_method', 'DELETE') }}
-                                <div>
+                                <!-- <div>
+                                    <i class="fa fa-trash-o"></i>
                                     {{ Form::submit('Delete', array('class' => 'btn delete-btn')) }}
+                                </div> -->
+                                <div data-toggle="tooltip" data-placement="bottom" title="Delete" data-animation="true">
+                                    {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
                                 </div>
                                 
                              {{ Form::close() }}
-                            <!-- show the employee (uses the show method found at GET /users/{id} -->
-                            <a class="btn show-btn" href="{{ URL::to('users/' . $value->id) }}">
-                                Show
-                            </a>
-
-                            <!-- edit this employee (uses the edit method found at GET /users/{id}/edit -->
-                            <a class="btn edit-btn" href="{{ URL::to('users/' . $value->id . '/edit') }}">
-                                Edit
-                            </a>
-
+                            
                         </td>
                     </tr>
                 @endforeach

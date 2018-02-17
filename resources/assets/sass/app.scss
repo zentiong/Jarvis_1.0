@@ -634,12 +634,8 @@ body.dashboard {
 
 				.table-actions {
 					display: flex;
-					flex-flow: column nowrap;
+					flex-flow: row nowrap;
 					align-items: flex-start;
-
-					i.fa {
-						margin-right: 0.5em;
-					}
 
 					.delete-btn {
 						@include table-btn($table-delete-red);
@@ -662,6 +658,7 @@ body.dashboard {
 					.show-btn:hover {
 						@include table-btn-hover($table-show-green);
 					}
+
 				}
 			}
 		}
@@ -682,4 +679,8 @@ body.dashboard {
 		}
 	}
 }
+.tooltip-inner {
+						background-color: $black-2;
+						color: $white-2;
+					}
 
