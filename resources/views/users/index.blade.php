@@ -1,6 +1,7 @@
-@extends('templates.dashboard-master')
+<!-- @extends('templates.dashboard-master') -->
 
 @section('body')
+    <main>
         <section class="container-fluid">
             <h1>All Employees</h1>
             <!-- will be used to show any messages -->
@@ -46,19 +47,18 @@
                                 {{ Form::open(array('url' => 'users/' . $value->id)) }}
                                 {{ Form::hidden('_method', 'DELETE') }}
                                 <div>
-                                    <i class="fa fa-trash-o"></i>
                                     {{ Form::submit('Delete', array('class' => 'btn delete-btn')) }}
                                 </div>
                                 
                              {{ Form::close() }}
                             <!-- show the employee (uses the show method found at GET /users/{id} -->
                             <a class="btn show-btn" href="{{ URL::to('users/' . $value->id) }}">
-                                <i class="fa fa-user"></i>Show
+                                Show
                             </a>
 
                             <!-- edit this employee (uses the edit method found at GET /users/{id}/edit -->
                             <a class="btn edit-btn" href="{{ URL::to('users/' . $value->id . '/edit') }}">
-                                <i class="fa fa-pencil"></i>Edit
+                                Edit
                             </a>
 
                         </td>
@@ -67,4 +67,5 @@
                 </tbody>
             </table>
         </section>
+    </main>
 @endsection
