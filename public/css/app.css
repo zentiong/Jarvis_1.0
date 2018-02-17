@@ -436,6 +436,18 @@ body.dashboard {
     margin-left: auto; }
   body.dashboard main {
     margin: 5em 0; }
+    body.dashboard main .table-top {
+      justify-content: space-between; }
+      body.dashboard main .table-top .table-title {
+        font-size: 2.5rem; }
+    body.dashboard main .crud-main-cta {
+      background-color: #03223A;
+      border: none;
+      border-radius: 15px;
+      color: #fff;
+      letter-spacing: 2px;
+      padding: 0.4em 0.6em;
+      text-transform: uppercase; }
     body.dashboard main table {
       font-size: 90%; }
       body.dashboard main table thead {
@@ -448,12 +460,13 @@ body.dashboard {
         body.dashboard main table tbody .table-actions .delete-btn {
           background-color: transparent;
           border: 1px solid #959595;
-          border-radius: 15px;
+          border-radius: 10px;
           color: #959595;
           display: block;
           font-size: inherit;
           font-weight: 500;
           margin: 0.5em 0.3em;
+          padding: 0.6em 1em;
           text-transform: uppercase;
           display: inline-block; }
         body.dashboard main table tbody .table-actions .delete-btn:hover {
@@ -464,12 +477,13 @@ body.dashboard {
         body.dashboard main table tbody .table-actions .edit-btn {
           background-color: transparent;
           border: 1px solid #959595;
-          border-radius: 15px;
+          border-radius: 10px;
           color: #959595;
           display: block;
           font-size: inherit;
           font-weight: 500;
           margin: 0.5em 0.3em;
+          padding: 0.6em 1em;
           text-transform: uppercase; }
         body.dashboard main table tbody .table-actions .edit-btn:hover {
           background-color: #03223A;
@@ -479,18 +493,22 @@ body.dashboard {
         body.dashboard main table tbody .table-actions .show-btn {
           background-color: transparent;
           border: 1px solid #959595;
-          border-radius: 15px;
+          border-radius: 10px;
           color: #959595;
           display: block;
           font-size: inherit;
           font-weight: 500;
           margin: 0.5em 0.3em;
+          padding: 0.6em 1em;
           text-transform: uppercase; }
         body.dashboard main table tbody .table-actions .show-btn:hover {
           background-color: #28a745;
           color: #fff;
           transition: background-color, 0.3s;
           -webkit-transition: background-color, 0.3s; }
+        body.dashboard main table tbody .table-actions .tooltip-inner {
+          background-color: #1F1F1F;
+          color: #ebebeb; }
   body.dashboard footer {
     margin-top: 10em;
     width: 100%;
@@ -502,9 +520,5 @@ body.dashboard {
     line-height: 1.2; }
     body.dashboard footer b {
       color: #54749A; }
-
-.tooltip-inner {
-  background-color: #1F1F1F;
-  color: #ebebeb; }
 
 /*# sourceMappingURL=app.css.map */

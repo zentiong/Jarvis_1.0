@@ -1,16 +1,23 @@
 <!-- @extends('templates.dashboard-master') -->
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
     // enables Bootstrap tooltips
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip();
-    })
-</script> -->
+    // $(function () {
+    //   $('[data-toggle="tooltip"]').tooltip();
+    // })
+    $(document).ready(function() {
+        $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+    });
+</script>
 
 @section('body')
     <main>
         <section class="container-fluid">
-            <h1>All Employees</h1>
+            <div class="row table-top">
+                <h1 class="table-title">All Employees</h1>
+                <button class="btn crud-main-cta">&#43; ADD USER</button>
+            </div>
+            
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
                 <div class="alert alert-info">{{ Session::get('message') }}</div>
@@ -49,7 +56,7 @@
                         <!-- we will also add show, edit, and delete buttons -->
                         <td class="table-actions">
                             <!-- show the employee (uses the show method found at GET /users/{id} -->
-                            <a class="btn show-btn black-tooltip" data-toggle="tooltip" data-placement="bottom" title="Show" data-animation="true" href="{{ URL::to('users/' . $value->id) }}">
+                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="Show" data-animation="true" href="{{ URL::to('users/' . $value->id) }}">
                                 <i class="fa fa-user fa-lg"></i>
                             </a>
 
