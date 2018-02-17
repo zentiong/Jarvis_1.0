@@ -460,7 +460,8 @@ body.dashboard {
       body.dashboard main table tbody .table-actions {
         display: flex;
         flex-flow: row nowrap;
-        align-items: flex-start; }
+        align-items: flex-start;
+        justify-content: center; }
         body.dashboard main table tbody .table-actions .delete-btn {
           background-color: transparent;
           border: 1px solid #B9B9B6;

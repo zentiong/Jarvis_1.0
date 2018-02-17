@@ -1,47 +1,58 @@
-@extends('templates.dashboard-master') 
+<!-- @extends('templates.dashboard-master')  -->
 
 @section('body')
 
-@if (Session::has('message'))
-    <div class="alert alert-info">{{ Session::get('message') }}</div>
-@endif
+    <main class="container-fluid">
+        <section class="container-fluid">
+            <div class="row crud-page-top">
+                <h1 class="crud-page-title">All Skills</h1>
+                <a href="skills/create" class="btn crud-main-cta">&#43; Add Skill</a>
+            </div>
 
-<?php 
-$user_id = Auth::user()->id;
-?>
+            @if (Session::has('message'))
+                <div class="alert alert-info">{{ Session::get('message') }}</div>
+            @endif
 
-<table class="table table-striped table-bordered">
-    <thead>
-        <tr>
-            <td>Skill ID</td>
-            <td>Skill Name</td>
-            <td>Options</td>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach($skills as $key => $value)
-        <tr>
-            
+            <?php 
+            $user_id = Auth::user()->id;
+            ?>
 
-            <td>{{ $value->id }}</td>
-            <td>{{ $value->name}}</td>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <td>Skill ID</td>
+                        <td>Skill Name</td>
+                        <td>Options</td>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($skills as $key => $value)
+                    <tr>
+                        
 
-            <td>
+                        <td>{{ $value->id }}</td>
+                        <td>{{ $value->name}}</td>
 
-                    {{ Form::open(array('url' => 'skills/' . $value->id, 'class' => 'pull-right')) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }}
-                    {{ Form::close() }}
-                
-                <a class="btn btn-small btn-info" href="{{ URL::to('skills/' . $value->id . '/edit') }}">Edit</a>
+                        <td class="table-actions">
+                            <a class="btn edit-btn" title="Edit skill" href="{{ URL::to('skills/' . $value->id . '/edit') }}">
+                                <i class="fa fa-pencil fa-lg"></i>
+                            </a>
+                            {{ Form::open(array('url' => 'skills/' . $value->id, 'class' => 'pull-right')) }}
+                            {{ Form::hidden('_method', 'DELETE') }}
+                            <div title="Delete skill">
+                                <!-- {{ Form::submit('Delete', array('class' => 'btn delete-btn')) }} -->
+                                {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
+                            </div>
+                            
+                            {{ Form::close() }}
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            <br>
 
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
-<br>
-<a href="skills/create">Add Skill</a>
-
+        </section>
+    </main>
 
 @endsection
