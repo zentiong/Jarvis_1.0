@@ -6,7 +6,6 @@
             <h1 class="crud-page-title">Create a User</h1>
         </section>
         
-
         <!-- if there are creation errors, they will show here -->
         {{ Html::ul($errors->all()) }}
 
@@ -81,10 +80,11 @@
                 {{ Form::label('manager_check', 'Manager?') }}
                 {{ Form::checkbox('manager_check', '1', Request::old('manager_check')) }}
             </div>
-            <div class="form-group text-center">
+
+            <div class="form-group text-center create-bottom-wrapper">
+                <a href="{{ URL::to('users') }}" class="btn cancel-btn">Cancel</a>
                  {{ Form::submit('Create user', array('class' => 'btn btn-primary create-btn text-center')) }}
-            </div>
-           
+            </div>    
 
         {{ Form::close() }}
     </main>

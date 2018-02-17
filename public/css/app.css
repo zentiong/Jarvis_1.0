@@ -528,9 +528,18 @@ body.dashboard {
       border: 1px solid #ced4da;
       border-radius: .25rem;
       transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; }
-    body.dashboard .create-page .create-btn {
-      margin-top: 1em;
-      width: 200px; }
+    body.dashboard .create-page .create-bottom-wrapper {
+      margin-top: 2em;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      align-items: center; }
+      body.dashboard .create-page .create-bottom-wrapper .cancel-btn {
+        border: 1px solid;
+        border-radius: 2px; }
+      body.dashboard .create-page .create-bottom-wrapper > * {
+        margin: auto 1em;
+        width: 200px; }
   body.dashboard footer {
     margin-top: 10em;
     width: 100%;

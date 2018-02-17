@@ -711,11 +711,25 @@ body.dashboard {
 			border-radius: .25rem;
 			transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 		}
+		
+		.create-bottom-wrapper {
+			margin-top: 2em;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+			align-items: center;
 
-		.create-btn {
-			margin-top: 1em;
-			width: 200px;
+			.cancel-btn {
+				border: 1px solid;
+				border-radius: 2px;
+			}
+
+			> * {
+				margin: auto 1em;
+				width: 200px;
+			}
 		}
+
 	}
 
 	footer {
