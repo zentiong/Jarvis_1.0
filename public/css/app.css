@@ -401,8 +401,10 @@ body.newsletter {
     transition: background-color 0.3s; }
 
 body.dashboard {
+  background-color: #FBFBFB;
   color: #1F1F1F;
-  font-family: "Open Sans", sans-serif; }
+  font-family: "Open Sans", sans-serif;
+  font-size: 90%; }
   body.dashboard .branding {
     border: 2px solid #000;
     color: #000;
@@ -435,18 +437,20 @@ body.dashboard {
   body.dashboard .login-button {
     margin-left: auto; }
   body.dashboard main {
-    margin: 5em 0; }
-    body.dashboard main .table-top {
-      justify-content: space-between; }
-      body.dashboard main .table-top .table-title {
-        font-size: 2.5rem; }
+    margin: 6em auto; }
+    body.dashboard main .crud-page-top {
+      justify-content: space-between;
+      margin: 2em 0; }
+      body.dashboard main .crud-page-top .crud-page-title {
+        font-size: 2rem; }
     body.dashboard main .crud-main-cta {
       background-color: #03223A;
       border: none;
       border-radius: 15px;
       color: #fff;
+      display: table;
+      font-size: 90%;
       letter-spacing: 2px;
-      padding: 0.4em 0.6em;
       text-transform: uppercase; }
     body.dashboard main table {
       font-size: 90%; }
@@ -459,16 +463,15 @@ body.dashboard {
         align-items: flex-start; }
         body.dashboard main table tbody .table-actions .delete-btn {
           background-color: transparent;
-          border: 1px solid #959595;
+          border: 1px solid #B9B9B6;
           border-radius: 10px;
-          color: #959595;
+          color: #3097D1;
           display: block;
           font-size: inherit;
           font-weight: 500;
           margin: 0.5em 0.3em;
           padding: 0.6em 1em;
-          text-transform: uppercase;
-          display: inline-block; }
+          text-transform: uppercase; }
         body.dashboard main table tbody .table-actions .delete-btn:hover {
           background-color: #F80000;
           color: #fff;
@@ -476,9 +479,9 @@ body.dashboard {
           -webkit-transition: background-color, 0.3s; }
         body.dashboard main table tbody .table-actions .edit-btn {
           background-color: transparent;
-          border: 1px solid #959595;
+          border: 1px solid #B9B9B6;
           border-radius: 10px;
-          color: #959595;
+          color: #3097D1;
           display: block;
           font-size: inherit;
           font-weight: 500;
@@ -492,9 +495,9 @@ body.dashboard {
           -webkit-transition: background-color, 0.3s; }
         body.dashboard main table tbody .table-actions .show-btn {
           background-color: transparent;
-          border: 1px solid #959595;
+          border: 1px solid #B9B9B6;
           border-radius: 10px;
-          color: #959595;
+          color: #3097D1;
           display: block;
           font-size: inherit;
           font-weight: 500;
@@ -509,6 +512,25 @@ body.dashboard {
         body.dashboard main table tbody .table-actions .tooltip-inner {
           background-color: #1F1F1F;
           color: #ebebeb; }
+  body.dashboard .create-page {
+    max-width: 650px; }
+    body.dashboard .create-page .form-control {
+      font-size: inherit; }
+    body.dashboard .create-page input[type="password"] {
+      display: block;
+      width: 100%;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: .25rem;
+      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; }
+    body.dashboard .create-page .create-btn {
+      margin-top: 1em;
+      width: 200px; }
   body.dashboard footer {
     margin-top: 10em;
     width: 100%;

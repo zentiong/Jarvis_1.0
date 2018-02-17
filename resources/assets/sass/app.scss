@@ -573,8 +573,10 @@ body.newsletter {
 }
 
 body.dashboard {
+	background-color: $dashboard-bg;
 	color: $black-2;
 	font-family: "Open Sans", sans-serif;
+	font-size: 90%;
 
 	.branding {
 		border: 2px solid $black-1;
@@ -620,13 +622,14 @@ body.dashboard {
 	}
 
 	main {
-		margin: 5em 0;
+		margin: 6em auto;
 
-		.table-top {
+		.crud-page-top {
 			justify-content: space-between;
+			margin: 2em 0;
 
-			.table-title {
-				font-size: 2.5rem;
+			.crud-page-title {
+				font-size: 2rem;
 			}
 
 		}
@@ -636,8 +639,9 @@ body.dashboard {
 			border: none;
 			border-radius: 15px;
 			color: $white-1;
+			display: table;
+			font-size: 90%;
 			letter-spacing: 2px;
-			padding: 0.4em 0.6em;
 			text-transform: uppercase;
 		}
 
@@ -657,22 +661,21 @@ body.dashboard {
 					align-items: flex-start;
 
 					.delete-btn {
-						@include table-btn($table-delete-red);
-						display: inline-block;
+						@include table-btn;
 					}
 					.delete-btn:hover {
 						@include table-btn-hover($table-delete-red);
 					}
 
 					.edit-btn {
-						@include table-btn($table-edit-blue);
+						@include table-btn;
 					}
 					.edit-btn:hover {
 						@include table-btn-hover($table-edit-blue);
 					}
 
 					.show-btn {
-						@include table-btn($table-show-green);
+						@include table-btn;
 					}
 					.show-btn:hover {
 						@include table-btn-hover($table-show-green);
@@ -685,6 +688,33 @@ body.dashboard {
 
 				}
 			}
+		}
+	}
+
+	.create-page {
+		max-width: 650px;
+
+		.form-control {
+			font-size: inherit;
+		}
+
+		input[type="password"] {
+			display: block;
+			width: 100%;
+			padding: .375rem .75rem;
+			font-size: 1rem;
+			line-height: 1.5;
+			color: #495057;
+			background-color: #fff;
+			background-clip: padding-box;
+			border: 1px solid #ced4da;
+			border-radius: .25rem;
+			transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		}
+
+		.create-btn {
+			margin-top: 1em;
+			width: 200px;
 		}
 	}
 

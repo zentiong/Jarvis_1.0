@@ -11,11 +11,11 @@
 </script>
 
 @section('body')
-    <main>
+    <main class="container-fluid">
         <section class="container-fluid">
-            <div class="row table-top">
-                <h1 class="table-title">All Employees</h1>
-                <button class="btn crud-main-cta">&#43; ADD USER</button>
+            <div class="row crud-page-top">
+                <h1 class="crud-page-title">All Employees</h1>
+                <a href="{{ URL::to('users/create') }}" class="btn crud-main-cta">&#43; Add Employee</a>
             </div>
             
             <!-- will be used to show any messages -->
