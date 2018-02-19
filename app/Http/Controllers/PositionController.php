@@ -50,7 +50,7 @@ class PositionController extends Controller
     public function store(Request $request)
     {
          $rules = array(
-            'name' => 'required | unique'    
+            'name' => 'required'    
             );
         
         $validator = Validator::make(Input::all(), $rules);
@@ -110,7 +110,7 @@ class PositionController extends Controller
     public function update(Request $request, $id)
     {
         $rules = array(
-            'name' => 'required | unique',
+            'name' => 'required',
             
         );
         $validator = Validator::make(Input::all(), $rules);
