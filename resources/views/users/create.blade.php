@@ -3,7 +3,7 @@
 @section('body')
     <main class="container create-page">
         <section class="row crud-page-top">
-            <h1 class="crud-page-title">Create a User</h1>
+            <h1 class="crud-page-title">Create User</h1>
         </section>
         <section>
             <!-- if there are creation errors, they will show here -->
