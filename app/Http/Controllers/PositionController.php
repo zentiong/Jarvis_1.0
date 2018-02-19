@@ -107,7 +107,7 @@ class PositionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
         $rules = array(
             'name' => 'required',
@@ -121,7 +121,7 @@ class PositionController extends Controller
                 ->withErrors($validator);
         } else {
             // store
-            $position = new Position;
+            $position = Position::find($id);
             $position->name = Input::get('name');
             $position->save();
 
