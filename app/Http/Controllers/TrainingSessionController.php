@@ -62,8 +62,7 @@ class TrainingSessionController extends Controller
         // process the login
         if ($validator->fails()) {
             return Redirect::to('users/create')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
+                ->withErrors($validator);
         } else {
             // store
             $training_session = new TrainingSession;
@@ -133,8 +132,7 @@ class TrainingSessionController extends Controller
         // process the login
         if ($validator->fails()) {
             return Redirect::to('training_sessions/'.$id.'/create')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
+                ->withErrors($validator);
         } else {
             // store
             $training_session = TrainingSession::find($id);
