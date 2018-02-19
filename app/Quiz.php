@@ -15,8 +15,8 @@ class Quiz extends Model
         'topic'
     ];
 
-    public function questions() {
-    return $this->hasMany("App\Question",'quiz_id');
+    public function sections() {
+    return $this->hasMany("App\Section",'id');
   	}
 
   	public function users() {
