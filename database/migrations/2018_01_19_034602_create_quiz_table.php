@@ -18,10 +18,9 @@ class CreateQuizTable extends Migration
             $table->timestamps();
             $table->string('topic', 255);
 
-            $table->integer('skill_id')->unsigned();
-            $table->foreign('skill_id')->references('id')->on('skills');
+            
         });
-
+        /*
         DB::table('quizzes')->insert(
         array(
             'topic' => 'Communication',
@@ -33,6 +32,7 @@ class CreateQuizTable extends Migration
             'topic' => 'Customer Relations',
             'skill_id' => '4'
         )  );
+        */
 
         
     }

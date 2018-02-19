@@ -14,8 +14,8 @@ class Question extends Model
         'question_item','answer_item'
     ];
 
-    public function quiz() {
-    return $this->belongsTo("App\Quiz",'quiz_id');
+    public function section() {
+    return $this->belongsTo("App\Section",'id');
   }
 
   

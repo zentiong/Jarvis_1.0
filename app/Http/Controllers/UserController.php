@@ -38,7 +38,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return View::make('users.create');
+        $users = User::where('manager_check',1)->get();
+
+        return View::make('users.create')
+        ->with('users',$users);
     }
 
     /**
@@ -116,10 +119,13 @@ class UserController extends Controller
     {
                  // get the user
         $user = User::find($id);
+        $users = User::where('manager_check',1)->get();
+
 
         // show the edit form and pass the user
         return View::make('users.edit')
-            ->with('user', $user);
+            ->with('user', $user)
+            ->with('users',$users);;
     }
 
     /**

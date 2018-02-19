@@ -136,9 +136,8 @@ class QuizController extends Controller
     {
         // load the create form (app/views/quizzes/create.blade.php)
 
-        $skills = Skill::all();
-        return View::make('quizzes.create')
-        ->with('skills', $skills);
+        return View::make('quizzes.create');
+        
     }
 
     /**
@@ -165,7 +164,7 @@ class QuizController extends Controller
             // store
             $quiz = new Quiz;
             $quiz->topic = Input::get('topic');
-            $quiz->skill_id = Input::get('skill');
+            //$quiz->skill_id = Input::get('skill');
             $quiz->save();
 
             // redirect
@@ -241,7 +240,7 @@ class QuizController extends Controller
              // store
             $quiz = Quiz::find($quiz_id);
             $quiz->topic = Input::get('topic');
-            $quiz->skill_id = Input::get('skill');
+            //$quiz->skill_id = Input::get('skill');
             $quiz->save();
 
             // redirect

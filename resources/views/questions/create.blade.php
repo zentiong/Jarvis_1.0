@@ -7,7 +7,15 @@
 <!-- if there are creation errors, they will show here -->
 {{ Html::ul($errors->all()) }}
 
+<?php 
+    $quiz_id = Request::get('quiz_id');
+    $section_id = Request::get('section_id');
+?>
+
 {{ Form::open(array('url' => 'quizzes/'.$quiz_id.'/questions')) }}
+
+    {{ Form::hidden('quiz_id', $quiz_id) }}
+    {{ Form::hidden('section_id', $section_id) }}
     <div id="div1">
         <div class="form-group">
             {{ Form::label('question_item', 'Question') }}

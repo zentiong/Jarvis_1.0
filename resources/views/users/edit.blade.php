@@ -59,23 +59,27 @@
                         <!-- Department -->
                         <div class="form-group">
                             {{ Form::label('department', 'Department') }}
-                            {{ Form::select('department', array('0' => 'Select a Department', '1' => 'Finance', '2' => 'Human Resources', '3' => 'Customer Service'), Request::old('department'), array('class' => 'form-control')) }}
+                            {{ Form::select('department', array('Finance' => 'Finance', 'Human Resources' => 'Human Resources', 'Customer Service' => 'Customer Service'), Request::old('department'), array('class' => 'form-control')) }}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <!-- Position -->
                         <div class="form-group">
                             {{ Form::label('position', 'Position') }}
-                            {{ Form::select('position', array('0' => 'Select a Position', '1' => 'President', '2' => 'Secretary', '3' => 'Developer'), Request::old('position'), array('class' => 'form-control')) }}
+                            {{ Form::select('position', array('President' => 'President', 'Secretary' => 'Secretary', 'Developer' => 'Developer'), Request::old('position'), array('class' => 'form-control')) }}
                         </div>
                     </div>
                 </div>
                 
                 <!-- Supervisor ID -->
-                <div class="form-group">
-                    {{ Form::label('supervisor_id', 'Supervisor ID') }}
-                    {{ Form::text('supervisor_id', Request::old('supervisor_id'), array('class' => 'form-control')) }}
-                </div>
+                 {{ Form::label('supervisor_id', 'Supervisor') }}
+                <select id="supervisor_id" class="form-control" name="supervisor_id">
+                @foreach($users as $key => $value)
+                <option value="<?php echo $value->id ?>">
+                    {{$value->first_name}} {{$value->last_name}}
+                </option>
+                @endforeach
+                </select>
 
                 <!-- Manager? -->
                 <div class="form-group">

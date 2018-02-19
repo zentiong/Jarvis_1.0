@@ -21,6 +21,7 @@ Route::<method>('<url>', '<function>');
 
 /* Landing Page */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -34,6 +35,13 @@ Route::resource('users', 'UserController');
 
 Route::resource('quizzes', 'QuizController');
 Route::resource('quizzes.questions', 'QuestionController');
+
+/* Sections */ 
+
+Route::get('quizzes/{quiz}/add_section', 'QuestionController@add_section');
+Route::post('quizzes/{quiz}/store_section', 'QuestionController@store_section');
+
+Route::post('quizzes/{quiz}/questions/create', 'QuestionController@create');
 
 /* Quiz Taking (Done by Users themselves) */ 
 
@@ -54,18 +62,19 @@ Route::post('assessments/{assessment}/record', 'AssessmentController@record'); /
 Route::get('see_assessments', 'AssessmentController@see_assessments'); // Where users take their assessments
 
 
-
-/* Training
-*/
+/* Training */
 
 Route::resource('training_sessions', 'TrainingSessionController');
+
+/* Skills */
+
 Route::resource('skills', 'SkillController');
 
-//Route::resource('job_title', 'JobTitleController');
+/* Jobs */
 
 Route::resource('positions', 'PositionController');
 
-/*Auth
-*/
+/*Auth */ 
 Auth::routes();
+
 
