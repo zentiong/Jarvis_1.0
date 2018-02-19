@@ -12,7 +12,7 @@
     <thead>
         <tr>
             <td>Positions</td>
-            <td>Total</td>
+            <td>Operations</td>
         </tr>
     </thead>
     <tbody>

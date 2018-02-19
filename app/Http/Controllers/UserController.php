@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Position;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -39,9 +40,11 @@ class UserController extends Controller
     public function create()
     {
         $users = User::where('manager_check',1)->get();
+        $positions = Position::all();
 
         return View::make('users.create')
-        ->with('users',$users);
+        ->with('users',$users)
+        ->with('positions',$positions);
     }
 
     /**
