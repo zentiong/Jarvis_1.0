@@ -7,7 +7,7 @@
         <h2>{{ $quiz->topic }} </h2>
         <p>
             <strong>Quiz ID Number:</strong> {{ $quiz->quiz_id }}<br>
-            <strong>Skill Set:</strong> {{ $skill->name }}<br>
+            
         </p>
     </div>
 

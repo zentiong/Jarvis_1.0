@@ -16,13 +16,19 @@
 
     <!-- 
         Skill Related
-    -->
 
+        {{ Form::label('skill', 'Skill') }}
      <select id="skill" class="form-control" name="skill">
+     <?php
+     /*
        @foreach($skills as $key => $value)
             <option value="<?php echo $value->id ?>">{{$value->name}}</option>
        @endforeach
+       */
+       ?>
       </select>
+    -->
+
 
     {{ Form::submit('Create the Quiz!', array('class' => 'btn btn-primary')) }}
 
