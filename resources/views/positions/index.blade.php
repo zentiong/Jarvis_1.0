@@ -31,7 +31,7 @@
                 <thead>
                     <tr>
                         <td>Positions</td>
-                        <td>Total</td>
+                        <td class="no-stretch">Actions</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,20 +39,20 @@
                     <tr>
                         <td>{{ $value->name }}</td>
                         
-                        <td class="table-actions">
+                        <td class="table-actions no-stretch">
                              <!-- show the employee (uses the show method found at GET /employees/{id} -->
-                            <a class="btn show-btn" title="Show position" href="{{ URL::to('positions/' . $value->id) }}">
+                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View position" href="{{ URL::to('positions/' . $value->id) }}">
                                 <i class="fa fa-user fa-lg"></i>
                             </a>
 
                             <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
-                            <a class="btn edit-btn" title="Edit position" href="{{ URL::to('positions/' . $value->id . '/edit') }}">
+                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit position" href="{{ URL::to('positions/' . $value->id . '/edit') }}">
                                 <i class="fa fa-pencil fa-lg"></i>
                             </a>
 
                                 {{ Form::open(array('url' => 'positions/' . $value->id, 'class' => 'pull-right')) }}
                                 {{ Form::hidden('_method', 'DELETE') }}
-                                <div title="Delete position">
+                                <div data-toggle="tooltip" data-placement="bottom" title="Remove position">
                                     {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
                                 </div>
                                 <!-- {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }} -->

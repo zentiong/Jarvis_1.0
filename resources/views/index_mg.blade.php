@@ -109,7 +109,7 @@
 
                             <!-- we will also add show, edit, and delete buttons -->
                             <td class="table-actions">
-                                <a class="btn show-btn" href="{{ URL::to('users/' . $value->id) }}">
+                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $value->id) }}">
                                     <i class="fa fa-user fa-lg"></i>
                                 </a>
                             </td>

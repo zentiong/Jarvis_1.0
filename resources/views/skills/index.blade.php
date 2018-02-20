@@ -36,7 +36,7 @@
                     <tr>
                         <td>Skill ID</td>
                         <td>Skill Name</td>
-                        <td>Options</td>
+                        <td class="no-stretch">Actions</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,12 +48,12 @@
                         <td>{{ $value->name}}</td>
 
                         <td class="table-actions">
-                            <a class="btn edit-btn" title="Edit skill" href="{{ URL::to('skills/' . $value->id . '/edit') }}">
+                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit skill" href="{{ URL::to('skills/' . $value->id . '/edit') }}">
                                 <i class="fa fa-pencil fa-lg"></i>
                             </a>
                             {{ Form::open(array('url' => 'skills/' . $value->id, 'class' => 'pull-right')) }}
                             {{ Form::hidden('_method', 'DELETE') }}
-                            <div title="Delete skill">
+                            <div data-toggle="tooltip" data-placement="bottom" title="Remove skill">
                                 <!-- {{ Form::submit('Delete', array('class' => 'btn delete-btn')) }} -->
                                 {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
                             </div>

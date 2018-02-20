@@ -37,6 +37,7 @@
                     <tr>
                         <td>Quiz ID</td>
                         <td>Topic</td>
+                        <td class="no-stretch">Actions</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,15 +49,15 @@
                         <td>{{ $value->topic }}</td>
 
                         <!-- we will also add show, edit, and delete buttons -->
-                        <td class="table-actions">
+                        <td class="table-actions no-stretch">
 
                             <!-- show the quiz (uses the show method found at GET /quizzes/{id} -->
-                            <a class="btn show-btn" title="Show quiz" href="{{ URL::to('quizzes/' . $value->quiz_id) }}">
+                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View quiz" href="{{ URL::to('quizzes/' . $value->quiz_id) }}">
                                 <i class="fa fa-user fa-lg"></i>
                             </a>
 
                             <!-- edit this quiz (uses the edit method found at GET /quizzes/{id}/edit -->
-                            <a class="btn edit-btn" title="Edit quiz" href="{{ URL::to('quizzes/' . $value->quiz_id . '/edit') }}">
+                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit quiz" href="{{ URL::to('quizzes/' . $value->quiz_id . '/edit') }}">
                                 <i class="fa fa-pencil fa-lg"></i>
                             </a>
 
@@ -64,7 +65,7 @@
                             <!-- we will add this later since its a little more complicated than the other two buttons -->
                                 {{ Form::open(array('url' => 'quizzes/' . $value->quiz_id, 'class' => 'pull-right')) }}
                                 {{ Form::hidden('_method', 'DELETE') }}
-                                <div title="Delete quiz">
+                                <div data-toggle="tooltip" data-placement="bottom" title="Delete quiz">
                                     {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
                                 </div>
                                 <!-- {{ Form::submit('Delete this Quiz', array('class' => 'btn btn-warning')) }} -->

@@ -102,8 +102,8 @@
 
                             <!-- we will also add show, edit, and delete buttons -->
                             <td class="table-actions">
-                                <a class="btn show-btn" href="{{ URL::to('users/' . $value->id) }}">
-                                    <i class="fa fa-user"></i>View Profile 
+                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $value->id) }}">
+                                    <i class="fa fa-user fa-lg"></i> 
                                 </a>
                             </td>
                         </tr>
@@ -135,12 +135,12 @@
                     <td class="table-actions">
 
                         <!-- show the employee (uses the show method found at GET /employees/{id} -->
-                        <a class="btn show-btn" title="Show user" href="{{ URL::to('users/' . $value->id) }}">
+                        <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $value->id) }}">
                             <i class="fa fa-user fa-lg"></i>
                         </a>
 
                         <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
-                        <a class="btn edit-btn" title="Edit user" href="{{ URL::to('users/' . $value->id . '/edit') }}">
+                        <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit employee" href="{{ URL::to('users/' . $value->id . '/edit') }}">
                             <i class="fa fa-pencil fa-lg"></i>
                         </a>
 
@@ -148,7 +148,7 @@
                         <!-- we will add this later since its a little more complicated than the other two buttons -->
                         {{ Form::open(array('url' => 'users/' . $value->id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
-                        <div data-toggle="tooltip" data-placement="bottom" title="Delete" data-animation="true">
+                        <div data-toggle="tooltip" data-placement="bottom" title="Delete employee" data-animation="true">
                             {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
                         </div>
                             

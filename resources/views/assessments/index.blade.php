@@ -18,7 +18,7 @@ $user_id = Auth::user()->id;
     <thead>
         <tr>
             <td>Assessment ID</td>
-            <td>Topic</td>
+            <td class="no-stretch">Topic</td>
         </tr>
     </thead>
     <tbody>
@@ -28,7 +28,7 @@ $user_id = Auth::user()->id;
             <td>{{ $value->topic }}</td>
 
             <!-- we will also add show, edit, and delete buttons -->
-            <td>
+            <td  class="no-stretch">
 
                 
                 <!-- show the quiz (uses the show method found at GET /assessments/{id} -->

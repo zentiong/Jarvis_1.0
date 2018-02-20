@@ -8,6 +8,7 @@
                 <li><a id="skills"  href="{{ URL::to('skills') }}">Skills</a></li>
                 <li><a id="positions"  href="{{ URL::to('positions') }}">Positions</a></li>
                 <li><a id="quizzes"  href="{{ URL::to('quizzes') }}">Quizzes</a></li>
+                <li><a id="training-sessions"  href="{{ URL::to('training_sessions') }}">Training Sessions</a></li>
                 <li class="login-button" id="login-button">
                     <a class="logout-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LOG OUT</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

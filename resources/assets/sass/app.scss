@@ -684,18 +684,26 @@ body.dashboard {
 		table {
 			font-size: 90%;
 
+			.no-stretch {
+				width: 1%;
+				margin: auto;
+			}
+
 			thead {
 				font-weight: bold;
 				text-align: center;
 			}
 
 			tbody {
+				
 
 				.table-actions {
 					display: flex;
 					flex-flow: row nowrap;
 					align-items: flex-start;
 					justify-content: center;
+					margin: auto;
+					border: none;
 
 					.delete-btn {
 						@include table-btn;

@@ -481,6 +481,9 @@ body.dashboard {
       text-transform: uppercase; }
     body.dashboard main table {
       font-size: 90%; }
+      body.dashboard main table .no-stretch {
+        width: 1%;
+        margin: auto; }
       body.dashboard main table thead {
         font-weight: bold;
         text-align: center; }
@@ -488,7 +491,9 @@ body.dashboard {
         display: flex;
         flex-flow: row nowrap;
         align-items: flex-start;
-        justify-content: center; }
+        justify-content: center;
+        margin: auto;
+        border: none; }
         body.dashboard main table tbody .table-actions .delete-btn {
           background-color: transparent;
           border: 1px solid #B9B9B6;

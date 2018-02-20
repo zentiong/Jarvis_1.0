@@ -18,7 +18,7 @@
 @section('body')
     <main class="container create-page">
         <section class="row crud-page-top">
-            <h1 class="crud-page-title">Create User</h1>
+            <h1 class="crud-page-title">Create Employee</h1>
         </section>
         <section>
             <!-- if there are creation errors, they will show here -->
@@ -105,7 +105,7 @@
 
                 <div class="form-group text-center create-bottom-wrapper">
                     <a href="{{ URL::to('users') }}" class="btn cancel-btn">Cancel</a>
-                     {{ Form::submit('Create user', array('class' => 'btn btn-primary create-btn text-center')) }}
+                     {{ Form::submit('Create employee', array('class' => 'btn btn-primary create-btn text-center')) }}
                 </div>    
 
             {{ Form::close() }}
