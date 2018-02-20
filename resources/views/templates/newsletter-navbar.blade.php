@@ -40,6 +40,9 @@
 	            @if ($errors->has('email'))
                     <div class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
+                        <script type="text/javascript">
+                        	alert("Wrong credentials. Please try again.");
+                        </script>
                     </div>
                 @endif
             </div>
@@ -49,6 +52,9 @@
 	            @if ($errors->has('password'))
                     <div class="help-block">
                         <strong>{{ $errors->first('password') }}</strong>
+                        <script type="text/javascript">
+                        	alert("Wrong credentials. Please try again.");
+                        </script>
                    </div>
                 @endif
             </div>

@@ -35,6 +35,7 @@ body.newsletter {
 	font-family: "Apercu Regular", sans-serif;
 	padding-top: 70px;
 	position: relative;
+	font-size: 90%;
 
 	.branding {
 		border: 2px solid $zalora-yellow;
@@ -89,9 +90,8 @@ body.newsletter {
 		form {
 			input[type="email"], input[type="password"] {
 				font-family: "Helvetica Neue", sans-serif !important;
-				font-size: 0.8em;
+				font-size: 1em;
 				width: 250px;
-				margin-bottom: 20px;
 				border: 1px solid #707070;
 				border-radius: 2px;
 				padding: 5px;
@@ -120,6 +120,7 @@ body.newsletter {
 			color: $white-1;
 			font-size: 0.9em;
 			line-height: 1.2;
+			margin: 1em 0;
 			padding: 0.5em;
 		}
 	}

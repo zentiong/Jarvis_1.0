@@ -34,6 +34,7 @@
                 y.classList.add('clicked');
             }
         }
+       
         function scrollPos() {
             var x = document.getElementById('services-container').scrollTop;
             console.log(window.pageYOffset);
