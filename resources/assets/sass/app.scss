@@ -25,10 +25,6 @@
 a {
 	text-decoration: none !important;
 }
-.active {
-	border-top: 3px solid $zalora-yellow;
-	color: $white-1;
-}
 
 body.newsletter {
 	background-color: $newsletter-bg;
@@ -79,6 +75,11 @@ body.newsletter {
     				font-family: "Apercu Bold", sans-serif;
     			}
     		}
+		}
+
+		.active {
+			border-top: 3px solid $zalora-yellow;
+			color: $white-1;
 		}
 	}
 
@@ -642,6 +643,13 @@ body.dashboard {
     				font-family: "Apercu Bold", sans-serif;
     			}
     		}
+		}
+
+		.active {
+			border-top: 4px solid $black-1;
+			color: $black-1;
+			font-weight: 600;
+			padding: 0.8em 0;
 		}
 	}
 	

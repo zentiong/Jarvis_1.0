@@ -39,7 +39,6 @@
                 y.classList.add('clicked');
             }
         }
-
         function closeLoginError() {
             var x = document.getElementById('login-error-wrapper');
             x.style.display = "none";

@@ -44,10 +44,6 @@
 a {
   text-decoration: none !important; }
 
-.active {
-  border-top: 3px solid #F8E71C;
-  color: #fff; }
-
 body.newsletter {
   background-color: #2F2F2F;
   color: #ebebeb;
@@ -85,6 +81,9 @@ body.newsletter {
         body.newsletter nav ul li .logout-link {
           color: #2F2F2F;
           font-family: "Apercu Bold", sans-serif; }
+    body.newsletter nav .active {
+      border-top: 3px solid #F8E71C;
+      color: #fff; }
   body.newsletter .login-popup {
     display: none;
     width: 290px;
@@ -457,6 +456,11 @@ body.dashboard {
         body.dashboard nav ul li .logout-link {
           color: #2F2F2F;
           font-family: "Apercu Bold", sans-serif; }
+    body.dashboard nav .active {
+      border-top: 4px solid #000;
+      color: #000;
+      font-weight: 600;
+      padding: 0.8em 0; }
   body.dashboard .login-button {
     margin-left: auto; }
   body.dashboard main {

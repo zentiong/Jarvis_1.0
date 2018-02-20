@@ -1,13 +1,17 @@
-<!-- @extends('templates.dashboard-master') -->
+@extends('templates.dashboard-master')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script type="text/javascript">
-    // enables Bootstrap tooltips
-    // $(function () {
-    //   $('[data-toggle="tooltip"]').tooltip();
-    // })
     $(document).ready(function() {
-        $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+        var a = document.getElementById('users');
+        a.classList.toggle("active");
     });
+
+    // enables Bootstrap tooltips
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
 </script>
 
 @section('body')
@@ -56,12 +60,12 @@
                         <!-- we will also add show, edit, and delete buttons -->
                         <td class="table-actions">
                             <!-- show the employee (uses the show method found at GET /users/{id} -->
-                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="Show" data-animation="true" href="{{ URL::to('users/' . $value->id) }}">
+                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="Show" href="{{ URL::to('users/' . $value->id) }}">
                                 <i class="fa fa-user fa-lg"></i>
                             </a>
 
                             <!-- edit this employee (uses the edit method found at GET /users/{id}/edit -->
-                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit" data-animation="true" href="{{ URL::to('users/' . $value->id . '/edit') }}">
+                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit" href="{{ URL::to('users/' . $value->id . '/edit') }}">
                                 <i class="fa fa-pencil fa-lg"></i>
                             </a>
                             <!-- delete the employee (uses the destroy method DESTROY /users/{id} -->
@@ -72,7 +76,7 @@
                                     <i class="fa fa-trash-o"></i>
                                     {{ Form::submit('Delete', array('class' => 'btn delete-btn')) }}
                                 </div> -->
-                                <div data-toggle="tooltip" data-placement="bottom" title="Delete" data-animation="true">
+                                <div data-toggle="tooltip" data-placement="bottom" title="Delete" >
                                     {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
                                 </div>
                                 

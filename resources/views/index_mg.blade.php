@@ -1,6 +1,24 @@
 @extends('templates.dashboard-master') 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script type="text/javascript">
+
+    $(document).ready(function() {
+        var a = document.getElementById('levels');
+        a.classList.toggle("active");
+    });
+
+    // enables Bootstrap tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    if (typeof jQuery == 'undefined') {
+        console.log('jQuery is not defined! you poor thing')
+    }
+    else {
+        console.log('jQuery is defined!');
+    }
     
     function openCity(evt, cityName) {
     // Declare all variables

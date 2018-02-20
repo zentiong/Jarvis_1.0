@@ -17,11 +17,11 @@
 		            </form>
 		        </li>
 			@else
-				<li><a href="#">Calendar</a></li>
+				<!-- <li><a href="#">Calendar</a></li>
 				<li><a href="#">Services</a></li>
 				<li><a href="#">Policies</a></li>
 				<li><a href="#">Engagements</a></li>
-				<li><a href="#">HR</a></li>
+				<li><a href="#">HR</a></li> -->
 				<li class="login-button" id="login-button" onclick="hideShowLogin()">
 					LOG IN
 				</li>
