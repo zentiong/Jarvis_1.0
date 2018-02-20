@@ -37,14 +37,7 @@
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 	        	<label for="email">ZALORA Email Address</label>
 	            <input type="email" name="email" id="email" placeholder="name@ph.zalora.com" value="{{ old('email') }}" required>
-	            @if ($errors->has('email'))
-                    <div class="help-block">
-                        <strong>{{ $errors->first('email') }}</strong>
-                        <script type="text/javascript">
-                        	alert("Wrong credentials. Please try again.");
-                        </script>
-                    </div>
-                @endif
+	            
             </div>
             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 	            <label for="password">Password</label>
@@ -62,4 +55,16 @@
 	            <label for="keep-logged-in">Keep me logged in</label>
 	            <input class="login-button" type="submit" style="display: table;" value="LOG IN">
         </form>
+        
     </div>
+    @if ($errors->has('email'))
+    	<div class="login-error-wrapper" id="login-error-wrapper" onclick="closeLoginError()">
+    		<div class="help-block">
+	         	<i class="fa fa-exclamation-triangle fa-lg"></i>
+	         	<strong>{{ $errors->first('email') }}<br>Please try again.</strong>
+	     	</div>
+	     	<button class="btn">
+	     		CLOSE
+	     	</button>
+    	</div>
+ @endif

@@ -17,6 +17,11 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     </noscript>
 
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="none" onload="if(media!='all')media='all'">
+    <noscript>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </noscript>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -34,7 +39,11 @@
                 y.classList.add('clicked');
             }
         }
-       
+
+        function closeLoginError() {
+            var x = document.getElementById('login-error-wrapper');
+            x.style.display = "none";
+        }
         function scrollPos() {
             var x = document.getElementById('services-container').scrollTop;
             console.log(window.pageYOffset);

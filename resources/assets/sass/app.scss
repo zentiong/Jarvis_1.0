@@ -29,6 +29,11 @@ a {
 	border-top: 3px solid $zalora-yellow;
 	color: $white-1;
 }
+
+i.fa {
+	// all Font Awesome icons
+	margin-right: 0.8em;
+}
 body.newsletter {
 	background-color: $newsletter-bg;
 	color: $white-2;
@@ -86,6 +91,7 @@ body.newsletter {
 		position: fixed;
 		right: 0;
 		top: 55px;
+		z-index: 10;
 
 		form {
 			input[type="email"], input[type="password"] {
@@ -114,14 +120,34 @@ body.newsletter {
 				color: #BBBBBB;
 			}
 		}
+	}
+
+	.login-error-wrapper {
+		position: absolute;
+		right: 1em;
+		top: 4em;
+		background-color: #dc3545;
+		color: $white-2;
+		margin: 1em 0;
+		padding: 1em;
+		display: flex;
+		flex-flow: column nowrap;
 
 		.help-block {
-			background-color: #dc3545;
-			color: $white-1;
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
 			font-size: 0.9em;
-			line-height: 1.2;
-			margin: 1em 0;
-			padding: 0.5em;
+			line-height: 1.4;
+		}
+
+		button {
+			align-self: flex-end;
+			background: transparent;
+			color: $white-1;
+			font-family: Roboto;
+			font-weight: 300;
+			font-size: 1em;
 		}
 	}
 

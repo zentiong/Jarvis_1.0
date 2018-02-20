@@ -14,6 +14,9 @@
   font-family: "Apercu Bold";
   src: url("../fonts/apercu-bold-webfont.eot?") format("eot"), url("../fonts/apercu-bold-webfont.woff") format("woff"); }
 @font-face {
+  font-family: "Apercu Light";
+  src: url("../fonts/apercu-light-webfont.eot?") format("eot"), url("../fonts/apercu-light-webfont.woff") format("woff"); }
+@font-face {
   font-family: "Apercu Italic";
   src: url("../fonts/apercu-italic-webfont.eot?") format("eot"), url("../fonts/apercu-italic-webfont.woff") format("woff"); }
 @font-face {
@@ -44,6 +47,9 @@ a {
 .active {
   border-top: 3px solid #F8E71C;
   color: #fff; }
+
+i.fa {
+  margin-right: 0.8em; }
 
 body.newsletter {
   background-color: #2F2F2F;
@@ -89,7 +95,8 @@ body.newsletter {
     padding: 20px;
     position: fixed;
     right: 0;
-    top: 55px; }
+    top: 55px;
+    z-index: 10; }
     body.newsletter .login-popup form input[type="email"], body.newsletter .login-popup form input[type="password"] {
       font-family: "Helvetica Neue", sans-serif !important;
       font-size: 1em;
@@ -108,13 +115,29 @@ body.newsletter {
       font-family: "Helvetica Neue", sans-serif !important; }
     body.newsletter .login-popup form input::placeholder {
       color: #BBBBBB; }
-    body.newsletter .login-popup .help-block {
-      background-color: #dc3545;
-      color: #fff;
+  body.newsletter .login-error-wrapper {
+    position: absolute;
+    right: 1em;
+    top: 4em;
+    background-color: #dc3545;
+    color: #ebebeb;
+    margin: 1em 0;
+    padding: 1em;
+    display: flex;
+    flex-flow: column nowrap; }
+    body.newsletter .login-error-wrapper .help-block {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
       font-size: 0.9em;
-      line-height: 1.2;
-      margin: 1em 0;
-      padding: 0.5em; }
+      line-height: 1.4; }
+    body.newsletter .login-error-wrapper button {
+      align-self: flex-end;
+      background: transparent;
+      color: #fff;
+      font-family: Roboto;
+      font-weight: 300;
+      font-size: 1em; }
   body.newsletter #welcome-banner .container {
     margin: 2em auto; }
   body.newsletter .section-label {
