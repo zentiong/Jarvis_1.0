@@ -17,7 +17,7 @@
                         <!-- FIRST NAME -->
                         <div class="form-group">
                             {{ Form::label('first_name', 'First Name') }}
-                            {{ Form::text('first_name', Request::old('first_name'), array('class' => 'form-control')) }}
+                            {{ Form::text('first_name', Request::old('first_name'), array('class' => 'form-control', 'autofocus')) }}
                         </div>
                     </div>
                     <div class="col-md-6">
