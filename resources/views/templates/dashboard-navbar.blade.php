@@ -3,6 +3,7 @@
         @if (Route::has('login'))
         <li><a href="{{ URL::to('/') }}"><span class="branding">Alfred 3.0</span></a>
             @auth
+                <li><a href="{{ URL::to('levels') }}">Levels</a></li>
                 <li><a href="{{ URL::to('users') }}">Employees</a></li>
                 <li><a href="{{ URL::to('skills') }}">Skills</a></li>
                 <li><a href="{{ URL::to('positions') }}">Positions</a></li>

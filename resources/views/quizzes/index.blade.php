@@ -5,7 +5,7 @@
         <section class="container-fluid">
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">All Quizzes</h1>
-                <a href="quizzes/create" class="btn crud-main-cta">&#43; Add Quiz</a>
+                <a href="{{ URL::to('quizzes/create') }}" class="btn crud-main-cta">&#43; Add Quiz</a>
             </div>
 
             <!-- will be used to show any messages -->

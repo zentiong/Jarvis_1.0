@@ -1,20 +1,8 @@
-@extends('templates.newsletter-master') 
-
-@section('body')
-
-@if (Session::has('message'))
-    <div class="alert alert-info">{{ Session::get('message') }}</div>
-@endif
-
-<?php 
-$current_user = Auth::user();
-$current_id = Auth::user()->id;
-$trainings = $current_user->training_session_id
-?>
+@extends('templates.dashboard-master') 
 
 <script type="text/javascript">
-	
-	function openCity(evt, cityName) {
+    
+    function openCity(evt, cityName) {
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -33,24 +21,35 @@ $trainings = $current_user->training_session_id
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
-	}
+    }
 
 </script>
 
-<p>MANAGER LANDING</p>
-<div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'skills')">My Skills</button>
-  <button class="tablinks" onclick="openCity(event, 'employees')">Employees Under Me</button>
-</div>
+@section('body')
 
-<div id="skills" class="tabcontent">
-  <h5>Skills graph here</h5>
-</div>
+    <main class="container-fluid">
+        @if (Session::has('message'))
+            <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
 
-<div id="employees" class="tabcontent">
-  <body class="dashboard">
-    <main>
-        <section class="container-fluid">
+        <?php 
+            $current_user = Auth::user();
+            $current_id = Auth::user()->id;
+            $trainings = $current_user->training_session_id
+        ?>
+        
+        <p>MANAGER LANDING</p>
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'skills')">My Skills</button>
+            <button class="tablinks" onclick="openCity(event, 'employees')">Employees Under Me</button>
+        </div>
+
+        <div id="skills" class="tabcontent">
+            <h5>Skills graph here</h5>
+        </div>
+
+        <section id="employees" class="tabcontent container-fluid">
+                
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
                 <div class="alert alert-info">{{ Session::get('message') }}</div>
@@ -73,36 +72,37 @@ $trainings = $current_user->training_session_id
                 </thead>
                 <tbody>
                 @foreach($users as $key => $value)
-                	@if($value->supervisor_id==$current_id)
-	                    <tr>
-	                        <td>{{ $value->first_name }}</td>
-	                        <td>{{ $value->last_name }}</td>
-	                        <td>{{ $value->email }}</td>
-	                        <td>{{ $value->hiring_date }}</td>
-	                        <td>{{ $value->birth_date }}</td>
-	                        <td>{{ $value->department }}</td>
-	                        <td>{{ $value->supervisor_id }}</td>
-	                        <td>{{ $value->position }}</td>
+                    @if($value->supervisor_id==$current_id)
+                        <tr>
+                            <td>{{ $value->first_name }}</td>
+                            <td>{{ $value->last_name }}</td>
+                            <td>{{ $value->email }}</td>
+                            <td>{{ $value->hiring_date }}</td>
+                            <td>{{ $value->birth_date }}</td>
+                            <td>{{ $value->department }}</td>
+                            <td>{{ $value->supervisor_id }}</td>
+                            <td>{{ $value->position }}</td>
 
-	                        @if ($value->manager_check==1)
-	                        <td>Yes</td>
-	                        @else
-	                        <td>No</td>
-	                        @endif
+                            @if ($value->manager_check==1)
+                            <td>Yes</td>
+                            @else
+                            <td>No</td>
+                            @endif
 
-	                        <!-- we will also add show, edit, and delete buttons -->
-	                        <td class="table-actions">
-	                            <a class="btn show-btn" href="{{ URL::to('users/' . $value->id) }}">
-	                                <i class="fa fa-user"></i>View Profile 
-	                            </a>
-	                        </td>
-	                    </tr>
-	                @endif
+                            <!-- we will also add show, edit, and delete buttons -->
+                            <td class="table-actions">
+                                <a class="btn show-btn" href="{{ URL::to('users/' . $value->id) }}">
+                                    <i class="fa fa-user fa-lg"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>
-        </section>
+        </div>
     </main>
-</body>
-</div>
+
+
+
 @endsection

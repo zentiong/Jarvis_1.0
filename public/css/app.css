@@ -48,9 +48,6 @@ a {
   border-top: 3px solid #F8E71C;
   color: #fff; }
 
-i.fa {
-  margin-right: 0.8em; }
-
 body.newsletter {
   background-color: #2F2F2F;
   color: #ebebeb;
@@ -58,6 +55,8 @@ body.newsletter {
   padding-top: 70px;
   position: relative;
   font-size: 90%; }
+  body.newsletter i.fa {
+    margin-right: 0.8em; }
   body.newsletter .branding {
     border: 2px solid #F8E71C;
     color: #F8E71C;
@@ -136,7 +135,7 @@ body.newsletter {
       background: transparent;
       color: #fff;
       font-family: Roboto;
-      font-weight: 300;
+      font-weight: 500;
       font-size: 1em; }
   body.newsletter #welcome-banner .container {
     margin: 2em auto; }
@@ -569,7 +568,7 @@ body.dashboard {
     margin-top: 10em;
     width: 100%;
     border-top: 1px solid #95989A;
-    background-color: transparent;
+    background-color: #fff;
     color: #BDBDBD;
     font-family: 'Open Sans', sans-serif;
     padding: 1em;

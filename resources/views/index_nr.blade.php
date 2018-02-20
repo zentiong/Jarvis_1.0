@@ -1,20 +1,23 @@
-@extends('templates.newsletter-master') 
+@extends('templates.dashboard-master') 
 
 @section('body')
 
-@if (Session::has('message'))
-    <div class="alert alert-info">{{ Session::get('message') }}</div>
-@endif
+	<main class="container-fluid">
+		<section class="container-fluid">
+			@if (Session::has('message'))
+			    <div class="alert alert-info">{{ Session::get('message') }}</div>
+			@endif
 
-<?php 
-$current_user = Auth::user();
-$current_id = Auth::user()->id;
-$trainings = $current_user->training_session_id
-?>
+			<?php 
+			$current_user = Auth::user();
+			$current_id = Auth::user()->id;
+			$trainings = $current_user->training_session_id
+			?>
 
+			<p>NORMAL EMPLOYEE LANDING</p>
+			<p>Skills graph here</p>
+		</section>
+	</main>
 
-<p>NORMAL EMPLOYEE LANDING</p>
-
-<p>Skills graph here</p>
 
 @endsection
