@@ -67,6 +67,7 @@
                         <td>Description</td>
                         <td>Speaker</td>
                         <td>Venue</td>
+                        <td class="no-stretch">Actions</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,7 +79,7 @@
                         <td>{{ $value->venue }}</td>
 
                         <!-- we will also add show, edit, and delete buttons -->
-                        <td class="table-actions">
+                        <td class="table-actions no-stretch">
 
                             <!-- show the employee (uses the show method found at GET /employees/{id} -->
                             <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $value->id) }}">

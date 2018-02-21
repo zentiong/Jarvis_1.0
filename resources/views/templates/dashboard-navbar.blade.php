@@ -10,6 +10,9 @@
                 <li><a id="quizzes"  href="{{ URL::to('quizzes') }}">Quizzes</a></li>
                 <li><a id="training-sessions"  href="{{ URL::to('training_sessions') }}">Training Sessions</a></li>
                 <li class="login-button" id="login-button">
+                    @auth
+                    <h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
+                    @endauth
                     <a class="logout-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LOG OUT</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}

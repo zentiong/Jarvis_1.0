@@ -209,6 +209,7 @@ body.newsletter {
 	} 
 
 	.login-button {
+		text-align: right;
 	    border: 1px solid transparent;
 	    background-color: $zalora-yellow;
 	    color: $newsletter-bg;
@@ -641,6 +642,7 @@ body.dashboard {
     			.logout-link {
     				color: #2F2F2F;
     				font-family: "Apercu Bold", sans-serif;
+    				font-size: 0.9em;
     			}
     		}
 		}
@@ -654,7 +656,17 @@ body.dashboard {
 	}
 	
 	.login-button {
-	    margin-left: auto;
+		text-align: right;
+		margin-left: auto;
+		margin-top: 5px;
+		margin-bottom: 5px;
+
+	    .current-username {
+	    	font-family: Roboto, sans-serif;
+	    	font-weight: 300;
+	    	font-size: 0.9em;
+			margin-bottom: 2px;
+	    }
 	}
 
 	main {
