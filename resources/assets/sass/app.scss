@@ -70,10 +70,7 @@ body.newsletter {
     				font-family: "Apercu Regular", sans-serif;
     				font-size: 1em;
     			}
-    			.logout-link {
-    				color: #2F2F2F;
-    				font-family: "Apercu Bold", sans-serif;
-    			}
+    			
     		}
 		}
 
@@ -210,16 +207,41 @@ body.newsletter {
 
 	.login-button {
 		text-align: right;
-	    border: 1px solid transparent;
-	    background-color: $zalora-yellow;
-	    color: $newsletter-bg;
-	    cursor: pointer;
-	    display: inline-block;
-	    padding: 5px 15px;
-	    margin-left: auto !important;
-	    border: 1px solid #95989A;
-	    border-radius: 2px;
-	    font-family: "Apercu Bold", sans-serif !important;
+		margin-left: auto;
+
+		.current-username {
+			display: inline;
+			margin-right: 5px;
+			font-family: Roboto, sans-serif;
+	    	font-weight: 300;
+		}
+
+	    .logout-link {
+    		color: #2F2F2F;
+    		border: 1px solid transparent;
+		    background-color: $zalora-yellow;
+		    color: $newsletter-bg;
+		    cursor: pointer;
+		    display: inline-block;
+		    padding: 5px 15px;
+		    margin-left: auto !important;
+		    border: 1px solid #95989A;
+		    border-radius: 2px;
+		    font-family: "Apercu Bold", sans-serif !important;
+	    }
+	}
+	.login-button-yellow {
+		color: #2F2F2F;
+    	border: 1px solid transparent;
+		background-color: $zalora-yellow;
+		color: $newsletter-bg;
+		cursor: pointer;
+		display: inline-block;
+		padding: 5px 15px;
+		margin-left: auto !important;
+		border: 1px solid #95989A;
+		border-radius: 2px;
+		font-family: "Apercu Bold", sans-serif !important;
 	}
 
 	%section {

@@ -3,11 +3,6 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function() {
-        var a = document.getElementById('levels');
-        a.classList.toggle("active");
-    });
-
     // enables Bootstrap tooltips
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();
@@ -40,6 +35,14 @@
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
     }
+
+    $(document).ready(function() {
+        var a = document.getElementById('levels');
+        var b = document.getElementById('employees');
+        a.classList.toggle("active");
+        b.style.display = 'none';
+    });
+
 </script>
 
 

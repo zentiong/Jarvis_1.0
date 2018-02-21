@@ -78,9 +78,6 @@ body.newsletter {
           color: #ebebeb;
           font-family: "Apercu Regular", sans-serif;
           font-size: 1em; }
-        body.newsletter nav ul li .logout-link {
-          color: #2F2F2F;
-          font-family: "Apercu Bold", sans-serif; }
     body.newsletter nav .active {
       border-top: 3px solid #F8E71C;
       color: #fff; }
@@ -177,6 +174,26 @@ body.newsletter {
     border: none !important; }
   body.newsletter .login-button {
     text-align: right;
+    margin-left: auto; }
+    body.newsletter .login-button .current-username {
+      display: inline;
+      margin-right: 5px;
+      font-family: Roboto, sans-serif;
+      font-weight: 300; }
+    body.newsletter .login-button .logout-link {
+      color: #2F2F2F;
+      border: 1px solid transparent;
+      background-color: #F8E71C;
+      color: #2F2F2F;
+      cursor: pointer;
+      display: inline-block;
+      padding: 5px 15px;
+      margin-left: auto !important;
+      border: 1px solid #95989A;
+      border-radius: 2px;
+      font-family: "Apercu Bold", sans-serif !important; }
+  body.newsletter .login-button-yellow {
+    color: #2F2F2F;
     border: 1px solid transparent;
     background-color: #F8E71C;
     color: #2F2F2F;

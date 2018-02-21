@@ -3,7 +3,7 @@
         @if (Route::has('login'))
         <li><a href="{{ URL::to('/') }}"><span class="branding">Alfred 3.0</span></a>
             @auth
-                <li><a id="levels" href="{{ URL::to('levels') }}">Levels</a></li>
+                <li><a id="levels" href="{{ URL::to('levels') }}">Dashboard</a></li>
                 <li><a id="users" href="{{ URL::to('users') }}">Employees</a></li>
                 <li><a id="skills"  href="{{ URL::to('skills') }}">Skills</a></li>
                 <li><a id="positions"  href="{{ URL::to('positions') }}">Positions</a></li>
@@ -19,11 +19,11 @@
                     </form>
                 </li>
             @else
-                <li><a href="#">Calendar</a></li>
+                <!-- <li><a href="#">Calendar</a></li>
                 <li><a href="#">Services</a></li>
                 <li><a href="#">Policies</a></li>
                 <li><a href="#">Engagements</a></li>
-                <li><a href="#">HR</a></li>
+                <li><a href="#">HR</a></li> -->
                 <li class="login-button" id="login-button" onclick="hideShowLogin()">
                     LOG IN
                 </li>
