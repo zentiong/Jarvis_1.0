@@ -37,18 +37,18 @@ Class LevelingController extends Controller
 				if($mg==1)
 				{
 					return view('index_hg')
-						->with('users', $users)
-						->with('training_sessions', $training_sessions);
+						->with('users', $users) 	
+						->with('training_sessions', $training_sessions)
 						->with('quizzes', $quizzes)
-						->with('sections', $sections)
+						->with('sections', $sections);
 				}
 				else
 				{
 					return view('index_hr')
 						->with('users', $users)
-						->with('training_sessions', $training_sessions);
+						->with('training_sessions', $training_sessions)
 						->with('quizzes', $quizzes)
-						->with('sections', $sections)
+						->with('sections', $sections);
 				}	
 
 			}
@@ -57,16 +57,16 @@ Class LevelingController extends Controller
 				if($mg==1)
 				{
 					return view('index_mg')
-						->with('users', $users);
+						->with('users', $users)
 						->with('quizzes', $quizzes)
-						->with('sections', $sections)
+						->with('sections', $sections);
 				}
 				else
 				{
-					return view('welcome');
-						->with('users', $users);
+					return view('welcome')
+						->with('users', $users)
 						->with('quizzes', $quizzes)
-						->with('sections', $sections)
+						->with('sections', $sections);
 				}
 				
 			}

@@ -20,7 +20,7 @@
         console.log('jQuery is defined!');
     }
     
-    function openCity(evt, cityName) {
+    function openTab(evt, cityName) {
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -40,6 +40,47 @@
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
     }
+</script>
+
+<script type="text/javascript" src="path/to/chartjs/dist/Chart.js">
+
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
 
 </script>
 
@@ -58,12 +99,12 @@
         
         <p>MANAGER LANDING</p>
         <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'skills')">My Skills</button>
-            <button class="tablinks" onclick="openCity(event, 'employees')">Employees Under Me</button>
+            <button class="tablinks" onclick="openTab(event, 'skills')">My Skills</button>
+            <button class="tablinks" onclick="openTab(event, 'employees')">Employees Under Me</button>
         </div>
 
         <div id="skills" class="tabcontent">
-            <h5> </h5>
+            <canvas id="myChart" width="400" height="400"></canvas>
         </div>
 
         <section id="employees" class="tabcontent container-fluid">

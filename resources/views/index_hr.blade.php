@@ -13,7 +13,7 @@
         $('[data-toggle="tooltip"]').tooltip();
     });
     
-    function openCity(evt, cityName) {
+    function openTab(evt, cityName) {
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -51,8 +51,8 @@
 
         <p>HR LANDING</p>
         <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'skills')">My Skills</button>
-            <button class="tablinks" onclick="openCity(event, 'trainings')">Trainings</button>
+            <button class="tablinks" onclick="openTab(event, 'skills')">My Skills</button>
+            <button class="tablinks" onclick="openTab(event, 'trainings')">Trainings</button>
         </div>
 
         <div id="skills" class="tabcontent">
