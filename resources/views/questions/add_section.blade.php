@@ -12,17 +12,37 @@
 <!-- if there are creation errors, they will show here -->
 {{ Html::ul($errors->all()) }}
 
+    <?php
+        $section_skills = array();
+    ?>
+
+    @foreach($sections as $key => $section)
+    <?php
+        array_push($section_skills, $section->skill_id)
+    ?>
+    @endforeach
+
 {{ Form::open(array('url' => 'quizzes/'.$quiz_id.'/store_section')) }}
 
     <div id="div1">
         <div class="form-group">
             {{ Form::label('skill', 'Skill') }}
     		<select id="skill_id" class="form-control" name="skill_id">
- 
-       		@foreach($skills as $key => $value)
-            	<option value="<?php echo $value->id ?>">{{$value->name}}</option>
+       		@foreach($skills as $key => $skill)
+                <?php
+                    $taken = false;
+                ?>
+                @foreach($section_skills as $key => $section_skill)
+                    @if($skill->id == $section_skill)
+                    <?php
+                        $taken = true;
+                    ?>
+                    @endif
+                @endforeach
+                @if($taken == false)
+                    <option value="<?php echo $skill->id ?>">{{$skill->name}}</option>
+                @endif
        		@endforeach
-
         </div>
     </div>
 

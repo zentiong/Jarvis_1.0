@@ -33,6 +33,10 @@
     <h2>END TEST</h2>
     */ ?>
 
+    <!--
+        If skill is already there, no section
+    -->
+
      @foreach($sections as $key => $section)
         @foreach($skills as $key => $skill)
             @if($skill->id == $section->skill_id)
@@ -46,8 +50,6 @@
         
         <thead>
             <tr>
-                <td>Section ID</td>
-                <td>Question ID</td>
                 <td>Question</td>
                 <td>Answer </td>
                
@@ -59,8 +61,6 @@
             
             @if($value->section_id == $section->id)
             <tr>
-                <td>{{ $value->section_id }}</td>
-                <td>{{ $value->id }}</td>
                 <td>{{ $value->question_item }}</td>
                 <td>{{ $value->answer_item }}</td>
 
@@ -96,7 +96,7 @@
             {{ Form::open(array('url' => 'quizzes/'.$quiz->quiz_id.'/questions/create', 'class' => 'pull-right')) }}
                 {{ Form::hidden('quiz_id', $quiz->quiz_id) }}
                 {{ Form::hidden('section_id', $section->id) }}
-                {{ Form::submit('Add Question', array('class' => 'btn btn-warning')) }}
+                {{ Form::submit('Add Question', array('class' => '')) }}
             {{ Form::close() }}
         <br>
         <br>

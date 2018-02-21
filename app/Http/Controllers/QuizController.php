@@ -8,6 +8,8 @@ use App\User;
 use App\User_Quiz;
 use App\Attempt;
 Use App\Skill;
+use App\Section;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -28,11 +30,15 @@ class QuizController extends Controller
   // get all the quizzes
         $quiz = Quiz::find($quiz_id);
 
-        //working SQL
-        //$questions = Question::where('quiz_id', $quiz_id)->get();
-        
-        // working ELOQUENT
-        $questions = $quiz->questions()->get();
+        $sections = Section::where('quiz_id',$quiz_id)->get();
+        $questions = array();
+
+        foreach ($sections as $key => $section) {
+            $questions_temps = $section->questions()->get();
+            foreach ($questions_temps as $key => $questions_temp) {
+                array_push($questions,$questions_temp);
+            }
+        }
 
           // show the view and pass the quiz to it
         return View::make('quizzes.take')
@@ -56,7 +62,15 @@ class QuizController extends Controller
 
         $quiz = Quiz::find($quiz_id);
 
-        $questions = $quiz->questions()->get();
+        $sections = Section::where('quiz_id',$quiz_id)->get();
+        $questions = array();
+
+        foreach ($sections as $key => $section) {
+            $questions_temps = $section->questions()->get();
+            foreach ($questions_temps as $key => $questions_temp) {
+                array_push($questions,$questions_temp);
+            }
+        }
 
         //$temp = Input::get('temp');
         $answer_attempt = Input::get("answer_attempt");

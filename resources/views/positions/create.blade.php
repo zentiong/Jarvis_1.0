@@ -25,7 +25,7 @@
 
 			{{ Form::open(array('url' => 'positions')) }}
 				<div class="form-group">
-				    {{ Form::label('name', 'Positon Name') }}
+				    {{ Form::label('name', 'Position Name') }}
 				    {{ Form::text('name', Request::old('name'), array('class' => 'form-control', 'autofocus')) }}
 				</div>
 			   	<div class="form-group text-center create-bottom-wrapper">

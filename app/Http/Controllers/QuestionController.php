@@ -38,8 +38,6 @@ class QuestionController extends Controller
             foreach ($questions_temps as $key => $questions_temp) {
                 array_push($questions,$questions_temp);
             }
-
-            
         }
 
         $skills = Skill::all();
@@ -55,10 +53,12 @@ class QuestionController extends Controller
      public function add_section($quiz_id)
     {
         $skills = Skill::all();
+        $sections = Section::where('quiz_id',$quiz_id)->get();
 
         return View::make('questions.add_section')
         ->with('quiz_id', $quiz_id)
-        ->with('skills',$skills);
+        ->with('skills',$skills)
+        ->with('sections',$sections);
     }
 
      public function store_section(Request $request, $quiz_id)
@@ -198,6 +198,7 @@ class QuestionController extends Controller
             $question = Question::find($id);
             $question->question_item = Input::get('question_item');
             $question->answer_item = Input::get('answer_item');
+            $question->section_id =Input::get('section_id');
             $question->save();
 
             // redirect
