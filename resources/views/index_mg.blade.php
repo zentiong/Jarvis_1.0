@@ -63,7 +63,7 @@
         </div>
 
         <div id="skills" class="tabcontent">
-            <h5>Skills graph here</h5>
+            <h5> </h5>
         </div>
 
         <section id="employees" class="tabcontent container-fluid">

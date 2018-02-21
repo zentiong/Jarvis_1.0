@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\TrainingSession;
+use App\Quiz;
+use App\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -23,6 +25,8 @@ Class LevelingController extends Controller
 		$mg = $current_user->manager_check;	
 		$users = User::all();
 		$training_sessions = TrainingSession::all();
+		$quizzes = Quiz::all();
+		$sections = Section::all();
 
 		
 		
@@ -35,12 +39,16 @@ Class LevelingController extends Controller
 					return view('index_hg')
 						->with('users', $users)
 						->with('training_sessions', $training_sessions);
+						->with('quizzes', $quizzes)
+						->with('sections', $sections)
 				}
 				else
 				{
 					return view('index_hr')
 						->with('users', $users)
 						->with('training_sessions', $training_sessions);
+						->with('quizzes', $quizzes)
+						->with('sections', $sections)
 				}	
 
 			}
@@ -50,10 +58,15 @@ Class LevelingController extends Controller
 				{
 					return view('index_mg')
 						->with('users', $users);
+						->with('quizzes', $quizzes)
+						->with('sections', $sections)
 				}
 				else
 				{
 					return view('welcome');
+						->with('users', $users);
+						->with('quizzes', $quizzes)
+						->with('sections', $sections)
 				}
 				
 			}
