@@ -3,7 +3,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var a = document.getElementById('training');
+        var a = document.getElementById('training-sessions');
         a.classList.toggle("active");
     });
 
@@ -20,8 +20,11 @@
         <section class="container-fluid">
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">All Training Sessions</h1>
-                <a href="{{ URL::to('trainings/create') }}" class="btn crud-main-cta">&#43; Add Training Session</a>
+                <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Training Session</button>
             </div>
+
+            <!-- if there are creation errors, they will show here -->
+            {{ Html::ul($errors->all()) }}
 
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
@@ -76,6 +79,59 @@
                 </tbody>
             </table>
         </section>
+
+        <!-- Modal -->
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Skill</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {{ Form::open(array('url' => 'trainings')) }}
+                
+                <div class="form-group">
+                    {{ Form::label('title', 'Title') }}
+                    {{ Form::text('title', Request::old('title'), array('class' => 'form-control', 'autofocus')) }}
+                </div>
+
+                <div class="form-group">
+                    {{ Form::label('date', 'Date') }}
+                    {{ Form::date('date', Request::old('date'), array('class' => 'form-control')) }}
+                </div>
+
+                <div class="form-group">
+                    {{ Form::label('starting_time', 'Starting Time') }}
+                    {{ Form::time('starting_time', Request::old('starting_time'), array('class' => 'form-control')) }}
+                </div>
+
+                <div class="form-group">
+                    {{ Form::label('ending_time', 'Ending Time') }}
+                    {{ Form::time('ending_time', Request::old('ending_time'), array('class' => 'form-control')) }}
+                </div>
+
+                <div class="form-group">
+                    {{ Form::label('speaker', 'Speaker') }}
+                    {{ Form::text('speaker', Request::old('speaker'), array('class' => 'form-control')) }}
+                </div>
+
+                <div class="form-group">
+                    {{ Form::label('venue', 'Venue') }}
+                    {{ Form::text('venue', Request::old('venue'), array('class' => 'form-control')) }}
+                </div>
+              </div>
+              <div class="modal-footer create-bottom-wrapper">
+                <a href="{{ URL::to('trainings') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
+                {{ Form::submit('Create training session', array('class' => 'btn btn-primary create-btn text-center')) }}
+              </div>
+              {{ Form::close() }}
+            </div>
+          </div>
+        </div>
+
     </main>
 
 @endsection

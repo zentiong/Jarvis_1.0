@@ -19,13 +19,15 @@
         <section class="container-fluid">
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">All Quizzes</h1>
-                <a href="{{ URL::to('quizzes/create') }}" class="btn crud-main-cta">&#43; Add Quiz</a>
+               <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Quiz</button>
             </div>
 
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
                 <div class="alert alert-info">{{ Session::get('message') }}</div>
             @endif
+
+            {{ Html::ul($errors->all()) }}
 
             <?php 
             $user_id = Auth::user()->id;
@@ -88,6 +90,42 @@
             </table>
 
         </section>
+
+        <!-- Modal -->
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Quiz</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                 {{ Form::open(array('url' => 'quizzes')) }}
+
+                  <div class="form-group">
+                      {{ Form::label('topic', 'Topic') }}
+                      {{ Form::text('topic', Request::old('topic'), array('class' => 'form-control')) }}
+                  </div>
+
+                    {{ Form::label('training', 'Training') }}
+                    <select id="training_id" class="form-control" name="training_id">
+                        @foreach($trainings as $key => $value)
+                        <option value="<?php echo $value->id ?>">{{$value->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+              <div class="modal-footer create-bottom-wrapper">
+                <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
+                {{ Form::submit('Create quiz', array('class' => 'btn btn-primary create-btn text-center')) }}
+              </div>
+              {{ Form::close() }}
+            </div>
+          </div>
+        </div>
+
+
     </main>
 
 
