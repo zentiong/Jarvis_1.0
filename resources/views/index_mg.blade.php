@@ -45,8 +45,6 @@
 
 </script>
 
-
-
 @section('body')
 
     <main class="container-fluid">
@@ -66,10 +64,10 @@
                 <div class="user-details">
                      @auth
                     <h1 class="username-title">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h1>
-                    <h5>{{ Auth::user()->position }}</h5>
-                    <h5>{{ Auth::user()->department }}</h5>
+                    <h6>{{ Auth::user()->position }}</h6>
+                    <h6>{{ Auth::user()->department }}</h6>
                     <br>
-                    <h5>{{ Auth::user()->email }}</h5>
+                    <h6>{{ Auth::user()->email }}</h6>
                     @endauth
                 </div>
             </div>

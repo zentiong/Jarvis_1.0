@@ -495,7 +495,7 @@ body.dashboard {
   body.dashboard main {
     margin: 3.4em auto; }
     body.dashboard main .dashboard-personal-details {
-      padding: 50px;
+      padding: 20px;
       display: flex;
       flex-flow: row nowrap; }
       body.dashboard main .dashboard-personal-details .inner {
@@ -507,7 +507,11 @@ body.dashboard {
           max-width: 140px; }
         body.dashboard main .dashboard-personal-details .inner .user-details {
           display: flex;
-          flex-flow: column nowrap; }
+          flex-flow: column nowrap;
+          margin-left: 30px; }
+          body.dashboard main .dashboard-personal-details .inner .user-details .username-title {
+            font-family: "Roboto", sans-serif;
+            font-size: 2rem; }
     body.dashboard main .hr-pastel {
       background-color: #FFFDF9; }
     body.dashboard main .crud-page-top {
