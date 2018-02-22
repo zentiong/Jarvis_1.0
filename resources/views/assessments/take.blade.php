@@ -32,6 +32,8 @@ Take Quiz Implementation:
  <br>
  <br>
 
+     {{ Html::ul($errors->all()) }}
+
     {{ Form::open(array('url' => 'assessments/'.$assessment->id.'/record')) }}
 
     {{ Form::hidden('supervisor_id', $value = Auth::user()->id) }}

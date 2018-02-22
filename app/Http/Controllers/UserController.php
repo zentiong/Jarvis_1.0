@@ -26,10 +26,12 @@ class UserController extends Controller
     {
         // get all the users
         $users = User::all();
+        $positions = Position::all();
 
         // load the view and pass the users
         return View::make('users.index')
-            ->with('users', $users);
+            ->with('users', $users)
+            ->with('positions',$positions);
     }
 
     /**

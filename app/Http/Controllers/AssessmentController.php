@@ -47,6 +47,22 @@ class AssessmentController extends Controller
 
     public function record(Request $request)
     {
+          $rules = array(
+            'grades'       => 'required',
+            'feedback'       => 'required'
+
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        $assessment_id = Input::get('assessment_id'); // Get Assessment ID
+
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('assessments/'.$assessment_id.'/take')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+
         $user_assessment = new User_Assessment; // New Instance of User Assessment
         $assessment_id = Input::get('assessment_id'); // Get Assessment ID
 
@@ -88,6 +104,8 @@ class AssessmentController extends Controller
 
         $user_assessment->rating = $rating/ count($assessment_items);
         $user_assessment->save();
+
+        }
 
         // redirect
         Session::flash('message', 'Successfully made an assessment! Congratulations!'.' Rating: '.$grade
