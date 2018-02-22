@@ -748,6 +748,7 @@ body.dashboard {
 			color: $white-1;
 			display: table;
 			font-size: 90%;
+			height: fit-content;
 			letter-spacing: 2px;
 			text-transform: uppercase;
 		}
@@ -827,25 +828,24 @@ body.dashboard {
 			border-radius: .25rem;
 			transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 		}
-		
-		.create-bottom-wrapper {
-			margin-top: 2em;
-			display: flex;
-			flex-flow: row wrap;
-			justify-content: center;
-			align-items: center;
+	}
 
-			.cancel-btn {
-				border: 1px solid;
-				border-radius: 2px;
-			}
+	.create-bottom-wrapper {
+		margin-top: 1em;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+		align-items: center;
 
-			> * {
-				margin: auto 1em;
-				width: 200px;
-			}
+		.cancel-btn {
+			border: 1px solid;
+			border-radius: 2px;
 		}
 
+		> * {
+			margin: auto 1em;
+			width: 200px;
+		}
 	}
 
 	footer {

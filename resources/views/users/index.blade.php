@@ -19,8 +19,7 @@
         <section class="container-fluid">
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">All Employees</h1>
-                <a href="{{ URL::to('users/create') }}" class="btn crud-main-cta">&#43; Add Employee</a>
-                <button type="button" data-toggle="modal" data-target="#exampleModalLong">Launch modal</button>
+                <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#exampleModalLong">&#43; Add Employee</button>
             </div>
             
             <!-- will be used to show any messages -->
@@ -179,11 +178,7 @@
                     {{ Form::label('manager_check', 'Manager?') }}
                     {{ Form::checkbox('manager_check', '1', Request::old('manager_check')) }}
                 </div>
-
-                <div class="form-group text-center create-bottom-wrapper">
-                    <a href="{{ URL::to('users') }}" class="btn cancel-btn">Cancel</a>
-                     {{ Form::submit('Create employee', array('class' => 'btn btn-primary create-btn text-center')) }}
-                </div>    
+   
       </div>
       <div class="modal-footer create-bottom-wrapper">
         <a href="{{ URL::to('users') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
