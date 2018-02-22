@@ -59,6 +59,22 @@
             $current_id = Auth::user()->id;
             $trainings = $current_user->training_session_id
         ?>
+
+        <section class="row dashboard-personal-details hr-pastel">
+            <div class="inner">
+                <img class="img-circle profile-picture" src="../images/dashboard/sheev-palpatine.jpg" alt="Your profile picture">
+                <div class="user-details">
+                     @auth
+                    <h1 class="username-title">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h1>
+                    <h5>{{ Auth::user()->position }}</h5>
+                    <h5>{{ Auth::user()->department }}</h5>
+                    <br>
+                    <h5>{{ Auth::user()->email }}</h5>
+                    @endauth
+                </div>
+            </div>
+            
+        </section>
         
         <p>MANAGER LANDING</p>
         <div class="tab">

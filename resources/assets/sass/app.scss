@@ -676,6 +676,10 @@ body.dashboard {
 			padding: 0.8em 0;
 		}
 	}
+
+	img.img-circle {
+		border-radius: 50%;
+	}
 	
 	.login-button {
 		text-align: right;
@@ -692,7 +696,33 @@ body.dashboard {
 	}
 
 	main {
-		margin: 6em auto;
+		margin: 3.4em auto;
+
+		.dashboard-personal-details {
+			padding: 50px;
+			display: flex;
+			flex-flow: row nowrap;
+
+			.inner {
+				margin: 2em auto;
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+
+				.profile-picture {
+					max-width: 140px;
+				}
+
+				.user-details {
+					display: flex;
+					flex-flow: column nowrap;
+				}
+			}
+		}
+
+		.hr-pastel {
+			background-color: $hr-pastel;
+		}
 
 		.crud-page-top {
 			justify-content: space-between;

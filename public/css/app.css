@@ -480,6 +480,8 @@ body.dashboard {
       color: #000;
       font-weight: 600;
       padding: 0.8em 0; }
+  body.dashboard img.img-circle {
+    border-radius: 50%; }
   body.dashboard .login-button {
     text-align: right;
     margin-left: auto;
@@ -491,7 +493,23 @@ body.dashboard {
       font-size: 0.9em;
       margin-bottom: 2px; }
   body.dashboard main {
-    margin: 6em auto; }
+    margin: 3.4em auto; }
+    body.dashboard main .dashboard-personal-details {
+      padding: 50px;
+      display: flex;
+      flex-flow: row nowrap; }
+      body.dashboard main .dashboard-personal-details .inner {
+        margin: 2em auto;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center; }
+        body.dashboard main .dashboard-personal-details .inner .profile-picture {
+          max-width: 140px; }
+        body.dashboard main .dashboard-personal-details .inner .user-details {
+          display: flex;
+          flex-flow: column nowrap; }
+    body.dashboard main .hr-pastel {
+      background-color: #FFFDF9; }
     body.dashboard main .crud-page-top {
       justify-content: space-between;
       margin: 2em 0; }
