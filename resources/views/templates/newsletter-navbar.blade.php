@@ -9,7 +9,7 @@
 				<li><a id="skills"  href="{{ URL::to('skills') }}">Skills</a></li>
 				<li><a id="positions"  href="{{ URL::to('positions') }}">Positions</a></li>
 				<li><a id="quizzes"  href="{{ URL::to('quizzes') }}">Quizzes</a></li>
-				<li><a id="training-sessions"  href="{{ URL::to('training_sessions') }}">Training Sessions</a></li>
+				<li><a id="training-sessions"  href="{{ URL::to('trainings') }}">Training Sessions</a></li>
 				<li class="login-button" id="login-button">
 					@auth
                     <h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>

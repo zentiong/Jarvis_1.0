@@ -10,13 +10,14 @@ Take Quiz Implementation:
 1) Each input should be assigned to answer_attempt() array
 2) Answer Attempt ought to be compared to corresponding answer item
     -(test via popout)
-
-
-
 -->
 
-<h2> Make an Assessment ({{ $assessment->topic }}) </h2>
-<p> Ideally lahat ng under the supervisor (all users with supervisor Id of user (boss) (FOR LATER)</p>
+<br>
+<br>
+<br>
+
+<h2> Make a {{ $assessment->topic }} Assessment  </h2>
+
 <!--
 <h5> Number of Questions: {{ count($assessment_items) }} </h5>
 

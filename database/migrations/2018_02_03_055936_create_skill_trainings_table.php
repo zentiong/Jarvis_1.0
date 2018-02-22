@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSkillTrainingSessionsTable extends Migration
+class CreateSkillTrainingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateSkillTrainingSessionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('skill_training_sessions', function (Blueprint $table) {
+        Schema::create('skill_trainings', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('skill_id')->unsigned();
             $table->foreign('skill_id')->references('id')->on('skills');
-            $table->integer('training_session_id')->unsigned();
-            $table->foreign('training_session_id')->references('id')->on('training_sessions');
+            $table->integer('training_id')->unsigned();
+            $table->foreign('training_id')->references('id')->on('trainings');
 
 
         });
@@ -32,6 +32,6 @@ class CreateSkillTrainingSessionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('skill_training_sessions');
+        Schema::dropIfExists('skill_trainings');
     }
 }

@@ -3,7 +3,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var a = document.getElementById('training-sessions');
+        var a = document.getElementById('training');
         a.classList.toggle("active");
     });
 
@@ -20,7 +20,7 @@
         <section class="container-fluid">
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">All Training Sessions</h1>
-                <a href="{{ URL::to('training_sessions/create') }}" class="btn crud-main-cta">&#43; Add Training Session</a>
+                <a href="{{ URL::to('trainings/create') }}" class="btn crud-main-cta">&#43; Add Training Session</a>
             </div>
 
             <!-- will be used to show any messages -->
@@ -42,7 +42,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($training_sessions as $key => $value)
+                @foreach($trainings as $key => $value)
                     <tr>
                         <td>{{ $value->id }}</td>
                         <td>{{ $value->date }}</td>
@@ -55,16 +55,16 @@
                         <td class="table-actions no-stretch">
 
                             <!-- show the employee (uses the show method found at GET /employees/{id} -->
-                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View training session" href="{{ URL::to('training_sessions/' . $value->id) }}">
+                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View training session" href="{{ URL::to('training/' . $value->id) }}">
                                 <i class="fa fa-user fa-lg"></i>
                             </a>
 
                             <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
-                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit training session" href="{{ URL::to('training_sessions/' . $value->id . '/edit') }}">
+                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit training session" href="{{ URL::to('training/' . $value->id . '/edit') }}">
                                 <i class="fa fa-pencil fa-lg"></i>
                             </a>
 
-                                {{ Form::open(array('url' => 'training_sessions/' . $value->id, 'class' => 'pull-right')) }}
+                                {{ Form::open(array('url' => 'training/' . $value->id, 'class' => 'pull-right')) }}
                                 {{ Form::hidden('_method', 'DELETE') }}
                                 <div data-toggle="tooltip" data-placement="bottom" title="Remove training session">
                                     {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}

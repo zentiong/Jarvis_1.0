@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\TrainingSession;
+use App\Training;
 use App\Quiz;
 use App\Section;
 use Illuminate\Http\Request;
@@ -24,7 +24,7 @@ Class LevelingController extends Controller
 		$dept = $current_user->department;
 		$mg = $current_user->manager_check;	
 		$users = User::all();
-		$training_sessions = TrainingSession::all();
+		$trainings = Training::all();
 		$quizzes = Quiz::all();
 		$sections = Section::all();
 
@@ -38,7 +38,7 @@ Class LevelingController extends Controller
 				{
 					return view('index_hg')
 						->with('users', $users) 	
-						->with('training_sessions', $training_sessions)
+						->with('trainings', $trainings)
 						->with('quizzes', $quizzes)
 						->with('sections', $sections);
 				}
@@ -46,7 +46,7 @@ Class LevelingController extends Controller
 				{
 					return view('index_hr')
 						->with('users', $users)
-						->with('training_sessions', $training_sessions)
+						->with('trainings', $trainings)
 						->with('quizzes', $quizzes)
 						->with('sections', $sections);
 				}	

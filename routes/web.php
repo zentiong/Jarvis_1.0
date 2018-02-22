@@ -49,6 +49,8 @@ Route::get('take_quizzes', 'QuizController@take_quizzes'); // Where users take t
 Route::get('quizzes/{quiz}/take', 'QuizController@take'); // For storing test results
 Route::post('quizzes/{quiz}/record', 'QuizController@record'); // For storing test results
 
+Route::get('results', 'QuizController@results');
+
 /* Nested CRUD Assessment x Assessment_Items */
 Route::resource('assessments', 'AssessmentController');
 Route::resource('assessments.assessment_items', 'Assessment_ItemController');
@@ -64,7 +66,7 @@ Route::get('see_assessments', 'AssessmentController@see_assessments'); // Where 
 
 /* Training */
 
-Route::resource('training_sessions', 'TrainingSessionController');
+Route::resource('trainings', 'TrainingController');
 
 /* Skills */
 

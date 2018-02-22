@@ -23,8 +23,8 @@
         <section>
             {{ Html::ul($errors->all()) }}
 
-            {{ Form::model($training_session, 
-            array('route' => array('training_sessions.update', $training_session->id), 'method' => 'PUT')) }}
+            {{ Form::model($training, 
+            array('route' => array('trainings.update', $training->id), 'method' => 'PUT')) }}
 
                 <div class="form-group">
                     {{ Form::label('title', 'Title') }}
@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="form-group text-center create-bottom-wrapper">
-                    <a href="{{ URL::to('training_sessions') }}" class="btn cancel-btn">Cancel</a>
+                    <a href="{{ URL::to('trainings') }}" class="btn cancel-btn">Cancel</a>
                     {{ Form::submit('Edit Training Session', array('class' => 'btn btn-primary create-btn text-center')) }}
                 </div>
                 

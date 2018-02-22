@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\TrainingSession;
+use App\Training;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect; 
 use View;
 
-class TrainingSessionController extends Controller
+class TrainingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,11 +24,11 @@ class TrainingSessionController extends Controller
 
     public function index()
     {
-         $training_sessions = TrainingSession::all();
+         $trainings = Training::all();
 
         // load the view and pass the employees
-        return View::make('training_sessions.index')
-            ->with('training_sessions', $training_sessions);
+        return View::make('trainings.index')
+            ->with('trainings', $trainings);
     }
 
     /**
@@ -38,7 +38,7 @@ class TrainingSessionController extends Controller
      */
     public function create()
     {
-        return view('training_sessions.create');
+        return view('trainings.create');
     }
 
     /**
@@ -65,18 +65,18 @@ class TrainingSessionController extends Controller
                 ->withErrors($validator);
         } else {
             // store
-            $training_session = new TrainingSession;
-            $training_session->date = Input::get('date');
-            $training_session->starting_time = Input::get('starting_time');
-            $training_session->ending_time = Input::get('ending_time');
-            $training_session->title = Input::get('title');
-            $training_session->speaker = Input::get('speaker');
-            $training_session->venue = Input::get('venue');
-            $training_session->save();
+            $training = new Training;
+            $training->date = Input::get('date');
+            $training->starting_time = Input::get('starting_time');
+            $training->ending_time = Input::get('ending_time');
+            $training->title = Input::get('title');
+            $training->speaker = Input::get('speaker');
+            $training->venue = Input::get('venue');
+            $training->save();
 
             // redirect
             Session::flash('message', 'Successfully created Training Session!');
-            return Redirect::to('training_sessions');
+            return Redirect::to('trainings');
         }
     }
 
@@ -88,10 +88,10 @@ class TrainingSessionController extends Controller
      */
     public function show($id)
     {
-        $training_session = TrainingSession::find($id);
+        $training = Training::find($id);
 
-        return View::make('training_sessions.show')
-            ->with('training_session', $training_session);
+        return View::make('trainings.show')
+            ->with('training', $training);
     }
     
 
@@ -103,11 +103,11 @@ class TrainingSessionController extends Controller
      */
     public function edit($id)
     {
-        $training_session = TrainingSession::find($id);
+        $training = Training::find($id);
 
         // show the edit form and pass the user
-        return View::make('training_sessions.edit')
-            ->with('training_session', $training_session);
+        return View::make('trainings.edit')
+            ->with('training', $training);
     }
 
     /**
@@ -124,29 +124,29 @@ class TrainingSessionController extends Controller
             'starting_time'=> 'required',
             'starting_time'=> 'required',
             'title' => 'required',
-            'speaker'      => 'required',
+            'speaker'  => 'required',
             'venue' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('training_sessions/'.$id.'/create')
+            return Redirect::to('trainings/'.$id.'/create')
                 ->withErrors($validator);
         } else {
             // store
-            $training_session = TrainingSession::find($id);
-            $training_session->date = Input::get('date');
-            $training_session->starting_time = Input::get('starting_time');
-            $training_session->ending_time = Input::get('ending_time');
-            $training_session->title = Input::get('title');
-            $training_session->speaker = Input::get('speaker');
-            $training_session->venue = Input::get('venue');
-            $training_session->save();
+            $training = Training::find($id);
+            $training->date = Input::get('date');
+            $training->starting_time = Input::get('starting_time');
+            $training->ending_time = Input::get('ending_time');
+            $training->title = Input::get('title');
+            $training->speaker = Input::get('speaker');
+            $training->venue = Input::get('venue');
+            $training->save();
 
             // redirect
             Session::flash('message', 'Successfully Updated Training Session!');
-            return Redirect::to('training_sessions');
+            return Redirect::to('trainings');
             }
     }
 
@@ -158,11 +158,11 @@ class TrainingSessionController extends Controller
      */
     public function destroy($id)
     {
-        $training_session = TrainingSession::find($id);
-        $training_session->delete();
+        $training = Training::find($id);
+        $training->delete();
 
         // redirect
         Session::flash('message', 'Deleted Training Session!');
-        return Redirect::to('training_sessions');
+        return Redirect::to('trainings');
     }
 }

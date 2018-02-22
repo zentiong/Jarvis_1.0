@@ -111,6 +111,20 @@ class QuizController extends Controller
 
     }
 
+    public function results()
+    {
+         // get all the assessments
+        $user_quiz = User_Quiz::all();
+        $users = User::all();
+        $quizzes = Quiz::all();
+
+        // load the view and pass the stuff
+        return View::make('quizzes.results')
+            ->with('user_quiz', $user_quiz)
+            ->with('users', $users)
+            ->with('quizzes', $quizzes);
+    }
+
     public function take_quizzes()
     {
          // get all the quizzes

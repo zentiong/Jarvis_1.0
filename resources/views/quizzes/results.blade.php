@@ -12,32 +12,32 @@
 $user_id = Auth::user()->id; /* Supervisor */
 ?>
 
+
 <br>
-<br>
+<br><br>
 <br>
 
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <td>Assessment Topic</td>
+            <td>Quiz</td>
             <td>Employee Name</td>
-            <td>Rating</td>
-            <td>Feedback</td>
+            <td>Score</td>
         </tr>
     </thead>
     <tbody>
-    @foreach($user_assessments as $key => $value)
+    @foreach($user_quiz as $key => $value)
         <tr>
             <td>
-                @foreach($assessments as $key => $topic)
+                @foreach($quizzes as $key => $quiz)
                 <?php
 
-                    $check_assessment_id = $topic->id;
+                    $check_quiz_id = $quiz->quiz_id;
 
                 ?>
 
-                @if($check_assessment_id == $value->assessment_id)
-                   {{ $topic->topic }}
+                @if($check_quiz_id == $value->quiz_id)
+                   {{ $quiz->topic }}
                 @endif
 
                 @endforeach
@@ -50,17 +50,14 @@ $user_id = Auth::user()->id; /* Supervisor */
 
                 ?>
 
-                @if($check_user_id == $value->employee_id)
+                @if($check_user_id == $value->user_id)
                    {{ $user->first_name }} {{ $user->last_name }}
                 @endif
 
                 @endforeach
             </td>
             <td>
-                {{ $value->rating }}
-            </td>
-            <td>
-                 {{ $value->feedback }}
+                {{ $value->score }}
             </td>
         </tr>
     @endforeach

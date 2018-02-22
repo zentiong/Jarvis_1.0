@@ -24,7 +24,7 @@
             <!-- if there are creation errors, they will show here -->
             {{ Html::ul($errors->all()) }}
 
-            {{ Form::open(array('url' => 'training_sessions')) }}
+            {{ Form::open(array('url' => 'trainings')) }}
                 
                 <div class="form-group">
                     {{ Form::label('title', 'Title') }}
@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="form-group text-center create-bottom-wrapper">
-                    <a href="{{ URL::to('training_sessions') }}" class="btn cancel-btn">Cancel</a>
+                    <a href="{{ URL::to('trainings') }}" class="btn cancel-btn">Cancel</a>
                     {{ Form::submit('Create Training Session', array('class' => 'btn btn-primary create-btn text-center')) }}
                 </div>
                 
