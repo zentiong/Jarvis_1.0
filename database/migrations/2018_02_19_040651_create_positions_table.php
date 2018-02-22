@@ -17,6 +17,8 @@ class CreatePositionsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('name');
+            $table->integer('knowledge_based_weight');
+            $table->integer('skills_based_weight');
         });
     }
 

@@ -34,8 +34,9 @@
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <td>Skill ID</td>
+                        <td>ID</td>
                         <td>Skill Name</td>
+                        <td>Description</td>
                         <td class="no-stretch">Actions</td>
                     </tr>
                 </thead>
@@ -46,6 +47,7 @@
 
                         <td>{{ $value->id }}</td>
                         <td>{{ $value->name}}</td>
+                        <td>{{ $value->description}}</td>
 
                         <td class="table-actions">
                             <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit skill" href="{{ URL::to('skills/' . $value->id . '/edit') }}">

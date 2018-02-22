@@ -31,6 +31,10 @@
 		        {{ Form::label('name', 'Name') }}
 		        {{ Form::text('name', Request::old('name'), array('class' => 'form-control', 'autofocus')) }}
 		    </div>
+		    <div class="form-group"> 
+		        {{ Form::label('description', 'Description') }}
+		        {{ Form::text('description', Request::old('description'), array('class' => 'form-control', 'autofocus')) }}
+		    </div>
 			
 			<div class="form-group text-center create-bottom-wrapper">
 				<a href="{{ URL::to('skills') }}" class="btn cancel-btn">Cancel</a>

@@ -28,6 +28,14 @@
 				    {{ Form::label('name', 'Position Name') }}
 				    {{ Form::text('name', Request::old('name'), array('class' => 'form-control', 'autofocus')) }}
 				</div>
+				<div class="form-group">
+				    {{ Form::label('knowledge_based_weight', 'Knowledge-Based Weight') }}
+				    {{ Form::text('knowledge_based_weight', Request::old('knowledge_based_weight'), array('class' => 'form-control', 'autofocus')) }}
+				</div>
+				<div class="form-group">
+				    {{ Form::label('skills_based_weight', 'Skills-Based Weight') }}
+				    {{ Form::text('skills_based_weight', Request::old('skills_based_weight'), array('class' => 'form-control', 'autofocus')) }}
+				</div>
 			   	<div class="form-group text-center create-bottom-wrapper">
 			   		<a href="{{ URL::to('positions') }}" class="btn cancel-btn">Cancel</a>
 			   		 {{ Form::submit('Create position', array('class' => 'btn btn-primary create-btn text-center')) }}

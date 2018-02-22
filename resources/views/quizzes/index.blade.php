@@ -37,6 +37,7 @@
                     <tr>
                         <td>Quiz ID</td>
                         <td>Topic</td>
+                        <td>Training</td>
                         <td class="no-stretch">Actions</td>
                     </tr>
                 </thead>
@@ -47,6 +48,14 @@
 
                         <td>{{ $value->quiz_id }}</td>
                         <td>{{ $value->topic }}</td>
+
+
+                        @foreach($skills as $key => $skill)
+                            @if($skill->id == $section->skill_id)
+                                {{$skill->name}}
+                            @endif
+                        @endforeach
+                         <td>{{ $value->training_id }}</td>
 
                         <!-- we will also add show, edit, and delete buttons -->
                         <td class="table-actions no-stretch">

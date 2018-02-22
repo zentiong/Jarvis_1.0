@@ -31,6 +31,8 @@
                 <thead>
                     <tr>
                         <td>Positions</td>
+                        <td>Knowledge Based Weight</td>
+                        <td>Skills Based Weight</td>
                         <td class="no-stretch">Actions</td>
                     </tr>
                 </thead>
@@ -38,6 +40,8 @@
                 @foreach($positions as $key => $value)
                     <tr>
                         <td>{{ $value->name }}</td>
+                        <td>{{ $value->knowledge_based_weight }}</td>
+                        <td>{{ $value->skills_based_weight }}</td>
                         
                         <td class="table-actions no-stretch">
                              <!-- show the employee (uses the show method found at GET /employees/{id} -->

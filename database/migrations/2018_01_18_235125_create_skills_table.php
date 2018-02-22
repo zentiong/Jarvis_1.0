@@ -17,26 +17,31 @@ class CreateSkillsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('name');
+            $table->string('description');
         });
 
         DB::table('skills')->insert(
         array(
-            'name' => 'Math Skills'
+            'name' => 'Math',
+            'description' => 'Adding stuff'
         )  );
 
          DB::table('skills')->insert(
         array(
-            'name' => 'Communication Skills'
+            'name' => 'Communication',
+            'description' => 'Understanding others perspective'
         )  );
 
         DB::table('skills')->insert(
         array(
-            'name' => 'Theology Skills'
+            'name' => 'Theology',
+            'description' => 'God stuff'
         )  );
 
         DB::table('skills')->insert(
         array(
-            'name' => 'People Skills'
+            'name' => 'People',
+            'description' => 'Social Interaction'
         )  );
     }
 

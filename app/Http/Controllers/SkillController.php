@@ -48,6 +48,7 @@ class SkillController extends Controller
             // store
             $skill = new Skill;
             $skill->name = Input::get('name');
+            $skill->description = Input::get('description');
             $skill->save();
 
             // redirect
@@ -84,6 +85,7 @@ class SkillController extends Controller
         {
             $skill = Skill::find($id);
             $skill->name = Input::get('name');
+            $skill->description = Input::get('description');
             $skill->save();
             Session::flash('message', 'Update Successful');
             return Redirect::to('skills');

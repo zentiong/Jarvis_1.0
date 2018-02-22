@@ -84,11 +84,6 @@ Take Quiz Implementation:
                 {{ Form::radio('grades['.$i.']', '3' ) }}
                 {{ Form::radio('grades['.$i.']', '4' ) }}
                 {{ Form::radio('grades['.$i.']', '5' ) }}
-                {{ Form::radio('grades['.$i.']', '6' ) }}
-                {{ Form::radio('grades['.$i.']', '7' ) }}
-                {{ Form::radio('grades['.$i.']', '8' ) }}
-                {{ Form::radio('grades['.$i.']', '9' ) }}
-                {{ Form::radio('grades['.$i.']', '10' ) }}
 
                 <?php
                    $i++;

@@ -50,7 +50,9 @@ class PositionController extends Controller
     public function store(Request $request)
     {
          $rules = array(
-            'name' => 'required'    
+            'name' => 'required',
+            'knowledge_based_weight' => 'required',
+            'skills_based_weight' => 'required'      
             );
         
         $validator = Validator::make(Input::all(), $rules);
@@ -63,6 +65,8 @@ class PositionController extends Controller
             // store
             $position = new Position;
             $position->name = Input::get('name');
+            $position->knowledge_based_weight = Input::get('knowledge_based_weight');
+            $position->skills_based_weight = Input::get('skills_based_weight');
             $position->save();
 
             // redirect
@@ -123,6 +127,8 @@ class PositionController extends Controller
             // store
             $position = Position::find($id);
             $position->name = Input::get('name');
+            $position->knowledge_based_weight = Input::get('knowledge_based_weight');
+            $position->skills_based_weight = Input::get('skills_based_weight');
             $position->save();
 
             // redirect

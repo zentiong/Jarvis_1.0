@@ -30,21 +30,14 @@
                   {{ Form::text('topic', Request::old('topic'), array('class' => 'form-control')) }}
               </div>
 
-              <!-- 
-                  Skill Related
+                  {{ Form::label('training', 'Training') }}
+                    <select id="training_id" class="form-control" name="training_id">
+                      @foreach($trainings as $key => $value)
+                        <option value="<?php echo $value->id ?>">{{$value->title}}</option>
+                      @endforeach
+                    </select>
 
-                  {{ Form::label('skill', 'Skill') }}
-               <select id="skill" class="form-control" name="skill">
-               <?php
-               /*
-                 @foreach($skills as $key => $value)
-                      <option value="<?php echo $value->id ?>">{{$value->name}}</option>
-                 @endforeach
-                 */
-                 ?>
-                </select>
-              -->
-              <div class="form-group text-center create-bottom-wrapper">
+               <div class="form-group text-center create-bottom-wrapper">
                   <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn">Cancel</a>
                   {{ Form::submit('Create quiz', array('class' => 'btn btn-primary create-btn text center')) }}
               </div>

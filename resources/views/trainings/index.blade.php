@@ -55,12 +55,12 @@
                         <td class="table-actions no-stretch">
 
                             <!-- show the employee (uses the show method found at GET /employees/{id} -->
-                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View training session" href="{{ URL::to('training/' . $value->id) }}">
+                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View training session" href="{{ URL::to('trainings/' . $value->id) }}">
                                 <i class="fa fa-user fa-lg"></i>
                             </a>
 
                             <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
-                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit training session" href="{{ URL::to('training/' . $value->id . '/edit') }}">
+                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit training session" href="{{ URL::to('trainings/' . $value->id . '/edit') }}">
                                 <i class="fa fa-pencil fa-lg"></i>
                             </a>
 
