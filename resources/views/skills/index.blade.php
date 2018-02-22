@@ -20,7 +20,7 @@
         <section class="container-fluid">
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">All Skills</h1>
-                <a href="skills/create" class="btn crud-main-cta">&#43; Add Skill</a>
+                <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Skill</button>
             </div>
 
             @if (Session::has('message'))
@@ -69,6 +69,38 @@
             <br>
 
         </section>
+
+        <!-- Modal -->
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Skill</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {{ Form::open(array('url' => 'skills')) }}
+
+                <div class="form-group"> 
+                    {{ Form::label('name', 'Name') }}
+                    {{ Form::text('name', Request::old('name'), array('class' => 'form-control', 'autofocus')) }}
+                </div>
+                <div class="form-group"> 
+                    {{ Form::label('description', 'Description') }}
+                    {{ Form::text('description', Request::old('description'), array('class' => 'form-control')) }}
+                </div>
+              </div>
+              <div class="modal-footer create-bottom-wrapper">
+                <a href="{{ URL::to('skills') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
+                {{ Form::submit('Create skill', array('class' => 'btn btn-primary create-btn text-center')) }}
+              </div>
+              {{ Form::close() }}
+            </div>
+          </div>
+        </div>
+
     </main>
 
 @endsection
