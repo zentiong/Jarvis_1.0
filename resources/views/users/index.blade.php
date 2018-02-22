@@ -20,11 +20,15 @@
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">All Employees</h1>
                 <a href="{{ URL::to('users/create') }}" class="btn crud-main-cta">&#43; Add Employee</a>
+                <button type="button" data-toggle="modal" data-target="#exampleModalLong">Launch modal</button>
             </div>
             
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
-                <div class="alert alert-info">{{ Session::get('message') }}</div>
+                <div class="alert alert-info">
+                    {{ Session::get('message') }}
+                    {{ Html::ul($errors->all()) }}
+                </div>
             @endif
 
             <table class="table table-striped table-bordered">
@@ -84,5 +88,111 @@
                 </tbody>
             </table>
         </section>
+
+        <!-- Modal -->
+        <!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Create Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body create-page">
+        {{ Form::open(array('url' => 'users')) }}
+            
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- FIRST NAME -->
+                        <div class="form-group">
+                            {{ Form::label('first_name', 'First Name') }}
+                            {{ Form::text('first_name', Request::old('first_name'), array('class' => 'form-control', 'autofocus')) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- LAST NAME -->
+                         <div class="form-group">
+                            {{ Form::label('last_name', 'Last Name') }}
+                            {{ Form::text('last_name', Request::old('last_name'), array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+                    {{ Form::label('email', 'Email') }}
+                    {{ Form::email('email', Request::old('email'), array('class' => 'form-control')) }}
+                </div>
+                
+                <!-- PASSWORD -->
+                <div class="form-group">
+                    {{ Form::label('password', 'Password') }}
+                    {{ Form::password('password', Request::old('password'), array('class' => 'form-control')) }}
+                </div>
+
+                <!-- Hiring Date -->
+                <div class="form-group">
+                    {{ Form::label('hiring_date', 'Hiring Date') }}
+                    {{ Form::date('hiring_date', Request::old('hiring_date'), array('class' => 'form-control')) }}
+                </div>
+
+                <!-- Birth Date -->
+                <div class="form-group">
+                    {{ Form::label('birth_date', 'Birth Date') }}
+                    {{ Form::date('birth_date', Request::old('birth_date'), array('class' => 'form-control')) }}
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Department -->
+                        <div class="form-group">
+                            {{ Form::label('department', 'Department') }}
+                            {{ Form::select('department', array('Finance' => 'Finance', 'Human Resources' => 'Human Resources', 'Customer Service' => 'Customer Service'), Request::old('department'), array('class' => 'form-control')) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Position -->
+                        {{ Form::label('position', 'Position') }}
+                        <select id="position" class="form-control" name="position">
+                            @foreach($positions as $key => $value)
+                            <option value="<?php echo $value->name ?>">
+                                {{$value->name}} 
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <!-- Supervisor -->
+                {{ Form::label('supervisor_id', 'Supervisor') }}
+                <select id="supervisor_id" class="form-control" name="supervisor_id">
+                @foreach($users as $key => $value)
+                <option value="<?php echo $value->id ?>">
+                    {{$value->first_name}} {{$value->last_name}}
+                </option>
+                @endforeach
+                </select>
+
+                <!-- Manager? -->
+                <div class="form-group">
+                    {{ Form::label('manager_check', 'Manager?') }}
+                    {{ Form::checkbox('manager_check', '1', Request::old('manager_check')) }}
+                </div>
+
+                <div class="form-group text-center create-bottom-wrapper">
+                    <a href="{{ URL::to('users') }}" class="btn cancel-btn">Cancel</a>
+                     {{ Form::submit('Create employee', array('class' => 'btn btn-primary create-btn text-center')) }}
+                </div>    
+      </div>
+      <div class="modal-footer create-bottom-wrapper">
+        <a href="{{ URL::to('users') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
+        {{ Form::submit('Create employee', array('class' => 'btn btn-primary create-btn text-center')) }}
+      </div>
+      {{ Form::close() }}
+    </div>
+  </div>
+</div>
+
     </main>
 @endsection
