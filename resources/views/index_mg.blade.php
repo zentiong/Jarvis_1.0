@@ -16,29 +16,34 @@
     }
     
     function openTab(evt, cityName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
+        // Declare all variables
+        var i, tabcontent, tablinks;
 
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
 
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
 
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    
     }
 
     $(document).ready(function() {
+        console.log("hello");
         var a = document.getElementById('levels');
         var b = document.getElementById('employees');
+        var tabarray = document.getElementsByClassName('tablinks');
+        var initialTab = tabarray[0];
+        initialTab.classList.toggle('active');
         a.classList.toggle("active");
         b.style.display = 'none';
     });
@@ -58,7 +63,7 @@
             $trainings = $current_user->training_session_id
         ?>
 
-        <section class="row dashboard-personal-details hr-pastel">
+        <section class="row personal-details hr-pastel">
             <div class="inner">
                 <img class="img-circle profile-picture" src="../images/dashboard/sheev-palpatine.jpg" alt="Your profile picture">
                 <div class="user-details">
@@ -73,11 +78,28 @@
             </div>
             
         </section>
+
+        <section class="container dashboard-container">
+            <div class="row dashboard-tab-container">
+                <button class="btn tablinks" onclick="openTab(event, 'skills')">Personal</button>
+                <button class="btn tablinks"  onclick="openTab(event, 'employees')">Department-wide</button>
+            </div>
+            <div class="row dashboard-body">
+                <div class="col-md-7">
+                    <h6 class="dashboard-header">Skills</h6>
+                    <div class="dashboard-content"></div>
+                </div>
+                <div class="col-md-5">
+                    <h6 class="dashboard-header">Trainings</h6>
+                    <div class="dashboard-content"></div>
+                </div>
+            </div>
+        </section>
         
         <p>MANAGER LANDING</p>
         <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'skills')">My Skills</button>
-            <button class="tablinks" onclick="openTab(event, 'employees')">Employees Under Me</button>
+            <!-- <button class="tablinks" onclick="openTab(event, 'skills')">My Skills</button>
+            <button class="tablinks" onclick="openTab(event, 'employees')">Employees Under Me</button> -->
         </div>
 
         <div id="skills" class="tabcontent">

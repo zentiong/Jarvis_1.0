@@ -494,31 +494,48 @@ body.dashboard {
       margin-bottom: 2px; }
   body.dashboard main {
     margin: 3.4em auto; }
-    body.dashboard main .dashboard-personal-details {
+    body.dashboard main .personal-details {
       padding: 20px;
       display: flex;
       flex-flow: row nowrap; }
-      body.dashboard main .dashboard-personal-details .inner {
+      body.dashboard main .personal-details .inner {
         margin: 2em auto;
         display: flex;
         flex-flow: row wrap;
         align-items: center; }
-        body.dashboard main .dashboard-personal-details .inner .profile-picture {
+        body.dashboard main .personal-details .inner .profile-picture {
           max-width: 140px; }
-        body.dashboard main .dashboard-personal-details .inner .user-details {
+        body.dashboard main .personal-details .inner .user-details {
           display: flex;
           flex-flow: column nowrap;
           margin-left: 30px; }
-          body.dashboard main .dashboard-personal-details .inner .user-details .username-title {
+          body.dashboard main .personal-details .inner .user-details .username-title {
             font-family: "Roboto", sans-serif;
             font-size: 2rem; }
+    body.dashboard main .dashboard-container .dashboard-tab-container {
+      font-family: Roboto, sans-serif;
+      margin: 1em auto;
+      justify-content: center; }
+      body.dashboard main .dashboard-container .dashboard-tab-container .tablinks {
+        background: transparent;
+        border: 1px solid #95989A;
+        border-radius: 1px;
+        color: #464646;
+        text-transform: uppercase;
+        width: 225px; }
+      body.dashboard main .dashboard-container .dashboard-tab-container .tablinks.active {
+        background-color: #000;
+        color: #fff; }
     body.dashboard main .hr-pastel {
       background-color: #FFFDF9; }
     body.dashboard main .crud-page-top {
+      align-items: center;
       justify-content: space-between;
       margin: 5em 0 1em; }
       body.dashboard main .crud-page-top .crud-page-title {
-        font-size: 2rem; }
+        font-size: 1.4rem;
+        font-weight: bold;
+        text-transform: uppercase; }
     body.dashboard main .crud-main-cta {
       background-color: #03223A;
       border: none;
