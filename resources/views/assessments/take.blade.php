@@ -3,15 +3,6 @@
 
 @section('body')
 
-<!-- 
-
-Take Quiz Implementation:
-
-1) Each input should be assigned to answer_attempt() array
-2) Answer Attempt ought to be compared to corresponding answer item
-    -(test via popout)
--->
-
 <br>
 <br>
 <br>
@@ -31,8 +22,7 @@ Take Quiz Implementation:
 
  <br>
  <br>
-
-     {{ Html::ul($errors->all()) }}
+    {{ Html::ul($errors->all()) }}
 
     {{ Form::open(array('url' => 'assessments/'.$assessment->id.'/record')) }}
 
@@ -43,19 +33,13 @@ Take Quiz Implementation:
     <div class="form-group">
         {{ Form::label('user', 'Employee') }}
   
-        <!-- HERE -->
-   
-
-
-
         <select id="user" class="form-control" name="user">
-       @foreach($users as $key => $value)
+        @foreach($users as $key => $value)
             <option value="<?php echo $value->id ?>">
                 {{$value->first_name}} {{$value->last_name}}
             </option>
-       @endforeach
-       </select>
-
+        @endforeach
+        </select>
 
     </div>
 
@@ -74,12 +58,9 @@ Take Quiz Implementation:
    
     @foreach($assessment_items as $key => $value)
 
-
-
         <tr>
             <td>{{ $value->criteria }}</td>
             <td>
-
 
                 {{ Form::radio('grades['.$i.']', '1' ) }}
                 {{ Form::radio('grades['.$i.']', '2' ) }}
@@ -100,6 +81,11 @@ Take Quiz Implementation:
                 
     </table>
 
+    <?php 
+            $i--;
+    ?>
+
+    {{ Form::hidden('grades_count', $value = $i) }}
     
     {{ Form::label('feedback', 'Feedback') }}
     {{ Form::text('feedback', Request::old('feedback'), array('class' => 'form-control')) }}

@@ -20,6 +20,22 @@ class CreatePositionsTable extends Migration
             $table->integer('knowledge_based_weight');
             $table->integer('skills_based_weight');
         });
+
+        DB::table('positions')->insert(
+        array(
+            'name' => 'Developer',
+            'knowledge_based_weight' => '50',
+            'skills_based_weight' => '50',
+
+        )  );
+
+        DB::table('positions')->insert(
+        array(
+            'name' => 'HR Associate',
+            'knowledge_based_weight' => '50',
+            'skills_based_weight' => '50',
+
+        )  );
     }
 
     /**

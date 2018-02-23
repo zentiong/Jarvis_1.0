@@ -8,6 +8,7 @@
                 <li><a id="skills"  href="{{ URL::to('skills') }}">Skills</a></li>
                 <li><a id="positions"  href="{{ URL::to('positions') }}">Positions</a></li>
                 <li><a id="quizzes"  href="{{ URL::to('quizzes') }}">Quizzes</a></li>
+                <li><a id="assessments"  href="{{ URL::to('assessments') }}">Assessments</a></li>
                 <li><a id="training-sessions"  href="{{ URL::to('trainings') }}">Trainings</a></li>
                 <li class="login-button" id="login-button">
                     @auth

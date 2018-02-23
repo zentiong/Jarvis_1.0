@@ -28,8 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('supervisor_id', 255);
             $table->string('position', 255);
 
-
-            $table->boolean('manager_check', 255)->nullable();
+            $table->boolean('manager_check')->default(false);
 
             $table->rememberToken();
             $table->timestamps();
@@ -48,7 +47,7 @@ class CreateUsersTable extends Migration
             'department' => 'Administration',
             'supervisor_id' => '1',
             'position' => 'Administrator',
-            'manager_check' => 1
+            'manager_check' => true
 
         )  );
 
@@ -63,7 +62,7 @@ class CreateUsersTable extends Migration
             'department' => 'Customer Service',
             'supervisor_id' => '3', 
             'position' => 'Back End Developer',
-            'manager_check' => 0
+            'manager_check' => false
         ));   
 
          DB::table('users')->insert(
@@ -77,7 +76,7 @@ class CreateUsersTable extends Migration
             'department' => 'Information Technology',
             'supervisor_id' => '1', 
             'position' => 'Project Manager',
-            'manager_check' => 1
+            'manager_check' => true
         ));   
 
          DB::table('users')->insert(
@@ -91,7 +90,7 @@ class CreateUsersTable extends Migration
             'department' => 'Human Resources',
             'supervisor_id' => '3', 
             'position' => 'Front End Developer',
-            'manager_check' => 0
+            'manager_check' => false
         ));   
 
          DB::table('users')->insert(
@@ -105,7 +104,7 @@ class CreateUsersTable extends Migration
             'department' => 'Marketing',
             'supervisor_id' => '3', 
             'position' => 'Back End Marketer',
-            'manager_check' => 0
+            'manager_check' => false
         ));   
 
 

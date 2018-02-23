@@ -89,7 +89,19 @@ class UserController extends Controller
             $user->department = Input::get('department');
             $user->supervisor_id = Input::get('supervisor_id');
             $user->position = Input::get('position');
-            $user->manager_check = Input::get('manager_check');
+
+            // Default Value in migrations ain't working
+
+            if(Input::get('manager_check')!=NULL)
+            {
+                $user->manager_check = Input::get('manager_check');
+            }
+
+            else 
+            {
+                $user->manager_check = false;
+            }
+
             $user->save();
 
             // redirect
@@ -174,7 +186,15 @@ class UserController extends Controller
             $user->department = Input::get('department');
             $user->supervisor_id = Input::get('supervisor_id');
             $user->position = Input::get('position');
-            $user->manager_check = Input::get('manager_check');
+            if(Input::get('manager_check')!=NULL)
+            {
+                $user->manager_check = Input::get('manager_check');
+            }
+
+            else 
+            {
+                $user->manager_check = false;
+            }
             $user->save();
 
             // redirect

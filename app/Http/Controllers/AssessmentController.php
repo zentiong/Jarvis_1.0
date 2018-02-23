@@ -47,12 +47,27 @@ class AssessmentController extends Controller
 
     public function record(Request $request)
     {
-          $rules = array(
-            'grades'       => 'required',
-            'feedback'       => 'required'
+        $grades = Input::get("grades");
 
+        $inputted_grades_count = count($grades);
+        $supposed_grades_count = Input::get('grades_count');
+        
+        if( $inputted_grades_count == $supposed_grades_count)
+        {
+            $all_grades = 1;
+        }
+        
+
+        $rules = array(
+            'feedback'       => 'required',
+            'answering_of_all_grades' => 'required'
         );
-        $validator = Validator::make(Input::all(), $rules);
+
+          $messages = [
+            'all_grades'    => 'You must answer all :supposed_grades_count criterias.',
+        ];
+
+        $validator = Validator::make(Input::all(), $rules, $messages);
 
         $assessment_id = Input::get('assessment_id'); // Get Assessment ID
 

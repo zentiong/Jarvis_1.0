@@ -50,20 +50,19 @@
 
                         <td>{{ $value->quiz_id }}</td>
                         <td>{{ $value->topic }}</td>
-
-
-                        @foreach($skills as $key => $skill)
-                            @if($skill->id == $section->skill_id)
-                                {{$skill->name}}
+                        <td>
+                        @foreach($trainings as $key => $training)
+                            @if($value->training_id == $training->id)
+                                {{$training->title}}
                             @endif
                         @endforeach
-                         <td>{{ $value->training_id }}</td>
+                         </td>
 
                         <!-- we will also add show, edit, and delete buttons -->
                         <td class="table-actions no-stretch">
 
                             <!-- show the quiz (uses the show method found at GET /quizzes/{id} -->
-                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View quiz" href="{{ URL::to('quizzes/' . $value->quiz_id) }}">
+                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View quiz" href="{{ URL::to('quizzes/' . $value->quiz_id . '/questions') }}">
                                 <i class="fa fa-user fa-lg"></i>
                             </a>
 

@@ -23,6 +23,17 @@ class CreateTrainingsTable extends Migration
             $table->string('speaker', 255);
             $table->string('venue', 255);
         });
+        
+        DB::table('trainings')->insert(
+        array(
+            'date' => '1212-12-12',
+            'starting_time' => '18:00:00 ',
+            'ending_time' => '20:00:00 ',
+            'title' => 'Welcome to the Dark Side',
+            'speaker' => 'The Dark Lorde',
+            'venue' => 'Singapore'
+        )  );
+        
     }
 
     /**

@@ -28,10 +28,6 @@ Take Quiz Implementation:
 
 -->
 
-
-
- 
-
 <h2> Take quiz ({{ $quiz->topic }}) </h2>
 
 <!--

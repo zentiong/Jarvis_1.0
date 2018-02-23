@@ -32,11 +32,13 @@
                     {{ Form::text('topic', Request::old('topic'), array('class' => 'form-control')) }}
                 </div>
 
-                <select id="skill" class="form-control" name="skill">
-                   @foreach($skills as $key => $value)
-                        <option value="<?php echo $value->id ?>">{{$value->name}}</option>
-                   @endforeach
-                  </select>
+                {{ Form::label('training', 'Training') }}
+                    <select id="training_id" class="form-control" name="training_id">
+                      @foreach($trainings as $key => $value)
+                        <option value="<?php echo $value->id ?>">{{$value->title}}</option>
+                      @endforeach
+                    </select>
+                    
                 <div class="form-group text-center create-bottom-wrapper">
                     <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn">Cancel</a>
                     {{ Form::submit('Save changes', array('class' => 'btn btn-primary create-btn text-center')) }}

@@ -151,11 +151,14 @@ class QuizController extends Controller
         $user_quizzes = User_Quiz::all();
         $trainings = Training::all();
 
+
+
         // load the view and pass the quizzes
         return View::make('quizzes.index')
             ->with('quizzes', $quizzes)
             ->with('user_quizzes', $user_quizzes)
-            ->with('trainings', $trainings);
+            ->with('trainings', $trainings);      
+
     }
 
     /**
@@ -238,14 +241,14 @@ class QuizController extends Controller
     public function edit($quiz_id)
     {
         //get skills
-        $skills = Skill::all();
+        $trainings = Training::all();
          // get the quiz
         $quiz = Quiz::find($quiz_id);
 
         // show the edit form and pass the quiz
         return View::make('quizzes.edit')
             ->with('quiz', $quiz)
-            ->with('skills', $skills);
+            ->with('trainings', $trainings);
     }
 
     /**
@@ -273,7 +276,7 @@ class QuizController extends Controller
              // store
             $quiz = Quiz::find($quiz_id);
             $quiz->topic = Input::get('topic');
-            //$quiz->skill_id = Input::get('skill');
+            $quiz->training_id = Input::get('training_id');
             $quiz->save();
 
             // redirect
