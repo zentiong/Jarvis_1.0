@@ -46,7 +46,6 @@
         <?php 
             $current_user = Auth::user();
             $current_id = Auth::user()->id;
-            $trainings = $current_user->training_session_id
         ?>
 
         <p>HR+MANAGER LANDING</p>
@@ -78,7 +77,7 @@
                         <td>Supervisor ID</td>
                         <td>Position</td>
                         <td>Manager?</td>
-                        <td>Actions</td>
+                        <td>Actions</td>    
                     </tr>
                 </thead>
                 <tbody>
@@ -124,7 +123,7 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($training as $key => $value)
+            @foreach($trainings as $key => $value)
                 <tr>
                     <td>{{ $value->date }}</td>
                     <td>{{ $value->description }}</td>
