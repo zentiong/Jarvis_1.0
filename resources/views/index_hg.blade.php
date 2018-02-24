@@ -124,7 +124,7 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($training_sessions as $key => $value)
+            @foreach($training as $key => $value)
                 <tr>
                     <td>{{ $value->date }}</td>
                     <td>{{ $value->description }}</td>
