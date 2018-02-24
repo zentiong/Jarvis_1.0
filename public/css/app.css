@@ -506,7 +506,7 @@ body.dashboard {
   body.dashboard main {
     margin: 3.4em auto; }
     body.dashboard main .personal-details {
-      padding: 20px;
+      padding: 10px;
       display: flex;
       flex-flow: row nowrap; }
       body.dashboard main .personal-details .inner {
@@ -522,16 +522,19 @@ body.dashboard {
           margin-left: 30px; }
           body.dashboard main .personal-details .inner .user-details .username-title {
             font-family: "Roboto", sans-serif;
-            font-size: 2rem; }
+            font-size: 2rem;
+            font-weight: 400; }
     body.dashboard main .dashboard-container .dashboard-tab-container {
       font-family: Roboto, sans-serif;
-      margin: 1em auto;
+      margin: 0.5em auto 2em;
       justify-content: center; }
       body.dashboard main .dashboard-container .dashboard-tab-container .tablinks {
         background: transparent;
         border: 1px solid #95989A;
         border-radius: 1px;
         color: #464646;
+        font-size: 1em;
+        padding: 5px;
         text-transform: uppercase;
         position: relative;
         width: 225px; }

@@ -715,7 +715,7 @@ body.dashboard {
 		margin: 3.4em auto;
 
 		.personal-details {
-			padding: 20px;
+			padding: 10px;
 			display: flex;
 			flex-flow: row nowrap;
 
@@ -737,6 +737,7 @@ body.dashboard {
 					.username-title {
 						font-family: "Roboto", sans-serif;
 						font-size: 2rem;
+						font-weight: 400;
 					}
 				}
 
@@ -747,7 +748,7 @@ body.dashboard {
 
 			.dashboard-tab-container {
 				font-family: Roboto, sans-serif;
-				margin: 1em auto;
+				margin: 0.5em auto 2em;
 				justify-content: center;
 
 				.tablinks {
@@ -755,6 +756,8 @@ body.dashboard {
 					border: 1px solid $gray-1;
 					border-radius: 1px;
 					color: $black-4;
+					font-size: 1em;
+					padding: 5px;
 					text-transform: uppercase;
 					position: relative;
 					width: 225px;
