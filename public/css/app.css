@@ -457,6 +457,8 @@ body.dashboard {
     width: 100%;
     background-color: #fff;
     border-bottom: 1px solid #95989A; }
+    body.dashboard nav button {
+      display: none; }
     body.dashboard nav ul {
       list-style-type: none;
       margin: 0;
@@ -480,6 +482,15 @@ body.dashboard {
       color: #000;
       font-weight: 600;
       padding: 0.8em 0; }
+    body.dashboard nav .open {
+      display: block !important;
+      position: relative;
+      top: 20px;
+      padding: 0.5em;
+      text-align: center;
+      width: 100%;
+      z-index: 10;
+      background-color: #fff; }
   body.dashboard img.img-circle {
     border-radius: 50%; }
   body.dashboard .login-button {
@@ -655,5 +666,14 @@ body.dashboard {
     line-height: 1.2; }
     body.dashboard footer b {
       color: #54749A; }
+  @media (max-width: 900px) {
+    body.dashboard #navigation {
+      display: block; }
+      body.dashboard #navigation #navOpener {
+        display: inline; }
+    body.dashboard .nav-links {
+      flex-flow: row wrap; }
+      body.dashboard .nav-links li:not(:first-child):not(:last-child) {
+        display: none; } }
 
 /*# sourceMappingURL=app.css.map */

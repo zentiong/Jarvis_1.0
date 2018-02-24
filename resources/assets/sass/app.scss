@@ -644,6 +644,10 @@ body.dashboard {
 		background-color: $white-1;
 		border-bottom: 1px solid $gray-1;
 
+		button {
+			display: none;
+		}
+
 		ul {
 			list-style-type: none;
     		margin: 0;
@@ -675,6 +679,18 @@ body.dashboard {
 			font-weight: 600;
 			padding: 0.8em 0;
 		}
+
+		.open {
+			display: block !important;
+			position: relative;
+			top: 20px;
+			padding: 0.5em;
+			text-align: center;
+			width: 100%;
+			z-index: 10;
+			background-color: #fff;
+		}
+
 	}
 
 	img.img-circle {
@@ -907,6 +923,31 @@ body.dashboard {
 		b {
 			color: #54749A;
 		}
+	}
+
+	// MEDIA QUERIES FOR .DASHBOARD
+	@media (max-width: 900px) {
+		#navigation {
+			display: block;
+
+			#navOpener {
+				display: inline;
+			}
+		}
+
+		// #navigation ul li {
+		// 	display: block;
+		// }
+
+		.nav-links {
+			flex-flow: row wrap;
+
+			li:not(:first-child):not(:last-child) {
+				display: none;
+			}
+		}
+
+
 	}
 }
 
