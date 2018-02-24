@@ -63,7 +63,7 @@ Class LevelingController extends Controller
 				}
 				else
 				{
-					return view('welcome')
+					return view('index_nr')
 						->with('users', $users)
 						->with('quizzes', $quizzes)
 						->with('sections', $sections);

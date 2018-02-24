@@ -28,15 +28,27 @@
 			?>
 
 			<p>NORMAL EMPLOYEE LANDING</p>
-			<canvas id="myChart" width=100 height=500></canvas>
+			<button onclick="update_data(myChart,relevant)">Relevant Skills</button>
+            <button onclick="update_data(myChart,alls)">All Skills</button>
+            <canvas id="myChart" width=100 height=500></canvas>
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
             <script type="text/javascript">
 
+                let relevant = [14,15,67,89,23,56,23,56,78]
+                let alls = [12, 19, 3, 5, 2, 3]
+
+
+                function update_data(chart, data) 
+                {
+                    chart.data.datasets[0].data = data;
+                    chart.update();
+                }
+
                 Chart.defaults.global.maintainAspectRatio = false;
                 var ctx = document.getElementById("myChart").getContext('2d');
                 var myChart = new Chart(ctx, {
-                    type: 'bar',
+                    type: 'horizontalBar',
                     data: {
                         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
                         datasets: [{
@@ -71,7 +83,6 @@
                         }
                     }
                 });
-
             </script>
 		</section>
 	</main>
