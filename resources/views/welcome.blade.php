@@ -136,7 +136,6 @@
                         }
 
                         $events = $trainings->where('date', ">=", $thisMonth)->where('date', '<', $nM);
-                        echo $events;
                         foreach ($events as $event) {
                             array_push($temp, $event);
                         }
