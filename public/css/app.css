@@ -522,10 +522,14 @@ body.dashboard {
         border-radius: 1px;
         color: #464646;
         text-transform: uppercase;
+        position: relative;
         width: 225px; }
       body.dashboard main .dashboard-container .dashboard-tab-container .tablinks.active {
         background-color: #000;
-        color: #fff; }
+        color: #fff;
+        border: none; }
+      body.dashboard main .dashboard-container .dashboard-tab-container .tablinks.active:focus {
+        box-shadow: none; }
     body.dashboard main .hr-pastel {
       background-color: #FFFDF9; }
     body.dashboard main .crud-page-top {
@@ -564,12 +568,12 @@ body.dashboard {
         body.dashboard main table tbody .table-actions .delete-btn {
           background-color: transparent;
           border: 1px solid #B9B9B6;
-          border-radius: 10px;
-          color: #3097D1;
+          border-radius: 5px;
+          color: #1F496A;
           display: block;
           font-size: inherit;
           font-weight: 500;
-          margin: 0.5em 0.3em;
+          margin: 0.5em 0.1em;
           padding: 0.6em 1em;
           text-transform: uppercase; }
         body.dashboard main table tbody .table-actions .delete-btn:hover {
@@ -580,12 +584,12 @@ body.dashboard {
         body.dashboard main table tbody .table-actions .edit-btn {
           background-color: transparent;
           border: 1px solid #B9B9B6;
-          border-radius: 10px;
-          color: #3097D1;
+          border-radius: 5px;
+          color: #1F496A;
           display: block;
           font-size: inherit;
           font-weight: 500;
-          margin: 0.5em 0.3em;
+          margin: 0.5em 0.1em;
           padding: 0.6em 1em;
           text-transform: uppercase; }
         body.dashboard main table tbody .table-actions .edit-btn:hover {
@@ -596,12 +600,12 @@ body.dashboard {
         body.dashboard main table tbody .table-actions .show-btn {
           background-color: transparent;
           border: 1px solid #B9B9B6;
-          border-radius: 10px;
-          color: #3097D1;
+          border-radius: 5px;
+          color: #1F496A;
           display: block;
           font-size: inherit;
           font-weight: 500;
-          margin: 0.5em 0.3em;
+          margin: 0.5em 0.1em;
           padding: 0.6em 1em;
           text-transform: uppercase; }
         body.dashboard main table tbody .table-actions .show-btn:hover {

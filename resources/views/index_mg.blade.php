@@ -34,11 +34,16 @@
         // Show the current tab, and add an "active" class to the button that opened the tab
         document.getElementById(cityName).style.display = "block";
         evt.currentTarget.className += " active";
-    
+        var x = evt.currentTarget.classList;
+        for (i = 0; i < x.length; i++) {
+            if (x[i] == "tablinks") {
+                console.log(x[i]);
+                x[i].firstChild
+            }
+        }
     }
 
     $(document).ready(function() {
-        console.log("hello");
         var a = document.getElementById('levels');
         var b = document.getElementById('employees');
         var tabarray = document.getElementsByClassName('tablinks');

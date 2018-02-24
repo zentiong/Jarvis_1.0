@@ -740,12 +740,32 @@ body.dashboard {
 					border-radius: 1px;
 					color: $black-4;
 					text-transform: uppercase;
+					position: relative;
 					width: 225px;
 				}
+
+				// .tablinks:first-child:before {
+				// 	content: "";
+				// 	background-color: $black-1;
+				// 	width: 50px;
+				// 	padding: 1.15rem;
+				// 	z-index: 1;
+				// 	right: 194px;
+				// 	top: 1px;
+				// 	position: absolute;
+				// 	transform: skew(-45deg);
+				// 	-o-transform: skew(-45deg);
+				// 	-moz-transform: skew(-45deg);
+				// 	-webkit-transform: skew(-45deg);
+				// }
 
 				.tablinks.active {
 					background-color: $black-1;
 					color: $white-1;
+					border: none;
+				}
+				.tablinks.active:focus {
+					box-shadow: none;
 				}
 			}
 		}
