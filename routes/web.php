@@ -22,9 +22,8 @@ Route::<method>('<url>', '<function>');
 /* Landing Page */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'TrainingController@landing');
+
 Route::resource('levels', 'LevelingController');
 
 /* Users */

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use App\Training;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -17,10 +18,11 @@ class TrainingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct() {
-        $this->middleware('auth');
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['landing']]);
     }
+    
 
     public function index()
     {
@@ -28,6 +30,14 @@ class TrainingController extends Controller
 
         // load the view and pass the employees
         return View::make('trainings.index')
+            ->with('trainings', $trainings);
+    }
+
+    public function landing(){
+        $trainings = Training::all();
+
+        // load the view and pass the employees
+        return View::make('welcome')
             ->with('trainings', $trainings);
     }
 

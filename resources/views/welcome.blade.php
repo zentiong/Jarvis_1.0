@@ -117,11 +117,36 @@
                         $previous_month_link = '<a href="?month='.($month != 1 ? $month - 1 : 12).'&year='.($month != 1 ? $year : $year - 1).'" class="control"><<  Previous Month</a>'; 
                         echo $previous_month_link;
                         echo $next_month_link;
+                        $thisMonth = $year.'-'.$month.'-01';
+
+                        $nextMonth = $month+1;
+                        if($nextMonth < 10){
+                            $nM = $year.'-0'.$nextMonth.'-01';
+                        }
+                        else {
+                            $nM = $year.'-'.$nextMonth.'-01';
+                        }
+                        
+                        
+                        /* get all events for the given month */
+                        $events = array();
+                        $temp = array();
+                        foreach ($events as $event) {
+                            array_push($temp, $event);
+                        }
+
+                        $events = $trainings->where('date', ">=", $thisMonth)->where('date', '<', $nM);
+                        echo $events;
+                        foreach ($events as $event) {
+                            array_push($temp, $event);
+                        }
+
+
                     ?>
                 </form>
-                
+
                 <?php
-                    echo draw_calendar($month,$year);
+                    echo draw_calendar($month,$year,$temp);
                 ?>   
             </div>
             <div class="container">

@@ -1,6 +1,6 @@
 <?php
 /* draws a calendar */
-function draw_calendar($month,$year){
+function draw_calendar($month,$year,$events){
 
 	/* draw table */
 	$calendar = '<table cellpadding="0" cellspacing="0" class="calendar">';
@@ -30,9 +30,19 @@ function draw_calendar($month,$year){
 		$calendar.= '<td class="calendar-day">';
 			/* add in the day number */
 			$calendar.= '<div class="day-number">'.$list_day.'</div>';
-
-			/** QUERY THE DATABASE FOR AN ENTRY FOR THIS DAY !!  IF MATCHES FOUND, PRINT THEM !! **/
-			$calendar.= str_repeat('<p> </p>',2);
+			if ($list_day < 10){
+				$event_day = $year.'-'.$month.'-0'.$list_day;
+			}
+			else{
+				$event_day = $year.'-'.$month.'-'.$list_day;
+			}
+				foreach($events as $event) {
+					if ($event['date']==$event_day){
+						$calendar.= '<div class="event">'.$event['title'].'</div>';
+					}
+					
+				}
+			
 			
 		$calendar.= '</td>';
 		if($running_day == 6):
