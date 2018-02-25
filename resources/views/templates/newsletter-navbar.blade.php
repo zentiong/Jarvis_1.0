@@ -11,9 +11,9 @@
 				<li><a id="quizzes"  href="{{ URL::to('quizzes') }}">Quizzes</a></li>
 				<li><a id="assessments"  href="{{ URL::to('assessments') }}">Assessments</a></li>
 				<li><a id="training-sessions"  href="{{ URL::to('trainings') }}">Trainings</a></li>
-
 				<li class="login-button" id="login-button">
 					@auth
+					<img class="img-circle small-profile-picture" src="{{ asset('images/hr-corp/DL.png') }}" alt="Your profile picture">
                     <h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
                     @endauth
 					<a class="logout-link clicked" href="{{ route('logout') }}" onclick="event.preventDefault();

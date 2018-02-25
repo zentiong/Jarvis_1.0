@@ -44,6 +44,13 @@
 a {
   text-decoration: none !important; }
 
+img.img-circle {
+  border-radius: 50%; }
+
+img.small-profile-picture {
+  max-width: 35px;
+  margin-right: 10px; }
+
 body.newsletter {
   background-color: #2F2F2F;
   color: #ebebeb;
@@ -475,7 +482,7 @@ body.dashboard {
           font-size: 1em; }
         body.dashboard nav ul li .logout-link {
           color: #2F2F2F;
-          font-family: "Apercu Bold", sans-serif;
+          font-family: "Apercu Regular", sans-serif;
           font-size: 0.9em; }
     body.dashboard nav .active {
       border-top: 4px solid #000;
@@ -491,16 +498,17 @@ body.dashboard {
       width: 100%;
       z-index: 10;
       background-color: #fff; }
-  body.dashboard img.img-circle {
-    border-radius: 50%; }
   body.dashboard .login-button {
     text-align: right;
     margin-left: auto;
     margin-top: 5px;
-    margin-bottom: 5px; }
+    margin-bottom: 5px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center; }
     body.dashboard .login-button .current-username {
       font-family: Roboto, sans-serif;
-      font-weight: 300;
+      font-weight: 500;
       font-size: 0.9em;
       margin-bottom: 2px; }
   body.dashboard main {

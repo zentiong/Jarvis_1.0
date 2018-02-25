@@ -30,11 +30,15 @@
             <li><a id="assessments"  href="{{ URL::to('assessments') }}">Assessments</a></li>
             <li><a id="training-sessions"  href="{{ URL::to('trainings') }}">Trainings</a></li>
             <li class="login-button" id="login-button">
-                <h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
-                <a class="logout-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LOG OUT</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <img class="img-circle small-profile-picture" src="{{ asset('images/hr-corp/DL.png') }}" alt="Your profile picture">
+                <div>
+                    <h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
+                    <a class="logout-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LOG OUT</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
-                </form>
+                    </form>
+                </div>
+                
             </li>
         @else
             <li class="login-button" id="login-button" onclick="hideShowLogin()">
