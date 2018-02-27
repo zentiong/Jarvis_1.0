@@ -1,18 +1,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<script type="text/javascript">
-	window.onload = function() {
-		var navButton = document.querySelector('nav-opener');
-    	let expanded = navButton.getAttribute('aria-expanded') === 'true' || false;
 
-       	navButton.setAttribute('aria-expanded', !expanded);
-       	let menu = document.getElementById('nav-links').children;
-       	var i;
-       	for (i = 0; i < menu.length; i++) {
-           	menu[i].classList.toggle('open');
-       	}
-	}    
-</script>
 
 <nav role="navigation">
 	<button class="btn nav-opener" role="button" id="navOpener" aria-expanded="false" onclick="showMenu()">
@@ -93,3 +81,21 @@
 	     	</button>
     	</div>
  @endif
+
+ <script type="text/javascript">
+	window.onload = function() {
+		var navButton = document.querySelector('.nav-opener');
+		console.log(`navButton: ${navButton}`);
+    	let expanded = navButton.getAttribute('aria-expanded') === 'true' || false;
+
+       	navButton.setAttribute('aria-expanded', !expanded);
+       	let menu = document.getElementById('nav-links').children;
+       	var i;
+       	for (i = 0; i < menu.length; i++) {
+           	menu[i].classList.toggle('open');
+       	}
+	}    
+	// $(document).ready(function() {
+	// 	alert("hello");
+	// });
+</script>
