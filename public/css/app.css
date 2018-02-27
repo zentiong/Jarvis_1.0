@@ -217,24 +217,28 @@ body.newsletter {
     background-color: #1f1f1f; }
   body.newsletter section:nth-child(odd) {
     background-color: none; }
-  body.newsletter #calendar-container table.calendar {
-    background-color: #1F1F1F;
-    border-collapse: separate;
-    border-spacing: 20px;
-    font-family: 'Apercu Regular', sans-serif;
-    margin: 0 auto;
-    table-layout: fixed;
-    width: 90%; }
-    body.newsletter #calendar-container table.calendar tr.calendar-row {
-      margin-top: 35px;
-      text-align: center; }
-    body.newsletter #calendar-container table.calendar td.calendar-day-head {
-      color: #BDBDBD;
-      font-size: 1.25em; }
-    body.newsletter #calendar-container table.calendar td.calendar-day {
-      background-color: #89801B;
-      color: #BDBDBD;
-      height: 100px; }
+  body.newsletter #calendar-container {
+    overflow-x: scroll;
+    width: auto;
+    white-space: nowrap; }
+    body.newsletter #calendar-container table.calendar {
+      background-color: #1F1F1F;
+      border-collapse: separate;
+      border-spacing: 20px;
+      font-family: 'Apercu Regular', sans-serif;
+      margin: 0 auto;
+      table-layout: fixed;
+      width: 950px; }
+      body.newsletter #calendar-container table.calendar tr.calendar-row {
+        margin-top: 35px;
+        text-align: center; }
+      body.newsletter #calendar-container table.calendar td.calendar-day-head {
+        color: #BDBDBD;
+        font-size: 1.25em; }
+      body.newsletter #calendar-container table.calendar td.calendar-day {
+        background-color: #89801B;
+        color: #BDBDBD;
+        height: 100px; }
   body.newsletter .quick-links-container {
     display: flex;
     flex-flow: row wrap;
