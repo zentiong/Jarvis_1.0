@@ -68,6 +68,8 @@ body.newsletter {
 	}
 
 	nav {
+		display: flex;
+		align-items: center;
 		position: fixed;
 		top: 0;
 		width: 100%;
@@ -974,16 +976,23 @@ body.dashboard {
 			flex-flow: row wrap;
 			position: absolute;
 			left: 0;
-			top: 40;
-			width: 20em;
+			top: 30;
+			width: 15em;
 
 			li {
 				border: 1px solid $gray-1;
+				box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.2), 1px 10px 15px rgba(0, 0, 0, 0.2);
 				display: none;
 			}
 
 			li:nth-child(odd) {
 				background-color: $white-2;
+			}
+
+			.active {
+				border: none;
+				border-left: 4px solid $black-1;
+				padding: 0 0.8em;
 			}
 		}
 

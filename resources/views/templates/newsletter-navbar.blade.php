@@ -1,8 +1,31 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+	window.onload = function() {
+		var navButton = document.querySelector('nav-opener');
+    	let expanded = navButton.getAttribute('aria-expanded') === 'true' || false;
+
+       	navButton.setAttribute('aria-expanded', !expanded);
+       	let menu = document.getElementById('nav-links').children;
+       	var i;
+       	for (i = 0; i < menu.length; i++) {
+           	menu[i].classList.toggle('open');
+       	}
+	}    
+</script>
+
 <nav role="navigation">
-	<ul>
-		@if (Route::has('login'))
+	<button class="btn nav-opener" role="button" id="navOpener" aria-expanded="false" onclick="showMenu()">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+    </button>
+    <a class="home-link" href="{{ URL::to('/') }}">
+        <span class="branding">Alfred 3.0</span>
+    </a>
+    @if (Route::has('login'))
+	<ul class="nav-links" id="nav-links">
 		<!-- LOGGED IN STATE -->
-		<li><a href="{{ URL::to('/') }}"><span class="branding">Alfred 3.0</span></a>
 			@auth
 				<li><a id="levels" href="{{ URL::to('levels') }}">Dashboard</a></li>
 				<li><a id="users" href="{{ URL::to('users') }}">Employees</a></li>
@@ -11,27 +34,25 @@
 				<li><a id="quizzes"  href="{{ URL::to('quizzes') }}">Quizzes</a></li>
 				<li><a id="assessments"  href="{{ URL::to('assessments') }}">Assessments</a></li>
 				<li><a id="training-sessions"  href="{{ URL::to('trainings') }}">Trainings</a></li>
-				<li class="login-button" id="login-button">
-					@auth
-					<img class="img-circle small-profile-picture" src="{{ asset('images/hr-corp/DL.png') }}" alt="Your profile picture">
-                    <h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
-                    @endauth
-					<a class="logout-link clicked" href="{{ route('logout') }}" onclick="event.preventDefault();
-		                                                     document.getElementById('logout-form').submit();">
-		                                                     LOG OUT</a>
-
-		            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-		                {{ csrf_field() }}
-		            </form>
-		        </li>
-			@else
-				<!-- LOGGED OUT STATE -->
-				<li class="login-button-yellow	" id="login-button" onclick="hideShowLogin()">
-					LOG IN
-				</li>
-			@endauth
-		@endif
 	</ul>
+	<div class="login-button" id="login-button">
+		@auth
+		<img class="img-circle small-profile-picture" src="{{ asset('images/hr-corp/DL.png') }}" alt="Your profile picture">
+        <h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
+        @endauth
+		<a class="logout-link clicked" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+		 LOG OUT</a>
+		<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+			{{ csrf_field() }}
+		</form>
+	</div>
+	@else
+	<!-- LOGGED OUT STATE -->
+	<div class="login-button-yellow" id="login-button" onclick="hideShowLogin()">
+		LOG IN
+	</div>
+	@endauth
+	@endif
 </nav>
 <!--remove after login 
 -->
