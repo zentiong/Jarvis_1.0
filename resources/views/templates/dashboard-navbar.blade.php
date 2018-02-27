@@ -8,7 +8,7 @@
             this.setAttribute('aria-expanded', !expanded);
             let menu = document.getElementById('nav-links').children;
             var i;
-            for (i = 1; i < menu.length-1; i++) {
+            for (i = 0; i < menu.length; i++) {
                 menu[i].classList.toggle('open');
             }
             // menu.classList.toggle('open');
@@ -17,9 +17,15 @@
 </script>
 
 <nav role="navigation" id="navigation">
-    <button id="navOpener" aria-expanded="false">Menu</button>
-    <ul class="nav-links" id="nav-links">
-            <li><a href="{{ URL::to('/') }}"><span class="branding">Alfred 3.0</span></a>
+    <button class="btn nav-opener" role="button" id="navOpener" aria-expanded="false">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+    </button>
+    <a class="home-link" href="{{ URL::to('/') }}">
+        <span class="branding">Alfred 3.0</span>
+    </a>
+    <ul class="nav-links" id="nav-links">  
         @if (Route::has('login'))
             @auth
             <li><a id="levels" href="{{ URL::to('levels') }}">Dashboard</a></li>
@@ -29,35 +35,19 @@
             <li><a id="quizzes"  href="{{ URL::to('quizzes') }}">Quizzes</a></li>
             <li><a id="assessments"  href="{{ URL::to('assessments') }}">Assessments</a></li>
             <li><a id="training-sessions"  href="{{ URL::to('trainings') }}">Trainings</a></li>
-            <li class="login-button" id="login-button">
-                <img class="img-circle small-profile-picture" src="{{ asset('images/hr-corp/DL.png') }}" alt="Your profile picture">
-                <div>
-                    <h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
-                    <a class="logout-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LOG OUT</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                    </form>
-                </div>
-                
-            </li>
-        @else
-            <li class="login-button" id="login-button" onclick="hideShowLogin()">
-                LOG IN
-            </li>
-            @endauth
-        @endif
+
     </ul>
-    <!-- <ul class="mobile-menu" id="mobile-menu">
-        <li><a href="{{ URL::to('/') }}"><span class="branding">Alfred 3.0</span></a>
-        <button id="navOpener" aria-expanded="false">Menu</button>
-        @auth
-            <li class="login-button" id="login-button">
-                <h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
-                <a class="logout-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LOG OUT</a>
+
+    <div class="login-button" id="login-button">
+        <img class="img-circle small-profile-picture" src="{{ asset('images/hr-corp/DL.png') }}" alt="Your profile picture">
+        <div>
+            <h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
+            <a class="logout-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LOG OUT</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
-                </form>
-            </li>
-        @endauth
-    </ul> -->
+            </form>
+        </div>
+    </div>
+    @endauth
+    @endif
 </nav>
