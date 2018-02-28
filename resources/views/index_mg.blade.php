@@ -70,7 +70,7 @@
 
         <section class="row personal-details hr-pastel">
             <div class="inner">
-                <img class="img-circle profile-picture" src="../images/dashboard/sheev-palpatine.jpg" alt="Your profile picture">
+                <img class="img-circle profile-picture" src="{{ asset('images/hr-corp/DL.png') }}" alt="Your profile picture">
                 <div class="user-details">
                      @auth
                     <h1 class="username-title">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h1>

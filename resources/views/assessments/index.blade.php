@@ -1,54 +1,121 @@
 @extends('templates.dashboard-master')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        var a = document.getElementById('assessments');
+        a.classList.toggle("active");
+    });
+
+    // enables Bootstrap tooltips
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
+</script>
+
 @section('body')
+    <main class="contaiuner fluid">
+        <section class="container-fluid">
+            <div class="row crud-page-top">
+                <h1 class="crud-page-title">All Assessments</h1>
+                <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Assessment</button>
+            </div>
 
-<!-- will be used to show any messages -->
-@if (Session::has('message'))
-    <div class="alert alert-info">{{ Session::get('message') }}</div>
-@endif
+            <!-- if there are creation errors, they will show here -->
+            {{ Html::ul($errors->all()) }}
 
-<?php 
-$user_id = Auth::user()->id;
-?>
+            <!-- will be used to show any messages -->
+            @if (Session::has('message'))
+                <div class="alert alert-info">{{ Session::get('message') }}</div>
+            @endif
+
+            <?php 
+            $user_id = Auth::user()->id;
+            ?>
+
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <td  class="no-stretch">Assessment ID</td>
+                        <td>Topic</td>
+                        <td class="no-stretch">Actions</td>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($assessments as $key => $value)
+                    <tr>
+                        <td>{{ $value->id }}</td>
+                        <td>{{ $value->topic }}</td>
+
+                        <!-- we will also add show, edit, and delete buttons -->
+                        <td class="table-actions">
+
+                            
+                            <!-- show the quiz (uses the show method found at GET /assessments/{id} -->
+                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View assessment"  href="{{ URL::to('assessments/' . $value->id) }}">
+                                <i class="fa fa-user fa-lg"></i>
+                            </a>
+
+                            <!-- edit this quiz (uses the edit method found at GET /assessments/{id}/edit -->
+                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit assessment" href="{{ URL::to('assessments/' . $value->id . '/edit') }}">
+                                <i class="fa fa-pencil fa-lg"></i>
+                            </a>
+
+                            <!-- delete the quiz (uses the destroy method DESTROY /assessments/{id} -->
+                            <!-- we will add this later since its a little more complicated than the other two buttons -->
+                            {{ Form::open(array('url' => 'assessments/' . $value->id, 'class' => 'pull-right')) }}
+                            {{ Form::hidden('_method', 'DELETE') }}
+                            <div data-toggle="tooltip" data-placement="bottom" title="Delete assessment" >
+                                {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
+                            </div>
+                            {{ Form::close() }}
+
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+
+        </section>
+        <!-- Modal -->
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Assessment Form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {{ Form::open(array('url' => 'assessments')) }}
+
+                <div class="form-group">
+                    {{ Form::label('topic', 'Topic') }}
+                    {{ Form::text('topic', Request::old('topic'), array('class' => 'form-control', 'autofocus')) }}
+                </div>
+
+                <div class="form-group">
+                    {{ Form::label('skill_id', 'Relevant skill') }}
+                    <select id="skill" class="form-control" name="skill">
+                        @foreach($skills as $key => $value)
+                            <option value="<?php echo $value->id ?>">{{$value->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+              </div>
+              <div class="modal-footer create-bottom-wrapper">
+                <a href="{{ URL::to('assessments') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
+                {{ Form::submit('Create assessment', array('class' => 'btn btn-primary create-btn text-center')) }}
+              </div>
+              
+              {{ Form::close() }}
+            </div>
+          </div>
+        </div>
+
+    </main>
 
 
-
-<table class="table table-striped table-bordered">
-    <thead>
-        <tr>
-            <td>Assessment ID</td>
-            <td class="no-stretch">Topic</td>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach($assessments as $key => $value)
-        <tr>
-            <td>{{ $value->id }}</td>
-            <td>{{ $value->topic }}</td>
-
-            <!-- we will also add show, edit, and delete buttons -->
-            <td  class="no-stretch">
-
-                
-                <!-- show the quiz (uses the show method found at GET /assessments/{id} -->
-                <a class="btn btn-small btn-success" href="{{ URL::to('assessments/' . $value->id) }}">Show this Assessment</a>
-
-                <!-- edit this quiz (uses the edit method found at GET /assessments/{id}/edit -->
-                <a class="btn btn-small btn-info" href="{{ URL::to('assessments/' . $value->id . '/edit') }}">Edit this Assessment</a>
-
-                <!-- delete the quiz (uses the destroy method DESTROY /assessments/{id} -->
-                <!-- we will add this later since its a little more complicated than the other two buttons -->
-                {{ Form::open(array('url' => 'assessments/' . $value->id, 'class' => 'pull-right')) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete this Assessment', array('class' => 'btn btn-warning')) }}
-                 {{ Form::close() }}
-
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
-
-</div>
 @endsection

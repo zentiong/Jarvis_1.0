@@ -75,6 +75,8 @@ Route::resource('skills', 'SkillController');
 
 Route::resource('positions', 'PositionController');
 
+Route::resource('events', 'EventController');
+
 /*Auth */ 
 Auth::routes();
 
