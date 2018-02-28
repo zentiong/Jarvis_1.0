@@ -27,8 +27,10 @@ Route::get('/', 'TrainingController@landing');
 Route::resource('levels', 'LevelingController');
 
 /* Users */
+Route::group(['middleware' => 'HR'], function() {
+	Route::resource('users', 'UserController');
+});
 
-Route::resource('users', 'UserController');
 
 /* Nested CRUD Quiz x Questions */
 
@@ -64,16 +66,22 @@ Route::get('see_assessments', 'AssessmentController@see_assessments'); // Where 
 
 
 /* Training */
+Route::group(['middleware' => 'HR'], function() {
+	Route::resource('trainings', 'TrainingController');
+});
 
-Route::resource('trainings', 'TrainingController');
 
 /* Skills */
-
-Route::resource('skills', 'SkillController');
+Route::group(['middleware' => 'HR'], function() {
+	Route::resource('skills', 'SkillController');
+});
+    
 
 /* Jobs */
+Route::group(['middleware' => 'HR'], function() {
+	Route::resource('positions', 'PositionController');
+});
 
-Route::resource('positions', 'PositionController');
 
 Route::resource('events', 'EventController');
 

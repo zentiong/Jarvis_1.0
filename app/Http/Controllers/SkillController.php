@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use View;
+use Auth;
+use App\User;
 
  
 class SkillController extends Controller
@@ -16,10 +18,22 @@ class SkillController extends Controller
 	public function __construct() 
 	{
         $this->middleware('auth');
+        
+        
+       
+    }
+
+    public function authenticate()
+    {
+        if (Auth::user()->department != 'Human Resources') {
+            return redirect('/');
+        }
     }
 
     public function index()
     {
+        
+        
     	$skills = Skill::all();
         return View::make('skills.index')
             ->with('skills', $skills);
@@ -27,6 +41,10 @@ class SkillController extends Controller
 
     public function create()
     {
+        if (Auth::user()->department != 'Human Resources') {
+            return redirect('/');
+        }
+
         return View::make('skills.create');
     }
 
