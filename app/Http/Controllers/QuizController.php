@@ -10,6 +10,7 @@ use App\Attempt;
 Use App\Skill;
 use App\Section;
 use App\Training;
+use App\Section_Attempt;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -49,63 +50,121 @@ class QuizController extends Controller
 
     public function record(Request $request)
     {
-        $user_quiz = new User_Quiz; // New Instance of User Quiz
-        $quiz_id = Input::get('quiz_id'); // Get Quiz ID
+        // Generic
 
-        $user_quiz->user_id = Input::get('user_id'); //User Quiz Details
-        $user_quiz->quiz_id = $quiz_id; //User Quiz Details
+            $quiz_id = Input::get('quiz_id'); 
 
-        $user_quiz->save(); // Save so that its ID can be retreived
-
-        $user_quiz_id = $user_quiz->id; // Get ID User_Quiz ID for attempt
-
-        $score = 0; //instantiate score
-
-        $quiz = Quiz::find($quiz_id);
-
-        $sections = Section::where('quiz_id',$quiz_id)->get();
-        $questions = array();
-
-        foreach ($sections as $key => $section) {
-            $questions_temps = $section->questions()->get();
-            foreach ($questions_temps as $key => $questions_temp) {
-                array_push($questions,$questions_temp);
-            }
-        }
-
-        //$temp = Input::get('temp');
-        $answer_attempt = Input::get("answer_attempt");
-
-        for ($i = 0; $i < count($questions); $i++)
-        {
-            // Attempt Instantiation
-            $attempt = new Attempt;
-            $attempt->user_quiz_id = $user_quiz_id;
-            $attempt->question_id = $questions[$i]->id;
-
-            // Error is here
-            $attempt->answer_attempt = $answer_attempt[$i];
-
-            // Get correct answer and attempt answer
-            $correct_answer = $questions[$i]->answer_item;
-            $attempt_answer =  $attempt->answer_attempt;
-
-            if ($correct_answer == $attempt_answer)
-            {
-                $score++;
-            }
-
-            $attempt->save();
-        }
-
-        $temp = Input::get("answer_attempt");
+        // User Quiz Instantiation
         
+            $user_quiz = new User_Quiz; // New Instance of User Quiz
+            $user_quiz->user_id = Input::get('user_id'); //User Quiz Details
+            $user_quiz->quiz_id = $quiz_id; //User Quiz Details
+            $user_quiz->save(); // Save so that its ID can be retreived
 
-        $user_quiz->score = $score;
-        $user_quiz->save();
+            $init_quiz_score = 0; 
+
+        // Put User Quiz ID
+
+            $user_quiz_id = $user_quiz->id; // Get ID User_Quiz ID for Section
+
+        // Get Questions for Checking of Attempts
+
+            $quiz = Quiz::find($quiz_id);
+            $sections = Section::where('quiz_id',$quiz_id)->get();
+            $questions = array();
+    
+            foreach ($sections as $key => $section) {
+                $questions_temps = $section->questions()->get();
+                foreach ($questions_temps as $key => $questions_temp) {
+                    array_push($questions,$questions_temp);
+                }
+
+                $section_attempt = new Section_Attempt;
+                $section_attempt->user_quiz_id =  $user_quiz_id;
+                $section_attempt->section_id = $section->id;
+                $section_attempt->score = 0;
+                $section_attempt->max_score = 0;
+                $section_attempt->save();
+            }
+
+        // Get Attempts of User
+
+            $answer_attempt = Input::get("answer_attempt");
+
+            $quiz_max_score = count($questions);
+
+            for ($i = 0; $i < count($questions); $i++)
+            {   
+            
+                // Attempt Instantiation
+                $attempt = new Attempt;
+                $attempt->question_id = $questions[$i]->id;
+
+                // Section Assignment of Attempt
+
+                $section_attempts = Section_Attempt::where('user_quiz_id', $user_quiz_id)->get();
+
+                foreach ($section_attempts as $key => $section_attempt) {
+
+                    if($section_attempt->section_id == $questions[$i]->section_id)
+                    {
+                        $attempt->section_attempt_id = $section_attempt->id;
+
+                        $max_score = $section_attempt->max_score;
+                        $max_score++;
+                        $section_attempt->max_score = $max_score;
+                        $section_attempt->save();
+                    }   
+
+                }
+
+                // Answer Attempt Assignment of Attempt
+                $attempt->answer_attempt = $answer_attempt[$i];
+
+                // Get correct answer and attempt answer
+                $correct_answer = $questions[$i]->answer_item;
+                $attempt_answer =  $attempt->answer_attempt;
+
+                // Problematic
+
+                // ------------
+
+                
+
+                if ($correct_answer == $attempt_answer)
+                {
+                    foreach ($section_attempts as $key => $section_attempt) {
+
+                    if($section_attempt->section_id == $questions[$i]->section_id)
+                    {
+                        $attempt->section_attempt_id = $section_attempt->id;
+
+                        $init_score = $section_attempt->score;
+                        $init_score++;
+                        $section_attempt->score = $init_score;
+                        $section_attempt->save();
+                    }   
+
+                }
+                }
+
+                // ------------
+
+                $attempt->save();
+            }
+
+        // Gather scores of sections
+            foreach ($section_attempts as $key => $section_attempt) {
+                $section_score = $section_attempt->score;
+                $init_quiz_score+=$section_score;
+            }
+
+            // WORKING GREAT
+            $user_quiz->score = $init_quiz_score;
+            $user_quiz->save();
 
         // redirect
-        Session::flash('message', 'Successfully taken quiz! Congratulations!'.' Score: '.$score
+            Session::flash('message', 'Successfully taken quiz! Congratulations!'
          );
         
         return Redirect::to('take_quizzes');

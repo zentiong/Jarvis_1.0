@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class User_Quiz extends Model
 {
     //
+  protected $primaryKey = 'id';
  	protected $table = 'user_quiz';
     
 

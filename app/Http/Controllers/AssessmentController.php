@@ -165,11 +165,13 @@ class AssessmentController extends Controller
          // get all the assessments
         $assessments = Assessment::all();
         $user_assessments = User_Assessment::all();
+        $skills = Skill::all();
 
         // load the view and pass the assessments
         return View::make('assessments.index')
             ->with('assessments', $assessments)
-            ->with('user_assessments', $user_assessments);
+            ->with('user_assessments', $user_assessments)
+            ->with('skills', $skills);
     }
 
     /**

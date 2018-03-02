@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttemptsTable extends Migration
+class CreateSectionAttemptsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,25 +13,25 @@ class CreateAttemptsTable extends Migration
      */
     public function up()
     {
-        Schema::create('attempts', function (Blueprint $table) {
+        Schema::create('section_attempts', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
 
-            // user quiz
+            // User Quiz
 
             $table->integer('user_quiz_id')->unsigned();
             $table->foreign('user_quiz_id')->references('id')->on('user_quiz');
 
-            
-            // question id
+            // Section
 
-            $table->integer('question_id')->unsigned();
-            $table->foreign('question_id')->references('id')->on('questions');
+            $table->integer('section_id')->unsigned();
+            $table->foreign('section_id')->references('id')->on('sections');
 
+            // Score
 
-            // attempts
+            $table->integer('score')->default(0);
+            $table->integer('max_score')->default(0);
 
-            $table->string('answer_attempt', 255);
         });
     }
 
@@ -42,6 +42,6 @@ class CreateAttemptsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attempts');
+        Schema::dropIfExists('section_attempts');
     }
 }
