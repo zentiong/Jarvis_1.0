@@ -28,5 +28,22 @@ class User extends Authenticatable
     public function quizzes() {
     return $this->hasMany("App\User_Quiz",'id');
     }
+
+     public function user_trainings()
+    {
+        return $this->hasMany('App\User_Training');
+    }
+
+     public function user_events()
+    {
+        return $this->hasMany('App\User_Event');
+    }
+
+     public function user_skills()
+    {
+        return $this->hasMany('App\User_Skill');
+    }
+
+
     
 }
