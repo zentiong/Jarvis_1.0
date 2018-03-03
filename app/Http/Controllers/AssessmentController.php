@@ -48,26 +48,14 @@ class AssessmentController extends Controller
     public function record(Request $request)
     {
         $grades = Input::get("grades");
-
-        $inputted_grades_count = count($grades);
-        $supposed_grades_count = Input::get('grades_count');
-        
-        if( $inputted_grades_count == $supposed_grades_count)
-        {
-            $all_grades = 1;
-        }
         
 
         $rules = array(
             'feedback'       => 'required',
-            'answering_of_all_grades' => 'required'
+            'grades' => 'required'
         );
 
-          $messages = [
-            'all_grades'    => 'You must answer all :supposed_grades_count criterias.',
-        ];
-
-        $validator = Validator::make(Input::all(), $rules, $messages);
+        $validator = Validator::make(Input::all(), $rules);
 
         $assessment_id = Input::get('assessment_id'); // Get Assessment ID
 
@@ -134,10 +122,12 @@ class AssessmentController extends Controller
     {
          // get all the assessments
         $assessments = Assessment::all();
+        $skills = Skill::all();
 
         // load the view and pass the assessments
         return View::make('assessments.make_assessments')
-            ->with('assessments', $assessments);
+            ->with('assessments', $assessments)
+            ->with('skills', $skills);
     }
 
      public function see_assessments()
@@ -146,12 +136,14 @@ class AssessmentController extends Controller
         $user_assessments = User_Assessment::all();
         $assessments = Assessment::all();
         $users = User::all();
+        $skills = Skill::all();
 
         // load the view and pass the assessments
         return View::make('assessments.see_assessments')
             ->with('user_assessments', $user_assessments)
             ->with('assessments', $assessments)
-            ->with('users', $users);
+            ->with('users', $users)
+            ->with('skills', $skills);
     }
 
     /**

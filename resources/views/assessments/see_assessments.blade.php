@@ -29,17 +29,14 @@ $user_id = Auth::user()->id; /* Supervisor */
     @foreach($user_assessments as $key => $value)
         <tr>
             <td>
-                @foreach($assessments as $key => $topic)
-                <?php
-
-                    $check_assessment_id = $topic->id;
-
-                ?>
-
-                @if($check_assessment_id == $value->assessment_id)
-                   {{ $topic->topic }}
-                @endif
-
+                @foreach($assessments as $key => $assessment)
+                    @if($value->assessment_id == $assessment->id)
+                    @foreach($skills as $key => $skill)
+                        @if($skill->id == $assessment->skill_id)
+                            {{$skill->name}}
+                        @endif
+                    @endforeach
+                    @endif
                 @endforeach
             </td>
             <td>

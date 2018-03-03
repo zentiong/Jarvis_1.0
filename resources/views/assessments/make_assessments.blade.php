@@ -22,6 +22,11 @@ or Supervisor sees assessments or dropdown skills?
 
 -->
 
+<br>
+<br>
+<br>
+
+
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -34,9 +39,15 @@ or Supervisor sees assessments or dropdown skills?
         <tr>
         
             <td>{{ $value->id }}</td>
-            <td>{{ $value->topic }}</td>
+            <td>
 
-            <!-- we will also add show, edit, and delete buttons -->
+            @foreach($skills as $key => $skill)
+                @if($skill->id == $value->skill_id)
+                    {{$skill->name}}
+                @endif
+            @endforeach
+            </td>
+            
             <td>
                  <a class="btn btn-small btn-info" href="{{ URL::to('assessments/' . $value->id . '/take') }}">Make an Assessment</a>
             </td>

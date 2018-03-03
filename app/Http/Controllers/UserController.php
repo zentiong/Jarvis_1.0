@@ -133,7 +133,8 @@ class UserController extends Controller
         $user_quizzes = User_Quiz::where('user_id',$id)->get();
         $section_attempts = array();
         $sections = array();
-        $skills = array();
+        $skills_quiz = array();
+        $skills_assessment = array();
 
         foreach($user_quizzes as $key => $user_quiz) {
             $section_attempts_temp = Section_Attempt::where('user_quiz_id',$user_quiz->id)->get(); 
@@ -149,9 +150,9 @@ class UserController extends Controller
 
         foreach ($sections as $key => $section) {
             $temp = Skill::where('id', $section->skill_id)->first(); //array
-            if(!in_array($temp, $skills))
+            if(!in_array($temp, $skills_quiz))
             {
-                array_push($skills,$temp);
+                array_push($skills_quiz,$temp);
             }            
         }
 
@@ -160,21 +161,7 @@ class UserController extends Controller
         $user_assessments = User_Assessment::where('employee_id', $id)->get();
         $assessments = array();
 
-        foreach($user_assessments as $key => $assessment) {
-            $temp = Assessment::where('id',$user_assessment->assessment_id)->get(); 
-
-            foreach($section_attempts_temp as $key => $temp) {
-                array_push($section_attempts, $temp);
-            }
-        }
-
         foreach ($user_assessments as $key => $user_assessment) {
-
-            $temp = Skill::where('id', $user_assessment->skill_id)->first(); //array
-            if(!in_array($temp, $skills))
-            {
-                array_push($skills,$temp);
-            }     
 
             $temp = Assessment::where('id',$user_assessment->assessment_id)->first(); 
 
@@ -182,7 +169,21 @@ class UserController extends Controller
             {
                 array_push($assessments,$temp);
             }         
+
+
         }
+
+        foreach ($assessments as $key => $assessment) {
+
+            $temp = Skill::where('id', $assessment->skill_id)->first(); //array
+
+            if(!in_array($temp, $assessments))
+            {
+                array_push($skills_assessment,$temp);
+            }         
+        }
+
+        $test = 123;
 
 
         return View::make('users.show')
@@ -190,9 +191,11 @@ class UserController extends Controller
             ->with('user_quizzes', $user_quizzes)
             ->with('section_attempts', $section_attempts)
             ->with('sections', $sections)
-            ->with('skills', $skills)
+            ->with('skills_quiz', $skills_quiz)
+            ->with('skills_assessment',$skills_assessment)
             ->with('user_assessments', $user_assessments)
-            ->with('assessments', $assessments);
+            ->with('assessments', $assessments)
+            ->with('test', $test);
     }
 
     /**
