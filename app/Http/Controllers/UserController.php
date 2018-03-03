@@ -128,30 +128,39 @@ class UserController extends Controller
         // get the user
         $user = User::find($id);
         $user_quizzes = User_Quiz::where('user_id',$id)->get();
+        $section_attempts = array();
+        $sections = array();
+        $skills = array();
 
-        $questions = array(); 
+        foreach($user_quizzes as $key => $user_quiz) {
+            $section_attempts_temp = Section_Attempt::where('user_quiz_id',$user_quiz->id)->get(); 
 
-        // array_push($questions,$questions_temp);
+            foreach($section_attempts_temp as $key => $temp) {
+                array_push($section_attempts, $temp);
+            }
+        }
 
-        // All Attempts under those user quizzes
-        $attempts = Attempt::all();
+        foreach ($section_attempts as $key => $section_attempt) {
+            $section_temp = Section::where('id',$section_attempt->section_id)->get();
+            foreach($section_temp as $key => $temp) {
+                array_push($sections,$temp);
+            }
+        }
 
-        // All Sections that are related to that attempt
-        $sections = Section::all();
+        foreach ($sections as $key => $section) {
+            $temp = Skill::where('id', $section->skill_id)->first(); //array
+            if(!in_array($temp, $skills))
+            {
+                array_push($skills,$temp);
+            }            
+        }
 
-        // Skills corresponding to the section
-        $skills = Skill::all();
-
-        $section_attempts = Section_Attempt::where('user_quiz_id')->get();
-
-        // show the view and pass the user to it
         return View::make('users.show')
             ->with('user', $user)
             ->with('user_quizzes', $user_quizzes)
-            ->with('attempts', $attempts)
+            ->with('section_attempts', $section_attempts)
             ->with('sections', $sections)
-            ->with('skills', $skills)
-            ->with('section_attempts', $section_attempts);
+            ->with('skills',$skills);
     }
 
     /**

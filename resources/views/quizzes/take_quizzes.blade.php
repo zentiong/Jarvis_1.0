@@ -46,6 +46,7 @@ $taken = false;
             <!-- we will also add show, edit, and delete buttons -->
             <td>
 
+            <!-- Error! -->
                 @foreach($user_quizzes as $key => $check)
                 <?php 
 
