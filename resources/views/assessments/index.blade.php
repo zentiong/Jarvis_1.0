@@ -14,6 +14,10 @@
 
 </script>
 
+<?php
+    $temp_skills = array();
+?>
+
 @section('body')
     <main class="contaiuner fluid">
         <section class="container-fluid">
@@ -38,7 +42,7 @@
                 <thead>
                     <tr>
                         <td  class="no-stretch">Assessment ID</td>
-                        <td>Topic</td>
+                        <td> Skill </td>
                         <td class="no-stretch">Actions</td>
                     </tr>
                 </thead>
@@ -46,7 +50,14 @@
                 @foreach($assessments as $key => $value)
                     <tr>
                         <td>{{ $value->id }}</td>
-                        <td>{{ $value->topic }}</td>
+                        @foreach($skills as $key => $skill)
+                            @if($skill->id == $value->skill_id)
+                                <td> {{$skill->name}}</td>
+                                <?php 
+                                    array_push($temp_skills, $skill)
+                                ?>
+                            @endif
+                        @endforeach
 
                         <!-- we will also add show, edit, and delete buttons -->
                         <td class="table-actions">
@@ -90,17 +101,20 @@
               </div>
               <div class="modal-body">
                 {{ Form::open(array('url' => 'assessments')) }}
-
+                <?php /*
                 <div class="form-group">
                     {{ Form::label('topic', 'Topic') }}
                     {{ Form::text('topic', Request::old('topic'), array('class' => 'form-control', 'autofocus')) }}
                 </div>
+                */ ?>
 
                 <div class="form-group">
                     {{ Form::label('skill_id', 'Relevant skill') }}
                     <select id="skill" class="form-control" name="skill">
                         @foreach($skills as $key => $value)
+                            @if(!in_array($value,$temp_skills))
                             <option value="<?php echo $value->id ?>">{{$value->name}}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>

@@ -10,6 +10,8 @@ use App\Question;
 use App\Section;
 use App\Skill;
 use App\Section_Attempt;
+use App\Assessment;
+use App\User_Assessment;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -125,7 +127,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        // get the user
+        // Quiz
+
         $user = User::find($id);
         $user_quizzes = User_Quiz::where('user_id',$id)->get();
         $section_attempts = array();
@@ -141,10 +144,7 @@ class UserController extends Controller
         }
 
         foreach ($section_attempts as $key => $section_attempt) {
-            $section_temp = Section::where('id',$section_attempt->section_id)->get();
-            foreach($section_temp as $key => $temp) {
-                array_push($sections,$temp);
-            }
+            array_push($sections,Section::where('id',$section_attempt->section_id)->first());
         }
 
         foreach ($sections as $key => $section) {
@@ -155,12 +155,44 @@ class UserController extends Controller
             }            
         }
 
+        // Assessment
+
+        $user_assessments = User_Assessment::where('employee_id', $id)->get();
+        $assessments = array();
+
+        foreach($user_assessments as $key => $assessment) {
+            $temp = Assessment::where('id',$user_assessment->assessment_id)->get(); 
+
+            foreach($section_attempts_temp as $key => $temp) {
+                array_push($section_attempts, $temp);
+            }
+        }
+
+        foreach ($user_assessments as $key => $user_assessment) {
+
+            $temp = Skill::where('id', $user_assessment->skill_id)->first(); //array
+            if(!in_array($temp, $skills))
+            {
+                array_push($skills,$temp);
+            }     
+
+            $temp = Assessment::where('id',$user_assessment->assessment_id)->first(); 
+
+            if(!in_array($temp, $assessments))
+            {
+                array_push($assessments,$temp);
+            }         
+        }
+
+
         return View::make('users.show')
             ->with('user', $user)
             ->with('user_quizzes', $user_quizzes)
             ->with('section_attempts', $section_attempts)
             ->with('sections', $sections)
-            ->with('skills',$skills);
+            ->with('skills', $skills)
+            ->with('user_assessments', $user_assessments)
+            ->with('assessments', $assessments);
     }
 
     /**

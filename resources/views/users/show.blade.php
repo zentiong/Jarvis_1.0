@@ -43,8 +43,7 @@
 
 <h1> Statistics </h1>
 
-<!-- Skill -->
-
+<h3> Quizzes </h3>
 
 @foreach($skills as $key => $skill)
    <p> Skill: {{$skill->name}} </p>
@@ -58,16 +57,17 @@
     @endforeach
 @endforeach
 
+<h3> Assessments </h3>
 
+@foreach($skills as $key => $skill)
 
+    <p> Skill: {{$skill->name}} </p>
 
+    @foreach($assessments as $key => $assessment)
 
+    @endforeach
 
+@endforeach
 
-
-
-
-
-<!-- Score -->
 
 @endsection

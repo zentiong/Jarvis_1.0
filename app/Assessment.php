@@ -10,9 +10,6 @@ class Assessment extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = [
-        'topic'
-    ];
 
     public function assessment_items() {
     return $this->hasMany("App\Assessment_Item");

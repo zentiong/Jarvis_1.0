@@ -26,7 +26,7 @@
 
 
             {{ Form::model($quiz, array('route' => array('quizzes.update', $quiz->quiz_id), 'method' => 'PUT')) }}
-
+                
                 <div class="form-group">
                     {{ Form::label('topic', 'Topic') }}
                     {{ Form::text('topic', Request::old('topic'), array('class' => 'form-control')) }}

@@ -26,10 +26,14 @@
 
 			{{ Form::model($assessment, array('route' => array('assessments.update', $assessment->assessment_id), 'method' => 'PUT')) }}
 
+                <?php /*
+
 			    <div class="form-group">
 			        {{ Form::label('topic', 'Topic') }}
 			        {{ Form::text('topic', Request::old('topic'), array('class' => 'form-control', 'autofocus')) }}
 			    </div>
+
+                */ ?>
 
 			    <div class="form-group text-center create-bottom-wrapper">
                     <a href="{{ URL::to('assessments') }}" class="btn cancel-btn">Cancel</a>

@@ -26,10 +26,13 @@
 
             {{ Form::open(array('url' => 'assessments')) }}
 
+                <?php /*
                 <div class="form-group">
                     {{ Form::label('topic', 'Topic') }}
                     {{ Form::text('topic', Request::old('topic'), array('class' => 'form-control', 'autofocus')) }}
                 </div>
+
+                */ ?>
 
                 <div class="form-group">
                     {{ Form::label('skill_id', 'Relevant skill') }}
