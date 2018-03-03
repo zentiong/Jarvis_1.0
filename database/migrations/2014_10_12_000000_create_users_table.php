@@ -59,7 +59,7 @@ class CreateUsersTable extends Migration
             'password' => bcrypt('1'),
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
-            'department' => 'Customer Service',
+            'department' => 'Human Resource',
             'supervisor_id' => '3', 
             'position' => 'Back End Developer',
             'manager_check' => false
