@@ -16,6 +16,8 @@ $user_id = Auth::user()->id; /* Supervisor */
 <br>
 <br>
 
+ <a href="{{ URL::to('make_assessments')}}">Make Assessments</a>
+
 <table class="table table-striped table-bordered">
     <thead>
         <tr>

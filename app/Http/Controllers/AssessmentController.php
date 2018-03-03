@@ -48,10 +48,12 @@ class AssessmentController extends Controller
     public function record(Request $request)
     {
         $grades = Input::get("grades");
-        
+
+        $ideal_count = Input::get("ideal_count");
+        $real_count = count($grades);
 
         $rules = array(
-            'feedback'       => 'required',
+            'feedback' => 'required',
             'grades' => 'required'
         );
 
@@ -61,8 +63,12 @@ class AssessmentController extends Controller
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('assessments/'.$assessment_id.'/take')
+            return Redirect::to('assessments/'.$assessment_id.'/make')
                 ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } elseif($ideal_count != $real_count){
+          Session::flash('message', 'All the grades have to be filled up');
+            return Redirect::to('assessments/'.$assessment_id.'/make')
                 ->withInput(Input::except('password'));
         } else {
 
@@ -111,7 +117,7 @@ class AssessmentController extends Controller
         }
 
         // redirect
-        Session::flash('message', 'Successfully made an assessment! Congratulations!'.' Rating: '.$grade
+        Session::flash('message', 'Successfully made an assessment! Congratulations'
          );
         
         return Redirect::to('see_assessments');

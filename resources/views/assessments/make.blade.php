@@ -48,8 +48,7 @@
         <tr>
             <td>Question</td>
         </tr>
-    </thead>
-
+    </thead> 
     <tbody>
 
         <?php 
@@ -73,19 +72,21 @@
                 ?>
                 
             </td>
+
         </tr>
 
     @endforeach
     </tbody>
 
-                
+     {{ Form::hidden('ideal_count', $value = $i) }}
+   
     </table>
 
-    <?php 
-            $i--;
+    <?php
+        $i;
     ?>
 
-    {{ Form::hidden('grades_count', $value = $i) }}
+
     
     {{ Form::label('feedback', 'Feedback') }}
     {{ Form::text('feedback', Request::old('feedback'), array('class' => 'form-control')) }}
