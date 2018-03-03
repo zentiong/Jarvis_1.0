@@ -59,7 +59,7 @@ Route::resource('assessments.assessment_items', 'Assessment_ItemController');
 /* Assessment Taking (Done by Bosses) */
 
 Route::get('make_assessments', 'AssessmentController@make_assessments'); // Where users take their assessments
-Route::get('assessments/{assessment}/take', 'AssessmentController@take'); // For storing test results
+Route::get('assessments/{assessment}/make', 'AssessmentController@make'); // For storing test results
 Route::post('assessments/{assessment}/record', 'AssessmentController@record'); // For storing test results
 
 Route::get('see_assessments', 'AssessmentController@see_assessments'); // Where users take their assessments

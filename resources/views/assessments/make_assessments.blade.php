@@ -49,7 +49,7 @@ or Supervisor sees assessments or dropdown skills?
             </td>
             
             <td>
-                 <a class="btn btn-small btn-info" href="{{ URL::to('assessments/' . $value->id . '/take') }}">Make an Assessment</a>
+                 <a class="btn btn-small btn-info" href="{{ URL::to('assessments/' . $value->id . '/make') }}">Make an Assessment</a>
             </td>
         </tr>
     @endforeach

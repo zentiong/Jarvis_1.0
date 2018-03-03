@@ -25,7 +25,7 @@ class AssessmentController extends Controller
     }
 
     
-    public function take($id)
+    public function make($id)
     {
         
   // get all the assessments
@@ -39,7 +39,7 @@ class AssessmentController extends Controller
         $assessment_items = $assessment->assessment_items()->get();
 
           // show the view and pass the assessment to it
-        return View::make('assessments.take')
+        return View::make('assessments.make')
             ->with('assessment', $assessment)
             ->with('assessment_items', $assessment_items)
             ->with('users',$users);
