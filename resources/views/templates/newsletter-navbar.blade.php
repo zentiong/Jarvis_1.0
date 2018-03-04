@@ -16,12 +16,14 @@
 		<!-- LOGGED IN STATE -->
 			@auth
 				<li><a id="levels" href="{{ URL::to('levels') }}">Dashboard</a></li>
+				@if ( Auth::user()->department == 'Human Resources')
 				<li><a id="users" href="{{ URL::to('users') }}">Employees</a></li>
 				<li><a id="skills"  href="{{ URL::to('skills') }}">Skills</a></li>
 				<li><a id="positions"  href="{{ URL::to('positions') }}">Positions</a></li>
 				<li><a id="quizzes"  href="{{ URL::to('quizzes') }}">Quizzes</a></li>
 				<li><a id="assessments"  href="{{ URL::to('assessments') }}">Assessments</a></li>
 				<li><a id="training-sessions"  href="{{ URL::to('trainings') }}">Trainings</a></li>
+				@endif
 	</ul>
 	<div class="login-button" id="login-button">
 		@auth
