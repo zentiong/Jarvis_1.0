@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
