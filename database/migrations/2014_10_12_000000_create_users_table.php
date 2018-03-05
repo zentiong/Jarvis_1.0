@@ -30,6 +30,8 @@ class CreateUsersTable extends Migration
 
             $table->boolean('manager_check')->default(false);
 
+            $table->string('profile_photo', 255)->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });
@@ -59,10 +61,11 @@ class CreateUsersTable extends Migration
             'password' => bcrypt('1'),
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
-            'department' => 'Human Resource',
+            'department' => 'Human Resources',
             'supervisor_id' => '3', 
             'position' => 'Back End Developer',
-            'manager_check' => false
+            'manager_check' => false,
+            'profile_photo' => 'vanta_anferny.jpg'
         ));   
 
          DB::table('users')->insert(

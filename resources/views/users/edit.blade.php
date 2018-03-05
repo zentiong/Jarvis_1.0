@@ -26,6 +26,11 @@
             {{ Html::ul($errors->all()) }}
 
             {{ Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT')) }}
+
+                <div class="form-group">
+                    {{ Form::label('profile_photo', 'Profile Photo') }}
+                    {{ Form::text('profile_photo', Request::old('profile_photo'), array('class' => 'form-control')) }}
+                </div>
                 
                 <div class="row">
                     <div class="col-md-6">
@@ -106,6 +111,8 @@
                     <a href="{{ URL::to('users') }}" class="btn cancel-btn">Cancel</a>
                     {{ Form::submit('Save changes', array('class' => 'btn btn-primary create-btn text-center')) }}
                 </div>
+
+
                 
             {{ Form::close() }}
         </section>

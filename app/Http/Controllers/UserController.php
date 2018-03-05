@@ -13,6 +13,8 @@ use App\Section_Attempt;
 use App\Assessment;
 use App\User_Assessment;
 
+use Auth;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -98,6 +100,7 @@ class UserController extends Controller
             $user->birth_date = Input::get('birth_date');
             $user->department = Input::get('department');
             $user->supervisor_id = Input::get('supervisor_id');
+            $user->profile_photo = Input::get('profile_photo');
             $user->position = Input::get('position');
 
             // Default Value in migrations ain't working
@@ -136,6 +139,14 @@ class UserController extends Controller
         $sections = array();
         $skills_quiz = array();
         $skills_assessment = array();
+
+        // Photo of Profile
+
+        $profile_photo = 'images/profile_photos/'.$user->profile_photo;
+
+        // Code for Photo of Current User
+
+        $current_user_photo = 'images/profile_photos/'.Auth::user()->profile_photo;
 
         foreach($user_quizzes as $key => $user_quiz) {
             $section_attempts_temp = Section_Attempt::where('user_quiz_id',$user_quiz->id)->get(); 
@@ -184,9 +195,6 @@ class UserController extends Controller
             }         
         }
 
-        $test = 123;
-
-
         return View::make('users.show')
             ->with('user', $user)
             ->with('user_quizzes', $user_quizzes)
@@ -196,7 +204,8 @@ class UserController extends Controller
             ->with('skills_assessment',$skills_assessment)
             ->with('user_assessments', $user_assessments)
             ->with('assessments', $assessments)
-            ->with('test', $test);
+            ->with('profile_photo', $profile_photo)
+            ->with('current_user_photo',$current_user_photo);
     }
 
     /**
@@ -258,6 +267,7 @@ class UserController extends Controller
             $user->birth_date = Input::get('birth_date');
             $user->department = Input::get('department');
             $user->supervisor_id = Input::get('supervisor_id');
+            $user->profile_photo = Input::get('profile_photo');
             $user->position = Input::get('position');
             if(Input::get('manager_check')!=NULL)
             {

@@ -24,6 +24,19 @@
 
 <h1>Showing {{ $user->first_name }} {{ $user->last_name }}</h1>
 
+<?php 
+    
+    $pp = asset( $profile_photo);
+    $cup = asset( $current_user_photo);
+    
+?>
+
+<p>Current User: </p>
+<img style="height: 50px; width: 50px; border-radius: 50%;" src="{{$cup}}">
+
+<p>Profile Photo: </p>
+<img style="height: 50px; width: 50px; border-radius: 50%;" src="{{$pp}}">
+
     <!--
     <div class="jumbotron text-center">
         <h2>{{ $user->first_name }} {{ $user->last_name }}</h2>

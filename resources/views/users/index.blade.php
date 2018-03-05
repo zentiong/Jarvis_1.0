@@ -108,6 +108,11 @@
               </div>
               <div class="modal-body create-page">
                 {{ Form::open(array('url' => 'users')) }}
+
+                        <div class="form-group">
+                            {{ Form::label('profile_photo', 'Profile Photo') }}
+                            {{ Form::text('profile_photo', Request::old('profile_photo'), array('class' => 'form-control')) }}
+                        </div>
                     
                         <div class="row">
                             <div class="col-md-6">
