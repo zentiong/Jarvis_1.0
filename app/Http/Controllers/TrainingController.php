@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App;
+use App\User;
 use App\Training;
+use App\User_Training;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect; 
 use View;
+use Auth;
 
 class TrainingController extends Controller
 {
@@ -20,8 +24,8 @@ class TrainingController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['landing']]);
-        $this->middleware('HR', ['except' => ['show', 'landing']]);
+        //$this->middleware('auth', ['except' => ['landing']]);
+        //$this->middleware('HR', ['except' => ['show', 'landing']]);
     }
     
 
@@ -34,6 +38,39 @@ class TrainingController extends Controller
             ->with('trainings', $trainings);
     }
 
+    public function recommend()
+    {
+         $trainings = Training::all();
+         $users = User::where('supervisor_id', Auth::user()->id)->get();
+
+        // load the view and pass the employees
+        return View::make('trainings.recommend')
+            ->with('trainings', $trainings)
+            ->with('users', $users);
+    }
+
+    public function fire()
+    {
+        $users = User::where('supervisor_id', Auth::user()->id)->get();
+
+        // foreach user
+
+        foreach ($users as $key => $user) {
+
+            if(Input::get($user->id)!=NULL)
+            {
+                $user_training = new User_Training;
+                $user_training->training_id = Input::get('training');
+                $user_training->user_id = Input::get($user->id);
+                $user_training->save();
+            }
+        }
+
+        Session::flash('message', 'Successfully sent Recommendations!');
+        return Redirect::to('recommend');
+    }
+
+    // Commented out coz not sure if necessary -Ferny
     public function landing(){
         $trainings = Training::all();
 
@@ -41,6 +78,7 @@ class TrainingController extends Controller
         return View::make('welcome')
             ->with('trainings', $trainings);
     }
+    
 
     /**
      * Show the form for creating a new resource.

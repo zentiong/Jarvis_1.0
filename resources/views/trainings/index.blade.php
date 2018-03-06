@@ -22,6 +22,7 @@
                 <h1 class="crud-page-title">All Training Sessions</h1>
                 <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Training Session</button>
             </div>
+            <a href="{{ URL::to('recommend')}}">Recommend Training Sessions</a>
 
             <!-- if there are creation errors, they will show here -->
             {{ Html::ul($errors->all()) }}

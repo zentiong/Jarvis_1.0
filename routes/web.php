@@ -62,14 +62,16 @@ Route::get('make_assessments', 'AssessmentController@make_assessments'); // Wher
 Route::get('assessments/{assessment}/make', 'AssessmentController@make'); // For storing test results
 Route::post('assessments/{assessment}/record', 'AssessmentController@record'); // For storing test results
 
-Route::get('see_assessments', 'AssessmentController@see_assessments'); // Where users take their assessments
+Route::get('see_assessments', 'AssessmentController@see_assessments'); // Where users see their assessments
 
 
 /* Training */
 
-	Route::resource('trainings', 'TrainingController');
+Route::resource('trainings', 'TrainingController');
 
-
+/* Recommmend Trainings */
+Route::get('recommend', 'TrainingController@recommend'); // For storing test results
+Route::post('recommend_fire', 'TrainingController@fire'); // For storing test results
 
 /* Skills */
 Route::group(['middleware' => 'HR'], function() {
@@ -77,11 +79,12 @@ Route::group(['middleware' => 'HR'], function() {
 });
     
 
-/* Jobs */
+/* Positions */
 Route::group(['middleware' => 'HR'], function() {
 	Route::resource('positions', 'PositionController');
 });
 
+/* Event */
 
 Route::resource('events', 'EventController');
 

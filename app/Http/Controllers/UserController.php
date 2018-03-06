@@ -12,6 +12,8 @@ use App\Skill;
 use App\Section_Attempt;
 use App\Assessment;
 use App\User_Assessment;
+use App\Training;
+use App\User_Training;
 
 use Auth;
 
@@ -140,13 +142,9 @@ class UserController extends Controller
         $skills_quiz = array();
         $skills_assessment = array();
 
-        // Photo of Profile
+        // ------------------
 
-        $profile_photo = 'images/profile_photos/'.$user->profile_photo;
-
-        // Code for Photo of Current User
-
-        $current_user_photo = 'images/profile_photos/'.Auth::user()->profile_photo;
+        // Statistics
 
         foreach($user_quizzes as $key => $user_quiz) {
             $section_attempts_temp = Section_Attempt::where('user_quiz_id',$user_quiz->id)->get(); 
@@ -195,6 +193,29 @@ class UserController extends Controller
             }         
         }
 
+        // ------------------
+
+        // Photo of Profile
+
+        $profile_photo = 'images/profile_photos/'.$user->profile_photo;
+
+        // Code for Photo of Current User
+
+        $current_user_photo = 'images/profile_photos/'.Auth::user()->profile_photo;
+
+       
+        // ------------------
+
+        // Trainings
+
+        $trainings = array();
+        $user_trainings = User_Training::where('user_id',$id)->get();
+
+        foreach($user_trainings as $key => $user_training) {
+            $training_temp = Training::where('id',$user_training->training_id)->first(); 
+            array_push($trainings, $training_temp);
+        }
+
         return View::make('users.show')
             ->with('user', $user)
             ->with('user_quizzes', $user_quizzes)
@@ -203,9 +224,13 @@ class UserController extends Controller
             ->with('skills_quiz', $skills_quiz)
             ->with('skills_assessment',$skills_assessment)
             ->with('user_assessments', $user_assessments)
-            ->with('assessments', $assessments)
+            ->with('assessments', $assessments) 
+            // ------
             ->with('profile_photo', $profile_photo)
-            ->with('current_user_photo',$current_user_photo);
+            ->with('current_user_photo',$current_user_photo) 
+            // ------
+            ->with('trainings', $trainings)
+            ->with('user_trainings', $user_trainings);
     }
 
     /**
