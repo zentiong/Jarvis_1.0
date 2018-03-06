@@ -22,6 +22,13 @@
 <br> 
 <br>
 
+@if (Session::has('message'))
+                <div class="alert alert-info">
+                    {{ Session::get('message') }}
+                    {{ Html::ul($errors->all()) }}
+                </div>
+            @endif
+
 <h1>Showing {{ $user->first_name }} {{ $user->last_name }}</h1>
 
 <?php 
@@ -97,6 +104,21 @@
             <p>Title: {{$training->title}}</p>
             <p>Date: {{$training->date}}</p>
             <p>Venue: {{$training->venue}}</p>
+        @foreach($user_trainings as $key => $user_training)
+            @if($user_training->training_id == $training->id) 
+                @if($user_training->confirmed == false)
+                    {{ Form::open(array('url' => 'confirm')) }}
+                    {{ Form::hidden('training_id', $value = $training->id) }}
+                    {{ Form::hidden('user_id', $value = Auth::user()->id) }}
+                    {{ Form::submit('Confirm Slot', array('class' => 'btn btn-primary create-btn text-center')) }}
+                    {{ Form::close() }}
+                @else
+                    <div style="border: 1px solid blue; width: 100px; height: 30px;">
+                        <h6>Going</h6>
+                    </div>
+                @endif               
+            @endif
+        @endforeach
         </div>
     @endforeach
 

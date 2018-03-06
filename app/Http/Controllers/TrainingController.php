@@ -70,6 +70,22 @@ class TrainingController extends Controller
         return Redirect::to('recommend');
     }
 
+    public function confirm()
+    {
+        $user_id = Input::get('user_id');
+        $training_id = Input::get('training_id');
+        $user_training = User_training::where('user_id',$user_id)
+        ->where('training_id', $training_id)->first();
+
+        $user_training->confirmed = true;
+
+        $user_training->save();
+
+
+        Session::flash('message', 'Successfully Confirmed Slot!');
+        return Redirect::to('users/'.$user_id);
+    }
+
     // Commented out coz not sure if necessary -Ferny
     public function landing(){
         $trainings = Training::all();

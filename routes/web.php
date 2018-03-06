@@ -73,6 +73,9 @@ Route::resource('trainings', 'TrainingController');
 Route::get('recommend', 'TrainingController@recommend'); // For storing test results
 Route::post('recommend_fire', 'TrainingController@fire'); // For storing test results
 
+/* Sign Up */
+Route::post('confirm', 'TrainingController@confirm');
+
 /* Skills */
 Route::group(['middleware' => 'HR'], function() {
 	Route::resource('skills', 'SkillController');
