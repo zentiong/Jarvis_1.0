@@ -16,4 +16,46 @@
         </p>
     </div>
 
+    <!-- Sorting -->
+    <?php
+    	$invited = array();
+    	$going = array();
+    ?>	
+    
+    @foreach($user_trainings as $key => $user_training)
+    	@foreach($users as $key => $user)
+    		@if($user_training->user_id == $user->id)
+    			<?php
+    				$temp = $user;
+    			?>
+    		@endif
+    	@endforeach
+		@if($user_training->confirmed == false)
+			<?php
+				array_push($invited, $temp)
+			?>
+		@else
+			<?php
+				array_push($going, $temp)
+			?>
+		@endif
+    @endforeach
+    		
+   	<h5> Invited </h5>
+   	<ul>
+   		@foreach($invited as $key => $user)
+   		<li>{{$user->first_name}} {{$user->last_name}}</li>
+   		@endforeach
+   	</ul>
+   	<h5> Going </h5>
+   	<ul>
+   		@foreach($going as $key => $user)
+   		<li>{{$user->first_name}} {{$user->last_name}}</li>
+   		@endforeach
+   	</ul>
+    	
+    	
+
+    
+
 @endsection

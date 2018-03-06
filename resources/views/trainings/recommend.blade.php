@@ -41,7 +41,6 @@
         @foreach($users as $key => $user)
             {{ Form::label($user->id, $user->first_name.' '.$user->last_name) }}
             {{ Form::checkbox($user->id,$user->id, true) }}
-            <p> {{$user->id}} </p>
             <br>
         @endforeach
 

@@ -154,9 +154,19 @@ class TrainingController extends Controller
     public function show($id)
     {
         $training = Training::find($id);
+        $user_trainings = User_Training::where('training_id',$id)->get();
+        $users = array();
+
+        foreach ($user_trainings as $key => $user_training) {
+            $user_id = $user_training->user_id;
+            array_push($users, User::find($user_id));
+        }
+
 
         return View::make('trainings.show')
-            ->with('training', $training);
+            ->with('training', $training)
+            ->with('user_trainings', $user_trainings)
+            ->with('users',$users);
     }
     
 
