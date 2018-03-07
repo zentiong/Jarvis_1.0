@@ -31,7 +31,7 @@
 			    </div>
 
 			  	<div class="form-group text-center create-bottom-wrapper">
-                    <a href="{{ URL::to('assessments/'.$assessment->id.'/assessment_items') }}" class="btn cancel-btn">Cancel</a>
+                    <a href="{{ URL::to('assessments/'.$id.'/assessment_items') }}" class="btn cancel-btn">Cancel</a>
                     {{ Form::submit('Save changes', array('class' => 'btn btn-primary create-btn text-center')) }}
                 </div>
 			    
