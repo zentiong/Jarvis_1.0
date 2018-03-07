@@ -197,7 +197,6 @@ class AssessmentController extends Controller
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
-            'topic'       => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -209,7 +208,6 @@ class AssessmentController extends Controller
         } else {
             // store
             $assessment = new Assessment;
-            $assessment->topic = Input::get('topic');
             $assessment->skill_id = Input::get('skill');
             $assessment->save();
 
