@@ -42,16 +42,17 @@
                 <thead>
                     <tr>
                         <td  class="no-stretch">Assessment ID</td>
-                        <td> Skill </td>
+                        <td class="no-stretch"> Skill </td>
+                        <td> Criteria </td>
                         <td class="no-stretch">Actions</td>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($assessments as $key => $value)
+                @foreach($assessments as $key => $assessment)
                     <tr>
-                        <td>{{ $value->id }}</td>
+                        <td>{{ $assessment->id }}</td>
                         @foreach($skills as $key => $skill)
-                            @if($skill->id == $value->skill_id)
+                            @if($skill->id == $assessment->skill_id)
                                 <td> {{$skill->name}}</td>
                                 <?php 
                                     array_push($temp_skills, $skill)
@@ -59,23 +60,36 @@
                             @endif
                         @endforeach
 
+                        <td>
+                            @foreach($assessment_items as $key => $item)
+                            @if($item->assessment_id == $assessment->id)
+                               {{$item->criteria}}
+                               <br>
+                            @endif
+                        @endforeach
+                        </td>
+
                         <!-- we will also add show, edit, and delete buttons -->
                         <td class="table-actions">
 
                             
                             <!-- show the quiz (uses the show method found at GET /assessments/{id} -->
-                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View assessment"  href="{{ URL::to('assessments/' . $value->id) }}">
+                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View assessment"  href="{{ URL::to('assessments/' . $assessment->id . '/assessment_items') }}">
                                 <i class="fa fa-user fa-lg"></i>
                             </a>
 
+                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="Add Criteria"  href="{{ URL::to('assessments/' . $assessment->id) . '/assessment_items/create' }}">
+                                <i class="fa fa-plus fa-lg"></i>
+                            </a>
+
                             <!-- edit this quiz (uses the edit method found at GET /assessments/{id}/edit -->
-                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit assessment" href="{{ URL::to('assessments/' . $value->id . '/edit') }}">
+                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit assessment" href="{{ URL::to('assessments/' . $assessment->id . '/edit') }}">
                                 <i class="fa fa-pencil fa-lg"></i>
                             </a>
 
                             <!-- delete the quiz (uses the destroy method DESTROY /assessments/{id} -->
                             <!-- we will add this later since its a little more complicated than the other two buttons -->
-                            {{ Form::open(array('url' => 'assessments/' . $value->id, 'class' => 'pull-right')) }}
+                            {{ Form::open(array('url' => 'assessments/' . $assessment->id, 'class' => 'pull-right')) }}
                             {{ Form::hidden('_method', 'DELETE') }}
                             <div data-toggle="tooltip" data-placement="bottom" title="Delete assessment" >
                                 {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
@@ -90,6 +104,9 @@
 
         </section>
         <!-- Modal -->
+
+        <!-- Assessment -->
+
         <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -129,6 +146,7 @@
           </div>
         </div>
 
+        <!-- Assessment Item -->
     </main>
 
 

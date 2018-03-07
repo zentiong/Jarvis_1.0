@@ -15,20 +15,22 @@
 </script>
 
 @section('body')
-
+<br>
+<br>
 	<main class="container create-page">
 		<section class="row crud-page-to">
-			<h1 class="crud-page-title">Add Assessment Item</h1>
+			<h1 class="crud-page-title">Add a Criteria</h1>
 		</section>
 		<section>
 			<!-- if there are creation errors, they will show here -->
 			{{ Html::ul($errors->all()) }}
 
 			{{ Form::open(array('url' => 'assessments/'.$id.'/assessment_items')) }}
-			    <div class="form-group">
+			    <div class="form-group" >
 			        {{ Form::label('criteria', 'Criteria') }}
 			        {{ Form::text('criteria', Request::old('criteria'), array('class' => 'form-control', 'autofocus')) }}
 			    </div>
+			    <hr id="a-hr">	
 
 			  	<div class="form-group text-center create-bottom-wrapper">
                     <a href="{{ URL::to('assessments/'.$id.'/assessment_items') }}" class="btn cancel-btn">Cancel</a>
@@ -39,4 +41,5 @@
 
 		</section>
 	</main>
+
 @endsection

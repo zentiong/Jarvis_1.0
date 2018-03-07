@@ -162,10 +162,9 @@ class AssessmentController extends Controller
     {
          // get all the assessments
         $assessments = Assessment::all();
+        $assessment_items = Assessment_Item::all();
         $user_assessments = User_Assessment::all();
         $skills = Skill::all();
-        $assessment_items = $assessment->assessment_items()->get();
-
 
         // load the view and pass the assessments
         return View::make('assessments.index')

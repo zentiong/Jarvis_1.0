@@ -19,9 +19,7 @@
         <section class="container-fluid">
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">Assessment for: {{ $assessment->topic }}</h1>
-                <button>
-                    <a href="{{ URL::to('assessments/'.$assessment->id.'/assessment_items/create') }}">Add Assessment Item</a>
-                </button>
+                <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Assessment</button>
             </div>
 
             <!-- will be used to show any messages -->
@@ -36,8 +34,6 @@
             <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <td class="no-stretch">Assessment ID</td>
-                    <td class="no-stretch">Assessment Item ID</td>
                     <td>Criteria </td>
                     <td class="no-stretch">Actions</td>
                 </tr>
@@ -46,8 +42,6 @@
             <tbody>
             @foreach($assessment_items as $key => $value)
                 <tr>
-                    <td>{{ $value->assessment_id }}</td>
-                    <td>{{ $value->id }}</td>
                     <td>{{ $value->criteria }}</td>
 
                     <!-- we will also add show, edit, and delete buttons -->
@@ -81,6 +75,36 @@
             </tbody>
             </table>
         </section>
+
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Assessment Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+               {{ Form::open(array('url' => 'assessments/'.$assessment->id.'/assessment_items')) }}
+                <div class="form-group" >
+                    {{ Form::label('criteria', 'Criteria') }}
+                    {{ Form::text('criteria', Request::old('criteria'), array('class' => 'form-control', 'autofocus')) }}
+                </div>
+
+                <div class="form-group text-center create-bottom-wrapper">
+                    <a href="{{ URL::to('assessments/'.$assessment->id.'/assessment_items') }}" class="btn cancel-btn">Cancel</a>
+                    {{ Form::submit('Save changes', array('class' => 'btn btn-primary create-btn text-center')) }}
+                </div>
+                
+            {{ Form::close() }}
+
+            </div>
+          </div>
+        </div>
     </main>
+
+    
+
 
 @endsection
