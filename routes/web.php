@@ -74,7 +74,8 @@ Route::get('recommend', 'TrainingController@recommend'); // For storing test res
 Route::post('recommend_fire', 'TrainingController@fire'); // For storing test results
 
 /* Sign Up */
-Route::post('confirm', 'TrainingController@confirm');
+Route::post('confirm', 'TrainingController@confirm'); // recommended
+Route::post('signup', 'TrainingController@signup'); // sariling kusa
 
 /* Skills */
 Route::group(['middleware' => 'HR'], function() {

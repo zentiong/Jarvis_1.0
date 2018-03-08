@@ -115,5 +115,38 @@
         </div>
     @endforeach
 
+<h1> Trainings Not Recommended to you</h1>
+
+    <!-- Different Logic -->
+
+    @foreach($trainings_general as $key => $training)
+        {{ $present = false }} 
+        <div style="border: 1px solid red;">
+            <h6> Training </h6>
+            <p>Title: {{$training->title}}</p>
+            <p>Date: {{$training->date}}</p>
+            <p>Venue: {{$training->venue}}</p>
+        @foreach($user_trainings as $key => $user_training)
+            @if($user_training->training_id == $training->id) 
+                <?php
+                    $present = true 
+                ?>
+            @endif
+        @endforeach
+        @if($present==false) 
+            {{ Form::open(array('url' => 'signup')) }}
+            {{ Form::hidden('user_id', $value = Auth::user()->id) }}
+            {{ Form::hidden('training_id', $value = $training->id) }}
+            {{ Form::submit('Confirm Slot', array('class' => 'btn btn-primary create-btn text-center')) }}
+            {{ Form::close() }}
+        @else
+            @if($user_training->confirmed == true)
+                 <div style="border: 1px solid blue; width: 100px; height: 30px;">
+                    <h6>Going</h6>
+                </div> 
+            @endif
+        @endif
+        </div>
+    @endforeach
 
 @endsection
