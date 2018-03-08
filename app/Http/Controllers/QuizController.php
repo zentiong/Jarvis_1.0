@@ -189,7 +189,7 @@ class QuizController extends Controller
     {
          // get all the quizzes
         $quizzes = Quiz::all();
-        $user_quizzes = User_Quiz::all();
+        $user_quizzes = User_Quiz::all(); // FIX THIS SOON
 
         // load the view and pass the quizzes
         return View::make('quizzes.take_quizzes')

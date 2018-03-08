@@ -23,7 +23,6 @@
 
 <?php 
 $user_id = Auth::user()->id;
-$taken = false;
 ?>
 
 
@@ -36,40 +35,32 @@ $taken = false;
         </tr>
     </thead>
     <tbody>
-    @foreach($quizzes as $key => $value)
+    @foreach($quizzes as $key => $quiz)
         <tr>
-            
-
-            <td>{{ $value->quiz_id }}</td>
-            <td>{{ $value->topic }}</td>
+            <td>{{ $quiz->quiz_id }}</td>
+            <td>{{ $quiz->topic }}</td>
 
             <!-- we will also add show, edit, and delete buttons -->
             <td>
-
-            <!-- Error! -->
-                @foreach($user_quizzes as $key => $check)
-                <?php 
-
+            <?php
                 $taken = false;
-
-                $check_user = $check->user_id;
-                $check_quiz = $check->quiz_id;
-
-                $quiz_id = $value->quiz_id;
-
-                if(($check_user==$user_id)and($check_quiz==$quiz_id))
-                {
-                    $taken = true;
-                }
-
-
+            ?>
+            <!-- Error! -->
+                @foreach($user_quizzes as $key => $user_quiz)
+                    
+                <?php
+                    if(($user_quiz->user_id==$user_id)and($quiz->quiz_id==$user_quiz->quiz_id))
+                    {
+                        $taken = true;
+                    }
 
                 ?>
+
                 @endforeach
                 @if($taken == false)
-                 <a class="btn btn-small btn-info" href="{{ URL::to('quizzes/' . $value->quiz_id . '/take') }}">Take this Quiz</a>
+                 <a class="btn btn-small btn-info" href="{{ URL::to('quizzes/' . $quiz->quiz_id . '/take') }}">Take this Quiz</a>
                 @else
-                <a class="btn btn-small btn-info" >No Entry</a>
+                <a class="btn btn-small btn-info" >Already Taken :( Hanap ka nalang ng iba. Sad life bro.</a>
                 @endif
 
             </td>

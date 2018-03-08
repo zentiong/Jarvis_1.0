@@ -110,8 +110,21 @@
 
                     {{ Form::label('training', 'Training') }}
                     <select id="training_id" class="form-control" name="training_id">
-                        @foreach($trainings as $key => $value)
-                        <option value="<?php echo $value->id ?>">{{$value->title}}</option>
+                        @foreach($trainings as $key => $training)
+                        <?php
+                            $taken = false;
+                        ?>
+                        <!-- Implement 1 quiz is to 1 training -->
+                            @foreach($quizzes as $key => $quiz)
+                                @if($quiz->training_id == $training->id)
+                                    <?php 
+                                        $taken = true;
+                                    ?>
+                                @endif
+                            @endforeach
+                            @if(!$taken)
+                                <option value="<?php echo $training->id ?>">{{$training->title}}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>

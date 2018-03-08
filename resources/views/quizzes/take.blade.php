@@ -64,6 +64,7 @@ Take Quiz Implementation:
     <thead>
         <tr>
             <td>Question</td>
+            <td>Answer</td>
         </tr>
     </thead>
 
@@ -91,7 +92,7 @@ Take Quiz Implementation:
                     Assign the value being inputted to answer_attempt
                 -->
 
-                {{ Form::label('answer_attempt[]', 'Answer') }}
+                
                 {{ Form::text('answer_attempt[]', Request::old('DEFAULT AA'), array('class' => 'form-control')) }}
 
 
