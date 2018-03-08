@@ -62,12 +62,25 @@ class TrainingController extends Controller
                 $user_training = new User_Training;
                 $user_training->training_id = Input::get('training');
                 $user_training->user_id = Input::get($user->id);
+                $user_training->recommended = true;
                 $user_training->save();
             }
         }
 
         Session::flash('message', 'Successfully sent Recommendations!');
         return Redirect::to('recommend');
+    }
+
+    public function signup()
+    {
+        $user_training = new User_Training;
+        $user_training->training_id = Input::get('training_id');
+        $user_training->user_id = Input::get('user_id');
+        $user_training->confirmed = true;
+        $user_training->save();
+
+        Session::flash('message', 'Successfully signed up!');
+        return Redirect::to('levels');
     }
 
     public function confirm()

@@ -20,6 +20,7 @@ class CreateUserTrainingsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('training_id')->unsigned();
             $table->foreign('training_id')->references('id')->on('trainings');
+            $table->boolean('recommended')->default(false);
             $table->boolean('confirmed')->default(false);
             $table->boolean('attended')->default(false);
         });
