@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+Use App\Skill;
 use App\Assessment;
 use App\Assessment_Item;
 use Illuminate\Http\Request;
@@ -21,6 +21,7 @@ class Assessment_ItemController extends Controller
      */
      public function __construct() {
         $this->middleware('auth');
+       
     }
 
     public function index($id)
@@ -28,6 +29,7 @@ class Assessment_ItemController extends Controller
         
   // get all the assessments
         $assessment = Assessment::find($id);
+        $skills = Skill::all();
 
         //working SQL
         //$assessment_items = Assessment_Item::where('id', $id)->get();
@@ -38,6 +40,7 @@ class Assessment_ItemController extends Controller
           // show the view and pass the assessment to it
         return View::make('assessment_items.index')
             ->with('assessment', $assessment)
+            ->with('skills', $skills)
             ->with('assessment_items', $assessment_items);
     }
 

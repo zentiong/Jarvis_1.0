@@ -18,8 +18,15 @@
     <main class="container-fluid">
         <section class="container-fluid">
             <div class="row crud-page-top">
-                <h1 class="crud-page-title">Assessment for: {{ $assessment->topic }}</h1>
-                <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Assessment</button>
+                 @foreach($skills as $key => $skill)
+                            @if($skill->id == $assessment->skill_id)
+                                <h1 class="crud-page-title">Assessment for: {{$skill->name}}</h1>
+                              
+                                
+                            @endif
+                        @endforeach
+                
+                <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Assessment Item</button>
             </div>
 
             <!-- will be used to show any messages -->
@@ -47,11 +54,7 @@
                     <!-- we will also add show, edit, and delete buttons -->
                     <td class="table-actions">
 
-                        <!-- show the assessment (uses the show method found at GET /assessments/{id} -->
-                        <!-- -->
-                        <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View this item" href="{{ URL::to('assessments/'.$assessment->id.'/assessment_items/'.$value->id) }}">
-                            <i class="fa fa-user fa-lg"></i>
-                        </a>
+                        
                        
                         <!-- edit this assessment (uses the edit method found at GET /assessments/{id}/edit -->
                         <!-- -->

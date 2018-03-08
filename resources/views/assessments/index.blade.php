@@ -78,14 +78,7 @@
                                 <i class="fa fa-user fa-lg"></i>
                             </a>
 
-                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="Add Criteria"  href="{{ URL::to('assessments/' . $assessment->id) . '/assessment_items/create' }}">
-                                <i class="fa fa-plus fa-lg"></i>
-                            </a>
-
-                            <!-- edit this quiz (uses the edit method found at GET /assessments/{id}/edit -->
-                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit assessment" href="{{ URL::to('assessments/' . $assessment->id . '/edit') }}">
-                                <i class="fa fa-pencil fa-lg"></i>
-                            </a>
+                            
 
                             <!-- delete the quiz (uses the destroy method DESTROY /assessments/{id} -->
                             <!-- we will add this later since its a little more complicated than the other two buttons -->

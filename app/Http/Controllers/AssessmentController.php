@@ -22,6 +22,7 @@ class AssessmentController extends Controller
 {
     public function __construct() {
         $this->middleware('auth');
+        $this->middleware('Manager', ['only' => ['make_assessments']]);
     }
 
     
