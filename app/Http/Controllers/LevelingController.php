@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Training;
-use App\Quiz;
 use App\Section;
+use App\Quiz;
+use App\User_Quiz;
 use App\User_Training;
+use App\Training;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -28,6 +29,7 @@ Class LevelingController extends Controller
 		$trainings = Training::all();
 		$quizzes = Quiz::all();
 		$sections = Section::all();
+		 $user_quizzes = User_Quiz::all();
 
 		// Trainings
 
@@ -95,7 +97,9 @@ Class LevelingController extends Controller
 						->with('sections', $sections)
 						->with('trainings_personal', $trainings_personal)
             			->with('user_trainings', $user_trainings)
-            			->with('trainings_general', $trainings_general);
+            			->with('trainings_general', $trainings_general)
+            			->with('trainings',$trainings)
+            			->with('user_quizzes', $user_quizzes);
 				}
 				
 			}
