@@ -231,6 +231,9 @@ body.newsletter {
 	.login-button {
 		text-align: right;
 		margin-left: auto;
+		position:absolute;
+		right: 0;
+		margin-right: 10px;
 
 		.current-username {
 			display: inline;
@@ -254,6 +257,9 @@ body.newsletter {
 	    }
 	}
 	.login-button-yellow {
+		position:absolute;
+		right: 0;
+		margin-right: 10px;
 		color: #2F2F2F;
     	border: 1px solid transparent;
 		background-color: $zalora-yellow;

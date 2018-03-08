@@ -193,7 +193,10 @@ body.newsletter {
     border: none !important; }
   body.newsletter .login-button {
     text-align: right;
-    margin-left: auto; }
+    margin-left: auto;
+    position: absolute;
+    right: 0;
+    margin-right: 10px; }
     body.newsletter .login-button .current-username {
       display: inline;
       margin-right: 5px;
@@ -212,6 +215,9 @@ body.newsletter {
       border-radius: 2px;
       font-family: "Apercu Bold", sans-serif !important; }
   body.newsletter .login-button-yellow {
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
     color: #2F2F2F;
     border: 1px solid transparent;
     background-color: #F8E71C;
