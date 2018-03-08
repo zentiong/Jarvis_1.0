@@ -83,7 +83,7 @@ class TrainingController extends Controller
 
 
         Session::flash('message', 'Successfully Confirmed Slot!');
-        return Redirect::to('users/'.$user_id);
+        return Redirect::to('levels');
     }
 
     // Commented out coz not sure if necessary -Ferny
