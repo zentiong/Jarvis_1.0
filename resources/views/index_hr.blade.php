@@ -118,7 +118,7 @@
                 <thead>
                     <tr>
                         <td>Date</td>
-                        <td>Description</td>
+                        <td>Title</td>
                         <td>Speaker</td>
                         <td>Venue</td>
                         <td class="no-stretch">Actions</td>
@@ -128,7 +128,7 @@
                 @foreach($trainings as $key => $value)
                     <tr>
                         <td>{{ $value->date }}</td>
-                        <td>{{ $value->description }}</td>
+                        <td>{{ $value->title }}</td>
                         <td>{{ $value->speaker }}</td>
                         <td>{{ $value->venue }}</td>
 

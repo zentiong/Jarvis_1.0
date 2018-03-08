@@ -24,7 +24,7 @@
 			<?php 
 			$current_user = Auth::user();
 			$current_id = Auth::user()->id;
-			$trainings = $current_user->training_session_id
+
 			?>
 
 			<p>NORMAL EMPLOYEE LANDING</p>
@@ -86,6 +86,34 @@
             </script>
 		</section>
 	</main>
+
+    <p>--------------------------------------------------------</p>
+
+<h1> Trainings Recommended to you</h1>
+    
+    @foreach($trainings_personal as $key => $training)
+        <div style="border: 1px solid red;">
+            <h6> Training </h6>
+            <p>Title: {{$training->title}}</p>
+            <p>Date: {{$training->date}}</p>
+            <p>Venue: {{$training->venue}}</p>
+        @foreach($user_trainings as $key => $user_training)
+            @if($user_training->training_id == $training->id) 
+                @if($user_training->confirmed == false)
+                    {{ Form::open(array('url' => 'confirm')) }}
+                    {{ Form::hidden('training_id', $value = $training->id) }}
+                    {{ Form::hidden('user_id', $value = Auth::user()->id) }}
+                    {{ Form::submit('Confirm Slot', array('class' => 'btn btn-primary create-btn text-center')) }}
+                    {{ Form::close() }}
+                @else
+                    <div style="border: 1px solid blue; width: 100px; height: 30px;">
+                        <h6>Going</h6>
+                    </div>
+                @endif               
+            @endif
+        @endforeach
+        </div>
+    @endforeach
 
 
 @endsection

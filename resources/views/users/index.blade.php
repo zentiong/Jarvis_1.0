@@ -188,7 +188,7 @@
                         <!-- Manager? -->
                         <div class="form-group">
                             {{ Form::label('manager_check', 'Manager?') }}
-                            {{ Form::checkbox('manager_check', 'true', Request::old('manager_check')) }}
+                            {{ Form::checkbox('manager_check', 1, Request::old('manager_check')) }}
                         </div>
            
               </div>

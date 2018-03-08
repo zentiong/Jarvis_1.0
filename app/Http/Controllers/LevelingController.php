@@ -6,6 +6,7 @@ use App\User;
 use App\Training;
 use App\Quiz;
 use App\Section;
+use App\User_Training;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -28,13 +29,23 @@ Class LevelingController extends Controller
 		$quizzes = Quiz::all();
 		$sections = Section::all();
 
+		// Trainings
+
+        $trainings_personal = array();
+        $user_trainings = User_Training::where('user_id',$current_user->id)->get();
+
+        foreach($user_trainings as $key => $user_training) {
+            $training_temp = Training::where('id',$user_training->training_id)->first(); 
+            array_push($trainings_personal, $training_temp);
+        }
+
 		
 		
 		if($current_user!=NULL)
 		{
 			if($dept=="Human Resources" OR $dept==2)
 			{
-				if($mg==1)
+				if($mg==1) // HR x Manager
 				{
 					return view('index_hg')
 						->with('users', $users) 	
@@ -42,7 +53,7 @@ Class LevelingController extends Controller
 						->with('quizzes', $quizzes)
 						->with('sections', $sections);
 				}
-				else
+				else // HR
 				{
 					return view('index_hr')
 						->with('users', $users)
@@ -54,19 +65,21 @@ Class LevelingController extends Controller
 			}
 			else
 			{
-				if($mg==1)
+				if($mg==1) // Manager 
 				{
 					return view('index_mg')
 						->with('users', $users)
 						->with('quizzes', $quizzes)
 						->with('sections', $sections);
 				}
-				else
+				else // Normal
 				{
 					return view('index_nr')
 						->with('users', $users)
 						->with('quizzes', $quizzes)
-						->with('sections', $sections);
+						->with('sections', $sections)
+						->with('trainings_personal', $trainings_personal)
+            			->with('user_trainings', $user_trainings);
 				}
 				
 			}
