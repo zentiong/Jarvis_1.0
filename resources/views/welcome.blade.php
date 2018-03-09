@@ -22,36 +22,7 @@
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </noscript>
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
-    <script type="text/javascript">
-        // $("#nav").scrollspy();
-        function hideShowLogin() {
-            console.log(window.pageYOffset);
-            var x = document.getElementById('login-popup');
-            var y = document.getElementById('login-button');
-            if (x.style.display === "block") {
-                x.style.display = "none";
-                y.classList.remove('clicked');
-            }
-            else {
-                x.style.display = "block";
-                y.classList.add('clicked');
-            }
-        }
-        function closeLoginError() {
-            var x = document.getElementById('login-error-wrapper');
-            x.style.display = "none";
-        }
-        function scrollPos() {
-            var x = document.getElementById('services-container').scrollTop;
-            console.log(window.pageYOffset);
-        }
 
-        if (typeof jquery == 'undefined') {
-            console.log("no jquery");
-        }
-    </script>
     
 </head>
 
@@ -85,10 +56,10 @@
                     }
                 
                     $monthName = date("F", mktime(null, null, null, $month));
-                    echo '<div class="text-right month-name"><span class="subsection-label">'.$monthName.' '.$year.'</span></div>';
+                    echo '<div class="text-center month-name">'.$monthName.' '.$year.'</div>';
                 ?>
                 
-                <form method="get" class="text-right">
+                <form method="get" class="text-center">
                     <select name="month" id="month">
                         <?php 
                             $result = '';
@@ -111,10 +82,10 @@
                     </select>
                     <input type="submit" name="submit" value="Go" /> 
                     <?php /* "next month" control */
-                        $next_month_link = '<a href="?month='.($month != 12 ? $month + 1 : 1).'&year='.($month != 12 ? $year : $year + 1).'" class="control">Next Month >></a>';
+                        $next_month_link = '<a href="?month='.($month != 12 ? $month + 1 : 1).'&year='.($month != 12 ? $year : $year + 1).'" class="month-control">Next Month >></a>';
 
                         /* "previous month" control */
-                        $previous_month_link = '<a href="?month='.($month != 1 ? $month - 1 : 12).'&year='.($month != 1 ? $year : $year - 1).'" class="control"><<  Previous Month</a>'; 
+                        $previous_month_link = '<a href="?month='.($month != 1 ? $month - 1 : 12).'&year='.($month != 1 ? $year : $year - 1).'" class="month-control"><<  Previous Month</a>'; 
                         echo $previous_month_link;
                         echo $next_month_link;
                         $thisMonth = $year.'-'.$month.'-01';
@@ -731,22 +702,38 @@
         </section>
     </main>
     @extends('templates.newsletter-footer')
-        <!--<div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
 
-            <div class="content">
-                <div class="title m-b-md"> 
-                    Zalora Skills Tracking and Monitoring System 2
-                </div>
-        </div>-->
 </body> 
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+        // $("#nav").scrollspy();
+        function hideShowLogin() {
+            console.log(window.pageYOffset);
+            var x = document.getElementById('login-popup');
+            var y = document.getElementById('login-button');
+            if (x.style.display === "block") {
+                x.style.display = "none";
+                y.classList.remove('clicked');
+            }
+            else {
+                x.style.display = "block";
+                y.classList.add('clicked');
+            }
+        }
+        function closeLoginError() {
+            var x = document.getElementById('login-error-wrapper');
+            x.style.display = "none";
+        }
+        function scrollPos() {
+            var x = document.getElementById('services-container').scrollTop;
+            console.log(window.pageYOffset);
+        }
+
+        if (typeof jquery == 'undefined') {
+            console.log("no jquery");
+        }
+    </script>
+
 </html>

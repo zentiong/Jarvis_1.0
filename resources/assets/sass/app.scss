@@ -194,7 +194,14 @@ body.newsletter {
 	}
 
 	.month-name {
+		font-family: Courgette, cursive, sans-serif;
+		font-size: 3em;
+		color: $zalora-yellow;
 		margin: 20px 0;
+	}
+
+	.month-control {
+		margin: 0 1em;
 	}
 
 	.subsection-label {
@@ -288,7 +295,7 @@ body.newsletter {
 	}
 
 	#calendar-container {
-		overflow-x: scroll;
+		overflow-x: auto;
     	width: auto;
 
 		table.calendar {
