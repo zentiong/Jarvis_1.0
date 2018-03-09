@@ -59,28 +59,31 @@
                     echo '<div class="text-center month-name">'.$monthName.' '.$year.'</div>';
                 ?>
                 
-                <form method="get" class="text-center">
-                    <select name="month" id="month">
-                        <?php 
-                            $result = '';
-                            for($x = 1; $x <= 12; $x++) {
-                                $result .= '<option value="'.$x.'"'.($x != $month ? '' : ' selected="selected"').'>'.date('F',mktime(0,0,0,$x,1,$year)).'</option>';
-                            }
-                            echo $result;
-                        ?> 
-                    </select>
-                    <select name="year" id="year">
-                        <?php
-                            $year_range = 7;
-                            $result = '';
-                            for($x = ($year-floor($year_range/2)); $x <= ($year+floor($year_range/2)); $x++) {
-                                $result .= '<option value="'.$x.'"'.($x != $year ? '' : ' selected="selected"').'>'.$x.'</option>';
-                        
-                            }
-                            echo $result;
-                        ?>
-                    </select>
-                    <input type="submit" name="submit" value="Go" /> 
+                <form method="get" class="row month-main-control">
+                    <div class="month-dropdown">
+                       <select name="month" id="month">
+                            <?php 
+                                $result = '';
+                                for($x = 1; $x <= 12; $x++) {
+                                    $result .= '<option value="'.$x.'"'.($x != $month ? '' : ' selected="selected"').'>'.date('F',mktime(0,0,0,$x,1,$year)).'</option>';
+                                }
+                                echo $result;
+                            ?> 
+                        </select>
+                        <select name="year" id="year">
+                            <?php
+                                $year_range = 7;
+                                $result = '';
+                                for($x = ($year-floor($year_range/2)); $x <= ($year+floor($year_range/2)); $x++) {
+                                    $result .= '<option value="'.$x.'"'.($x != $year ? '' : ' selected="selected"').'>'.$x.'</option>';
+                            
+                                }
+                                echo $result;
+                            ?>
+                        </select>
+                        <input type="submit" name="submit" value="Go" /> 
+                    </div>
+                     
                     <?php /* "next month" control */
                         $next_month_link = '<a href="?month='.($month != 12 ? $month + 1 : 1).'&year='.($month != 12 ? $year : $year + 1).'" class="month-control">Next Month >></a>';
 
@@ -110,8 +113,6 @@
                         foreach ($events as $event) {
                             array_push($temp, $event);
                         }
-
-
                     ?>
                 </form>
 
