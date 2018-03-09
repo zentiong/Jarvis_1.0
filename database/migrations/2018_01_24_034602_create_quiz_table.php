@@ -17,7 +17,7 @@ class CreateQuizTable extends Migration
             $table->increments('quiz_id');
             $table->timestamps();
             $table->string('topic', 255);
-
+            $table->string('password', 255);
             $table->integer('training_id')->unsigned();
             $table->foreign('training_id')->references('id')->on('trainings');
 

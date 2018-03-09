@@ -44,20 +44,16 @@ Take Quiz Implementation:
  <br>
  <br>
 
-    
 
  <!-- {{ Form::open(array('url' => 'quizzes/'.$quiz->quiz_id.'/record')) }} -->
 
     {{ Form::open(array('url' => 'quizzes/'.$quiz->quiz_id.'/record')) }}
 
-    {{ Form::hidden('user_id', $value = Auth::user()->id) }}
     {{ Form::hidden('quiz_id', $value = $quiz->quiz_id) }}
 
-    <?php 
-
+    <?php
         $var = 0; 
- 
-    ?>
+    ?>   
     
  
     <table class="table table-striped table-bordered">

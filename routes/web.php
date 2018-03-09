@@ -50,6 +50,8 @@ Route::get('take_quizzes', 'QuizController@take_quizzes'); // Where users take t
 Route::get('quizzes/{quiz}/take', 'QuizController@take'); // For storing test results
 Route::post('quizzes/{quiz}/record', 'QuizController@record'); // For storing test results
 
+Route::post('verify_pw', 'QuizController@verify_pw'); // For storing test results
+
 Route::get('results', 'QuizController@results');
 
 /* Nested CRUD Assessment x Assessment_Items */

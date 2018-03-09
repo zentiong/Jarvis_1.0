@@ -12,6 +12,8 @@ use App\Section;
 use App\Training;
 use App\Section_Attempt;
 
+use Auth;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -25,12 +27,31 @@ class QuizController extends Controller
         $this->middleware('auth');
     }
 
+    public function verify_pw(Request $request)
+    {
+        $user_id = Input::get('user_id');
+
+        $quiz = Quiz::find(Input::get('quiz_id'));
+        $realpw = Input::get('password');
+        $idealpw = $quiz->password;
+        //if mali password
+        if($realpw != $idealpw)
+        {
+            Session::flash('message', 'MALI PASSWORD MO BRAD. Nilagay mo:'.$realpw.', Ang dapat: '.$idealpw);
+            return Redirect::to('levels');
+        }
+        else
+        {
+            return Redirect::to('quizzes/' . $quiz->quiz_id . '/take')
+            ->with('user_id', $user_id);
+        }      
+
+    }
     
     public function take($quiz_id)
     {
-        
-  // get all the quizzes
         $quiz = Quiz::find($quiz_id);
+        $user_id = Input::get('user_id');
 
         $sections = Section::where('quiz_id',$quiz_id)->get();
         $questions = array();
@@ -42,7 +63,6 @@ class QuizController extends Controller
             }
         }
 
-          // show the view and pass the quiz to it
         return View::make('quizzes.take')
             ->with('quiz', $quiz)
             ->with('questions', $questions);
@@ -57,7 +77,7 @@ class QuizController extends Controller
         // User Quiz Instantiation
         
             $user_quiz = new User_Quiz; // New Instance of User Quiz
-            $user_quiz->user_id = Input::get('user_id'); //User Quiz Details
+            $user_quiz->user_id = Auth::user()->id; //User Quiz Details
             $user_quiz->quiz_id = $quiz_id; //User Quiz Details
             $user_quiz->save(); // Save so that its ID can be retreived
 
@@ -167,7 +187,7 @@ class QuizController extends Controller
             Session::flash('message', 'Successfully taken quiz! Congratulations!'
          );
         
-        return Redirect::to('take_quizzes');
+        return Redirect::to('levels');
 
     }
 
@@ -259,6 +279,7 @@ class QuizController extends Controller
             // store
             $quiz = new Quiz;
             $quiz->topic = Input::get('topic');
+            $quiz->password = Input::get('password');
             $quiz->training_id = Input::get('training_id');
             $quiz->save();
 
