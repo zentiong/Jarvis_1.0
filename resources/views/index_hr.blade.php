@@ -424,24 +424,4 @@
         </section>
 
     </main>
-
-    
-<<<<<<< HEAD
-=======
-    <script src="{{ URL::asset('js/dashboard.js') }}"></script>
-
-    <script type="text/javascript">
-        // enables dynamic navbar
-        $(document).ready(function() {
-            var a = document.getElementById('levels');
-            a.classList.toggle("active");
-        });
-
-        // enables Bootstrap tooltips
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
->>>>>>> bce152bd104dd47172173c948b5c99a919e336ab
-
 @endsection
