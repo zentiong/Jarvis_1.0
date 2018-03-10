@@ -52,7 +52,7 @@ body.newsletter {
 	font-family: "Apercu Regular", sans-serif;
 	padding-top: 70px;
 	position: relative;
-	font-size: 90%;
+	font-size: 85%;
 
 	i.fa {
 		// all Font Awesome icons
@@ -202,18 +202,17 @@ body.newsletter {
 
 	.month-dropdown {
 		order: 2;
+		margin: 0 auto !important;
 	}
-
 	.month-control {
 		margin: 0 1em;
+		color: $zalora-yellow;
 	}
-	.month-main-control month-control:nth-child(1) {
+	.month-control:first-child {
 		order: 1;
-		margin-right: auto !important;
 	}
-	.month-main-control month-control:nth-child(2) {
+	.month-control:last-child {
 		order: 3;
-		margin-left: auto !important;
 	}
 
 	.subsection-label {
@@ -276,7 +275,6 @@ body.newsletter {
 	    }
 	}
 	.login-button-yellow {
-		position:absolute;
 		right: 0;
 		margin-right: 10px;
 		color: #2F2F2F;
@@ -618,7 +616,6 @@ body.newsletter {
 	}
 
 	#hr-corp-container {
-
 		.hr-corp-row {
 			display: flex;
 			flex-flow: row wrap;
@@ -629,7 +626,7 @@ body.newsletter {
 			.hr-corp-single {
 				margin: 1em 0.8em 0;
 				text-align: center;
-				flex-basis: 9.3em;
+				flex-basis: 10em;
 				flex-grow: 1;
 
 				img {
@@ -657,8 +654,9 @@ body.newsletter {
 		margin-top: 10em;
 		width: 100%;
 		background-color: $black-1;
-		color: $white-3;
+		color: $white-5;
 		font-family: 'Open Sans', sans-serif;
+		font-weight: 100;
 		padding: 1em;
 		line-height: 1.2;
 
@@ -843,6 +841,13 @@ body.dashboard {
 					box-shadow: none;
 				}
 			}
+
+			.dashboard-content {
+				background-color: $white-1;
+				border: 1px solid $dashboard-content-border;
+				max-height: -webkit-fill-available;
+				height: 500px;
+			}
 		}
 
 		.hr-pastel {
@@ -871,6 +876,7 @@ body.dashboard {
 			font-size: 90%;
 			height: fit-content;
 			letter-spacing: 2px;
+			padding: 6px 12px;
 			text-transform: uppercase;
 		}
 

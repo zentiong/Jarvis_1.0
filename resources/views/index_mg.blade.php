@@ -1,59 +1,4 @@
 @extends('templates.dashboard-master') 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script type="text/javascript">
-
-    // enables Bootstrap tooltips
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-
-    if (typeof jQuery == 'undefined') {
-        console.log('jQuery is not defined! you poor thing')
-    }
-    else {
-        console.log('jQuery is defined!');
-    }
-    
-    function openTab(evt, cityName) {
-        // Declare all variables
-        var i, tabcontent, tablinks;
-
-        // Get all elements with class="tabcontent" and hide them
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-
-        // Get all elements with class="tablinks" and remove the class "active"
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-
-        // Show the current tab, and add an "active" class to the button that opened the tab
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-        var x = evt.currentTarget.classList;
-        for (i = 0; i < x.length; i++) {
-            if (x[i] == "tablinks") {
-                console.log(x[i]);
-                x[i].firstChild
-            }
-        }
-    }
-
-    $(document).ready(function() {
-        var a = document.getElementById('levels');
-        var b = document.getElementById('employees');
-        var tabarray = document.getElementsByClassName('tablinks');
-        var initialTab = tabarray[0];
-        initialTab.classList.toggle('active');
-        a.classList.toggle("active");
-        b.style.display = 'none';
-    });
-
-</script>
 
 @section('body')
 
@@ -86,8 +31,8 @@
 
         <section class="container dashboard-container">
             <div class="row dashboard-tab-container">
-                <button class="btn tablinks" onclick="openTab(event, 'skills')">Personal</button>
-                <button class="btn tablinks"  onclick="openTab(event, 'employees')">Department-wide</button>
+                <button class="btn tablinks" onclick="openTab(event, 'personal')">Personal</button>
+                <button class="btn tablinks"  onclick="openTab(event, 'non-personal')">Department-wide</button>
             </div>
             <div class="row dashboard-body">
                 <div class="col-md-7">
@@ -107,7 +52,7 @@
             <button class="tablinks" onclick="openTab(event, 'employees')">Employees Under Me</button> -->
         </div>
 
-        <div id="skills" class="tabcontent">
+        <div id="personal" class="tabcontent">
             <button onclick="update_data(myChart,relevant)">Relevant Skills</button>
             <button onclick="update_data(myChart,alls)">All Skills</button>
             <canvas id="myChart" width=100 height=500></canvas>
@@ -166,7 +111,7 @@
             </script>
         </div>
 
-        <section id="employees" class="tabcontent container-fluid">
+        <section id="non-personal" class="tabcontent container-fluid">
                 
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
@@ -220,7 +165,25 @@
             </table>
         </div>
     </main>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ URL::asset('js/dashboard.js') }}"></script>
 
+    <script type="text/javascript">
+
+        // enables Bootstrap tooltips
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        if (typeof jQuery == 'undefined') {
+            console.log('jQuery is not defined! you poor thing')
+        }
+        else {
+            console.log('jQuery is defined!');
+        }
+
+    </script>
 
 
 @endsection
