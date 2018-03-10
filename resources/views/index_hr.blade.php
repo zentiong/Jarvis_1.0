@@ -1,4 +1,5 @@
 @extends('templates.dashboard-master') 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 @section('body')
 
@@ -36,7 +37,7 @@
             <!-- PERSONAL CONTENT CONTAINER -->
             <div class="row dashboard-body tabcontent" id="personal">
                 <div class="col-md-7">
-                    <h6 class="dashboard-header">Skills</h6>
+                    <h5 class="dashboard-header">Skills</h5>
                     <div class="dashboard-content">
                         <button onclick="update_data(myChart,relevant)">Relevant Skills</button>
                         <button onclick="update_data(myChart,alls)">All Skills</button>
@@ -97,18 +98,87 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h6 class="dashboard-header">Trainings</h6>
+                    <h5 class="dashboard-header">Trainings</h5>
+                    <div class="dashboard-content">
+                        <div class="recommended-wrapper">
+                            <h6 class="content-header"><b>Recommended Trainings</b></h6>
+                            @foreach($trainings_personal as $key => $training)
+                                <div class="trainings-box">
+                                    <div>
+                                        <!-- text -->
+                                        <p><b>{{$training->title}}</b></p>
+                                        <span>{{date('h:i a', strtotime($training->starting_time))}}</span>
+                                        <span>{{
+                                            $training->date}}</span>
+                                        <p>
+                                            {{$training->venue}}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <!-- button -->
+                                        @foreach($user_trainings as $key => $user_training)
+                                        @if($user_training->training_id == $training->id) 
+                                            @if($user_training->confirmed == false)
+                                                {{ Form::open(array('url' => 'confirm', 'style' => 'margin: 0')) }}
+                                                {{ Form::hidden('training_id', $value = $training->id) }}
+                                                {{ Form::hidden('user_id', $value = Auth::user()->id) }}
+                                                {{ Form::submit('SIGN UP', array('class' => 'btn text-center')) }}
+                                                {{ Form::close() }}
+                                            @else
+                                                <span class="going-state">&#x2713;   I'M GOING</span>
+                                            @endif             
+                                        @endif
+                                    @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="dashboard-content">
+                        <div class="incoming-wrapper">
+                            <h6 class="content-header"><b>Trainings this month</b></h6>
+                            @foreach($trainings_general as $key => $training)
+                                {{ $present = false }} 
+                                <div class="trainings-box">
+                                    <!-- text -->
+                                    <p>Title: {{$training->title}}</p>
+                                    <p>Date: {{$training->date}}</p>
+                                    <p>Venue: {{$training->venue}}</p>
+                                @foreach($user_trainings as $key => $user_training)
+                                    @if($user_training->training_id == $training->id) 
+                                        <?php
+                                            $present = true 
+                                        ?>
+                                    @endif
+                                @endforeach
+                                @if($present==false) 
+                                    {{ Form::open(array('url' => 'signup')) }}
+                                    {{ Form::hidden('user_id', $value = Auth::user()->id) }}
+                                    {{ Form::hidden('training_id', $value = $training->id) }}
+                                    {{ Form::submit('Confirm Slot', array('class' => 'btn btn-primary create-btn text-center')) }}
+                                    {{ Form::close() }}
+                                @else
+                                    @if($user_training->confirmed == true)
+                                         <div class="going-state">
+                                            <h6>Going</h6>
+                                        </div> 
+                                    @endif
+                                @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- NON-PERSONAL CONTENT CONTAINER -->
             <div class="row dashboard-body tabcontent" id="non-personal">
                 <div class="col-md-7">
-                    <h6 class="dashboard-header">Overall skills statistics</h6>
+                    <h5 class="dashboard-header">Overall skills statistics</h5>
                     <div class="dashboard-content">
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h6 class="dashboard-header">Overall training statistics</h6>
+                    <h5 class="dashboard-header">Overall training statistics</h5>
                     <div class="dashboard-content">
                         <table class="table table-striped table-bordered">
                             <thead>
@@ -161,7 +231,6 @@
                     </div>
                 </div>
             </div>
-            <h1> Trainings Recommended to you</h1>
     
     @foreach($trainings_personal as $key => $training)
         <div style="border: 1px solid red;">
@@ -337,7 +406,7 @@
 
     </main>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
     <script src="{{ URL::asset('js/dashboard.js') }}"></script>
 
     <script type="text/javascript">
