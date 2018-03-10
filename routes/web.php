@@ -40,6 +40,7 @@ Route::resource('quizzes.questions', 'QuestionController');
 /* Sections */ 
 
 Route::get('quizzes/{quiz}/add_section', 'QuestionController@add_section');
+Route::get('history', 'QuizController@quiz_history');
 Route::post('quizzes/{quiz}/store_section', 'QuestionController@store_section');
 
 Route::post('quizzes/{quiz}/questions/create', 'QuestionController@create');
