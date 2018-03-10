@@ -56,7 +56,7 @@ class TrainingController extends Controller
                 array_push($user_trainings, $t);
             }
          }
-         
+
         // load the view and pass the employees
         return View::make('trainings.recommend')
             ->with('trainings', $trainings)
@@ -191,13 +191,17 @@ class TrainingController extends Controller
         }
 
         $quiz = Quiz::where('training_id', $id)->first();
-        //$user_quizzes = array();
-        $user_quizzes = User_Quiz::where('quiz_id',$quiz->quiz_id)->get();
         $attendees = array();
 
-        foreach ($user_quizzes as $key => $user_quiz) {
-            $user_id = $user_quiz->user_id;
-            array_push($attendees, User::find($user_id));
+        if($quiz!=null)
+        {
+        //$user_quizzes = array();
+            $user_quizzes = User_Quiz::where('quiz_id',$quiz->quiz_id)->get();
+
+            foreach ($user_quizzes as $key => $user_quiz) {
+                $user_id = $user_quiz->user_id;
+                array_push($attendees, User::find($user_id));
+            }
         }
 
         return View::make('trainings.show')

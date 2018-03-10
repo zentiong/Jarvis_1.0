@@ -69,7 +69,7 @@
                                 <i class="fa fa-pencil fa-lg"></i>
                             </a>
 
-                                {{ Form::open(array('url' => 'training/' . $value->id, 'class' => 'pull-right')) }}
+                                {{ Form::open(array('url' => 'trainings/' . $value->id, 'class' => 'pull-right')) }}
                                 {{ Form::hidden('_method', 'DELETE') }}
                                 <div data-toggle="tooltip" data-placement="bottom" title="Remove training session">
                                     {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}

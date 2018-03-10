@@ -256,7 +256,10 @@
                 </button>
               </div>
               <div class="modal-body">
-
+              <?php
+                  $t =  $quiz_to_take->topic 
+                  ?>
+              <h2><?php echo $t ?></h2>
                 {{ Form::open(array('url' =>'verify_pw' )) }}
                         <div class="form-group">
 

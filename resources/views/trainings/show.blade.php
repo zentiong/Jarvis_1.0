@@ -59,6 +59,7 @@
     <h5> Attended (Taken Quiz)</h5>
 
     <ul>
+
       @foreach($attendees as $key => $user)
       <li>{{$user->first_name}} {{$user->last_name}}</li>
       @endforeach
