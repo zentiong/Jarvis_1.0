@@ -846,8 +846,52 @@ body.dashboard {
 				background-color: $white-1;
 				border: 1px solid $dashboard-content-border;
 				max-height: -webkit-fill-available;
-				height: 500px;
+				min-height: 1px;
+				height: auto;
 			}
+
+			.content-header {
+				border-bottom: 1px solid $white-2;
+				padding: 1em;
+			}
+
+			.recommended-wrapper {
+				background-color: $recommended-wrapper;
+				color: $white-2;
+				height: fit-content;
+			}
+
+			.trainings-box {
+				margin: 1em;
+				padding: 0 1em 1em;
+				border-bottom: 1px solid $white-3;
+				display: flex;
+				flex-flow: row nowrap;
+				align-items: center;
+				justify-content: space-between;
+
+				p {
+					margin: 0;
+				}
+
+				input[type="submit"] {
+					background-color: $white-1;
+					border-radius: 15px;
+					font-size: 0.8em;
+					letter-spacing: 2px;
+					text-transform: uppercase;
+				}
+
+				.going-state {
+					font-size: 0.8em;
+					letter-spacing: 1px;
+					text-transform: uppercase;
+				}
+			}
+			.trainings-box:last-child {
+				border-bottom: none;
+			}	
+			
 		}
 
 		.hr-pastel {
@@ -978,7 +1022,7 @@ body.dashboard {
 	footer {
 		margin-top: 10em;
 		width: 100%;
-		border-top: 1px solid $gray-1;
+		border-top: 1px solid $white-2;
 		background-color: $white-1;
 		color: $white-3;
 		font-family: 'Open Sans', sans-serif;
