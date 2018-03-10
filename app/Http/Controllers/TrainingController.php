@@ -42,13 +42,26 @@ class TrainingController extends Controller
 
     public function recommend()
     {
-         $trainings = Training::all();
-         $users = User::where('supervisor_id', Auth::user()->id)->get();
+        $trainings = Training::all();
+        $users = User::where('supervisor_id', Auth::user()->id)->get();
 
+
+        $user_trainings = array();
+
+         foreach ($users as $key => $user) {
+
+            $temp = User_Training::where('user_id',$user->id)->get();
+
+            foreach ($temp as $key => $t) {
+                array_push($user_trainings, $t);
+            }
+         }
+         
         // load the view and pass the employees
         return View::make('trainings.recommend')
             ->with('trainings', $trainings)
-            ->with('users', $users);
+            ->with('users', $users)
+            ->with('user_trainings', $user_trainings);
     }
 
     public function fire()

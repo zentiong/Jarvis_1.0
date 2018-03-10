@@ -1,5 +1,20 @@
 @extends('templates.dashboard-master') 
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ URL::asset('js/dashboard.js') }}"></script>
+
+    <script type="text/javascript">
+        // enables dynamic navbar
+        $(document).ready(function() {
+            var a = document.getElementById('levels');
+            a.classList.toggle("active");
+        });
+
+        // enables Bootstrap tooltips
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 @section('body')
 
     <main class="container-fluid">
@@ -36,7 +51,7 @@
             <!-- PERSONAL CONTENT CONTAINER -->
             <div class="row dashboard-body tabcontent" id="personal">
                 <div class="col-md-7">
-                    <h6 class="dashboard-header">Skills</h6>
+                    <h5 class="dashboard-header">Skills</h5>
                     <div class="dashboard-content">
                         <button onclick="update_data(myChart,relevant)">Relevant Skills</button>
                         <button onclick="update_data(myChart,alls)">All Skills</button>
@@ -97,18 +112,96 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h6 class="dashboard-header">Trainings</h6>
+                    <h5 class="dashboard-header">Trainings</h5>
+                    <div class="dashboard-content">
+                        <div class="recommended-wrapper">
+                            <h6 class="content-header dark"><b>Recommended Trainings</b></h6>
+                            @foreach($trainings_personal as $key => $training)
+                                <div class="trainings-box">
+                                    <div>
+                                        <!-- text -->
+                                        <p><b>{{$training->title}}</b></p>
+                                        <span>{{date('h:i a', strtotime($training->starting_time))}}</span>
+                                        <span>{{
+                                            $training->date}}</span>
+                                        <p>
+                                            {{$training->venue}}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <!-- button -->
+                                        @foreach($user_trainings as $key => $user_training)
+                                        @if($user_training->training_id == $training->id) 
+                                            @if($user_training->confirmed == false)
+                                                {{ Form::open(array('url' => 'confirm')) }}
+                                                {{ Form::hidden('training_id', $value = $training->id) }}
+                                                {{ Form::hidden('user_id', $value = Auth::user()->id) }}
+                                                {{ Form::submit('SIGN UP', array('class' => 'btn text-center sign-up-btn light')) }}
+                                                {{ Form::close() }}
+                                            @else
+                                                <span class=" going-state light">&#x2714; I'M GOING</span>
+                                            @endif             
+                                        @endif
+                                    @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="dashboard-content">
+                        <div class="incoming-wrapper">
+                            <h6 class="content-header light"><b>Trainings this month</b></h6>
+                            @foreach($trainings_general as $key => $training)
+                                {{ $present = false }} 
+                                <div class="trainings-box">
+                                    <div>
+                                        <!-- text -->
+                                        <p><b>{{$training->title}}</b></p>
+                                        <span>
+                                            {{date('h:i a', strtotime($training->starting_time))}}
+                                        </span>
+                                        <span>
+                                            {{$training->date}}
+                                        </span>
+                                        <p>{{$training->venue}}</p>
+                                    </div>
+                                    <div>
+                                        @foreach($user_trainings as $key => $user_training)
+                                            @if($user_training->training_id == $training->id) 
+                                                <?php
+                                                    $present = true 
+                                                ?>
+                                            @endif
+                                        @endforeach
+                                        @if($present==false) 
+                                            {{ Form::open(array('url' => 'signup')) }}
+                                            {{ Form::hidden('user_id', $value = Auth::user()->id) }}
+                                            {{ Form::hidden('training_id', $value = $training->id) }}
+                                            {{ Form::submit('SIGN UP', array('class' => 'btn text-center sign-up-btn dark')) }}
+                                            {{ Form::close() }}
+                                        @else
+                                            @if($user_training->confirmed == true)
+                                                <span class="going-state dark">
+                                                    &#x2714; I'M GOING
+                                                </span> 
+                                            @endif
+                                        @endif
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- NON-PERSONAL CONTENT CONTAINER -->
             <div class="row dashboard-body tabcontent" id="non-personal">
                 <div class="col-md-7">
-                    <h6 class="dashboard-header">Overall skills statistics</h6>
+                    <h5 class="dashboard-header">Overall skills statistics</h5>
                     <div class="dashboard-content">
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h6 class="dashboard-header">Overall training statistics</h6>
+                    <h5 class="dashboard-header">Overall training statistics</h5>
                     <div class="dashboard-content">
                         <table class="table table-striped table-bordered">
                             <thead>
@@ -161,67 +254,6 @@
                     </div>
                 </div>
             </div>
-            <h1> Trainings Recommended to you</h1>
-    
-    @foreach($trainings_personal as $key => $training)
-        <div style="border: 1px solid red;">
-            <h6> Training </h6>
-            <p>Title: {{$training->title}}</p>
-            <p>Date: {{$training->date}}</p>
-            <p>Venue: {{$training->venue}}</p>
-        @foreach($user_trainings as $key => $user_training)
-            @if($user_training->training_id == $training->id) 
-                @if($user_training->confirmed == false)
-                    {{ Form::open(array('url' => 'confirm')) }}
-                    {{ Form::hidden('training_id', $value = $training->id) }}
-                    {{ Form::hidden('user_id', $value = Auth::user()->id) }}
-                    {{ Form::submit('Confirm Slot', array('class' => 'btn btn-primary create-btn text-center')) }}
-                    {{ Form::close() }}
-                @else
-                    <div style="border: 1px solid blue; width: 100px; height: 30px;">
-                        <h6>Going</h6>
-                    </div>
-                @endif               
-            @endif
-        @endforeach
-        </div>
-    @endforeach
-
-<h1> Incoming Trainings</h1>
-
-    <!-- Different Logic -->
-
-    @foreach($trainings_general as $key => $training)
-        {{ $present = false }} 
-        <div style="border: 1px solid red;">
-            <h6> Training </h6>
-            <p>Title: {{$training->title}}</p>
-            <p>Date: {{$training->date}}</p>
-            <p>Venue: {{$training->venue}}</p>
-        @foreach($user_trainings as $key => $user_training)
-            @if($user_training->training_id == $training->id) 
-                <?php
-                    $present = true 
-                ?>
-            @endif
-        @endforeach
-        @if($present==false) 
-            {{ Form::open(array('url' => 'signup')) }}
-            {{ Form::hidden('user_id', $value = Auth::user()->id) }}
-            {{ Form::hidden('training_id', $value = $training->id) }}
-            {{ Form::submit('Confirm Slot', array('class' => 'btn btn-primary create-btn text-center')) }}
-            {{ Form::close() }}
-        @else
-            @if($user_training->confirmed == true)
-                 <div style="border: 1px solid blue; width: 100px; height: 30px;">
-                    <h6>Going</h6>
-                </div> 
-            @endif
-        @endif
-        </div>
-    @endforeach
-
-    <p>--------------------------------------------------------</p>
 
         <h1> Quizzes you ought to take</h1>
         <?php
@@ -287,8 +319,13 @@
                          <!-- 
                             <a class="btn btn-small btn-info" href="{{ URL::to('quizzes/' . $quiz_to_take->quiz_id . '/take') }}">Take this Quiz</a>
                          -->
+                         <?php /*
 
                          <button class="btn btn-small btn-info" type="button" data-toggle="modal" <?php echo 'data-target="'.'#'.$quiz_to_take->quiz_id.'"'?>>Take this Quiz</button>
+                         
+                         */?>
+
+                           <button class="btn btn-small btn-info" type="button" data-toggle="modal" data-target="chicken">Take this Quiz</button>
                         @else
                         <a class="btn btn-small btn-info" >Already Taken :( Hanap ka nalang ng iba. Sad life bro.</a>
                         @endif
@@ -298,9 +335,8 @@
             </tbody>
         </table>
         </div>
-
-    @if(!empty($quizzes_to_take))
-    <div class="modal fade" <?php echo 'id="'.$quiz_to_take->quiz_id.'"'?> tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    @if(!empty($quizzes_to_take)) 
+    <div class="modal fade" id="chicken" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -332,25 +368,9 @@
           </div>
         </div>
     </div>
-    @endif
+    @endif 
+
         </section>
 
     </main>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{{ URL::asset('js/dashboard.js') }}"></script>
-
-    <script type="text/javascript">
-        // enables dynamic navbar
-        $(document).ready(function() {
-            var a = document.getElementById('levels');
-            a.classList.toggle("active");
-        });
-
-        // enables Bootstrap tooltips
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-
 @endsection

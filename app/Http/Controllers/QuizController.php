@@ -134,6 +134,7 @@ class QuizController extends Controller
                         $max_score = $section_attempt->max_score;
                         $max_score++;
                         $section_attempt->max_score = $max_score;
+                        $user_quiz->max_score += $max_score;
                         $section_attempt->save();
                     }   
 
@@ -182,6 +183,7 @@ class QuizController extends Controller
 
             // WORKING GREAT
             $user_quiz->score = $init_quiz_score;
+
             $user_quiz->save();
 
         // redirect
