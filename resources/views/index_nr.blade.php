@@ -281,9 +281,9 @@
     @endif
 
  <h6> Quizzes </h6>
-    @foreach ($user_trainings as $key=> $training)
-        <p>Training {{$training-></p>
-    @endforeach
+    @foreach ($trainings_attended as $key)
+        <p>Training {{$key->title}}</p>
+    
     @foreach($skills_quiz as $key => $skill)
        <p> Skill: {{$skill->name}} </p>
     
@@ -295,6 +295,6 @@
                 @endforeach       
         @endforeach
     @endforeach       
-
+    @endforeach
 
 @endsection
