@@ -47,6 +47,13 @@ Class LevelingController extends Controller
         	}
         }
 
+        $trainings_attended = array();
+        foreach($user_trainings as $key => $user_training) {
+        		$training_temp = Training::where('id',$user_training->training_id)->first(); 
+				array_push($trainings_attended, $training_temp);
+        	
+        }
+
         $trainings_general = array();
 
 
@@ -126,6 +133,7 @@ Class LevelingController extends Controller
 						->with('trainings_personal', $trainings_personal)
 						->with('section_attempts', $section_attempts)
             			->with('user_trainings', $user_trainings)
+            			->with('trainings_attended', $trainings_attended)
             			->with('skills_quiz', $skills_quiz)
             			->with('trainings_general', $trainings_general)
             			->with('trainings',$trainings)

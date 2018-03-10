@@ -6,6 +6,8 @@ use App;
 use App\User;
 use App\Training;
 use App\User_Training;
+use App\Quiz;
+use App\User_Quiz;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -175,11 +177,21 @@ class TrainingController extends Controller
             array_push($users, User::find($user_id));
         }
 
+        $quiz = Quiz::where('training_id', $id)->first();
+        //$user_quizzes = array();
+        $user_quizzes = User_Quiz::where('quiz_id',$quiz->quiz_id)->get();
+        $attendees = array();
+
+        foreach ($user_quizzes as $key => $user_quiz) {
+            $user_id = $user_quiz->user_id;
+            array_push($attendees, User::find($user_id));
+        }
 
         return View::make('trainings.show')
             ->with('training', $training)
             ->with('user_trainings', $user_trainings)
-            ->with('users',$users);
+            ->with('users',$users)
+            ->with('attendees',$attendees);
     }
     
 

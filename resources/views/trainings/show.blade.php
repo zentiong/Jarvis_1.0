@@ -20,6 +20,7 @@
     <?php
     	$invited = array();
     	$going = array();
+      $nottendees = array();
     ?>	
     
     @foreach($user_trainings as $key => $user_training)
@@ -47,12 +48,38 @@
    		<li>{{$user->first_name}} {{$user->last_name}}</li>
    		@endforeach
    	</ul>
+
    	<h5> Going </h5>
    	<ul>
    		@foreach($going as $key => $user)
    		<li>{{$user->first_name}} {{$user->last_name}}</li>
    		@endforeach
    	</ul>
+
+    <h5> Attended (Taken Quiz)</h5>
+
+    <ul>
+      @foreach($attendees as $key => $user)
+      <li>{{$user->first_name}} {{$user->last_name}}</li>
+      @endforeach
+    </ul>
+
+    @foreach ($going as $key => $goer) 
+      @if(!in_array($goer, $attendees))
+        <?php 
+          array_push($nottendees, $goer)
+        ?>
+      @endif
+    @endforeach
+      
+
+     <h5> Not taken quiz yet OR pakingshet people who said they were going but really didn't </h5>
+
+    <ul>
+      @foreach($nottendees as $key => $user)
+      <li>{{$user->first_name}} {{$user->last_name}}</li>
+      @endforeach
+    </ul>
     	
     	
 
