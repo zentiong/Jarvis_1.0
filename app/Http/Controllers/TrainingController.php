@@ -43,8 +43,19 @@ class TrainingController extends Controller
     public function recommend()
     {
         $trainings = Training::all();
-        $users = User::where('supervisor_id', Auth::user()->id)->get();
 
+
+        // load the view and pass the employees
+        return View::make('trainings.recommend')
+            ->with('trainings', $trainings);
+    }
+
+    public function recommend_who()
+    {
+        $training_id = Input::get('training');
+
+        $training = Training::find($training_id);
+        $users = User::where('supervisor_id', Auth::user()->id)->get();
 
         $user_trainings = array();
 
@@ -58,8 +69,8 @@ class TrainingController extends Controller
          }
 
         // load the view and pass the employees
-        return View::make('trainings.recommend')
-            ->with('trainings', $trainings)
+        return View::make('trainings.recommend_who')
+            ->with('training', $training)
             ->with('users', $users)
             ->with('user_trainings', $user_trainings);
     }

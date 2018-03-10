@@ -73,8 +73,10 @@ Route::get('see_assessments', 'AssessmentController@see_assessments'); // Where 
 Route::resource('trainings', 'TrainingController');
 
 /* Recommmend Trainings */
-Route::get('recommend', 'TrainingController@recommend'); // For storing test results
-Route::post('recommend_fire', 'TrainingController@fire'); // For storing test results
+Route::get('recommend', 'TrainingController@recommend');
+Route::post('recommend_who', 'TrainingController@recommend_who');
+Route::post('recommend_fire', 'TrainingController@fire'); 
+
 
 /* Sign Up */
 Route::post('confirm', 'TrainingController@confirm'); // recommended
