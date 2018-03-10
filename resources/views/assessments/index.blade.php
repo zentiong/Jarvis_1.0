@@ -19,7 +19,7 @@
 ?>
 
 @section('body')
-    <main class="contaiuner fluid">
+    <main class="container-fluid">
         <section class="container-fluid">
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">All Assessments</h1>

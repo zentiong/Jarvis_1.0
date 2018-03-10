@@ -24,6 +24,7 @@ class CreateUserQuizTable extends Migration
             $table->foreign('quiz_id')->references('quiz_id')->on('quizzes');
 
             $table->integer('score')->default(0);
+            $table->integer('max_score')->default(0);
 
         });
     }
