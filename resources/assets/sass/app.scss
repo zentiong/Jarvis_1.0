@@ -802,7 +802,7 @@ body.dashboard {
 
 			.dashboard-tab-container {
 				font-family: Roboto, sans-serif;
-				margin: 0.5em auto 2em;
+				margin: 0.5em auto 0;
 				justify-content: center;
 
 				.tablinks {
@@ -842,17 +842,27 @@ body.dashboard {
 				}
 			}
 
+			.dashboard-header {
+				margin-top: 2em;
+			}
+
 			.dashboard-content {
 				background-color: $white-1;
 				border: 1px solid $dashboard-content-border;
+				margin-bottom: 1em;
 				max-height: -webkit-fill-available;
 				min-height: 1px;
 				height: auto;
 			}
 
 			.content-header {
-				border-bottom: 1px solid $white-2;
 				padding: 1em;
+			}
+			.content-header.dark {
+				border-bottom: 1px solid $white-2;
+			}
+			.content-header.light {
+				border-bottom: 1px solid $black-4;
 			}
 
 			.recommended-wrapper {
@@ -874,18 +884,35 @@ body.dashboard {
 					margin: 0;
 				}
 
-				input[type="submit"] {
-					background-color: $white-1;
+				form {
+					margin: 0;
+				}
+
+				.sign-up-btn {
 					border-radius: 15px;
 					font-size: 0.8em;
 					letter-spacing: 2px;
 					text-transform: uppercase;
+				}
+				.sign-up-btn.light {
+					background-color: $white-1;
+					color: $black-1;
+				}
+				.sign-up-btn.dark {
+					background-color: $recommended-wrapper;
+					color: $white-1;
 				}
 
 				.going-state {
 					font-size: 0.8em;
 					letter-spacing: 1px;
 					text-transform: uppercase;
+				}
+				.going-state.dark {
+					color: $black-2;
+				}
+				.going-state.light {
+					color: $white-2;
 				}
 			}
 			.trainings-box:last-child {
