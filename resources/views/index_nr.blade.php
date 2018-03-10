@@ -28,6 +28,22 @@
 
 
 			?>
+             <section class="row personal-details hr-pastel">
+            <div class="inner">
+                <img class="img-circle profile-picture" src="{{ asset('images/hr-corp/DL.png') }}" alt="Your profile picture">
+                <div class="user-details">
+                     @auth
+                    <h1 class="username-title">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h1>
+                    <h6>{{ Auth::user()->position }}</h6>
+                    <h6>{{ Auth::user()->department }}</h6>
+                    <br>
+                    <h6>{{ Auth::user()->email }}</h6>
+                    @endauth
+                </div>
+            </div>
+            
+        </section>
+
 
 			<p>NORMAL EMPLOYEE LANDING</p>
 			<button onclick="update_data(myChart,relevant)">Relevant Skills</button>
@@ -117,7 +133,7 @@
         </div>
     @endforeach
 
-<h1> Trainings Not Recommended to you</h1>
+<h1> Incoming Trainings</h1>
 
     <!-- Different Logic -->
 
@@ -264,7 +280,21 @@
     </div>
     @endif
 
-        
+ <h6> Quizzes </h6>
+    @foreach ($user_trainings as $key=> $training)
+        <p>Training {{$training-></p>
+    @endforeach
+    @foreach($skills_quiz as $key => $skill)
+       <p> Skill: {{$skill->name}} </p>
+    
+       @foreach($section_attempts as $key => $section_attempt)
+                @foreach($sections as $key => $section)
+                    @if(($section_attempt->section_id==$section->id)AND($section->skill_id==$skill->id))
+                       <p>___{{$section_attempt->score}} / {{$section_attempt->max_score}} </p>
+                    @endif
+                @endforeach       
+        @endforeach
+    @endforeach       
 
 
 @endsection

@@ -161,6 +161,178 @@
                     </div>
                 </div>
             </div>
+            <h1> Trainings Recommended to you</h1>
+    
+    @foreach($trainings_personal as $key => $training)
+        <div style="border: 1px solid red;">
+            <h6> Training </h6>
+            <p>Title: {{$training->title}}</p>
+            <p>Date: {{$training->date}}</p>
+            <p>Venue: {{$training->venue}}</p>
+        @foreach($user_trainings as $key => $user_training)
+            @if($user_training->training_id == $training->id) 
+                @if($user_training->confirmed == false)
+                    {{ Form::open(array('url' => 'confirm')) }}
+                    {{ Form::hidden('training_id', $value = $training->id) }}
+                    {{ Form::hidden('user_id', $value = Auth::user()->id) }}
+                    {{ Form::submit('Confirm Slot', array('class' => 'btn btn-primary create-btn text-center')) }}
+                    {{ Form::close() }}
+                @else
+                    <div style="border: 1px solid blue; width: 100px; height: 30px;">
+                        <h6>Going</h6>
+                    </div>
+                @endif               
+            @endif
+        @endforeach
+        </div>
+    @endforeach
+
+<h1> Incoming Trainings</h1>
+
+    <!-- Different Logic -->
+
+    @foreach($trainings_general as $key => $training)
+        {{ $present = false }} 
+        <div style="border: 1px solid red;">
+            <h6> Training </h6>
+            <p>Title: {{$training->title}}</p>
+            <p>Date: {{$training->date}}</p>
+            <p>Venue: {{$training->venue}}</p>
+        @foreach($user_trainings as $key => $user_training)
+            @if($user_training->training_id == $training->id) 
+                <?php
+                    $present = true 
+                ?>
+            @endif
+        @endforeach
+        @if($present==false) 
+            {{ Form::open(array('url' => 'signup')) }}
+            {{ Form::hidden('user_id', $value = Auth::user()->id) }}
+            {{ Form::hidden('training_id', $value = $training->id) }}
+            {{ Form::submit('Confirm Slot', array('class' => 'btn btn-primary create-btn text-center')) }}
+            {{ Form::close() }}
+        @else
+            @if($user_training->confirmed == true)
+                 <div style="border: 1px solid blue; width: 100px; height: 30px;">
+                    <h6>Going</h6>
+                </div> 
+            @endif
+        @endif
+        </div>
+    @endforeach
+
+    <p>--------------------------------------------------------</p>
+
+        <h1> Quizzes you ought to take</h1>
+        <?php
+            $quizzes_to_take = array();
+            $user_trainings_taken = array();
+            $trainings_taken = array();
+        ?>
+
+        @foreach($user_trainings as $key => $user_training)
+            @if(($user_training->user_id == $current_id)and($user_training->confirmed == true))
+                <?php
+                    array_push($user_trainings_taken, $user_training)
+                ?>
+            @endif
+        @endforeach
+
+        @foreach($trainings as $key => $training)
+            @foreach($user_trainings_taken as $key => $user_training_taken)
+                @if($training->id == $user_training_taken->training_id)
+                    <?php
+                    array_push($trainings_taken, $training)
+                    ?>
+                @endif
+            @endforeach
+        @endforeach
+
+        @foreach($trainings_taken as $key => $training_taken)
+            @foreach($quizzes as $key => $quiz)
+                @if($training_taken->id == $quiz->training_id)
+                    <?php
+                        array_push($quizzes_to_take, $quiz)
+                    ?>
+                @endif
+            @endforeach        
+        @endforeach
+
+
+        <div style="border: 1px solid blue;">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td>Topic</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($quizzes_to_take as $key => $quiz_to_take)
+                <tr>
+                    <td>{{ $quiz_to_take->topic }}</td>
+                    <td>
+                        <?php
+                            $taken = false;
+                        ?>
+                        @foreach($user_quizzes as $key => $user_quiz)
+                        <?php
+                            if(($user_quiz->user_id==$current_id)and($quiz_to_take->quiz_id==$user_quiz->quiz_id))
+                            {
+                                $taken = true;
+                            }
+                        ?>
+                        @endforeach
+                        @if($taken == false)
+                         <!-- 
+                            <a class="btn btn-small btn-info" href="{{ URL::to('quizzes/' . $quiz_to_take->quiz_id . '/take') }}">Take this Quiz</a>
+                         -->
+
+                         <button class="btn btn-small btn-info" type="button" data-toggle="modal" <?php echo 'data-target="'.'#'.$quiz_to_take->quiz_id.'"'?>>Take this Quiz</button>
+                        @else
+                        <a class="btn btn-small btn-info" >Already Taken :( Hanap ka nalang ng iba. Sad life bro.</a>
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+        </div>
+
+    @if(!empty($quizzes_to_take))
+    <div class="modal fade" <?php echo 'id="'.$quiz_to_take->quiz_id.'"'?> tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Enter Password:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                {{ Form::open(array('url' =>'verify_pw' )) }}
+                        <div class="form-group">
+
+                      {{ Form::label('password', 'Password') }}
+                      {{ Form::text('password', Request::old('password'), array('class' => 'form-control')) }}
+                  </div>
+                  <?php
+                  $v =  $quiz_to_take->quiz_id 
+                  ?>
+
+                {{ Form::hidden('quiz_id', $value = $v) }}
+
+              <div class="modal-footer create-bottom-wrapper">
+                <a href="{{ URL::to('levels') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
+                {{ Form::submit('Submit', array('class' => 'btn btn-primary create-btn text-center')) }}
+              </div>
+              {{ Form::close() }}
+            </div>
+          </div>
+        </div>
+    </div>
+    @endif
         </section>
 
     </main>
