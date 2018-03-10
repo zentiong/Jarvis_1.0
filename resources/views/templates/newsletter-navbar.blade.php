@@ -16,6 +16,7 @@
     <ul class="nav-links" id="nav-links">	
 	@auth
 		<li><a id="levels" href="{{ URL::to('levels') }}">Dashboard</a></li>
+		<li><a id="levels" href="{{ URL::to('history') }}">Quiz History</a></li>
 		@if ( Auth::user()->department == 'Human Resources')
 		<li><a id="users" href="{{ URL::to('users') }}">Employees</a></li>
 		<li><a id="skills"  href="{{ URL::to('skills') }}">Skills</a></li>
