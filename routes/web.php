@@ -78,6 +78,9 @@ Route::get('recommend', 'TrainingController@recommend');
 Route::post('recommend_who', 'TrainingController@recommend_who');
 Route::post('recommend_fire', 'TrainingController@fire'); 
 
+Route::post('evaluate', 'TrainingController@evaluate'); 
+Route::post('store_evaluation', 'TrainingController@store_evaluation'); 
+
 
 /* Sign Up */
 Route::post('confirm', 'TrainingController@confirm'); // recommended

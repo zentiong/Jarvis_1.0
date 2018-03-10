@@ -249,8 +249,20 @@
             </tbody>
         </table>
         </div>
+        <p>------------------------------------ </p>
+        <h1> Evaluations to take </h1>
 
-  
+        <?php 
+            $evals_to_take = array();
+        ?>
+
+        @foreach($user_trainings_taken as $key => $eval)
+            {{ Form::open(array('url' => 'evaluate')) }}
+            {{$eval->training_id}}
+            {{ Form::hidden('training_id', $value = $eval->training_id) }}
+            {{ Form::submit('Provide Feedback', array('class' => 'btn btn-primary create-btn text-center')) }}
+            {{ Form::close() }}
+        @endforeach
 
  
 

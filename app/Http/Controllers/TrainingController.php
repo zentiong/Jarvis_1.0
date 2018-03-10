@@ -97,6 +97,26 @@ class TrainingController extends Controller
         return Redirect::to('recommend');
     }
 
+    public function evaluate()
+    {
+        $training_id = Input::get('training_id');
+        $user_training = User_Training::where('training_id',$training_id)->first();
+        return View::make('trainings.evaluate')
+        ->with('user_training', $user_training);
+    }
+
+    public function store_evaluation()
+    {
+        $training_id = Input::get('training_id');
+        $user_training = User_Training::where('training_id',$training_id)->first();
+        $user_training->evaluation = Input::get('evaluation');
+
+        $user_training->save();
+
+        Session::flash('message', 'Successfully evaluated training session!');
+        return Redirect::to('levels');
+    }
+
     public function signup()
     {
         $user_training = new User_Training;
