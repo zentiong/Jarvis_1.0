@@ -30,8 +30,15 @@ class QuizController extends Controller
 
     public function verify_pw(Request $request)
     {
-        $user_id = Input::get('user_id');
 
+        $quiz_id = Input::get('quiz_id');
+        $quiz = Quiz::find($quiz_id);
+        return View::make('quizzes.verify_pw')
+        ->with('quiz', $quiz);
+
+        
+        /*
+        $user_id = Input::get('user_id');        
         $quiz = Quiz::find(Input::get('quiz_id'));
         $realpw = Input::get('password');
         $idealpw = $quiz->password;
@@ -46,6 +53,31 @@ class QuizController extends Controller
             return Redirect::to('quizzes/' . $quiz->quiz_id . '/take')
             ->with('user_id', $user_id);
         }      
+        */
+
+    }
+
+    public function redirect_pw(Request $request)
+    {       
+        
+        $user_id = Auth::user()->id;      
+
+        $quiz = Quiz::find(Input::get('quiz_id'));
+        $realpw = Input::get('password');
+        $idealpw = $quiz->password;
+        //if mali password
+        if($realpw != $idealpw)
+        {
+            Session::flash('message', 'MALI PASSWORD MO BRAD. Nilagay mo:'.$realpw.', Ang dapat: '.$idealpw);
+            return View::make('quizzes.verify_pw')
+            ->with('quiz', $quiz);
+        }
+        else
+        {
+            return Redirect::to('quizzes/' . $quiz->quiz_id . '/take')
+            ->with('user_id', $user_id);
+        }      
+        
 
     }
     

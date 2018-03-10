@@ -52,6 +52,7 @@ Route::get('quizzes/{quiz}/take', 'QuizController@take'); // For storing test re
 Route::post('quizzes/{quiz}/record', 'QuizController@record'); // For storing test results
 
 Route::post('verify_pw', 'QuizController@verify_pw'); // For storing test results
+Route::post('redirect_pw', 'QuizController@redirect_pw'); 
 
 Route::get('results', 'QuizController@results');
 

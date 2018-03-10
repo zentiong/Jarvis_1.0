@@ -255,6 +255,8 @@
                 </div>
             </div>
 
+        <p>--------------------------------------------------------</p>
+
         <h1> Quizzes you ought to take</h1>
         <?php
             $quizzes_to_take = array();
@@ -319,56 +321,22 @@
                          <!-- 
                             <a class="btn btn-small btn-info" href="{{ URL::to('quizzes/' . $quiz_to_take->quiz_id . '/take') }}">Take this Quiz</a>
                          -->
-                         <?php /*
 
-                         <button class="btn btn-small btn-info" type="button" data-toggle="modal" <?php echo 'data-target="'.'#'.$quiz_to_take->quiz_id.'"'?>>Take this Quiz</button>
-                         
-                         */?>
+                         {{ Form::open(array('url' => 'verify_pw')) }}
+                         {{ Form::hidden('quiz_id', $value = $quiz_to_take->quiz_id) }}
+                        {{ Form::submit('Take this Quiz', array('class' => 'btn btn-primary create-btn text-center')) }}
+                        {{ Form::close() }}
 
-                           <button class="btn btn-small btn-info" type="button" data-toggle="modal" data-target="chicken">Take this Quiz</button>
                         @else
                         <a class="btn btn-small btn-info" >Already Taken :( Hanap ka nalang ng iba. Sad life bro.</a>
                         @endif
+
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
         </div>
-    @if(!empty($quizzes_to_take)) 
-    <div class="modal fade" id="chicken" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Enter Password:</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-
-                {{ Form::open(array('url' =>'verify_pw' )) }}
-                        <div class="form-group">
-
-                      {{ Form::label('password', 'Password') }}
-                      {{ Form::text('password', Request::old('password'), array('class' => 'form-control')) }}
-                  </div>
-                  <?php
-                  $v =  $quiz_to_take->quiz_id 
-                  ?>
-
-                {{ Form::hidden('quiz_id', $value = $v) }}
-
-              <div class="modal-footer create-bottom-wrapper">
-                <a href="{{ URL::to('levels') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
-                {{ Form::submit('Submit', array('class' => 'btn btn-primary create-btn text-center')) }}
-              </div>
-              {{ Form::close() }}
-            </div>
-          </div>
-        </div>
-    </div>
-    @endif 
 
         </section>
 
