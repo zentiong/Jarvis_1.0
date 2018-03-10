@@ -278,26 +278,14 @@
               </div>
               {{ Form::close() }}
             </div>
+            
           </div>
         </div>
     </div>
     @endif
 
- <h6> Quizzes </h6>
-    @foreach ($trainings_attended as $key)
-        <p>Training {{$key->title}}</p>
-    
-    @foreach($skills_quiz as $key => $skill)
-       <p> Skill: {{$skill->name}} </p>
-    
-       @foreach($section_attempts as $key => $section_attempt)
-                @foreach($sections as $key => $section)
-                    @if(($section_attempt->section_id==$section->id)AND($section->skill_id==$skill->id))
-                       <p>___{{$section_attempt->score}} / {{$section_attempt->max_score}} </p>
-                    @endif
-                @endforeach       
-        @endforeach
-    @endforeach       
-    @endforeach
+ 
 
 @endsection
+
+ 

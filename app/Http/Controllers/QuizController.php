@@ -11,9 +11,10 @@ Use App\Skill;
 use App\Section;
 use App\Training;
 use App\Section_Attempt;
+use App\User_Training;
 
 use Auth;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -382,5 +383,38 @@ class QuizController extends Controller
         // redirect
         Session::flash('message', 'Successfully deleted the quiz!');
         return Redirect::to('quizzes');
+    }
+
+    public function quiz_history()
+    {
+        $current_user = Auth::user(); 
+        $quiz = array();
+        $user_trainings = User_Training::where('user_id',$current_user->id)->get();
+
+        $trainings_attended = array();
+
+        $user_quizzes = User_Quiz::where('user_id',$current_user->id)->get();
+
+        
+
+
+        foreach ($user_quizzes as $key => $value) {
+            $temp = Quiz::where('quiz_id', $value->quiz_id)->first();
+            array_push($quiz, $temp);
+        }
+       
+
+        foreach($user_trainings as $key => $user_training) {
+                $training_temp = Training::where('id',$user_training->training_id)->first(); 
+                array_push($trainings_attended, $training_temp);
+            
+        }
+        
+
+        return View::make('quizzes.history')
+            ->with('quiz', $quiz)
+            ->with('user_quizzes', $user_quizzes)
+            ->with('trainings_attended', $trainings_attended);
+        
     }
 }
