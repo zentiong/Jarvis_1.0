@@ -331,6 +331,10 @@ body.newsletter {
 				background-color: #89801B;
 				color: $white-3;
 				height: 100px;
+
+				.event {
+					color: $white-1;
+				}
 			}
 		}
 	}
@@ -924,11 +928,17 @@ body.dashboard {
 		.hr-pastel {
 			background-color: $hr-pastel;
 		}
+		.mg-pastel {
+			background-color: $mg-pastel;
+		}
+		.nr-pastel {
+			background-color: $nr-pastel;
+		}
 
 		.crud-page-top {
 			align-items: center;
 			justify-content: space-between;
-			margin: 5em 0 1em;
+			margin: 6em 0 1em;
 
 			.crud-page-title {
 				font-size: 1.4rem;

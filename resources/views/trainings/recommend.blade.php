@@ -14,16 +14,16 @@
     });
 
 </script>
-<br>
-<br>
-<br>
+            
+@section('body')
+     <main class="container create-page">
+        <section class="row crud-page-top">
+            <h1 class="crud-page-title">Recommend Trainings</h1>
+        </section>
+        <section>
             @if (Session::has('message'))
                 <div class="alert alert-info">{{ Session::get('message') }}</div>
             @endif
-@section('body')
-     <main class="container-fluid">
-        <section class="container-fluid">
-            <h2> Recommend Trainings </h2>
             
             {{ Form::open(array('url' => 'recommend_who')) }}
             
@@ -38,7 +38,11 @@
                     @endforeach
                 </select>
             </div>
-            {{ Form::submit('Recommend', array('class' => 'btn btn-primary create-btn text-center')) }}
+            <div class="form-group text-center create-bottom-wrapper">
+                <a href="{{ URL::to('trainings') }}" class="btn cancel-btn">Cancel</a>
+                {{ Form::submit('Recommend', array('class' => 'btn btn-primary create-btn text-center')) }}
+            </div>
+            
             {{ Form::close() }}
 
         </section>

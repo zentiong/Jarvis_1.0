@@ -120,10 +120,18 @@
                                 <div class="trainings-box">
                                     <div>
                                         <!-- text -->
-                                        <p><b>{{$training->title}}</b></p>
-                                        <span>{{date('h:i a', strtotime($training->starting_time))}}</span>
-                                        <span>{{
-                                            $training->date}}</span>
+                                        <p>
+                                            <b>{{$training->title}}</b>
+                                        </p>
+                                        <span>
+                                            {{date('h:i', strtotime($training->starting_time))}}
+                                        </span>
+                                        <span>
+                                            - {{date('h:i a', strtotime($training->ending_time))}}
+                                        </span>
+                                        <span>
+                                            | {{date('F d', strtotime($training->date))}}
+                                        </span>
                                         <p>
                                             {{$training->venue}}
                                         </p>
@@ -158,10 +166,12 @@
                                         <!-- text -->
                                         <p><b>{{$training->title}}</b></p>
                                         <span>
-                                            {{date('h:i a', strtotime($training->starting_time))}}
+                                            {{date('h:i', strtotime($training->starting_time))}}
                                         </span>
                                         <span>
-                                            {{$training->date}}
+                                            - {{date('h:i a', strtotime($training->ending_time))}}</span>
+                                        <span>
+                                            | {{date('F d', strtotime($training->date))}}
                                         </span>
                                         <p>{{$training->venue}}</p>
                                     </div>

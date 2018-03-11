@@ -56,8 +56,8 @@
                         <td>{{ $value->first_name }}</td>
                         <td>{{ $value->last_name }}</td>
                         <td>{{ $value->email }}</td>
-                        <td>{{ $value->hiring_date }}</td>
-                        <td>{{ $value->birth_date }}</td>
+                        <td>{{ date('F d, Y', strtotime($value->hiring_date)) }}</td>
+                        <td>{{ date('F d, Y', strtotime($value->birth_date)) }}</td>
                         <td>{{ $value->department }}</td>
                         <td>{{ $value->supervisor_id }}</td>
                         <td>{{ $value->position }}</td>

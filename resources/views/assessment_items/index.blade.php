@@ -16,7 +16,7 @@
 
 @section('body')
     <main class="container-fluid">
-        <section class="container-fluid">
+        <section class="container">
             <div class="row crud-page-top">
                  @foreach($skills as $key => $skill)
                             @if($skill->id == $assessment->skill_id)

@@ -16,7 +16,7 @@
 
 @section('body')
     <main class="container-fluid">
-        <section class="container-fluid">
+        <section class="container">
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">All Quizzes</h1>
                <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Quiz</button>
