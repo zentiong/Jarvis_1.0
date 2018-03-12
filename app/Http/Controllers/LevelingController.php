@@ -107,8 +107,7 @@ Class LevelingController extends Controller
             			->with('user_trainings', $user_trainings)
             			->with('skills_quiz', $skills_quiz)
             			->with('trainings_general', $trainings_general)
-            			->with('user_quizzes', $user_quizzes)
-            			;
+            			->with('user_quizzes', $user_quizzes);
 				}	
 
 			}
@@ -119,7 +118,9 @@ Class LevelingController extends Controller
 					return view('index_mg')
 						->with('users', $users)
 						->with('quizzes', $quizzes)
-						->with('sections', $sections);
+						->with('sections', $sections)
+						->with('section_attempts', $section_attempts)
+						->with('user_quizzes', $user_quizzes);
 				}
 				else // Normal
 				{

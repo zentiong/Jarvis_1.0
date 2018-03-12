@@ -55,6 +55,24 @@
           <button class="tablinks" onclick="openTab(event, 'trainings')">Trainings</button>
         </div>
 
+<!-- data collection -->
+        @foreach($user_quizzes as $key => $value)
+            <?php $u_id=$value->id ?>
+            @if($value->user_id==$current_id)
+                @foreach($section_attempts as $key => $value)
+                    @if($value->user_quiz_id==$u_id)
+                         <?php
+                         $qscore_arr = array();
+                         $label_arr = array();
+                         $res = $value->score/$value->max_score;
+                         array_push($qscore_arr,$res);
+                         array_push($label_arr,$value->skill_id);
+                         ?>
+                    @endif
+                @endforeach
+            @endif       
+        @endforeach
+<!-- end of data collection -->
         <div id="skills" class="tabcontent">
           <button onclick="update_data(myChart,relevant)">Relevant Skills</button>
             <button onclick="update_data(myChart,alls)">All Skills</button>
@@ -63,55 +81,58 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
             <script type="text/javascript">
 
-                let relevant = [14,15,67,89,23,56,23,56,78]
-                let alls = [12, 19, 3, 5, 2, 3]
+                            let relevant = [14,15,67,89,23,56,23,56,78]
+                            var qscore_arr_all = <?php echo json_encode($qscore_arr)?>;
+                            //var labels_all = <?php //echo json_encode($labels_arr)?>;
 
 
-                function update_data(chart, data) 
-                {
-                    chart.data.datasets[0].data = data;
-                    chart.update();
-                }
 
-                Chart.defaults.global.maintainAspectRatio = false;
-                var ctx = document.getElementById("myChart").getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'horizontalBar',
-                    data: {
-                        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                        datasets: [{
-                            label: 'Relevant Skills',
-                            data: [12, 19, 3, 5, 2, 3],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255,99,132,1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero:true
+                            function update_data(chart, data) 
+                            {
+                                chart.data.datasets[0].data = data;
+                                chart.update();
+                            }
+
+
+                            Chart.defaults.global.maintainAspectRatio = false;
+                            var ctx = document.getElementById("myChart").getContext('2d');
+                            var myChart = new Chart(ctx, {
+                                type: 'horizontalBar',
+                                data: {
+                                    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                                    datasets: [{
+                                        label: 'Relevant Skills',
+                                        data: qscore_arr_all,
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255,99,132,1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero:true
+                                            }
+                                        }]
+                                    }
                                 }
-                            }]
-                        }
-                    }
-                });
-            </script>
+                            });
+                        </script>
         </div>
 
         <section id="employees" class="tabcontent container-fluid">

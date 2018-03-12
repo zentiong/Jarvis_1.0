@@ -52,6 +52,24 @@
             
         </section>
 
+<!-- data collection -->
+        @foreach($user_quizzes as $key => $value)
+            <?php $u_id=$value->id ?>
+            @if($value->user_id==$current_id)
+                @foreach($section_attempts as $key => $value)
+                    @if($value->user_quiz_id==$u_id)
+                         <?php
+                         $qscore_arr = array();
+                         $label_arr = array();
+                         $res = $value->score/$value->max_score;
+                         array_push($qscore_arr,$res);
+                         array_push($label_arr,$value->skill_id);
+                         ?>
+                    @endif
+                @endforeach
+            @endif       
+        @endforeach
+<!-- end of data collection -->
         <section class="container dashboard-container">
             <!-- TAB CONTAINER -->
             <div class="row dashboard-tab-container">
@@ -69,14 +87,19 @@
 
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                         <script type="text/javascript">
+
                             let relevant = [14,15,67,89,23,56,23,56,78]
-                            let alls = [12, 19, 3, 5, 2, 3]
+                            var qscore_arr_all = <?php echo json_encode($qscore_arr)?>;
+                            //var labels_all = <?php //echo json_encode($labels_arr)?>;
+
+
 
                             function update_data(chart, data) 
                             {
                                 chart.data.datasets[0].data = data;
                                 chart.update();
                             }
+
 
                             Chart.defaults.global.maintainAspectRatio = false;
                             var ctx = document.getElementById("myChart").getContext('2d');
@@ -86,7 +109,7 @@
                                     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
                                     datasets: [{
                                         label: 'Relevant Skills',
-                                        data: [12, 19, 3, 5, 2, 3],
+                                        data: qscore_arr_all,
                                         backgroundColor: [
                                             'rgba(255, 99, 132, 0.2)',
                                             'rgba(54, 162, 235, 0.2)',
