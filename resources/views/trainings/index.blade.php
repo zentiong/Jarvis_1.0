@@ -17,12 +17,15 @@
 @section('body')
 
     <main class="container-fluid">
-        <section class="container-fluid">
+        <section class="container">
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">All Training Sessions</h1>
                 <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Training Session</button>
             </div>
-            <a href="{{ URL::to('recommend')}}">Recommend Training Sessions</a>
+            <div class="text-right">
+                <span>Or, </span>
+                <a href="{{ URL::to('recommend')}}">Recommend trainings</a>
+            </div>
 
             <!-- if there are creation errors, they will show here -->
             {{ Html::ul($errors->all()) }}
@@ -50,9 +53,9 @@
                     <tr>
                         <td>{{ $value->id }}</td>
                         <td>{{ $value->title }}</td>
-                        <td>{{ $value->date }}</td>
-                        <td>{{ $value->starting_time }}</td>
-                        <td>{{ $value->ending_time }}</td>
+                        <td>{{ date('F d, Y', strtotime($value->date)) }}</td>
+                        <td>{{ date('h:i a', strtotime($value->starting_time)) }}</td>
+                        <td>{{ date('h:i a', strtotime($value->ending_time)) }}</td>
                         
                         <td>{{ $value->speaker }}</td>
                         <td>{{ $value->venue }}</td>

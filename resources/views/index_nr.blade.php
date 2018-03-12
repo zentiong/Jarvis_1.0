@@ -43,65 +43,111 @@
             </div>
             
         </section>
+<!-- data collection -->
+        <!-- scores -->
+        @foreach($user_quizzes as $key => $value)
+            <?php $u_id=$value->id ?>
+            @if($value->user_id==$current_id)
+                @foreach($section_attempts as $key => $value)
+                    @if($value->user_quiz_id==$u_id)
+                         <?php
+                         $qscore_arr_all = array();
+                         $res = $value->score/$value->max_score;
+                         array_push($qscore_arr_all,$res);
+                         ?>
+                    @endif
+                @endforeach
+            @endif       
+        @endforeach
+        <!-- end scores -->
+        <!-- labels -->
+        @foreach($user_quizzes as $key => $value)
+            <?php $u_id=$value->id ?>
+            @if($value->user_id==$current_id)
+                @foreach($section_attempts as $key => $value)
+                    @if($value->user_quiz_id==$u_id)
+                    <?php $sc_id = $value->section_id?>
+                        @foreach($sections as $key=>$value)
+                            @if($sc_id==$value->id)
+                            <?php $sk_id = $value->skill_id?>
+                                @foreach($skills as $key=>$value)
+                                    @if($sk_id==$value->id)
+                                        <?php 
+                                        $labels_arr_all = array();
+                                        array_push($labels_arr_all, $value->name);
+                                        ?>
+                                    @endif
+                                @endforeach
+                            @endif 
+                        @endforeach
+                    @endif
+                @endforeach
+            @endif       
+        @endforeach
+        <!-- end labels -->
+<!-- end of data collection -->
 
 
 			<p>NORMAL EMPLOYEE LANDING</p>
 			<button onclick="update_data(myChart,relevant)">Relevant Skills</button>
-            <button onclick="update_data(myChart,alls)">All Skills</button>
+            <button onclick="update_data(myChart,qscore_arr_all)">All Skills</button>
             <canvas id="myChart" width=100 height=500></canvas>
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
             <script type="text/javascript">
 
-                let relevant = [14,15,67,89,23,56,23,56,78]
-                let alls = [12, 19, 3, 5, 2, 3]
+                            let relevant = [14,15,67,89,23,56,23,56,78]
+                            var qscore_arr_all = <?php echo json_encode($qscore_arr_all)?>;
+                            var labels_all = <?php echo json_encode($labels_arr_all)?>;
 
 
-                function update_data(chart, data) 
-                {
-                    chart.data.datasets[0].data = data;
-                    chart.update();
-                }
 
-                Chart.defaults.global.maintainAspectRatio = false;
-                var ctx = document.getElementById("myChart").getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'horizontalBar',
-                    data: {
-                        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                        datasets: [{
-                            label: 'Relevant Skills',
-                            data: [12, 19, 3, 5, 2, 3],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255,99,132,1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero:true
+                            function update_data(chart, data) 
+                            {
+                                chart.data.datasets[0].data = data;
+                                chart.update();
+                            }
+
+
+                            Chart.defaults.global.maintainAspectRatio = false;
+                            var ctx = document.getElementById("myChart").getContext('2d');
+                            var myChart = new Chart(ctx, {
+                                type: 'horizontalBar',
+                                data: {
+                                    labels: labels_all,
+                                    datasets: [{
+                                        label: 'Relevant Skills',
+                                        data: qscore_arr_all,
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255,99,132,1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero:false
+                                            }
+                                        }]
+                                    }
                                 }
-                            }]
-                        }
-                    }
-                });
-            </script>
+                            });
+                        </script>
 		</section>
 	</main>
 

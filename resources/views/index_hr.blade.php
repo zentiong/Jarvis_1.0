@@ -42,6 +42,51 @@
             </div>
         </section>
 
+<!-- data collection -->
+        <!-- scores -->
+        @foreach($user_quizzes as $key => $value)
+            <?php $u_id=$value->id ?>
+            @if($value->user_id==$current_id)
+                @foreach($section_attempts as $key => $value)
+                    @if($value->user_quiz_id==$u_id)
+                         <?php
+                         $qscore_arr_all = array();
+                         $res = $value->score/$value->max_score;
+                         array_push($qscore_arr_all,$res);
+                         ?>
+                    @endif
+                @endforeach
+            @endif       
+        @endforeach
+        <!-- end scores -->
+        <!-- labels -->
+        @foreach($user_quizzes as $key => $value)
+            <?php $u_id=$value->id ?>
+            @if($value->user_id==$current_id)
+                @foreach($section_attempts as $key => $value)
+                    @if($value->user_quiz_id==$u_id)
+                    <?php $sc_id = $value->section_id?>
+                        @foreach($sections as $key=>$value)
+                            @if($sc_id==$value->id)
+                            <?php $sk_id = $value->skill_id?>
+                                @foreach($skills as $key=>$value)
+                                    @if($sk_id==$value->id)
+                                        <?php 
+                                        $labels_arr_all = array();
+                                        array_push($labels_arr_all, $value->name);
+                                        ?>
+                                    @endif
+                                @endforeach
+                            @endif 
+                        @endforeach
+                    @endif
+                @endforeach
+            @endif       
+        @endforeach
+        <!-- end labels -->
+<!-- end of data collection -->
+
+
         <section class="container dashboard-container">
             <!-- TAB CONTAINER -->
             <div class="row dashboard-tab-container">
@@ -54,14 +99,16 @@
                     <h5 class="dashboard-header">Skills</h5>
                     <div class="dashboard-content">
                         <button onclick="update_data(myChart,relevant)">Relevant Skills</button>
-                        <button onclick="update_data(myChart,alls)">All Skills</button>
+                        <button onclick="update_data(myChart,qscore_arr_all)">All Skills</button>
                         <canvas id="myChart"></canvas>
 
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                         <script type="text/javascript">
 
                             let relevant = [14,15,67,89,23,56,23,56,78]
-                            let alls = [12, 19, 3, 5, 2, 3]
+                            var qscore_arr_all = <?php echo json_encode($qscore_arr_all)?>;
+                            var labels_all = <?php echo json_encode($labels_arr_all)?>;
+
 
 
                             function update_data(chart, data) 
@@ -70,15 +117,16 @@
                                 chart.update();
                             }
 
+
                             Chart.defaults.global.maintainAspectRatio = false;
                             var ctx = document.getElementById("myChart").getContext('2d');
                             var myChart = new Chart(ctx, {
                                 type: 'horizontalBar',
                                 data: {
-                                    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                                    labels: labels_all,
                                     datasets: [{
                                         label: 'Relevant Skills',
-                                        data: [12, 19, 3, 5, 2, 3],
+                                        data: qscore_arr_all,
                                         backgroundColor: [
                                             'rgba(255, 99, 132, 0.2)',
                                             'rgba(54, 162, 235, 0.2)',
@@ -102,7 +150,7 @@
                                     scales: {
                                         yAxes: [{
                                             ticks: {
-                                                beginAtZero:true
+                                                beginAtZero:false
                                             }
                                         }]
                                     }
@@ -120,10 +168,18 @@
                                 <div class="trainings-box">
                                     <div>
                                         <!-- text -->
-                                        <p><b>{{$training->title}}</b></p>
-                                        <span>{{date('h:i a', strtotime($training->starting_time))}}</span>
-                                        <span>{{
-                                            $training->date}}</span>
+                                        <p>
+                                            <b>{{$training->title}}</b>
+                                        </p>
+                                        <span>
+                                            {{date('h:i', strtotime($training->starting_time))}}
+                                        </span>
+                                        <span>
+                                            - {{date('h:i a', strtotime($training->ending_time))}}
+                                        </span>
+                                        <span>
+                                            | {{date('F d', strtotime($training->date))}}
+                                        </span>
                                         <p>
                                             {{$training->venue}}
                                         </p>
@@ -158,10 +214,12 @@
                                         <!-- text -->
                                         <p><b>{{$training->title}}</b></p>
                                         <span>
-                                            {{date('h:i a', strtotime($training->starting_time))}}
+                                            {{date('h:i', strtotime($training->starting_time))}}
                                         </span>
                                         <span>
-                                            {{$training->date}}
+                                            - {{date('h:i a', strtotime($training->ending_time))}}</span>
+                                        <span>
+                                            | {{date('F d', strtotime($training->date))}}
                                         </span>
                                         <p>{{$training->venue}}</p>
                                     </div>
