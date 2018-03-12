@@ -253,15 +253,77 @@
         <h1> Evaluations to take </h1>
 
         <?php 
-            $evals_to_take = array();
+            $evals_to_take = array(); // user trainings where quiz has already been training
+            $quizzes_taken_id = array();
+            $quizzes_taken = array();
+
+            $training_quiz_taken = array();
+            // 1) User Quiz
+
+            // 2) Quiz
+            // 3) Training
+            // 4) User Training
         ?>
 
-        @foreach($user_trainings_taken as $key => $eval)
+        <!-- Get Quiz IDS 
+        -->
+        @foreach($user_quizzes as $key => $user_quiz) 
+            <?php
+                array_push($quizzes_taken_id,$user_quiz->quiz_id);
+            ?>
+        @endforeach
+
+        <!-- Get Quizzes
+        -->
+
+        <!-- error here -->
+
+        @foreach($quizzes_taken_id as $key => $quiz_taken_id) 
+            @foreach($quizzes as $key => $quiz) 
+                @if($quiz->quiz_id == $quiz_taken_id)
+                <?php
+                    array_push($quizzes_taken,$quiz);
+                ?>
+                @endif
+            @endforeach
+        @endforeach
+
+        <!-- Get trainings -->
+
+        @foreach($quizzes_taken as $key => $quiz_taken) 
+            @foreach($trainings_taken as $key => $training_taken) 
+                @if($quiz_taken->training_id == $training_taken->id)
+                
+                <?php
+                    array_push($training_quiz_taken,$training);
+                ?>
+                @endif
+            @endforeach
+        @endforeach
+
+        <!-- Get trainings -->
+
+        @foreach($user_trainings as $key => $user_training) 
+            @foreach($training_quiz_taken as $key => $answered) 
+                @if($user_training->training_id == $answered->id)
+                <?php
+                    array_push($evals_to_take,$user_training);
+                ?>
+                @endif
+            @endforeach
+        @endforeach
+
+
+        <!-- error here -->
+
+        @foreach($evals_to_take as $key => $eval)
+            @if($eval->evaluation==null)
             {{ Form::open(array('url' => 'evaluate')) }}
             {{$eval->training_id}}
             {{ Form::hidden('training_id', $value = $eval->training_id) }}
             {{ Form::submit('Provide Feedback', array('class' => 'btn btn-primary create-btn text-center')) }}
             {{ Form::close() }}
+            @endif
         @endforeach
 
  
