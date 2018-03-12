@@ -84,8 +84,12 @@
 
     <h2> Evaluations </h2>
     	
-    	
-
+    
+    @foreach($user_trainings as $key => $user_training)
+      @if($user_training->evaluation!=NUll)
+        <p>{{$user_training->evaluation}} </p>
+      @endif
+    @endforeach
     
 
 @endsection

@@ -433,11 +433,7 @@
 
         <!-- Get Quizzes
         -->
-        <h2> Taken:
-        <?php
-            echo count($quizzes_taken);
-        ?>
-        </h2>
+        
 
         <!-- error here -->
 
@@ -451,11 +447,7 @@
             @endforeach
         @endforeach
 
-        <h2> QTAKEN:
-        <?php
-            echo count($quizzes_taken);
-        ?>
-        </h2>
+       
 
         <!-- Get trainings -->
 
@@ -485,11 +477,7 @@
             @endforeach
         @endforeach
 
-        <h2> Evals:
-        <?php
-            echo count($evals_to_take);
-        ?>
-        </h2>
+    
         <!-- error here -->
 
         @foreach($evals_to_take as $key => $eval)

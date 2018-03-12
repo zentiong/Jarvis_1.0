@@ -108,7 +108,8 @@ class TrainingController extends Controller
     public function store_evaluation()
     {
         $training_id = Input::get('training_id');
-        $user_training = User_Training::where('training_id',$training_id)->first();
+        $user_training = User_Training::where('training_id',$training_id)
+        ->where('user_id',Auth::user()->id)->first();
         $user_training->evaluation = Input::get('evaluation');
 
         $user_training->save();
