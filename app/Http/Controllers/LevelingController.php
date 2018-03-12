@@ -137,7 +137,10 @@ Class LevelingController extends Controller
             			
             			->with('trainings_general', $trainings_general)
             			->with('trainings',$trainings)
-            			->with('user_quizzes', $user_quizzes);
+            			->with('user_quizzes', $user_quizzes)
+
+            			->with('skills', $skills)
+            			->with('sections', $sections);
 				}
 				
 			}
