@@ -45,6 +45,10 @@
         </section>
 <!-- data collection -->
         <!-- scores -->
+        <?php
+            $qscore_arr_all = array();
+        ?>
+
         @foreach($user_quizzes as $key => $value)
             <?php $u_id=$value->id ?>
             @if($value->user_id==$current_id)

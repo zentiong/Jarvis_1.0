@@ -43,6 +43,11 @@
         </section>
 
 <!-- data collection -->
+
+    <?php
+        $qscore_arr_all = array();
+        $labels_arr_all = array();
+    ?>
         <!-- scores -->
         @foreach($user_quizzes as $key => $value)
             <?php $u_id=$value->id ?>
