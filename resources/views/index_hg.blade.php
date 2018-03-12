@@ -56,34 +56,59 @@
         </div>
 
 <!-- data collection -->
+        <!-- scores -->
         @foreach($user_quizzes as $key => $value)
             <?php $u_id=$value->id ?>
             @if($value->user_id==$current_id)
                 @foreach($section_attempts as $key => $value)
                     @if($value->user_quiz_id==$u_id)
                          <?php
-                         $qscore_arr = array();
-                         $label_arr = array();
+                         $qscore_arr_all = array();
                          $res = $value->score/$value->max_score;
-                         array_push($qscore_arr,$res);
-                         array_push($label_arr,$value->skill_id);
+                         array_push($qscore_arr_all,$res);
                          ?>
                     @endif
                 @endforeach
             @endif       
         @endforeach
+        <!-- end scores -->
+        <!-- labels -->
+        @foreach($user_quizzes as $key => $value)
+            <?php $u_id=$value->id ?>
+            @if($value->user_id==$current_id)
+                @foreach($section_attempts as $key => $value)
+                    @if($value->user_quiz_id==$u_id)
+                    <?php $sc_id = $value->section_id?>
+                        @foreach($sections as $key=>$value)
+                            @if($sc_id==$value->id)
+                            <?php $sk_id = $value->skill_id?>
+                                @foreach($skills as $key=>$value)
+                                    @if($sk_id==$value->id)
+                                        <?php 
+                                        $labels_arr_all = array();
+                                        array_push($labels_arr_all, $value->name);
+                                        ?>
+                                    @endif
+                                @endforeach
+                            @endif 
+                        @endforeach
+                    @endif
+                @endforeach
+            @endif       
+        @endforeach
+        <!-- end labels -->
 <!-- end of data collection -->
         <div id="skills" class="tabcontent">
           <button onclick="update_data(myChart,relevant)">Relevant Skills</button>
-            <button onclick="update_data(myChart,alls)">All Skills</button>
+            <button onclick="update_data(myChart,qscore_arr_all)">All Skills</button>
             <canvas id="myChart" width=100 height=500></canvas>
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
             <script type="text/javascript">
 
                             let relevant = [14,15,67,89,23,56,23,56,78]
-                            var qscore_arr_all = <?php echo json_encode($qscore_arr)?>;
-                            //var labels_all = <?php //echo json_encode($labels_arr)?>;
+                            var qscore_arr_all = <?php echo json_encode($qscore_arr_all)?>;
+                            var labels_all = <?php echo json_encode($labels_arr_all)?>;
 
 
 
@@ -99,7 +124,7 @@
                             var myChart = new Chart(ctx, {
                                 type: 'horizontalBar',
                                 data: {
-                                    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                                    labels: labels_all,
                                     datasets: [{
                                         label: 'Relevant Skills',
                                         data: qscore_arr_all,
@@ -126,13 +151,13 @@
                                     scales: {
                                         yAxes: [{
                                             ticks: {
-                                                beginAtZero:true
+                                                beginAtZero:false
                                             }
                                         }]
                                     }
                                 }
                             });
-                        </script>
+            </script>
         </div>
 
         <section id="employees" class="tabcontent container-fluid">

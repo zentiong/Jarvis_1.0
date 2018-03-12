@@ -32,6 +32,7 @@ Class LevelingController extends Controller
 		$quizzes = Quiz::all();
 		$sections = Section::all();
 		$user_quizzes = User_Quiz::all();
+		$skills = Skill::all();
 		
 
 
@@ -107,7 +108,9 @@ Class LevelingController extends Controller
             			->with('user_trainings', $user_trainings)
             			->with('skills_quiz', $skills_quiz)
             			->with('trainings_general', $trainings_general)
-            			->with('user_quizzes', $user_quizzes);
+            			->with('user_quizzes', $user_quizzes)
+            			->with('skills', $skills)
+            			->with('sections', $sections);
 				}	
 
 			}
