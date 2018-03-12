@@ -318,11 +318,12 @@
         <!-- Get Quiz IDS 
         -->
         @foreach($user_quizzes as $key => $user_quiz) 
+            @if($user_quiz->user_id == $current_id)
             <?php
                 array_push($quizzes_taken_id,$user_quiz->quiz_id);
             ?>
+            @endif
         @endforeach
-
         <!-- Get Quizzes
         -->
 

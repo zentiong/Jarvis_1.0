@@ -404,4 +404,102 @@
         </section>
 
     </main>
+
+    <p>------------------------------------ </p>
+        <h1> Evaluations to take </h1>
+
+        <?php 
+            $evals_to_take = array(); // user trainings where quiz has already been training
+            $quizzes_taken_id = array();
+            $quizzes_taken = array();
+
+            $training_quiz_taken = array();
+            // 1) User Quiz
+
+            // 2) Quiz
+            // 3) Training
+            // 4) User Training
+        ?>
+
+        <!-- Get Quiz IDS 
+        -->
+        @foreach($user_quizzes as $key => $user_quiz) 
+            @if($user_quiz->user_id == $current_id)
+            <?php
+                array_push($quizzes_taken_id,$user_quiz->quiz_id);
+            ?>
+            @endif
+        @endforeach
+
+        <!-- Get Quizzes
+        -->
+        <h2> Taken:
+        <?php
+            echo count($quizzes_taken);
+        ?>
+        </h2>
+
+        <!-- error here -->
+
+        @foreach($quizzes_taken_id as $key => $quiz_taken_id) 
+            @foreach($quizzes as $key => $quiz) 
+                @if($quiz->quiz_id == $quiz_taken_id)
+                <?php
+                    array_push($quizzes_taken,$quiz);
+                ?>
+                @endif
+            @endforeach
+        @endforeach
+
+        <h2> QTAKEN:
+        <?php
+            echo count($quizzes_taken);
+        ?>
+        </h2>
+
+        <!-- Get trainings -->
+
+        @foreach($quizzes_taken as $key => $quiz_taken) 
+            @foreach($trainings_taken as $key => $training_taken) 
+                @if($quiz_taken->training_id == $training_taken->id)
+                
+                <?php
+                    array_push($training_quiz_taken,$training);
+                ?>
+                @endif
+            @endforeach
+        @endforeach
+
+        
+
+
+        <!-- Get trainings -->
+
+        @foreach($user_trainings as $key => $user_training) 
+            @foreach($training_quiz_taken as $key => $answered) 
+                @if($user_training->training_id == $answered->id)
+                <?php
+                    array_push($evals_to_take,$user_training);
+                ?>
+                @endif
+            @endforeach
+        @endforeach
+
+        <h2> Evals:
+        <?php
+            echo count($evals_to_take);
+        ?>
+        </h2>
+        <!-- error here -->
+
+        @foreach($evals_to_take as $key => $eval)
+            @if($eval->evaluation==null)
+            {{ Form::open(array('url' => 'evaluate')) }}
+            {{$eval->training_id}}
+            {{ Form::hidden('training_id', $value = $eval->training_id) }}
+            {{ Form::submit('Provide Feedback', array('class' => 'btn btn-primary create-btn text-center')) }}
+            {{ Form::close() }}
+            @endif
+        @endforeach
+
 @endsection
