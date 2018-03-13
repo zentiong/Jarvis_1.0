@@ -8,29 +8,29 @@
         <div class="hamburger-line"></div>
         <div class="hamburger-line"></div>
     </button>
+    @if (Route::has('login'))
+    <!-- LOGGED IN STATE -->
     <a class="home-link" href="{{ URL::to('/') }}">
         <span class="branding">Alfred 3.0</span>
     </a>
-    @if (Route::has('login'))
-    <!-- LOGGED IN STATE -->
+	
     <ul class="nav-links" id="nav-links">	
 	@auth
 		<li><a id="levels" href="{{ URL::to('levels') }}">Dashboard</a></li>
-		<li><a id="levels" href="{{ URL::to('history') }}">Quiz History</a></li>
 		@if ( Auth::user()->department == 'Human Resources')
-		<li><a id="users" href="{{ URL::to('users') }}">Employees</a></li>
-		<li><a id="skills"  href="{{ URL::to('skills') }}">Skills</a></li>
-		<li><a id="positions"  href="{{ URL::to('positions') }}">Positions</a></li>
-		<li><a id="quizzes"  href="{{ URL::to('quizzes') }}">Quizzes</a></li>
-		<li><a id="assessments"  href="{{ URL::to('assessments') }}">Assessments</a></li>
-		<li><a id="training-sessions"  href="{{ URL::to('trainings') }}">Trainings</a></li>
+			<li><a id="levels" href="{{ URL::to('history') }}">Quiz History</a></li>
+			<li><a id="users" href="{{ URL::to('users') }}">Employees</a></li>
+			<li><a id="skills"  href="{{ URL::to('skills') }}">Skills</a></li>
+			<li><a id="positions"  href="{{ URL::to('positions') }}">Positions</a></li>
+			<li><a id="quizzes"  href="{{ URL::to('quizzes') }}">Quizzes</a></li>
+			<li><a id="assessments"  href="{{ URL::to('assessments') }}">Assessments</a></li>
+			<li><a id="training-sessions"  href="{{ URL::to('trainings') }}">Trainings</a></li>
 		@endif
 	</ul>
 	<div class="login-button" id="login-button">
-		@auth
 		<img class="img-circle small-profile-picture" src="{{ asset('images/hr-corp/DL.png') }}" alt="Your profile picture">
     	<h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
-        @endauth
+        
 		<a class="logout-link clicked" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LOG OUT</a>
 		<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 			{{ csrf_field() }}
@@ -38,14 +38,14 @@
 	</div>
 	@else
 	<!-- LOGGED OUT STATE -->
-	<div class="login-button-yellow" id="login-button" onclick="hideShowLogin()">
+	<div class="login-button-yellow" id="login-button-yellow" onclick="hideShowLogin()">
 		LOG IN
 	</div>
 	@endauth
 	@endif
 </nav>
-<!--remove after login 
--->
+
+
 <div class="login-popup" id="login-popup">
             <form class="form-horizontal" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}

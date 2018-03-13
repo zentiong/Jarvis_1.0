@@ -713,7 +713,7 @@
         function hideShowLogin() {
             console.log(window.pageYOffset);
             var x = document.getElementById('login-popup');
-            var y = document.getElementById('login-button');
+            var y = document.getElementById('login-button-yellow');
             if (x.style.display === "block") {
                 x.style.display = "none";
                 y.classList.remove('clicked');
