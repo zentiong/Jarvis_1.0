@@ -13,8 +13,9 @@
     </a>
 	@if (Route::has('login'))
     <!-- LOGGED IN STATE -->
+    @auth
     <ul class="nav-links" id="nav-links">	
-	@auth
+	
 		<li><a id="levels" href="{{ URL::to('levels') }}">Dashboard</a></li>
 		@if ( Auth::user()->department == 'Human Resources')
 			<li><a id="levels" href="{{ URL::to('history') }}">Quiz History</a></li>
