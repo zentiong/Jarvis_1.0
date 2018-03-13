@@ -8,12 +8,11 @@
         <div class="hamburger-line"></div>
         <div class="hamburger-line"></div>
     </button>
-    @if (Route::has('login'))
-    <!-- LOGGED IN STATE -->
     <a class="home-link" href="{{ URL::to('/') }}">
         <span class="branding">Alfred 3.0</span>
     </a>
-	
+	@if (Route::has('login'))
+    <!-- LOGGED IN STATE -->
     <ul class="nav-links" id="nav-links">	
 	@auth
 		<li><a id="levels" href="{{ URL::to('levels') }}">Dashboard</a></li>
