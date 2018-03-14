@@ -240,7 +240,7 @@
                                             {{ Form::open(array('url' => 'signup')) }}
                                             {{ Form::hidden('user_id', $value = Auth::user()->id) }}
                                             {{ Form::hidden('training_id', $value = $training->id) }}
-                                            {{ Form::submit('SIGN UP', array('class' => 'btn text-center sign-up-btn dark')) }}
+                                            {{ Form::submit('SIGN UP', array('class' => 'btn text-center sign-up-btn outline')) }}
                                             {{ Form::close() }}
                                         @else
                                             @if($user_training->confirmed == true)

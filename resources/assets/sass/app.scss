@@ -901,9 +901,10 @@ body.dashboard {
 					background-color: $white-1;
 					color: $black-1;
 				}
-				.sign-up-btn.dark {
-					background-color: $recommended-wrapper;
-					color: $white-1;
+				.sign-up-btn.outline {
+					border: 1px solid $recommended-wrapper;
+					background-color: transparent;
+					color: $black-1;
 				}
 
 				.going-state {
