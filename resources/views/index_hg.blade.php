@@ -103,29 +103,32 @@
         <!-- end labels -->
         <!-- assessments -->
         <?php  ?>
-        @foreach($assessments as $key=>$value)
+        @foreach($user_assessments as $value)
             @if($value->employee_id==$current_id)
                 <?php 
-                array_push($assessments_arr_all, $value->rating);
+                array_push($assessments_arr, $value->rating);
+                echo $value                
                 ?>
             @endif
         @endforeach
         <!-- end assessments -->
-
+        <h2>Hello</h2>
         <!-- calculations -->
         <?php 
-        foreach($qscore_arr_all as $key=>$value)
+            print_r($assessments_arr);
+        foreach($qscore_arr_all as $value)
         {
+                
             if(empty($assessments_arr)==false)
             {
-                $comp = (($value*0.5)/(end($assessments_arr)*0.5))*100;
+                $comp = (($value*0.5)+(end($assessments_arr)*0.5));
                 array_push($score_data_all, $comp);
             }
             else
             {
-                $score_data_all = $qscore_arr_all;
+                $score_data_all = $qscore_arr_all;  
             }
-        }
+        }            
                     
         ?>
         <!-- end assessments -->

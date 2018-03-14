@@ -13,9 +13,7 @@
     });
 }
 
-
 </script>
-
 
 @section('body')
     <main class="container create-page">

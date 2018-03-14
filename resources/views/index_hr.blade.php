@@ -90,29 +90,32 @@
         <!-- end labels -->
         <!-- assessments -->
         <?php  ?>
-        @foreach($assessments as $key=>$value)
+        @foreach($user_assessments as $value)
             @if($value->employee_id==$current_id)
                 <?php 
-                array_push($assessments_arr_all, $value->rating);
+                array_push($assessments_arr, $value->rating);
+                echo $value                
                 ?>
             @endif
         @endforeach
         <!-- end assessments -->
-
+        <h2>Hello</h2>
         <!-- calculations -->
         <?php 
-        foreach($qscore_arr_all as $key=>$value)
+            print_r($assessments_arr);
+        foreach($qscore_arr_all as $value)
         {
+                
             if(empty($assessments_arr)==false)
             {
-                $comp = (($value*0.5)/(end($assessments_arr)*0.5))*100;
+                $comp = (($value*0.5)+(end($assessments_arr)*0.5));
                 array_push($score_data_all, $comp);
             }
             else
             {
-                $score_data_all = $qscore_arr_all;
+                $score_data_all = $qscore_arr_all;  
             }
-        }
+        }            
                     
         ?>
         <!-- end assessments -->
@@ -137,8 +140,7 @@
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                         <script type="text/javascript">
 
-                            let relevant = [14,15,67,89,23,56,23,56,78]
-                            var qscore_arr_all = <?php echo json_encode($qscore_arr_all)?>;
+                            var score_data_all = <?php echo json_encode($score_data_all)?>;
                             var labels_all = <?php echo json_encode($labels_arr_all)?>;
 
 
@@ -158,7 +160,7 @@
                                     labels: labels_all,
                                     datasets: [{
                                         label: 'Relevant Skills',
-                                        data: qscore_arr_all,
+                                        data: score_data_all,
                                         backgroundColor: [
                                             'rgba(255, 99, 132, 0.2)',
                                             'rgba(54, 162, 235, 0.2)',

@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use View;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -78,11 +79,11 @@ class UserController extends Controller
             'last_name' => 'required',
             'email'      => 'required|email',
             'hiring_date' => 'required',
-            'birth_date' => 'required',
+            'birth_date' => 'required| before:now',
             'department' => 'required',
             'supervisor_id' => 'required',
             'position' => 'required',
-            'password' => 'required'
+            'password' => 'required| min:9'
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -272,7 +273,7 @@ class UserController extends Controller
             'department' => 'required',
             'supervisor_id' => 'required',
             'position' => 'required',
-            'password' => 'required'
+            'password' => 'required | min:9'
         );
         $validator = Validator::make(Input::all(), $rules);
 
