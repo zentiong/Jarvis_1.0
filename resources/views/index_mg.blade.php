@@ -53,10 +53,12 @@
         </section>
 
 <!-- data collection -->
-    <?php
+        <?php
         $qscore_arr_all = array();
         $labels_arr_all = array();
-    ?>
+        $assessments_arr = array();
+        $score_data_all = array();
+        ?>
         <!-- scores -->
         @foreach($user_quizzes as $key => $value)
             <?php $u_id=$value->id ?>
@@ -64,8 +66,7 @@
                 @foreach($section_attempts as $key => $value)
                     @if($value->user_quiz_id==$u_id)
                          <?php
-                         $qscore_arr_all = array();
-                         $res = $value->score/$value->max_score;
+                         $res = ($value->score/$value->max_score)*100;
                          array_push($qscore_arr_all,$res);
                          ?>
                     @endif
@@ -86,7 +87,6 @@
                                 @foreach($skills as $key=>$value)
                                     @if($sk_id==$value->id)
                                         <?php 
-                                        $labels_arr_all = array();
                                         array_push($labels_arr_all, $value->name);
                                         ?>
                                     @endif
@@ -98,6 +98,34 @@
             @endif       
         @endforeach
         <!-- end labels -->
+        <!-- assessments -->
+        <?php  ?>
+        @foreach($assessments as $key=>$value)
+            @if($value->employee_id==$current_id)
+                <?php 
+                array_push($assessments_arr_all, $value->rating);
+                ?>
+            @endif
+        @endforeach
+        <!-- end assessments -->
+
+        <!-- calculations -->
+        <?php 
+        foreach($qscore_arr_all as $key=>$value)
+        {
+            if(empty($assessments_arr)==false)
+            {
+                $comp = (($value*0.5)/(end($assessments_arr)*0.5))*100;
+                array_push($score_data_all, $comp);
+            }
+            else
+            {
+                $score_data_all = $qscore_arr_all;
+            }
+        }
+                    
+        ?>
+        <!-- end assessments -->
 <!-- end of data collection -->
         <section class="container dashboard-container">
             <!-- TAB CONTAINER -->
