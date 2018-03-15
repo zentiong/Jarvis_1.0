@@ -210,9 +210,11 @@ body.newsletter {
 	}
 	.month-control:first-child {
 		order: 1;
+		margin-right: auto;
 	}
 	.month-control:last-child {
 		order: 3;
+		margin-left: auto;
 	}
 
 	.subsection-label {

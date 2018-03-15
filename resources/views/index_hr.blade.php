@@ -133,9 +133,10 @@
                 <div class="col-md-7">
                     <h5 class="dashboard-header">Skills</h5>
                     <div class="dashboard-content">
+                        <h6 class="content-header">Personal skills overview</h6>
                         <button onclick="update_data(myChart,relevant)">Relevant Skills</button>
                         <button onclick="update_data(myChart,qscore_arr_all)">All Skills</button>
-                        <canvas id="myChart"></canvas>
+                        <canvas id="myChart" style="height: 100px !important"></canvas>
 
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                         <script type="text/javascript">
@@ -191,6 +192,14 @@
                                 }
                             });
                         </script>
+                    </div>
+                    <div class="dashboard-content">
+                        <h6 class="content-header">Quizzes</h6>
+                        <!-- QUIZZES HERE -->
+                    </div>
+                    <div class="dashboard-content">
+                        <h6 class="content-header">Assessments</h6>
+                        <!-- ASSESSMENTS HERE -->
                     </div>
                 </div>
                 <div class="col-md-5">
