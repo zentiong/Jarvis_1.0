@@ -3,11 +3,6 @@
 
 
 <nav role="navigation">
-	<button class="btn nav-opener" role="button" id="navOpener" aria-expanded="false" onclick="showMenu()">
-        <div class="hamburger-line"></div>
-        <div class="hamburger-line"></div>
-        <div class="hamburger-line"></div>
-    </button>
     <a class="home-link" href="{{ URL::to('/') }}">
         <span class="branding">Alfred 3.0</span>
     </a>
@@ -16,8 +11,8 @@
     @auth
     <ul class="nav-links" id="nav-links">	
 	
-		<li><a id="levels" href="{{ URL::to('levels') }}">Dashboard</a></li>
-		@if ( Auth::user()->department == 'Human Resources')
+		<li><a id="levels" href="{{ URL::to('levels') }}">Back to Dashboard</a></li>
+		<!-- @if ( Auth::user()->department == 'Human Resources')
 			<li><a id="levels" href="{{ URL::to('history') }}">Quiz History</a></li>
 			<li><a id="users" href="{{ URL::to('users') }}">Employees</a></li>
 			<li><a id="skills"  href="{{ URL::to('skills') }}">Skills</a></li>
@@ -25,7 +20,7 @@
 			<li><a id="quizzes"  href="{{ URL::to('quizzes') }}">Quizzes</a></li>
 			<li><a id="assessments"  href="{{ URL::to('assessments') }}">Assessments</a></li>
 			<li><a id="training-sessions"  href="{{ URL::to('trainings') }}">Trainings</a></li>
-		@endif
+		@endif -->
 	</ul>
 	<div class="login-button" id="login-button">
 		<img class="img-circle small-profile-picture" src="{{ asset('images/hr-corp/DL.png') }}" alt="Your profile picture">
