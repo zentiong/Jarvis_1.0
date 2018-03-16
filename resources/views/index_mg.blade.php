@@ -33,7 +33,7 @@
         <?php 
             $current_user = Auth::user();
             $current_id = Auth::user()->id;
-            $trainings = $current_user->training_session_id
+           //$trainings = $current_user->training_session_id
         ?>
 
         <section class="row personal-details mg-pastel">
@@ -204,6 +204,7 @@
                 </div>
                 <div class="col-md-5">
                     <h5 class="dashboard-header">Trainings</h5>
+                    @if(!empty($trainings_personal))
                     <div class="dashboard-content">
                         <div class="recommended-wrapper">
                             <h6 class="content-header dark"><b>Recommended Trainings</b></h6>
@@ -239,6 +240,7 @@
                             @endforeach
                         </div>
                     </div>
+                    @endif
                     <div class="dashboard-content">
                         <div class="incoming-wrapper">
                             <h6 class="content-header light"><b>Trainings this month</b></h6>
@@ -338,6 +340,170 @@
                 </div>
             </div>
         </section>
+
+
+    <p>--------------------------------------------------------</p>
+
+        <h1> Quizzes you ought to take</h1>
+        <?php
+            $quizzes_to_take = array();
+            $user_trainings_taken = array();
+            $trainings_taken = array();
+        ?>
+
+        @foreach($user_trainings as $key => $user_training)
+            @if(($user_training->user_id == $current_id)and($user_training->confirmed == true))
+                <?php
+                    array_push($user_trainings_taken, $user_training)
+                ?>
+            @endif
+        @endforeach
+
+        @foreach($trainings as $key => $training)
+            @foreach($user_trainings_taken as $key => $user_training_taken)
+                @if($training->id == $user_training_taken->training_id)
+                    <?php
+                    array_push($trainings_taken, $training)
+                    ?>
+                @endif
+            @endforeach
+        @endforeach
+
+        @foreach($trainings_taken as $key => $training_taken)
+            @foreach($quizzes as $key => $quiz)
+                @if($training_taken->id == $quiz->training_id)
+                    <?php
+                        array_push($quizzes_to_take, $quiz)
+                    ?>
+                @endif
+            @endforeach        
+        @endforeach
+
+
+        <div style="border: 1px solid blue;">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td>Topic</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($quizzes_to_take as $key => $quiz_to_take)
+                <tr>
+                    <td>{{ $quiz_to_take->topic }}</td>
+                    <td>
+                        <?php
+                            $taken = false;
+                        ?>
+                        @foreach($user_quizzes as $key => $user_quiz)
+                        <?php
+                            if(($user_quiz->user_id==$current_id)and($quiz_to_take->quiz_id==$user_quiz->quiz_id))
+                            {
+                                $taken = true;
+                            }
+                        ?>
+                        @endforeach
+                        @if($taken == false)
+                         <!-- 
+                            <a class="btn btn-small btn-info" href="{{ URL::to('quizzes/' . $quiz_to_take->quiz_id . '/take') }}">Take this Quiz</a>
+                         -->
+
+                         {{ Form::open(array('url' => 'verify_pw')) }}
+                         {{ Form::hidden('quiz_id', $value = $quiz_to_take->quiz_id) }}
+                        {{ Form::submit('Take this Quiz', array('class' => 'btn btn-primary create-btn text-center')) }}
+                        {{ Form::close() }}
+
+                        @else
+                        <a class="btn btn-small btn-info" >Already Taken :( Hanap ka nalang ng iba. Sad life bro.</a>
+                        @endif
+
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+        </div>
+        <p>------------------------------------ </p>
+        <h1> Evaluations to take </h1>
+
+        <?php 
+            $evals_to_take = array(); // user trainings where quiz has already been training
+            $quizzes_taken_id = array();
+            $quizzes_taken = array();
+
+            $training_quiz_taken = array();
+            // 1) User Quiz
+
+            // 2) Quiz
+            // 3) Training
+            // 4) User Training
+        ?>
+
+        <!-- Get Quiz IDS 
+        -->
+        @foreach($user_quizzes as $key => $user_quiz) 
+            @if($user_quiz->user_id == $current_id)
+            <?php
+                array_push($quizzes_taken_id,$user_quiz->quiz_id);
+            ?>
+            @endif
+        @endforeach
+        <!-- Get Quizzes
+        -->
+
+        <!-- error here -->
+
+        @foreach($quizzes_taken_id as $key => $quiz_taken_id) 
+            @foreach($quizzes as $key => $quiz) 
+                @if($quiz->quiz_id == $quiz_taken_id)
+                <?php
+                    array_push($quizzes_taken,$quiz);
+                ?>
+                @endif
+            @endforeach
+        @endforeach
+
+        <!-- Get trainings -->
+
+        @foreach($quizzes_taken as $key => $quiz_taken) 
+            @foreach($trainings_taken as $key => $training_taken) 
+                @if($quiz_taken->training_id == $training_taken->id)
+                
+                <?php
+                    array_push($training_quiz_taken,$training);
+                ?>
+                @endif
+            @endforeach
+        @endforeach
+
+        <!-- Get trainings -->
+
+        @foreach($user_trainings as $key => $user_training) 
+            @foreach($training_quiz_taken as $key => $answered) 
+                @if($user_training->training_id == $answered->id)
+                <?php
+                    array_push($evals_to_take,$user_training);
+                ?>
+                @endif
+            @endforeach
+        @endforeach
+
+
+        <!-- error here -->
+
+        @foreach($evals_to_take as $key => $eval)
+            @if($eval->evaluation==null)
+            {{ Form::open(array('url' => 'evaluate')) }}
+            {{$eval->training_id}}
+            {{ Form::hidden('training_id', $value = $eval->training_id) }}
+            {{ Form::submit('Provide Feedback', array('class' => 'btn btn-primary create-btn text-center')) }}
+            {{ Form::close() }}
+            @endif
+        @endforeach
+
+ 
+
     </main>
     
 @endsection

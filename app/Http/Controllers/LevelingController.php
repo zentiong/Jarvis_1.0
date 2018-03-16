@@ -129,7 +129,12 @@ Class LevelingController extends Controller
 						->with('quizzes', $quizzes)
 						->with('sections', $sections)
 						->with('section_attempts', $section_attempts)
-						->with('user_quizzes', $user_quizzes);
+						->with('user_quizzes', $user_quizzes)
+						->with('user_assessments',$user_assessments)
+						->with('trainings_personal', $trainings_personal)
+						->with('trainings_general', $trainings_general)
+						->with('user_trainings', $user_trainings)
+						->with('trainings', $trainings);
 				}
 				else // Normal
 				{
@@ -143,7 +148,8 @@ Class LevelingController extends Controller
             			
             			->with('trainings_general', $trainings_general)
             			->with('trainings',$trainings)
-            			->with('user_quizzes', $user_quizzes);
+            			->with('user_quizzes', $user_quizzes)
+            			->with('user_assessments',$user_assessments);
 				}
 			}
 		}

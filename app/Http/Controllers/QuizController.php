@@ -8,6 +8,7 @@ use App\User;
 use App\User_Quiz;
 use App\Attempt;
 Use App\Skill;
+use App\User_Skill;
 use App\Section;
 use App\Training;
 use App\Section_Attempt;
@@ -164,8 +165,6 @@ class QuizController extends Controller
 
                 // ------------
 
-                
-
                 if ($correct_answer == $attempt_answer)
                 {
                     foreach ($section_attempts as $key => $section_attempt) {
@@ -179,7 +178,6 @@ class QuizController extends Controller
                         $section_attempt->score = $init_score;
                         $section_attempt->save();
                     }   
-
                 }
                 }
 
@@ -188,11 +186,67 @@ class QuizController extends Controller
                 $attempt->save();
             }
 
-        // Gather scores of sections
+        
             foreach ($section_attempts as $key => $section_attempt) {
+
+            // Gather scores of sections
                 $section_score = $section_attempt->score;
                 $init_quiz_score+=$section_score;
+
+            // Put data to user skill
+
+                foreach ($sections as $key => $section) {
+                    if(($section->id)==($section_attempt->section_id))
+                    {
+                        $skill_id = $section->skill_id;
+
+                        /* USER SKILL ADDITION (Start)*/
+
+                        $user_skill = User_Skill::where('user_id',Auth::user()->id)
+                            ->where('skill_id', $skill_id)->first();
+
+                        // doesn't exist yet
+                        if($user_skill==null) {
+
+                            $user_skill = new User_Skill;
+                            $user_skill->user_id = Auth::user()->id;                        
+                            $user_skill->skill_id = $skill_id;
+
+                            $temp_score = $section_attempt->score;  
+                            $user_skill->score = $temp_score; 
+
+                            $temp_max_score = $section_attempt->max_score;  
+                            $user_skill->max_score = $temp_max_score;
+                        }
+
+                        // already exists
+                        else 
+                        {
+                            // it's saying score doesn't exist??
+                            $temp_score = $user_skill->score;
+                            $temp_score += $section_attempt->score;  
+                            $user_skill->score = $temp_score;
+
+                            $temp_max_score = $user_skill->max_score;
+                            $temp_max_score += $section_attempt->max_score;
+                            $user_skill->max_score = $temp_max_score;
+                        }
+
+                        $user_skill->save();
+
+                        /* USER SKILL ADDITION (End)*/
+                    }
+                }
             }
+
+            /*
+                1) Get section attempt
+                2) Get skill 
+                3) Put stuff to user skill
+
+            */
+
+            
 
             // WORKING GREAT
             $user_quiz->score = $init_quiz_score;

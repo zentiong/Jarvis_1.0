@@ -21,7 +21,10 @@ class CreateUserSkillsTable extends Migration
             $table->integer('skill_id')->unsigned();
             $table->foreign('skill_id')->references('id')->on('skills');
 
-            $table->decimal('skill_level');
+            $table->integer('score')->default(0);
+            $table->integer('max_score')->default(0);
+
+            $table->decimal('skill_level')->default(0);; 
         });
     }
 
