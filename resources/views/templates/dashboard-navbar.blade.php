@@ -42,7 +42,15 @@
     </ul>
 
     <?php 
-        $cup = asset( 'images/profile_photos/'.Auth::user()->profile_photo);
+            if(file_exists('images/profile_photos/'.Auth::user()->profile_photo))
+            {
+                $cup = asset( 'images/profile_photos/'.Auth::user()->profile_photo);
+            }
+            else 
+            {
+                $cup = asset( 'images/profile_photos/default.png');
+            }
+            
     ?>
 
     <div class="login-button" id="login-button">

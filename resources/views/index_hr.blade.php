@@ -26,7 +26,15 @@
             $current_user = Auth::user();
             $current_id = Auth::user()->id;
 
-            $cup = asset( 'images/profile_photos/'.Auth::user()->profile_photo);
+            if(file_exists('images/profile_photos/'.Auth::user()->profile_photo))
+            {
+                $cup = asset( 'images/profile_photos/'.Auth::user()->profile_photo);
+            }
+            else 
+            {
+                $cup = asset( 'images/profile_photos/default.png');
+            }
+            
         ?>
 
         <section class="row personal-details hr-pastel">
