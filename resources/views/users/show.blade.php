@@ -32,9 +32,9 @@
 <h1>Showing {{ $user->first_name }} {{ $user->last_name }}</h1>
 
 <?php 
-    
-    $pp = asset( $profile_photo);
     $cup = asset( $current_user_photo);
+    $pp = asset( $profile_photo);
+    
     
 ?>
 

@@ -260,7 +260,7 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update($id, Request $request)
     {
         // validate
         // read more on validation at http://laravel.com/docs/validation
@@ -293,7 +293,20 @@ class UserController extends Controller
             $user->birth_date = Input::get('birth_date');
             $user->department = Input::get('department');
             $user->supervisor_id = Input::get('supervisor_id');
-            $user->profile_photo = Input::get('profile_photo');
+
+            // ---------------- 
+            
+
+            // get current time and append the upload file extension to it,
+            // then put that name to $photoName variable.
+            $photoName = time().'.'.$request->user_photo->getClientOriginalExtension();
+
+            $user->profile_photo = $photoName;
+
+            $request->user_photo->move(public_path('images/profile_photos/'), $photoName);
+
+            // ---------------- 
+
             $user->position = Input::get('position');
             if(Input::get('manager_check')!=NULL)
             {
@@ -304,6 +317,7 @@ class UserController extends Controller
             {
                 $user->manager_check = false;
             }
+
             $user->save();
 
             // redirect

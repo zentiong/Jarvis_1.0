@@ -25,11 +25,13 @@
         <?php 
             $current_user = Auth::user();
             $current_id = Auth::user()->id;
+
+            $cup = asset( 'images/profile_photos/'.Auth::user()->profile_photo);
         ?>
 
         <section class="row personal-details hr-pastel">
             <div class="inner">
-                <img class="img-circle profile-picture" src="{{ asset('images/hr-corp/DL.png') }}" alt="Your profile picture">
+                <img class="img-circle profile-picture" src="{{ $cup }}" alt="Your profile picture">
                 <div class="user-details">
                      @auth
                     <h1 class="username-title">{{ $current_user ->first_name }} {{ $current_user ->last_name }}</h1>

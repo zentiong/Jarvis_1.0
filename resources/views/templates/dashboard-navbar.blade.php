@@ -41,8 +41,12 @@
 
     </ul>
 
+    <?php 
+        $cup = asset( 'images/profile_photos/'.Auth::user()->profile_photo);
+    ?>
+
     <div class="login-button" id="login-button">
-        <img class="img-circle small-profile-picture" src="{{ asset('images/hr-corp/DL.png') }}" alt="Your profile picture">
+        <img class="img-circle small-profile-picture" src="{{$cup}}" alt="Your profile picture">
         <div>
             <h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
             <a class="logout-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LOG OUT</a>

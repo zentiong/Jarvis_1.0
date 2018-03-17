@@ -25,11 +25,16 @@
             <!-- if there are creation errors, they will show here -->
             {{ Html::ul($errors->all()) }}
 
-            {{ Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT')) }}
+            {{ Form::model($user, array('route' => array('users.update', $user->id),'files'=>true, 'method' => 'PUT')) }}
 
                 <div class="form-group">
+                    <?php /*
                     {{ Form::label('profile_photo', 'Profile Photo') }}
                     {{ Form::text('profile_photo', Request::old('profile_photo'), array('class' => 'form-control')) }}
+                    */ ?>
+
+                    {{Form::label('user_photo', 'User Photo',['class' => 'control-label'])}}
+                    {{Form::file('user_photo')}}
                 </div>
                 
                 <div class="row">
