@@ -187,7 +187,7 @@
 	</main>
 
     <p>--------------------------------------------------------</p>
-
+@if(!empty($trainings_personal))
 <h1> Trainings Recommended to you</h1>
     
     @foreach($trainings_personal as $key => $training)
@@ -213,6 +213,7 @@
         @endforeach
         </div>
     @endforeach
+@endif
 
 <h1> Incoming Trainings</h1>
 

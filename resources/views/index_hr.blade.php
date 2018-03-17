@@ -204,6 +204,7 @@
                 </div>
                 <div class="col-md-5">
                     <h5 class="dashboard-header">Trainings</h5>
+                    @if(!empty($trainings_personal))
                     <div class="dashboard-content">
                         <div class="recommended-wrapper">
                             <h6 class="content-header dark"><b>Recommended Trainings</b></h6>
@@ -247,6 +248,7 @@
                             @endforeach
                         </div>
                     </div>
+                    @endif
                     <div class="dashboard-content">
                         <div class="incoming-wrapper">
                             <h6 class="content-header light"><b>Trainings this month</b></h6>
@@ -492,40 +494,47 @@
         @foreach($quizzes_taken as $key => $quiz_taken) 
             @foreach($trainings_taken as $key => $training_taken) 
                 @if($quiz_taken->training_id == $training_taken->id)
-                
                 <?php
-                    array_push($training_quiz_taken,$training);
+                    array_push($training_quiz_taken,$training_taken);
+                    
                 ?>
+                @endif
+            @endforeach
+        @endforeach
+
+
+        <!-- Get trainings -->
+
+        
+
+        @foreach($user_trainings as $key => $user_training) 
+            @foreach($training_quiz_taken as $key => $answered) 
+                
+                @if($user_training->training_id == $answered->id)
+                <?php
+                    array_push($evals_to_take,$user_training);
+                ?>
+
                 @endif
             @endforeach
         @endforeach
 
         
-
-
-        <!-- Get trainings -->
-
-        @foreach($user_trainings as $key => $user_training) 
-            @foreach($training_quiz_taken as $key => $answered) 
-                @if($user_training->training_id == $answered->id)
-                <?php
-                    array_push($evals_to_take,$user_training);
-                ?>
-                @endif
-            @endforeach
-        @endforeach
-
-    
         <!-- error here -->
 
         @foreach($evals_to_take as $key => $eval)
             @if($eval->evaluation==null)
             {{ Form::open(array('url' => 'evaluate')) }}
-            {{$eval->training_id}}
+            @foreach($trainings_taken as $key => $training)
+                @if($training->id == $eval->training_id)
+                    {{$training->title}}
+                @endif
+            @endforeach            
             {{ Form::hidden('training_id', $value = $eval->training_id) }}
             {{ Form::submit('Provide Feedback', array('class' => 'btn btn-primary create-btn text-center')) }}
             {{ Form::close() }}
             @endif
         @endforeach
 
+        
 @endsection
