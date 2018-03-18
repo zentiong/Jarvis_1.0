@@ -23,7 +23,10 @@
 		@endif -->
 	</ul>
 	<?php 
-        if(file_exists(asset('images/profile_photos/'.Auth::user()->profile_photo)))
+
+        $check = Auth::user()->profile_photo;
+    
+        if($check!=null)
         {
             $cup = asset( 'images/profile_photos/'.Auth::user()->profile_photo);
         }
@@ -31,6 +34,7 @@
         {
             $cup = asset( 'images/profile_photos/default.png');
         }
+            
     ?>
 	<div class="login-button" id="login-button">
 		<img class="img-circle small-profile-picture" src="{{ $cup }}" alt="Your profile picture">

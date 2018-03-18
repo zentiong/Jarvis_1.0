@@ -42,14 +42,17 @@
     </ul>
 
     <?php 
-            if(file_exists(asset('images/profile_photos/'.Auth::user()->profile_photo)))
-            {
-                $cup = asset( 'images/profile_photos/'.Auth::user()->profile_photo);
-            }
-            else 
-            {
-                $cup = asset( 'images/profile_photos/default.png');
-            }
+
+        $check = Auth::user()->profile_photo;
+    
+        if($check!=null)
+        {
+            $cup = asset( 'images/profile_photos/'.Auth::user()->profile_photo);
+        }
+        else 
+        {
+            $cup = asset( 'images/profile_photos/default.png');
+        }
             
     ?>
 
