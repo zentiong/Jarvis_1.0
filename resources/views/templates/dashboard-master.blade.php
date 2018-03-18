@@ -34,6 +34,30 @@
 <body class="dashboard">
 @extends('templates.dashboard-navbar')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ URL::asset('js/dashboard.js') }}"></script>
+
+    <script type="text/javascript">
+        // enables dynamic navbar
+        $(document).ready(function() {
+            var a = document.getElementById('levels');
+            a.classList.toggle("active");
+        });
+
+        // enables Bootstrap tooltips
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        if (typeof jQuery == 'undefined') {
+            console.log('jQuery is not defined! you poor thing')
+        }
+        else {
+            console.log('jQuery is defined!');
+        }
+
+    </script>
+
 @yield('body')
 
 @extends('templates.dashboard-footer')

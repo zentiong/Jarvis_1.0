@@ -7,6 +7,7 @@
 	h6: 0.67em/11px;
 */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Roboto:100,300,400,400i,500,500i,700,700i,900");
+@import url("https://fonts.googleapis.com/css?family=Courgette");
 @font-face {
   font-family: "Apercu Regular";
   src: url("../fonts/apercu-regular-webfont.eot?") format("eot"), url("../fonts/apercu-regular-webfont.woff") format("woff"); }
@@ -66,7 +67,7 @@ body.newsletter {
   font-family: "Apercu Regular", sans-serif;
   padding-top: 70px;
   position: relative;
-  font-size: 90%; }
+  font-size: 85%; }
   body.newsletter i.fa {
     margin-right: 0.8em; }
   body.newsletter .branding {
@@ -79,7 +80,7 @@ body.newsletter {
     display: flex;
     align-items: center;
     position: fixed;
-    padding: 0 5px;
+    padding: 0 10px;
     top: 0;
     width: 100%;
     background-color: #000; }
@@ -167,7 +168,22 @@ body.newsletter {
     flex-flow: row nowrap;
     margin: 20px 0; }
   body.newsletter .month-name {
+    font-family: Courgette, cursive, sans-serif;
+    font-size: 3em;
+    color: #F8E71C;
     margin: 20px 0; }
+  body.newsletter .month-dropdown {
+    order: 2;
+    margin: 0 auto !important; }
+  body.newsletter .month-control {
+    margin: 0 1em;
+    color: #F8E71C; }
+  body.newsletter .month-control:first-child {
+    order: 1;
+    margin-right: auto; }
+  body.newsletter .month-control:last-child {
+    order: 3;
+    margin-left: auto; }
   body.newsletter .subsection-label {
     background-color: #F8E71C;
     border: 1px solid #95989A;
@@ -193,7 +209,9 @@ body.newsletter {
     border: none !important; }
   body.newsletter .login-button {
     text-align: right;
-    margin-left: auto; }
+    margin-left: auto;
+    right: 0;
+    margin-right: 10px; }
     body.newsletter .login-button .current-username {
       display: inline;
       margin-right: 5px;
@@ -212,6 +230,8 @@ body.newsletter {
       border-radius: 2px;
       font-family: "Apercu Bold", sans-serif !important; }
   body.newsletter .login-button-yellow {
+    right: 0;
+    margin-right: 10px;
     color: #2F2F2F;
     border: 1px solid transparent;
     background-color: #F8E71C;
@@ -230,7 +250,7 @@ body.newsletter {
   body.newsletter section:nth-child(odd) {
     background-color: none; }
   body.newsletter #calendar-container {
-    overflow-x: scroll;
+    overflow-x: auto;
     width: auto; }
     body.newsletter #calendar-container table.calendar {
       background-color: #1F1F1F;
@@ -250,6 +270,8 @@ body.newsletter {
         background-color: #89801B;
         color: #BDBDBD;
         height: 100px; }
+        body.newsletter #calendar-container table.calendar td.calendar-day .event {
+          color: #fff; }
   body.newsletter .quick-links-container {
     display: flex;
     flex-flow: row wrap;
@@ -435,7 +457,7 @@ body.newsletter {
     body.newsletter #hr-corp-container .hr-corp-row .hr-corp-single {
       margin: 1em 0.8em 0;
       text-align: center;
-      flex-basis: 9.3em;
+      flex-basis: 10em;
       flex-grow: 1; }
       body.newsletter #hr-corp-container .hr-corp-row .hr-corp-single img {
         width: 120px;
@@ -450,8 +472,9 @@ body.newsletter {
     margin-top: 10em;
     width: 100%;
     background-color: #000;
-    color: #BDBDBD;
+    color: #959595;
     font-family: 'Open Sans', sans-serif;
+    font-weight: 100;
     padding: 1em;
     line-height: 1.2; }
     body.newsletter footer b {
@@ -553,7 +576,7 @@ body.dashboard {
             font-weight: 400; }
     body.dashboard main .dashboard-container .dashboard-tab-container {
       font-family: Roboto, sans-serif;
-      margin: 0.5em auto 2em;
+      margin: 0.5em auto 0;
       justify-content: center; }
       body.dashboard main .dashboard-container .dashboard-tab-container .tablinks {
         background: transparent;
@@ -571,12 +594,69 @@ body.dashboard {
         border: none; }
       body.dashboard main .dashboard-container .dashboard-tab-container .tablinks.active:focus {
         box-shadow: none; }
+    body.dashboard main .dashboard-container .dashboard-header {
+      margin-top: 2em; }
+    body.dashboard main .dashboard-container .dashboard-content {
+      background-color: #fff;
+      border: 1px solid #eee;
+      margin-bottom: 1em;
+      max-height: -webkit-fill-available;
+      min-height: 1px;
+      height: auto; }
+    body.dashboard main .dashboard-container .content-header {
+      padding: 1em; }
+    body.dashboard main .dashboard-container .content-header.dark {
+      border-bottom: 1px solid #ebebeb; }
+    body.dashboard main .dashboard-container .content-header.light {
+      border-bottom: 1px solid #464646; }
+    body.dashboard main .dashboard-container .recommended-wrapper {
+      background-color: #03223A;
+      color: #ebebeb;
+      height: fit-content; }
+    body.dashboard main .dashboard-container .trainings-box {
+      margin: 1em;
+      padding: 0 1em 1em;
+      border-bottom: 1px solid #BDBDBD;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: space-between; }
+      body.dashboard main .dashboard-container .trainings-box p {
+        margin: 0; }
+      body.dashboard main .dashboard-container .trainings-box form {
+        margin: 0; }
+      body.dashboard main .dashboard-container .trainings-box .sign-up-btn {
+        border-radius: 15px;
+        font-size: 0.8em;
+        letter-spacing: 2px;
+        text-transform: uppercase; }
+      body.dashboard main .dashboard-container .trainings-box .sign-up-btn.light {
+        background-color: #fff;
+        color: #000; }
+      body.dashboard main .dashboard-container .trainings-box .sign-up-btn.outline {
+        border: 1px solid #03223A;
+        background-color: transparent;
+        color: #000; }
+      body.dashboard main .dashboard-container .trainings-box .going-state {
+        font-size: 0.8em;
+        letter-spacing: 1px;
+        text-transform: uppercase; }
+      body.dashboard main .dashboard-container .trainings-box .going-state.dark {
+        color: #1F1F1F; }
+      body.dashboard main .dashboard-container .trainings-box .going-state.light {
+        color: #ebebeb; }
+    body.dashboard main .dashboard-container .trainings-box:last-child {
+      border-bottom: none; }
     body.dashboard main .hr-pastel {
       background-color: #FFFDF9; }
+    body.dashboard main .mg-pastel {
+      background-color: #FFF9F9; }
+    body.dashboard main .nr-pastel {
+      background-color: #F5FAFB; }
     body.dashboard main .crud-page-top {
       align-items: center;
       justify-content: space-between;
-      margin: 5em 0 1em; }
+      margin: 6em 0 1em; }
       body.dashboard main .crud-page-top .crud-page-title {
         font-size: 1.4rem;
         font-weight: bold;
@@ -590,6 +670,7 @@ body.dashboard {
       font-size: 90%;
       height: fit-content;
       letter-spacing: 2px;
+      padding: 6px 12px;
       text-transform: uppercase; }
     body.dashboard main table {
       font-size: 90%; }
@@ -688,7 +769,7 @@ body.dashboard {
   body.dashboard footer {
     margin-top: 10em;
     width: 100%;
-    border-top: 1px solid #95989A;
+    border-top: 1px solid #ebebeb;
     background-color: #fff;
     color: #BDBDBD;
     font-family: 'Open Sans', sans-serif;
