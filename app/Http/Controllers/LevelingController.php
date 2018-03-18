@@ -12,6 +12,7 @@ use App\Skill;
 use App\Section_Attempt;
 use App\Assessment;
 use App\User_Assessment;
+use App\User_Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -37,6 +38,7 @@ Class LevelingController extends Controller
 		$skills = Skill::all();
 		$assessments = Assessment::all();
 		$user_assessments = User_Assessment::all();
+		$user_skills = User_Skill::all();
 		
 
 
@@ -116,7 +118,8 @@ Class LevelingController extends Controller
             			->with('skills', $skills)
             			->with('sections', $sections)
             			->with('assessments',$assessments)
-            			->with('user_assessments',$user_assessments);
+            			->with('user_assessments',$user_assessments)
+            			->with('user_skills',$user_skills);
 				}	
 
 			}
