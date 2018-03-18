@@ -47,7 +47,7 @@
             $current_user = Auth::user();
             $current_id = Auth::user()->id;
 
-            if(file_exists('images/profile_photos/'.Auth::user()->profile_photo))
+            if(file_exists(asset('images/profile_photos/'.Auth::user()->profile_photo)))
             {
                 $cup = asset( 'images/profile_photos/'.Auth::user()->profile_photo);
             }
