@@ -33,6 +33,7 @@
                 <thead>
                     <tr>
                         <td>Positions</td>
+                        <td>Job Grade </td>
                         <td>Knowledge-based Weight</td>
                         <td>Skills-based Weight</td>
                         <td class="no-stretch">Actions</td>
@@ -42,8 +43,14 @@
                 @foreach($positions as $key => $value)
                     <tr>
                         <td>{{ $value->name }}</td>
-                        <td>{{ $value->knowledge_based_weight }}</td>
-                        <td>{{ $value->skills_based_weight }}</td>
+                        <td>{{ $value->job_grade }}</td>
+
+                        @foreach($job_grades as $key => $job_grade)
+                            @if($job_grade->id == $value->job_grade)
+                                <td>{{ $job_grade->knowledge_based_weight }}</td>
+                                <td>{{ $job_grade->skills_based_weight }}</td>
+                            @endif
+                        @endforeach
                         
                         <td class="table-actions no-stretch">
                              <!-- show the employee (uses the show method found at GET /employees/{id} -->
@@ -88,13 +95,17 @@
                     {{ Form::text('name', Request::old('name'), array('class' => 'form-control', 'autofocus')) }}
                 </div>
                 <div class="form-group">
-                    {{ Form::label('knowledge_based_weight', 'Knowledge-Based Weight') }}
-                    {{ Form::text('knowledge_based_weight', Request::old('knowledge_based_weight'), array('class' => 'form-control', 'autofocus')) }}
+                    {{ Form::label('job_grade', 'Job Grade') }}
+                    <select id="job_grade" class="form-control" name="job_grade">
+                      @foreach($job_grades as $key => $job_grade)
+                        <option value="<?php echo $job_grade->id ?>">{{$job_grade->id}} 
+                        @if($job_grade->id<(10))
+                            &nbsp;
+                        @endif&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Knowledge: {{$job_grade->knowledge_based_weight}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Skills: {{$job_grade->skills_based_weight}}</option>
+                      @endforeach
+                    </select>
                 </div>
-                <div class="form-group">
-                    {{ Form::label('skills_based_weight', 'Skills-Based Weight') }}
-                    {{ Form::text('skills_based_weight', Request::old('skills_based_weight'), array('class' => 'form-control', 'autofocus')) }}
-                </div>
+
 
               </div>
               <div class="modal-footer create-bottom-wrapper">

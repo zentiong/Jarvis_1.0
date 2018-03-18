@@ -17,23 +17,21 @@ class CreatePositionsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('name');
-            $table->integer('knowledge_based_weight');
-            $table->integer('skills_based_weight');
+            $table->integer('job_grade')->unsigned();
+            $table->foreign('job_grade')->references('id')->on('job_grades');
         });
 
         DB::table('positions')->insert(
         array(
             'name' => 'Developer',
-            'knowledge_based_weight' => '50',
-            'skills_based_weight' => '50',
+            'job_grade' => '7'
 
         )  );
 
         DB::table('positions')->insert(
         array(
             'name' => 'HR Associate',
-            'knowledge_based_weight' => '50',
-            'skills_based_weight' => '50',
+            'job_grade' => '9'
 
         )  );
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Position;
+use App\Job_Grade;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
@@ -25,10 +26,12 @@ class PositionController extends Controller
     public function index()
     {
         $positions = Position::all();
+        $job_grades = Job_Grade::all();
 
         // load the view and pass the employees
         return View::make('positions.index')
-            ->with('positions', $positions); 
+            ->with('positions', $positions)
+            ->with('job_grades', $job_grades);
     }
 
     /**
@@ -38,7 +41,9 @@ class PositionController extends Controller
      */
     public function create()
     {
-        return View::make('positions.create');
+        $job_grades = Job_Grade::all();
+        return View::make('positions.create')
+        ->with('job_grades', $job_grades);
     }
 
     /**
@@ -51,8 +56,7 @@ class PositionController extends Controller
     {
          $rules = array(
             'name' => 'required',
-            'knowledge_based_weight' => 'required',
-            'skills_based_weight' => 'required'      
+            'job_grade' => 'required'    
             );
         
         $validator = Validator::make(Input::all(), $rules);
@@ -65,8 +69,7 @@ class PositionController extends Controller
             // store
             $position = new Position;
             $position->name = Input::get('name');
-            $position->knowledge_based_weight = Input::get('knowledge_based_weight');
-            $position->skills_based_weight = Input::get('skills_based_weight');
+            $position->job_grade = Input::get('job_grade');
             $position->save();
 
             // redirect
@@ -99,9 +102,11 @@ class PositionController extends Controller
     public function edit($id)
     {
          $position = Position::find($id);
+         $job_grades = Job_Grade::all();
 
         return View::make('positions.edit')
-            ->with('position', $position);
+            ->with('position', $position)
+            ->with('job_grades', $job_grades);
     }
 
     /**
@@ -115,6 +120,7 @@ class PositionController extends Controller
     {
         $rules = array(
             'name' => 'required',
+            'job_grade' => 'required'
             
         );
         $validator = Validator::make(Input::all(), $rules);
@@ -127,8 +133,7 @@ class PositionController extends Controller
             // store
             $position = Position::find($id);
             $position->name = Input::get('name');
-            $position->knowledge_based_weight = Input::get('knowledge_based_weight');
-            $position->skills_based_weight = Input::get('skills_based_weight');
+            $position->job_grade = Input::get('job_grade');
             $position->save();
 
             // redirect

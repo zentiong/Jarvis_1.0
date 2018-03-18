@@ -33,13 +33,16 @@
 			    </div>
 
 			    <div class="form-group">
-				    {{ Form::label('knowledge_based_weight', 'Knowledge-Based Weight') }}
-				    {{ Form::text('knowledge_based_weight', Request::old('knowledge_based_weight'), array('class' => 'form-control', 'autofocus')) }}
-				</div>
-				<div class="form-group">
-				    {{ Form::label('skills_based_weight', 'Skills-Based Weight') }}
-				    {{ Form::text('skills_based_weight', Request::old('skills_based_weight'), array('class' => 'form-control', 'autofocus')) }}
-				</div>
+                    {{ Form::label('job_grade', 'Job Grade') }}
+                    <select id="job_grade" class="form-control" name="job_grade">
+                      @foreach($job_grades as $key => $job_grade)
+                        <option value="<?php echo $job_grade->id ?>">{{$job_grade->id}} 
+                        @if($job_grade->id<(10))
+                            &nbsp;
+                        @endif&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Knowledge: {{$job_grade->knowledge_based_weight}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Skills: {{$job_grade->skills_based_weight}}</option>
+                      @endforeach
+                    </select>
+                </div>
 
 				<div class="form-group text-center create-bottom-wrapper">
 					<a href="{{ URL::to('positions') }}" class="btn cancel-btn">Cancel</a>
