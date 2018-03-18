@@ -100,7 +100,9 @@ Class LevelingController extends Controller
 						->with('users', $users) 	
 						->with('trainings', $trainings)
 						->with('quizzes', $quizzes)
-						->with('sections', $sections);
+						->with('sections', $sections)
+						->with('skills', $skills)
+						->with('user_skills',$user_skills);
 				}
 				else // HR
 				{
@@ -137,22 +139,24 @@ Class LevelingController extends Controller
 						->with('trainings_personal', $trainings_personal)
 						->with('trainings_general', $trainings_general)
 						->with('user_trainings', $user_trainings)
-						->with('trainings', $trainings);
+						->with('trainings', $trainings)
+						->with('skills', $skills)
+						->with('user_skills',$user_skills);
 				}
 				else // Normal
 				{
 					return view('index_nr')
 						->with('users', $users)
 						->with('quizzes', $quizzes)
-						
 						->with('trainings_personal', $trainings_personal)
 						->with('section_attempts', $section_attempts)
             			->with('user_trainings', $user_trainings)
-            			
             			->with('trainings_general', $trainings_general)
             			->with('trainings',$trainings)
             			->with('user_quizzes', $user_quizzes)
-            			->with('user_assessments',$user_assessments);
+            			->with('user_assessments',$user_assessments)
+            			->with('skills', $skills)
+            			->with('user_skills',$user_skills);
 				}
 			}
 		}
