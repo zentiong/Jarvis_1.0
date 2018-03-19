@@ -5,22 +5,29 @@
         $assessments_arr = array();
         $score_data_all = array();
         $sk_id_arr = array();
+        $quiz_weight = 0;
+        $asmnt_weight = 0;
+        $asmnt_msg = "";
+        $asmnt_mult = 1;
         ?>
+
         <!-- scores -->
         <?php
         foreach($user_skills as $key => $value)
         {
             if($value->user_id==$current_id)
             {
-                // $res = ($value->score/$value->max_score)*100;
-                // Nag 'division by zero' error kaya aking pinalitan -ferny
-                $res = $value->skill_grade;
+                $res = ($value->q_score/$value->q_max_score)*100;
+                $quiz_weight = $value->knowledge_based_weight/100;
+                $asmnt_weight = $value->skills_based_weight/100;
                 array_push($qscore_arr_all,$res);
                 array_push($sk_id_arr,$value->skill_id);
+
             }
         }
         ?>
         <!-- end scores -->
+
         <!-- labels -->
 
         <?php
@@ -38,6 +45,7 @@
 
         ?>
         <!-- end labels -->
+
         <!-- assessments -->
         <?php
         foreach($user_assessments as $value)
@@ -50,23 +58,26 @@
 
         ?>
         <!-- end assessments -->
+
+        <!-- calculations -->
         <?php 
         foreach($qscore_arr_all as $value)
         {
                 
             if(empty($assessments_arr)==false)
             {
-                $comp = (($value*0.5)+(end($assessments_arr)*0.5));
+                $comp = (($value*$quiz_weight)+((end($assessments_arr)*$asmnt_mult)*$asmnt_weight));
                 array_push($score_data_all, $comp);
             }
             else
             {
-                $score_data_all = $qscore_arr_all;  
+                $score_data_all = $qscore_arr_all; 
+                $amnt_msg = "No assesment has been given to you yet"; 
             }
         }            
                     
         ?>
-        <!-- end assessments -->
+        <!-- end calculations -->
 <!-- end of data collection -->
         <section class="container dashboard-container">
             <!-- TAB CONTAINER -->
@@ -113,7 +124,7 @@
                                 data: {
                                     labels: labels_all,
                                     datasets: [{
-                                        label: 'Skill Percentage',
+                                        label: 'Skill Level by Percentage',
                                         data: qscore_arr_all,
                                         backgroundColor: [
                                             'rgba(255, 99, 132, 0.2)',
