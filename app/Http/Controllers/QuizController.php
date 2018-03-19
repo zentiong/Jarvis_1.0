@@ -290,7 +290,7 @@ class QuizController extends Controller
                         }
                        
 
-                        $user_skill->skill_grade = (($q_quotient)*($knowledge_based_weight)+(($a_quotient)*($skills_based_weight);
+                        $user_skill->skill_grade = ($q_quotient)*($knowledge_based_weight)+($a_quotient)*($skills_based_weight);
 
 
                         $user_skill->save();
