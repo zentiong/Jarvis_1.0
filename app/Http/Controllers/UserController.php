@@ -106,13 +106,12 @@ class UserController extends Controller
 
             $user->position = Input::get('position');
 
-
-
-            $photoName = time().'.'.$request->user_photo->getClientOriginalExtension();
-
-            $user->profile_photo = $photoName;
-
-            $request->user_photo->move(public_path('images/profile_photos/'), $photoName);
+            if($request->user_photo!=null) 
+            {
+                $photoName = time().'.'.$request->user_photo->getClientOriginalExtension();
+                $user->profile_photo = $photoName;
+                $request->user_photo->move(public_path('images/profile_photos/'), $photoName);
+            }
 
             // Default Value in migrations ain't working
 
