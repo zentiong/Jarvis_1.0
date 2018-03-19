@@ -1,7 +1,7 @@
 @extends('templates.dashboard-master') 
 
-@section('body')
 
+@section('body')
     <main class="container-fluid">
     <section class="container-fluid">
         <?php 
@@ -102,7 +102,16 @@
 
     </main>
 
-    
-
-        
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+
+<script type="text/javascript">
+    // enables dynamic navbar
+    // enables tooltips
+    $(document).ready(function() {
+        var a = document.getElementById('levels');
+        a.classList.toggle("active");
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
