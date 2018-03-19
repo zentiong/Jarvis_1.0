@@ -13,6 +13,8 @@ use App\Section;
 use App\Training;
 use App\Section_Attempt;
 use App\User_Training;
+use App\Position;
+use App\Job_Grade;
 
 use Auth;
 use Illuminate\Support\Facades\DB;
@@ -205,6 +207,22 @@ class QuizController extends Controller
                         $user_skill = User_Skill::where('user_id',Auth::user()->id)
                             ->where('skill_id', $skill_id)->first();
 
+                            $user = User::find(Auth::user()->id);
+                            $user_position = $user->position; //string
+
+                            $positions = Position::all();
+
+                            foreach ($positions as $key => $position) {
+                                if($user_position == $position->name)
+                                {
+                                    $user_position = $position; //object itself
+                                }
+                            }
+
+                           $user_job_grade = Job_Grade::find($user_position->job_grade); 
+
+
+
                         // doesn't exist yet
                         if($user_skill==null) {
 
@@ -212,25 +230,69 @@ class QuizController extends Controller
                             $user_skill->user_id = Auth::user()->id;                        
                             $user_skill->skill_id = $skill_id;
 
+                            // Score
+
                             $temp_score = $section_attempt->score;  
-                            $user_skill->score = $temp_score; 
+                            $user_skill->q_score = $temp_score; 
+
+                            // Max Score
 
                             $temp_max_score = $section_attempt->max_score;  
-                            $user_skill->max_score = $temp_max_score;
+                            $user_skill->q_max_score = $temp_max_score;
+
                         }
 
                         // already exists
                         else 
                         {
-                            // it's saying score doesn't exist??
+                            // Score
                             $temp_score = $user_skill->score;
                             $temp_score += $section_attempt->score;  
-                            $user_skill->score = $temp_score;
+                            $user_skill->q_score = $temp_score;
+
+                            // Max Score
 
                             $temp_max_score = $user_skill->max_score;
                             $temp_max_score += $section_attempt->max_score;
-                            $user_skill->max_score = $temp_max_score;
+                            $user_skill->q_max_score = $temp_max_score;
+                            
                         }
+
+                        // Get weights
+
+                        $knowledge_based_weight = $user_job_grade->knowledge_based_weight;
+                        $skills_based_weight = $user_job_grade->skills_based_weight;
+
+                        //Recalculate grade
+                        $user_skill->knowledge_based_weight = $knowledge_based_weight;
+                        $user_skill->skills_based_weight = $skills_based_weight;
+
+                        $q_score = $user_skill->q_score;
+                        $q_max_score = $user_skill->q_max_score;
+                        if($q_max_score == 0)
+                        {
+                            $q_quotient = 0;
+                        }
+                        
+                        else {
+                            $q_quotient = $q_score / $q_max_score;
+                        }
+
+                        $a_score = $user_skill->a_score;
+                        $a_max_score = $user_skill->a_max_score;
+
+                        if($a_max_score == 0)
+                        {
+                            $a_quotient = 0;
+                        }
+
+                        else {
+                            $a_quotient = $a_score / $a_max_score;
+                        }
+                       
+
+                        $user_skill->skill_grade = (($q_quotient)*($knowledge_based_weight)*(.1))+(($a_quotient)*($skills_based_weight)*(.1));
+
 
                         $user_skill->save();
 

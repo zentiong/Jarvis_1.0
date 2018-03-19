@@ -48,7 +48,7 @@ class CreateUsersTable extends Migration
             'birth_date' => '2018-12-31',
             'department' => 'Administration',
             'supervisor_id' => '1',
-            'position' => 'Administrator',
+            'position' => 'Developer',
             'manager_check' => true
 
         )  );
@@ -63,7 +63,7 @@ class CreateUsersTable extends Migration
             'birth_date' => '2018-12-31',
             'department' => 'Human Resources',
             'supervisor_id' => '3', 
-            'position' => 'Back End Developer',
+            'position' => 'Developer',
             'manager_check' => false,
             'profile_photo' => 'vanta_anferny.jpg'
         ));   
@@ -78,7 +78,7 @@ class CreateUsersTable extends Migration
             'birth_date' => '2018-12-31',
             'department' => 'Information Technology',
             'supervisor_id' => '1', 
-            'position' => 'Project Manager',
+            'position' => 'Developer',
             'manager_check' => true
         ));   
 
@@ -92,7 +92,7 @@ class CreateUsersTable extends Migration
             'birth_date' => '2018-12-31',
             'department' => 'Human Resources',
             'supervisor_id' => '3', 
-            'position' => 'Front End Developer',
+            'position' => 'Developer',
             'manager_check' => false
         ));   
 
@@ -106,7 +106,7 @@ class CreateUsersTable extends Migration
             'birth_date' => '2018-12-31',
             'department' => 'Marketing',
             'supervisor_id' => '3', 
-            'position' => 'Back End Marketer',
+            'position' => 'Developer',
             'manager_check' => false
         ));   
 

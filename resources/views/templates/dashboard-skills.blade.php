@@ -12,7 +12,9 @@
         {
             if($value->user_id==$current_id)
             {
-                $res = ($value->score/$value->max_score)*100;
+                // $res = ($value->score/$value->max_score)*100;
+                // Nag 'division by zero' error kaya aking pinalitan -ferny
+                $res = $value->skill_grade;
                 array_push($qscore_arr_all,$res);
                 array_push($sk_id_arr,$value->skill_id);
             }

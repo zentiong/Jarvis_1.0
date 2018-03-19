@@ -8,6 +8,9 @@ use App\Assessment_Item;
 use App\User_Assessment;
 use App\Grade;
 Use App\Skill;
+use App\User_Skill;
+use App\Position;
+use App\Job_Grade;
 
 use Auth;
 
@@ -110,14 +113,106 @@ class AssessmentController extends Controller
             $grade->save();
         }
 
-        $user_assessment->feedback = Input::get('feedback'); ;
+        $user_assessment->feedback = Input::get('feedback'); 
+
+
 
         $user_assessment->rating = $rating/ count($assessment_items);
         $user_assessment->save();
 
+
+
+        // Assessment -> User Skill (MAIN)
+
+        // look for skill
+
+        $assessment = Assessment::find($assessment_id);
+
+        $skill_id = $assessment->skill_id;
+
+
+        // instantiate
+
+        $user_skill = User_Skill::where('user_id',Input::get('user'))
+                            ->where('skill_id', $skill_id)->first();
         }
 
-        // redirect
+
+        $user = User::find(Input::get('user'));
+
+        $user_position = $user->position; //string
+
+        $positions = Position::all();
+
+        foreach ($positions as $key => $position) {
+            if($user_position == $position->name)
+            {
+                $user_position = $position; //object itself
+            }
+        }
+
+        
+        $user_job_grade = Job_Grade::find($user_position->job_grade); 
+
+
+        if($user_skill==null) {
+
+            $user_skill = new User_Skill;
+
+            $user_skill->user_id = Input::get('user');
+            $user_skill->skill_id = $skill_id;
+
+            $user_skill->a_score = $user_assessment->rating; 
+            $user_skill->a_max_score = 5;
+        }
+
+        // already exists
+        else 
+        {
+            // it's saying score doesn't exist??
+            $temp_score = $user_skill->a_score;
+            $temp_score += $user_assessment->rating;  
+            $user_skill->a_score = $temp_score;
+
+            $temp_max_score = $user_skill->a_max_score;
+            $temp_max_score += 5;
+            $user_skill->a_max_score = $temp_max_score;
+        }
+
+        // Get weights
+
+        $knowledge_based_weight = $user_job_grade->knowledge_based_weight;
+        $skills_based_weight = $user_job_grade->skills_based_weight;
+
+        //Recalculate grade
+
+        $q_score = $user_skill->q_score;
+        $q_max_score = $user_skill->q_max_score;
+
+        if($q_max_score == 0)
+        {
+            $q_quotient = 0;
+        }
+
+        else {
+            $q_quotient = $q_score / $q_max_score;
+        }
+        
+        $a_score = $user_skill->a_score;
+        $a_max_score = $user_skill->a_max_score;
+
+        if($a_max_score == 0)
+        {
+            $a_quotient = 0;
+        }
+        else {
+            $a_quotient = $a_score / $a_max_score;
+        }
+       
+        $user_skill->skill_grade = (($q_quotient)*($knowledge_based_weight)*(.1))+(($a_quotient)*($skills_based_weight)*(.1));
+
+        $user_skill->save();
+
         Session::flash('message', 'Successfully made an assessment! Congratulations'
          );
         

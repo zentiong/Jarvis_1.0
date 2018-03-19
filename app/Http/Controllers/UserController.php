@@ -106,6 +106,8 @@ class UserController extends Controller
 
             $user->position = Input::get('position');
 
+
+
             $photoName = time().'.'.$request->user_photo->getClientOriginalExtension();
 
             $user->profile_photo = $photoName;
@@ -305,11 +307,13 @@ class UserController extends Controller
 
             // get current time and append the upload file extension to it,
             // then put that name to $photoName variable.
-            $photoName = time().'.'.$request->user_photo->getClientOriginalExtension();
-
-            $user->profile_photo = $photoName;
-
-            $request->user_photo->move(public_path('images/profile_photos/'), $photoName);
+            if($request->user_photo!=null) 
+            {
+                $photoName = time().'.'.$request->user_photo->getClientOriginalExtension();
+                $user->profile_photo = $photoName;
+                $request->user_photo->move(public_path('images/profile_photos/'), $photoName);
+            }
+            
 
             // ---------------- 
 

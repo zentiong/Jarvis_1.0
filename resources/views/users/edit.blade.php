@@ -21,7 +21,7 @@
                     */ ?>
 
                     {{Form::label('user_photo', 'User Photo',['class' => 'control-label'])}}
-                    {{Form::file('user_photo')}}
+                    {{Form::file('user_photo'),Request::old('profile_photo')}}
                 </div>
                 
                 <div class="row">

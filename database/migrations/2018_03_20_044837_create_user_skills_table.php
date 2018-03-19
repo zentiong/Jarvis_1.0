@@ -21,10 +21,23 @@ class CreateUserSkillsTable extends Migration
             $table->integer('skill_id')->unsigned();
             $table->foreign('skill_id')->references('id')->on('skills');
 
-            $table->integer('score')->default(0);
-            $table->integer('max_score')->default(0);
+            // goods
 
-            $table->decimal('skill_level')->default(0);; 
+            $table->integer('q_score')->default(0);
+            $table->integer('q_max_score')->default(0);
+
+            $table->integer('knowledge_based_weight')->default(0);
+
+            // on-going
+
+            $table->integer('a_score')->default(0); 
+            $table->integer('a_max_score')->default(0);
+
+            $table->integer('skills_based_weight')->default(0);
+
+            // grade
+
+            $table->decimal('skill_grade')->default(0);
         });
     }
 
@@ -38,3 +51,5 @@ class CreateUserSkillsTable extends Migration
         Schema::dropIfExists('user_skills');
     }
 }
+
+
