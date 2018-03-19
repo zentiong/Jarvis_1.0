@@ -7,8 +7,6 @@
         $sk_id_arr = array();
         $quiz_weight = 0;
         $asmnt_weight = 0;
-        $asmnt_msg = "";
-        $asmnt_mult = 1;
         ?>
 
         <!-- scores -->
@@ -17,12 +15,23 @@
         {
             if($value->user_id==$current_id)
             {
-                $res = ($value->q_score/$value->q_max_score)*100;
+                $qres = ($value->q_score/$value->q_max_score)*100;
+                
                 $quiz_weight = $value->knowledge_based_weight/100;
                 $asmnt_weight = $value->skills_based_weight/100;
-                array_push($qscore_arr_all,$res);
+                array_push($qscore_arr_all,$qres);
+                
                 array_push($sk_id_arr,$value->skill_id);
 
+                if($value->a_score!=0 and $value->a_max_score!=0)
+                {
+                    $ares = ($value->a_score/$value->a_max_score)*100;
+                    array_push($assessments_arr,$ares);
+                }
+                else
+                {
+                    array_push($assessments_arr,0);
+                }
             }
         }
         ?>
@@ -46,36 +55,13 @@
         ?>
         <!-- end labels -->
 
-        <!-- assessments -->
-        <?php
-        foreach($user_assessments as $value)
-        {
-            if($value->employee_id==$current_id)
-            {
-                array_push($assessments_arr, $value->rating);
-            }
-        }
-
-        ?>
-        <!-- end assessments -->
-
         <!-- calculations -->
         <?php 
-        foreach($qscore_arr_all as $value)
+        for($i=0;$i<sizeof($qscore_arr_all);$i++)
         {
-                
-            if(empty($assessments_arr)==false)
-            {
-                $comp = (($value*$quiz_weight)+((end($assessments_arr)*$asmnt_mult)*$asmnt_weight));
-                array_push($score_data_all, $comp);
-            }
-            else
-            {
-                $score_data_all = $qscore_arr_all; 
-                $amnt_msg = "No assesment has been given to you yet"; 
-            }
+            $comp = (($qscore_arr_all[$i]*$quiz_weight)+($assessments_arr[$i]*$asmnt_weight));
+            array_push($score_data_all, $comp);
         }            
-                    
         ?>
         <!-- end calculations -->
 <!-- end of data collection -->
@@ -91,22 +77,22 @@
                     <h5 class="dashboard-header">Skills</h5>
                     <div class="dashboard-content">
                         <button onclick="update_data(myChart,tfive)">Relevant Skills</button>
-                        <button onclick="update_data(myChart,qscore_arr_all)">All Skills</button>
+                        <button onclick="update_data(myChart,score_data_all)">All Skills</button>
                         <canvas id="myChart" width=100 height=500></canvas>
 
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                         <script type="text/javascript">
 
-                            var qscore_arr_all = <?php echo json_encode($qscore_arr_all)?>;
+                            var score_data_all = <?php echo json_encode($score_data_all)?>;
                             var labels_all = <?php echo json_encode($labels_arr_all)?>;
                             var tfive = [];
-                            if(qscore_arr_all.length>5)
+                            if(score_data_all.length>5)
                             {
-                                tfive = qscore_arr_all.slice(0,5);
+                                tfive = score_data_all.slice(0,5);
                             }
                             else
                             {
-                                tfive = qscore_arr_all;
+                                tfive = score_data_all;
                             }
 
 
@@ -125,7 +111,7 @@
                                     labels: labels_all,
                                     datasets: [{
                                         label: 'Skill Level by Percentage',
-                                        data: qscore_arr_all,
+                                        data: score_data_all,
                                         backgroundColor: [
                                             'rgba(255, 99, 132, 0.2)',
                                             'rgba(54, 162, 235, 0.2)',
@@ -149,9 +135,15 @@
                                     scales: {
                                         yAxes: [{
                                             ticks: {
-                                                beginAtZero:false
+                                                beginAtZero:true
+                                            }
+                                        }],
+                                        xAxes: [{
+                                            ticks: {
+                                                beginAtZero:true
                                             }
                                         }]
+
                                     }
                                 }
                             });
