@@ -209,7 +209,7 @@ class AssessmentController extends Controller
             $a_quotient = $a_score / $a_max_score;
         }
        
-        $user_skill->skill_grade = (($q_quotient)*($knowledge_based_weight)*(.1))+(($a_quotient)*($skills_based_weight)*(.1));
+        $user_skill->skill_grade = (($q_quotient)*($knowledge_based_weight)+(($a_quotient)*($skills_based_weight);
 
         $user_skill->save();
 

@@ -221,8 +221,6 @@ class QuizController extends Controller
 
                            $user_job_grade = Job_Grade::find($user_position->job_grade); 
 
-
-
                         // doesn't exist yet
                         if($user_skill==null) {
 
@@ -246,13 +244,13 @@ class QuizController extends Controller
                         else 
                         {
                             // Score
-                            $temp_score = $user_skill->score;
+                            $temp_score = $user_skill->q_score;
                             $temp_score += $section_attempt->score;  
                             $user_skill->q_score = $temp_score;
 
                             // Max Score
 
-                            $temp_max_score = $user_skill->max_score;
+                            $temp_max_score = $user_skill->q_max_score;
                             $temp_max_score += $section_attempt->max_score;
                             $user_skill->q_max_score = $temp_max_score;
                             
@@ -269,6 +267,7 @@ class QuizController extends Controller
 
                         $q_score = $user_skill->q_score;
                         $q_max_score = $user_skill->q_max_score;
+
                         if($q_max_score == 0)
                         {
                             $q_quotient = 0;
@@ -291,7 +290,7 @@ class QuizController extends Controller
                         }
                        
 
-                        $user_skill->skill_grade = (($q_quotient)*($knowledge_based_weight)*(.1))+(($a_quotient)*($skills_based_weight)*(.1));
+                        $user_skill->skill_grade = (($q_quotient)*($knowledge_based_weight)+(($a_quotient)*($skills_based_weight);
 
 
                         $user_skill->save();
