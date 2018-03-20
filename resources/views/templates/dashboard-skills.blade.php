@@ -15,13 +15,15 @@
         {
             if($value->user_id==$current_id)
             {
-                $qres = ($value->q_score/$value->q_max_score)*100;
-                
-                $quiz_weight = $value->knowledge_based_weight/100;
-                $asmnt_weight = $value->skills_based_weight/100;
-                array_push($qscore_arr_all,$qres);
-                
-                array_push($sk_id_arr,$value->skill_id);
+                if($value->q_score!=0 and $value->q_max_score!=0)
+                {
+                    $qres = ($value->q_score/$value->q_max_score)*100;
+                    array_push($qscore_arr_all,$qres);
+                }
+                else
+                {
+                    array_push($qscore_arr_all,0);
+                }
 
                 if($value->a_score!=0 and $value->a_max_score!=0)
                 {
@@ -32,6 +34,10 @@
                 {
                     array_push($assessments_arr,0);
                 }
+
+                $quiz_weight = $value->knowledge_based_weight/100;
+                $asmnt_weight = $value->skills_based_weight/100;
+                array_push($sk_id_arr,$value->skill_id);
             }
         }
         ?>
