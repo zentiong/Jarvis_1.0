@@ -6,11 +6,10 @@
         <section class="container">
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">All Training Sessions</h1>
-                <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Training Session</button>
-            </div>
-            <div class="text-right">
-                <span>Or, </span>
-                <a href="{{ URL::to('recommend')}}">Recommend trainings</a>
+                <div class="text-right">
+                    <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Training Session</button>
+                    <a href="{{ URL::to('recommend') }}" class="btn crud-sub-cta">Recommend Trainings</a>
+                </div>             
             </div>
 
             <!-- if there are creation errors, they will show here -->

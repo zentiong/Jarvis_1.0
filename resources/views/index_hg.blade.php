@@ -109,7 +109,7 @@
                     
         ?>
         <!-- end assessments -->
-<!-- end of data collection -->
+        <!-- end of data collection -->
         <div id="skills" class="tabcontent">
           <button onclick="update_data(myChart,relevant)">Relevant Skills</button>
             <button onclick="update_data(myChart,qscore_arr_all)">All Skills</button>
@@ -223,55 +223,56 @@
                 @endforeach
                 </tbody>
             </table>
+            
         </section>
         
         <section id="trainings" class="tabcontent container-fluid">
             <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <td>Date</td>
-                    <td>Description</td>
-                    <td>Speaker</td>
-                    <td>Venue</td>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach($trainings as $key => $value)
-                <tr>
-                    <td>{{ $value->date }}</td> 
-                    <td>{{ $value->description }}</td>
-                    <td>{{ $value->speaker }}</td>
-                    <td>{{ $value->venue }}</td>
+                <thead>
+                    <tr>
+                        <td>Date</td>
+                        <td>Description</td>
+                        <td>Speaker</td>
+                        <td>Venue</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($trainings as $key => $value)
+                        <tr>
+                            <td>{{ $value->date }}</td> 
+                            <td>{{ $value->description }}</td>
+                            <td>{{ $value->speaker }}</td>
+                            <td>{{ $value->venue }}</td>
 
-                    <!-- we will also add show, edit, and delete buttons -->
-                    <td class="table-actions">
+                            <!-- we will also add show, edit, and delete buttons -->
+                            <td class="table-actions">
 
-                        <!-- show the employee (uses the show method found at GET /employees/{id} -->
-                        <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $value->id) }}">
-                            <i class="fa fa-user fa-lg"></i>
-                        </a>
+                                <!-- show the employee (uses the show method found at GET /employees/{id} -->
+                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $value->id) }}">
+                                    <i class="fa fa-user fa-lg"></i>
+                                </a>
 
-                        <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
-                        <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit employee" href="{{ URL::to('users/' . $value->id . '/edit') }}">
-                            <i class="fa fa-pencil fa-lg"></i>
-                        </a>
+                                <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
+                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit employee" href="{{ URL::to('users/' . $value->id . '/edit') }}">
+                                    <i class="fa fa-pencil fa-lg"></i>
+                                </a>
 
-                        <!-- delete the employee (uses the destroy method DESTROY /employees/{id} -->
-                        <!-- we will add this later since its a little more complicated than the other two buttons -->
-                        {{ Form::open(array('url' => 'users/' . $value->id, 'class' => 'pull-right')) }}
-                        {{ Form::hidden('_method', 'DELETE') }}
-                        <div data-toggle="tooltip" data-placement="bottom" title="Delete employee" data-animation="true">
-                            {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
-                        </div>
-                            
-                        {{ Form::close() }}
+                                <!-- delete the employee (uses the destroy method DESTROY /employees/{id} -->
+                                <!-- we will add this later since its a little more complicated than the other two buttons -->
+                                {{ Form::open(array('url' => 'users/' . $value->id, 'class' => 'pull-right')) }}
+                                {{ Form::hidden('_method', 'DELETE') }}
+                                <div data-toggle="tooltip" data-placement="bottom" title="Delete employee" data-animation="true">
+                                    {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
+                                </div>
+                                    
+                                {{ Form::close() }}
 
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table> 
-        <a href="trainings/create">Add New Training</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table> 
+            <a href="trainings/create">Add New Training</a>
         </section>
 
     </main>

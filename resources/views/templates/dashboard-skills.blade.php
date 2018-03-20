@@ -66,12 +66,7 @@
         <!-- end calculations -->
         <!-- end of data collection -->
 
-        <section class="container dashboard-container">
-            <!-- TAB CONTAINER -->
-            <div class="row dashboard-tab-container">
-                <button class="btn tablinks" onclick="openTab(event, 'personal')">Personal</button>
-                <button class="btn tablinks"  onclick="openTab(event, 'non-personal')">Department-wide</button>
-            </div>
+       
             <!-- PERSONAL CONTENT CONTAINER -->
             <div class="row dashboard-body tabcontent" id="personal">
                 <div class="col-md-7">

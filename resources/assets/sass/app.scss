@@ -956,14 +956,27 @@ body.dashboard {
 		}
 
 		.crud-main-cta {
+			display: flex;
 			background-color: $table-edit-blue;
 			border: none;
 			border-radius: 15px;
 			color: $white-1;
-			display: table;
 			font-size: 90%;
 			height: fit-content;
 			letter-spacing: 2px;
+			padding: 6px 12px;
+			text-transform: uppercase;
+		}
+		.crud-sub-cta {
+			display: flex;
+			background-color: transparent;
+			border: 1px solid $table-edit-blue;
+			border-radius: 15px;
+			color: $table-edit-blue;
+			font-size: 90%;
+			height: fit-content;
+			letter-spacing: 2px;
+			margin: 0.5em 0;
 			padding: 6px 12px;
 			text-transform: uppercase;
 		}

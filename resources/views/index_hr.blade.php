@@ -11,8 +11,14 @@
         ?>
 
         @include('templates.dashboard-profile_photo', ['current_user' => $current_user, 'current_id' => $current_id])
+         <section class="container dashboard-container">
+            <!-- TAB CONTAINER -->
+            <div class="row dashboard-tab-container">
+                <button class="btn tablinks" onclick="openTab(event, 'personal')">Personal</button>
+                <button class="btn tablinks"  onclick="openTab(event, 'non-personal')">Company-wide</button>
+            </div>
             
-        @include('templates.dashboard-skills')
+            @include('templates.dashboard-skills')
             
             @include('templates.dashboard-trainings')
             <!-- NON-PERSONAL CONTENT CONTAINER -->
@@ -81,7 +87,7 @@
         $evals_to_take = array(); // user trainings where quiz has already been training
         ?>
 
-       @include('templates.dashboard-quiz-evaluations')
+       
         
         <!--@foreach($evals_to_take as $key => $eval)
             @if($eval->evaluation==null)
@@ -96,7 +102,7 @@
             {{ Form::close() }}
             @endif
         @endforeach-->
-        
+            </section>
 
         </section>
 
