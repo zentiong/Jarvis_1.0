@@ -37,6 +37,7 @@
             <li><a id="quizzes"  href="{{ URL::to('quizzes') }}">Quizzes</a></li>
             <li><a id="assessments"  href="{{ URL::to('assessments') }}">Assessments</a></li>
             <li><a id="training-sessions"  href="{{ URL::to('trainings') }}">Trainings</a></li>
+            <li><a id="training-sessions"  href="{{ URL::to('events') }}">Events</a></li>
             @endif
 
     </ul>

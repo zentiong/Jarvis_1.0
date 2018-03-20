@@ -81,15 +81,16 @@
                         
                         
                         /* get all events for the given month */
-                        $events = array();
+                        $happenings = array();
                         $temp = array();
-                        foreach ($events as $event) {
-                            array_push($temp, $event);
+                        $happenings = $events->where('date', ">=", $thisMonth)->where('date', '<', $nM);
+                        foreach ($happenings as $happening) {
+                            array_push($temp, $happening);
                         }
 
-                        $events = $trainings->where('date', ">=", $thisMonth)->where('date', '<', $nM);
-                        foreach ($events as $event) {
-                            array_push($temp, $event);
+                        $happenings = $trainings->where('date', ">=", $thisMonth)->where('date', '<', $nM);
+                        foreach ($happenings as $happening) {
+                            array_push($temp, $happening);
                         }
                     ?>
                 </form>

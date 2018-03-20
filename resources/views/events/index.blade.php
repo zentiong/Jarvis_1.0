@@ -47,10 +47,10 @@
                 @foreach($events as $key => $value)
                     <tr>
                         <td>{{ $value->id }}</td>
+                        <td>{{ $value->title }}</td>
                         <td>{{ $value->date }}</td>
                         <td>{{ $value->starting_time }}</td>
-                        <td>{{ $value->ending_time }}</td>
-                        <td>{{ $value->title }}</td>
+                        <td>{{ $value->ending_time }}</td>   
                         <td>{{ $value->venue }}</td>
 
                         <td class="table-actions no-stretch">
