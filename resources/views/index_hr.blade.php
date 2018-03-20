@@ -9,6 +9,11 @@
             $current_id = Auth::user()->id;
             
         ?>
+        @if (Session::has('message'))
+            <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
+
+        <section class="row personal-details hr-pastel">
 
         @include('templates.dashboard-profile_photo', ['current_user' => $current_user, 'current_id' => $current_id])
          <section class="container dashboard-container">
@@ -21,6 +26,7 @@
             @include('templates.dashboard-skills', ['user_skills' => $user_skills])
             
             @include('templates.dashboard-trainings')
+            
             <!-- NON-PERSONAL CONTENT CONTAINER -->
             <div class="row dashboard-body tabcontent" id="non-personal">
                 <div class="col-md-7">

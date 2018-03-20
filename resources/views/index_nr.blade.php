@@ -11,6 +11,11 @@
             $current_id = Auth::user()->id;
             
         ?>
+        @if (Session::has('message'))
+            <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
+        
+        <section class="row personal-details nr-pastel">
 
         @include('templates.dashboard-profile_photo', ['current_user' => $current_user, 'current_id' => $current_id])
 

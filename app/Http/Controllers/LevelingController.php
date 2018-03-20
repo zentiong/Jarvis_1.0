@@ -101,7 +101,15 @@ Class LevelingController extends Controller
 						->with('trainings', $trainings)
 						->with('quizzes', $quizzes)
 						->with('sections', $sections)
+						->with('trainings_personal', $trainings_personal)
+						->with('section_attempts', $section_attempts)
+            			->with('user_trainings', $user_trainings)
+            			->with('skills_quiz', $skills_quiz)
+            			->with('trainings_general', $trainings_general)
+            			->with('user_quizzes', $user_quizzes)
 						->with('skills', $skills)
+						->with('assessments',$assessments)
+            			->with('user_assessments',$user_assessments)
 						->with('user_skills',$user_skills);
 				}
 				else // HR
@@ -118,7 +126,6 @@ Class LevelingController extends Controller
             			->with('trainings_general', $trainings_general)
             			->with('user_quizzes', $user_quizzes)
             			->with('skills', $skills)
-            			->with('sections', $sections)
             			->with('assessments',$assessments)
             			->with('user_assessments',$user_assessments)
             			->with('user_skills',$user_skills);

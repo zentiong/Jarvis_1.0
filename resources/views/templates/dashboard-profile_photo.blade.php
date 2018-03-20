@@ -1,7 +1,3 @@
-@if (Session::has('message'))
-    <div class="alert alert-info">{{ Session::get('message') }}</div>
-@endif
-
 <?php 
 
     $check = Auth::user()->profile_photo;
@@ -17,7 +13,6 @@
 
 ?>
 
- <section class="row personal-details hr-pastel">
 <div class="inner">
     <div class="img-circle profile-picture" style="background-image: url('{{ $cup }}')" alt="Your profile picture">
     </div>
