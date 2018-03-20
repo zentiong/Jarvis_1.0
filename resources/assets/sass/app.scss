@@ -820,7 +820,7 @@ body.dashboard {
 					padding: 5px;
 					text-transform: uppercase;
 					position: relative;
-					width: 225px;
+					width: 200px;
 				}
 
 				// .tablinks:first-child:before {
@@ -926,6 +926,10 @@ body.dashboard {
 				border-bottom: none;
 			}	
 			
+		}
+
+		canvas {
+			max-height: 300px !important;
 		}
 
 		.hr-pastel {
