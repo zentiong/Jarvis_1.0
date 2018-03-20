@@ -56,16 +56,18 @@
                         <td class="table-actions no-stretch">
 
                             <!-- show the employee (uses the show method found at GET /employees/{id} -->
+                            <?php /*
                             <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View event" href="{{ URL::to('events/' . $value->id) }}">
                                 <i class="fa fa-user fa-lg"></i>
                             </a>
+                            */ ?>
 
                             <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
                             <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit event" href="{{ URL::to('events/' . $value->id . '/edit') }}">
                                 <i class="fa fa-pencil fa-lg"></i>
                             </a>
 
-                                {{ Form::open(array('url' => 'event/' . $value->id, 'class' => 'pull-right')) }}
+                                {{ Form::open(array('url' => 'events/' . $value->id, 'class' => 'pull-right')) }}
                                 {{ Form::hidden('_method', 'DELETE') }}
                                 <div data-toggle="tooltip" data-placement="bottom" title="Remove event">
                                     {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}

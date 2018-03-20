@@ -237,7 +237,7 @@ class AssessmentController extends Controller
          // get all the assessments
         $user_assessments = User_Assessment::all();
         $assessments = Assessment::all();
-        $users = User::all();
+        $users = User::where('supervisor_id',Auth::user()->id)->get();
         $skills = Skill::all();
 
         // load the view and pass the assessments
