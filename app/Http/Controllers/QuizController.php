@@ -87,15 +87,39 @@ class QuizController extends Controller
 
     public function record(Request $request)
     {
-        // Generic
+        // check if complete answers 
+        $quiz_id = Input::get('quiz_id');
 
-            $quiz_id = Input::get('quiz_id'); 
+        $real_count = Input::get("answer_attempt");
+
+        foreach ($real_count as $key => $value) {
+            if ($value == null)
+            {
+                Session::flash('message', 'Please answer all the items');
+                return Redirect::to('quizzes/'.$quiz_id.'/take');
+            }
+        }          
+
+
+        // For Max Score
+
+        $sections = Section::where('quiz_id',$quiz_id)->get();
+        $questions = array();
+
+        foreach ($sections as $key => $section) {
+            $questions_temps = $section->questions()->get();
+            foreach ($questions_temps as $key => $questions_temp) {
+                array_push($questions,$questions_temp);
+            }
+        }
+        $ideal_count = count($questions);  
 
         // User Quiz Instantiation
         
             $user_quiz = new User_Quiz; // New Instance of User Quiz
             $user_quiz->user_id = Auth::user()->id; //User Quiz Details
             $user_quiz->quiz_id = $quiz_id; //User Quiz Details
+            
             $user_quiz->save(); // Save so that its ID can be retreived
 
             $init_quiz_score = 0; 
@@ -142,17 +166,19 @@ class QuizController extends Controller
                 $section_attempts = Section_Attempt::where('user_quiz_id', $user_quiz_id)->get();
 
                 foreach ($section_attempts as $key => $section_attempt) {
-
                     if($section_attempt->section_id == $questions[$i]->section_id)
                     {
                         $attempt->section_attempt_id = $section_attempt->id;
-
-                        $max_score = $section_attempt->max_score;
-                        $max_score++;
-                        $section_attempt->max_score = $max_score;
-                        $user_quiz->max_score += $max_score;
+                        $section_attempt->max_score += 1;
                         $section_attempt->save();
                     }   
+                }
+
+                $user_quiz->max_score = 0;
+
+                foreach ($section_attempts as $key => $section_attempt) {
+                    //$section_attempt->max_score
+                    $user_quiz->max_score += $section_attempt->max_score;
 
                 }
 

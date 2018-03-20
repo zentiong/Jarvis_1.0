@@ -31,7 +31,7 @@ class CreateAttemptsTable extends Migration
 
             // attempts
 
-            $table->string('answer_attempt', 255);
+            $table->string('answer_attempt', 255)->nullable();
         });
     }
 
