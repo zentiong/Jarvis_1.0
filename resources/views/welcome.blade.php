@@ -45,9 +45,9 @@
                 
                 <form method="get" class="row month-main-control">
                 
-                <a href="{{ url('/', ['month'=> $prevMonth, 'year' => $prevYear])}}" class="month-control"><< Previous Month</a>
+                <a href="{{ url('/date', ['month'=> $prevMonth, 'year' => $prevYear])}}" class="month-control"><< Previous Month</a>
 
-                <a href="{{ url('/', ['month'=> $nextMonth, 'year' => $nextYear])}}" class="month-control">Next Month >></a>
+                <a href="{{ url('/date', ['month'=> $nextMonth, 'year' => $nextYear])}}" class="month-control">Next Month >></a>
                     
                 </form>
 

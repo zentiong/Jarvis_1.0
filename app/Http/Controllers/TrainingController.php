@@ -216,12 +216,6 @@ class TrainingController extends Controller
     public function landing2($month, $year){
         $trainings = Training::all();
         $events = Event::all();
-
-        if($month < 10){
-            $month='0'.$month;
-        }
-        
-        $thisMonth = $year.'-'.$month.'-01';
         
         if ($month != 12){
             $nextMonth = $month + 1;
@@ -241,7 +235,7 @@ class TrainingController extends Controller
             $prevYear = $year-1;
         }
 
-        $nextMonth = $month+1;
+        
         if($nextMonth < 10){
             $nM = $year.'-0'.$nextMonth.'-01';
         }
@@ -249,7 +243,11 @@ class TrainingController extends Controller
             $nM = $year.'-'.$nextMonth.'-01';
         }
 
-            
+        if($month < 10){
+            $month = "0".$month;
+        }
+        $thisMonth = $year.'-'.$month.'-01';
+
         $monthName = date("F", mktime(null, null, null, $month));
 
         $happenings = $events->where('date', ">=", $thisMonth)->where('date', '<', $nM);

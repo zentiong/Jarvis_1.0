@@ -24,7 +24,7 @@ Route::<method>('<url>', '<function>');
 
 Route::get('/', 'TrainingController@landing');
 
-Route::get('/{month}/{year}', 'TrainingController@landing2');
+Route::get('/date/{month}/{year}', 'TrainingController@landing2');
 
 Route::resource('levels', 'LevelingController');
 
