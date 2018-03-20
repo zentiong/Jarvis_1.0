@@ -19,7 +19,9 @@
 
  <section class="row personal-details hr-pastel">
 <div class="inner">
-    <img class="img-circle profile-picture" src="{{ $cup }}" alt="Not Available">
+    <div class="img-circle profile-picture" style="background-image: url('{{ $cup }}')" alt="Your profile picture">
+    </div>
+    
     <div class="user-details">
          @auth
         <h1 class="username-title">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h1>

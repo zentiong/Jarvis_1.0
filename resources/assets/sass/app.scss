@@ -26,13 +26,21 @@ a {
 	text-decoration: none !important;
 }
 
-img.img-circle {
-	border-radius: 50%;
+.img-circle {
+	-webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
 }
 
-img.small-profile-picture {
-	max-width: 35px;
+.small-profile-picture {
+	width: 35px;
 	margin-right: 10px;
+	height: 35px;
+	overflow: hidden;
+	background-size: cover;
+	position: relative;
 }
 
 .hamburger-line {
@@ -786,7 +794,11 @@ body.dashboard {
 				align-items: center;
 
 				.profile-picture {
-					max-width: 140px;
+					overflow: hidden;
+					background-size: cover;
+					position: relative;
+					height: 150px;
+					width: 150px;
 				}
 
 				.user-details {
