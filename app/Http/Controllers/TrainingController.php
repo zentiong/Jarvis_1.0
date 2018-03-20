@@ -8,6 +8,7 @@ use App\Training;
 use App\User_Training;
 use App\Quiz;
 use App\User_Quiz;
+use App\Event;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -149,9 +150,11 @@ class TrainingController extends Controller
     // Commented out coz not sure if necessary -Ferny
     public function landing(){
         $trainings = Training::all();
+        $events = Event::all();
 
         // load the view and pass the employees
         return View::make('welcome')
+            ->with('events', $events)
             ->with('trainings', $trainings);
     }
     

@@ -15,6 +15,8 @@ function draw_calendar($month,$year,$events){
 	$days_in_this_week = 1;
 	$day_counter = 0;
 	$dates_array = array();
+	$temp='';
+	$event_day = '';
 
 	/* row for week one */
 	$calendar.= '<tr class="calendar-row">';
@@ -27,24 +29,39 @@ function draw_calendar($month,$year,$events){
 
 	/* keep going with days.... */
 	for($list_day = 1; $list_day <= $days_in_month; $list_day++):
+		$checker = 0;
 		$calendar.= '<td class="calendar-day">';
 			/* add in the day number */
-			$calendar.= '<div class="day-number">'.$list_day.'</div>';
 			if ($list_day < 10){
 				$event_day = $year.'-'.$month.'-0'.$list_day;
 			}
 			else{
 				$event_day = $year.'-'.$month.'-'.$list_day;
 			}
-				foreach($events as $event) {
-					if ($event['date']==$event_day){
-						$calendar.= '<div class="event">'.$event['title'].'</div>';
-					}
+			
+			foreach($events as $event) {
+				if ($event['date']==$event_day){
+					$checker=1;
 					
-				}
+					$temp.= '<div class="event">'.$event['title'].'</div>';
+				} 
+				
+			}
+
+			if ($checker==1){
+				$calendar.= '<div class="day-number" style="color:black">'.$list_day.'</div>';
+			} 
+			else {
+				$calendar.= '<div class="day-number">'.$list_day.'</div>';
+			}
+			
+			$calendar.=$temp;
+			$temp='';
+
 			
 			
 		$calendar.= '</td>';
+
 		if($running_day == 6):
 			$calendar.= '</tr>';
 			if(($day_counter+1) != $days_in_month):
