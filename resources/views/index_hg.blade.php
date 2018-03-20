@@ -1,6 +1,17 @@
 @extends('templates.dashboard-master') 
-
 <script src="{{ URL::asset('js/dashboard.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+
+<script type="text/javascript">
+    // enables dynamic navbar
+    // enables tooltips
+    $(document).ready(function() {
+        var a = document.getElementById('levels');
+        a.classList.toggle("active");
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 
 @section('body')
 
@@ -16,26 +27,25 @@
             <div class="alert alert-info">{{ Session::get('message') }}</div>
         @endif
         
-        <section class="row personal-details nr-pastel">
+        <section class="row personal-details hr-pastel">
 
         @include('templates.dashboard-profile_photo', ['current_user' => $current_user, 'current_id' => $current_id])
 
-        
+        <section class="container dashboard-container">
 
-        <p>HR+MANAGER LANDING</p>
-        <div class="tab">
-          <button class="tablinks" onclick="openTab(event, 'skills')">My Skills</button>
-          <button class="tablinks" onclick="openTab(event, 'employees')">Employees Under Me</button>
-          <button class="tablinks" onclick="openTab(event, 'trainings')">Trainings</button>
+        <div class="row dashboard-tab-container">
+          <button class="btn tablinks" onclick="openTab(event, 'personal')">Personal</button>
+          <button class="btn tablinks" onclick="openTab(event, 'employees')">Department-Wide</button>
+          <button class="btn tablinks" onclick="openTab(event, 'trainings')">Company-Wide</button>
         </div>
 
-        <section class="container dashboard-container">
-            @include('templates.dashboard-skills')
+        
+        @include('templates.dashboard-skills', ['user_skills' => $user_skills])
+            
+        @include('templates.dashboard-trainings')
 
-            @include('templates.dashboard-trainings')
-
-            <!-- NON-PERSONAL CONTENT CONTAINER -->
-                <div class="row dashboard-body tabcontent" id="non-personal">
+            <!-- EMployees CONTENT CONTAINER -->
+                <div class="row dashboard-body tabcontent" id="employees">
                     <div class="col-md-12">
                         <h5 class="dashboard-header">Department overview</h5>
                         <div class="dashboard-content">
@@ -88,8 +98,8 @@
                     </div>
                 </div>
 
-                 <!-- NON-PERSONAL CONTENT CONTAINER -->
-            <div class="row dashboard-body tabcontent" id="non-personal">
+                 <!-- TRAININGS CONTENT CONTAINER -->
+            <div class="row dashboard-body tabcontent" id="trainings">
                 <div class="col-md-7">
                     <h5 class="dashboard-header">Overall skills statistics</h5>
                     <div class="dashboard-content">
@@ -152,21 +162,7 @@
 
         </section>
 
-        
+        </section>
 
     </main>
 @endsection
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script type="text/javascript">
-    // enables dynamic navbar
-    $(document).ready(function() {
-        var a = document.getElementById('levels');
-        a.classList.toggle("active");
-    });
-     // enables Bootstrap tooltips
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script> 
