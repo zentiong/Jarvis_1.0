@@ -151,13 +151,134 @@ class TrainingController extends Controller
     public function landing(){
         $trainings = Training::all();
         $events = Event::all();
+            if (!isset($month)){
+                $month = date('m');
+            }
+            
+            if (!isset($year)){
+                $year = date('Y');
+            } 
+            if ($month != 12){
+                $nextMonth = $month + 1;
+                $nextYear = $year;
+            }
+            else {
+                $nextMonth = 1;
+                $nextYear = $year + 1;
+            }
+            
+            if ($month != 1){
+                $prevMonth = $month -1;
+                $prevYear = $year;
+            }
+            else{
+                $prevMonth =  12;
+                $prevYear = $year-1;
+            }
+
+            $nextMonth = $month+1;
+            if($nextMonth < 10){
+                $nM = $year.'-0'.$nextMonth.'-01';
+            }
+            else {
+                $nM = $year.'-'.$nextMonth.'-01';
+            }
+            
+        $monthName = date("F", mktime(null, null, null, $month));
+        $thisMonth = $year.'-'.$month.'-01';
+
+        $happenings = $events->where('date', ">=", $thisMonth)->where('date', '<', $nM);
+        $temp = array();
+
+        foreach ($happenings as $happening) {
+            array_push($temp, $happening);
+        }
+
+        $happenings = $trainings->where('date', ">=", $thisMonth)->where('date', '<', $nM);
+        foreach ($happenings as $happening) {
+            array_push($temp, $happening);
+        }
+                // load the view and pass the employees
+        return View::make('welcome')
+            ->with('events', $events)
+            ->with('month', $month)
+            ->with('year', $year)
+            ->with('temp', $temp)
+            ->with('monthName', $monthName)
+            ->with('thisMonth', $thisMonth)
+            ->with('prevMonth', $prevMonth)
+            ->with('nextMonth', $nextMonth)
+            ->with('prevYear', $prevYear)
+            ->with('nextYear', $nextYear)
+            ->with('trainings', $trainings);
+    }
+
+    public function landing2($month, $year){
+        $trainings = Training::all();
+        $events = Event::all();
+
+        if($month < 10){
+            $month='0'.$month;
+        }
+        
+        $thisMonth = $year.'-'.$month.'-01';
+        
+        if ($month != 12){
+            $nextMonth = $month + 1;
+            $nextYear = $year;
+        }
+        else {
+            $nextMonth = 1;
+            $nextYear = $year + 1;
+        }
+        
+        if ($month != 1){
+            $prevMonth = $month -1;
+            $prevYear = $year;
+        }
+        else{
+            $prevMonth =  12;
+            $prevYear = $year-1;
+        }
+
+        $nextMonth = $month+1;
+        if($nextMonth < 10){
+            $nM = $year.'-0'.$nextMonth.'-01';
+        }
+        else {
+            $nM = $year.'-'.$nextMonth.'-01';
+        }
+
+            
+        $monthName = date("F", mktime(null, null, null, $month));
+
+        $happenings = $events->where('date', ">=", $thisMonth)->where('date', '<', $nM);
+        $temp = array();
+
+        foreach ($happenings as $happening) {
+            array_push($temp, $happening);
+        }
+
+        $happenings = $trainings->where('date', ">=", $thisMonth)->where('date', '<', $nM);
+        foreach ($happenings as $happening) {
+            array_push($temp, $happening);
+        }
+
 
         // load the view and pass the employees
         return View::make('welcome')
             ->with('events', $events)
+            ->with('month', $month)
+            ->with('year', $year)
+            ->with('thisMonth', $thisMonth)
+            ->with('monthName', $monthName)
+            ->with('prevMonth', $prevMonth)
+            ->with('nextMonth', $nextMonth)
+            ->with('prevYear', $prevYear)
+            ->with('nextYear', $nextYear)
+            ->with('temp', $temp)
             ->with('trainings', $trainings);
     }
-    
 
     /**
      * Show the form for creating a new resource.

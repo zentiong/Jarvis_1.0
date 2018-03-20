@@ -1,47 +1,65 @@
 @extends('templates.dashboard-master')
 
-<br>
-<br>
-<br>
-            @if (Session::has('message'))
-                <div class="alert alert-info">{{ Session::get('message') }}</div>
-            @endif
+                
 @section('body')
-     <main class="container-fluid">
-        <section class="container-fluid">
-            <h2> Who to Recommend </h2>
-            
-            {{ Form::open(array('url' => 'recommend_fire')) }}
-            {{ Form::hidden('training', $value = $training) }}
+     <main class="container create-page">
+        <section class="row crud-page-top">
+            <h1 class="crud-page-title">Who to Recommend {{$training->title}}</h1>
+        </section>
+        <section>
 
-            <h2> {{$training->id}} </h2>
+                @if (Session::has('message'))
+                    <div class="alert alert-info">{{ Session::get('message') }}</div>
+                @endif
+                {{ Form::open(array('url' => 'recommend_fire')) }}
+                {{ Form::hidden('training', $value = $training) }}
 
-            <div class="form-group">
-                @foreach($users as $key => $user)
-                    <?php
-                        $recommended = false;
-                    ?>
-                    {{ Form::label($user->id, $user->first_name.' '.$user->last_name) }}
+                <div class="form-group">
 
-                    @foreach($user_trainings as $key => $user_training)
-                        @if(($user_training->training_id == $training->id)and($user_training->user_id==$user->id))
+                    <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Actions</td>
+                            <td>Employee Name</td>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                         @foreach($users as $key => $user)
                             <?php
-                                $recommended = true;
+                                $recommended = false;
                             ?>
-                        @endif
+                            <tr>
+                                <td class="table-actions">
+                                @foreach($user_trainings as $key => $user_training)
+                                    @if(($user_training->training_id == $training->id)and($user_training->user_id==$user->id))
+                                        <?php
+                                            $recommended = true;
+                                        ?>
+                                    @endif
+                                @endforeach
+
+                                @if($recommended)
+                                    Already Recommended
+                                @else
+                                {{ Form::checkbox($user->id,$user->id, true) }}
+                            
+                                @endif 
+                                </td>
+                                <td>
+                                {{ Form::label($user->id, $user->first_name.' '.$user->last_name) }}
+                                </td>
+                            </tr>
                     @endforeach
 
-                    @if($recommended)
-                        <p>Already Recommended</p>
-                    @else
-                        {{ Form::checkbox($user->id,$user->id, true) }}
-                    <br>
-                            @endif
-                @endforeach
+                    </tbody>
+                    </table>
+                   
+                </div>
+                             
+                {{ Form::submit('Recommend', array('class' => 'btn btn-primary create-btn text-center')) }}
+                {{ Form::close() }}
             </div>
-                         
-            {{ Form::submit('Recommend', array('class' => 'btn btn-primary create-btn text-center')) }}
-            {{ Form::close() }}
         </section>
     </main>
 

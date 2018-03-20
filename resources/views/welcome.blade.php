@@ -40,59 +40,15 @@
             <div class="container">
                 <h1 class="section-label">CALENDAR</h1>
                  @include('calendar_function')
-                <?php 
-                    if (!isset($_GET['month'])){
-                        $month = date('m');
-                    }
-                    else {
-                        $month = $_GET['month'];
-                    }
 
-                    if (!isset($_GET['year'])){
-                        $year = date('Y');
-                    } 
-                    else {
-                        $year = $_GET['year'];
-                    }
-                
-                    $monthName = date("F", mktime(null, null, null, $month));
-                    echo '<div class="text-center month-name">'.$monthName.' '.$year.'</div>';
-                ?>
+                <div class="text-center month-name">{{$monthName.' '.$year}}</div>
                 
                 <form method="get" class="row month-main-control">
+                
+                <a href="{{ url('/', ['month'=> $prevMonth, 'year' => $prevYear])}}" class="month-control"><< Previous Month</a>
+
+                <a href="{{ url('/', ['month'=> $nextMonth, 'year' => $nextYear])}}" class="month-control">Next Month >></a>
                     
-                     
-                    <?php /* "next month" control */
-                        $next_month_link = '<a href="?month='.($month != 12 ? $month + 1 : 1).'&year='.($month != 12 ? $year : $year + 1).'" class="month-control">Next Month >></a>';
-
-                        /* "previous month" control */
-                        $previous_month_link = '<a href="?month='.($month != 1 ? $month - 1 : 12).'&year='.($month != 1 ? $year : $year - 1).'" class="month-control"><<  Previous Month</a>'; 
-                        echo $previous_month_link;
-                        echo $next_month_link;
-                        $thisMonth = $year.'-'.$month.'-01';
-
-                        $nextMonth = $month+1;
-                        if($nextMonth < 10){
-                            $nM = $year.'-0'.$nextMonth.'-01';
-                        }
-                        else {
-                            $nM = $year.'-'.$nextMonth.'-01';
-                        }
-                        
-                        
-                        /* get all events for the given month */
-                        $happenings = array();
-                        $temp = array();
-                        $happenings = $events->where('date', ">=", $thisMonth)->where('date', '<', $nM);
-                        foreach ($happenings as $happening) {
-                            array_push($temp, $happening);
-                        }
-
-                        $happenings = $trainings->where('date', ">=", $thisMonth)->where('date', '<', $nM);
-                        foreach ($happenings as $happening) {
-                            array_push($temp, $happening);
-                        }
-                    ?>
                 </form>
 
                 <?php
