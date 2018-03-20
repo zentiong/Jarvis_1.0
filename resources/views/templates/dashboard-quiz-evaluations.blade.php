@@ -1,4 +1,5 @@
 <?php
+    $evals_to_take = array(); // user trainings where quiz has already been training
     $quizzes_taken_id = array();
     $quizzes_taken = array();
     $training_quiz_taken = array();
@@ -6,12 +7,7 @@
     $user_trainings_taken = array();
     $trainings_taken = array(); 
 ?>
-
-<div class="row crud-page-top">
-
-    <h1 class="crud-page-title"> Quizzes to take</h1>
-    
-
+    <!-- QUIZZES TO TAKE -->
     @foreach($user_trainings as $key => $user_training)
         @if(($user_training->user_id == $current_id)and($user_training->confirmed == true))
             <?php
@@ -40,55 +36,53 @@
         @endforeach        
     @endforeach
 
+    <div>
+        <h6 class="content-header light">
+            <b>Quizzes to take</b>
+        </h6>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td>Topic</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($quizzes_to_take as $key => $quiz_to_take)
+                <tr>
+                <?php
+                            $taken = false;
+                        ?>
+                        @foreach($user_quizzes as $key => $user_quiz)
+                        <?php
+                            if(($user_quiz->user_id==$current_id)and($quiz_to_take->quiz_id==$user_quiz->quiz_id))
+                            {
+                                $taken = true;
+                            }
+                        ?>
+                   
+                        
+                        @endforeach
+                        @if($taken == false)
+                         <!-- 
+                            <a class="btn btn-small btn-info" href="{{ URL::to('quizzes/' . $quiz_to_take->quiz_id . '/take') }}">Take this Quiz</a>
+                         --> <td>{{ $quiz_to_take->topic }}</td>
+                         <td>
 
-    <table class="table table-striped table-bordered">
-        <thead>
-            <tr>
-                <td>Topic</td>
-                <td></td>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach($quizzes_to_take as $key => $quiz_to_take)
-            <tr>
-            <?php
-                        $taken = false;
-                    ?>
-                    @foreach($user_quizzes as $key => $user_quiz)
-                    <?php
-                        if(($user_quiz->user_id==$current_id)and($quiz_to_take->quiz_id==$user_quiz->quiz_id))
-                        {
-                            $taken = true;
-                        }
-                    ?>
-               
-                    
-                    @endforeach
-                    @if($taken == false)
-                     <!-- 
-                        <a class="btn btn-small btn-info" href="{{ URL::to('quizzes/' . $quiz_to_take->quiz_id . '/take') }}">Take this Quiz</a>
-                     --> <td>{{ $quiz_to_take->topic }}</td>
-                     <td>
-
-                     {{ Form::open(array('url' => 'verify_pw')) }}
-                     {{ Form::hidden('quiz_id', $value = $quiz_to_take->quiz_id) }}
-                    {{ Form::button('<i class="fa fa-pencil fa-lg"></i>', array('type' => 'submit', 'class' => 'btn edit-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Take quiz')) }}
-                    {{ Form::close() }}
+                         {{ Form::open(array('url' => 'verify_pw')) }}
+                         {{ Form::hidden('quiz_id', $value = $quiz_to_take->quiz_id) }}
+                        {{ Form::button('<i class="fa fa-pencil fa-lg"></i>', array('type' => 'submit', 'class' => 'btn edit-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Take quiz')) }}
+                        {{ Form::close() }}
 
 
-                    @endif
+                        @endif
 
-                    </td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+                        </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
-
-<div class="row crud-page-top">
-    
-    <h1 class="crud-page-title"> Evaluations to take </h1>
-    
 
     <!-- Get Quiz IDS 
     -->
@@ -148,39 +142,43 @@
 
     
     <!-- error here -->
-    <table class="table table-striped table-bordered">
-        <thead>
-            <tr>
-                <td>Training Session</td>
-                <td></td>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach($evals_to_take as $key => $eval)
-            <tr>
-                 @if($eval->evaluation==null)
-                    {{ Form::open(array('url' => 'evaluate')) }}
-                     @foreach($trainings_taken as $key => $training)
-                    
-                    
-                    @if($training->id == $eval->training_id)
-                     <!-- 
-                        <a class="btn btn-small btn-info" href="{{ URL::to('quizzes/' . $quiz_to_take->quiz_id . '/take') }}">Take this Quiz</a>
-                     --> <td>{{$training->title}}</td>
-                     @endif
-                     @endforeach 
-                     <td>
+    <div>
+        <h6 class="content-header light">
+            <b>Evaluations to take</b>
+        </h6>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td>Training Session</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($evals_to_take as $key => $eval)
+                <tr>
+                     @if($eval->evaluation==null)
+                        {{ Form::open(array('url' => 'evaluate')) }}
+                         @foreach($trainings_taken as $key => $training)
+                        
+                        
+                        @if($training->id == $eval->training_id)
+                         <!-- 
+                            <a class="btn btn-small btn-info" href="{{ URL::to('quizzes/' . $quiz_to_take->quiz_id . '/take') }}">Take this Quiz</a>
+                         --> <td>{{$training->title}}</td>
+                         @endif
+                         @endforeach 
+                         <td>
 
-                    {{ Form::hidden('training_id', $value = $eval->training_id) }}
-                    {{ Form::button('<i class="fa fa-pencil fa-lg"></i>', array('type' => 'submit', 'class' => 'btn edit-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Provide Assessment')) }}
-                    {{ Form::close() }}
+                        {{ Form::hidden('training_id', $value = $eval->training_id) }}
+                        {{ Form::button('<i class="fa fa-pencil fa-lg"></i>', array('type' => 'submit', 'class' => 'btn edit-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Provide Assessment')) }}
+                        {{ Form::close() }}
 
 
-                    @endif
+                        @endif
 
-                    </td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
-    </div>  
+                        </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>

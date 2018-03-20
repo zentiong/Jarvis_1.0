@@ -1,7 +1,5 @@
 @extends('templates.dashboard-master')
 
-
-
 @section('body')
 
     <main class="container create-page">
@@ -84,13 +82,13 @@
                 </div>
                 
                 <!-- Supervisor ID -->
-                 {{ Form::label('supervisor_id', 'Supervisor') }}
+                {{ Form::label('supervisor_id', 'Supervisor') }}
                 <select id="supervisor_id" class="form-control" name="supervisor_id">
-                @foreach($users as $key => $value)
-                <option value="<?php echo $value->id ?>">
-                    {{$value->first_name}} {{$value->last_name}}
-                </option>
-                @endforeach
+                    @foreach($users as $key => $value)
+                    <option value="<?php echo $value->id ?>">
+                        {{$value->first_name}} {{$value->last_name}}
+                    </option>
+                    @endforeach
                 </select>
 
                 <!-- Manager? -->

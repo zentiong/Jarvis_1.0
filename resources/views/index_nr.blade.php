@@ -13,16 +13,20 @@
         ?>
 
         @include('templates.dashboard-profile_photo', ['current_user' => $current_user, 'current_id' => $current_id])
+
+        <section class="container dashboard-container">
+            @include('templates.dashboard-skills')
+
+            @include('templates.dashboard-trainings')
+
+        </section>
 			
-        @include('templates.dashboard-skills')
-
-        @include('templates.dashboard-trainings')
-
+       
         
         <?php 
         $evals_to_take = array(); // user trainings where quiz has already been training
         ?>
-       @include('templates.dashboard-quiz-evaluations')
+       
 		</section>
 	</main>
 
