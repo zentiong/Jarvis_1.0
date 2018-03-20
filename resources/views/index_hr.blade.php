@@ -1,4 +1,5 @@
 @extends('templates.dashboard-master') 
+<script src="{{ URL::asset('js/dashboard.js') }}"></script>
 
 
 @section('body')
