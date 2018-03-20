@@ -786,33 +786,32 @@ body.dashboard {
 			padding: 10px;
 			display: flex;
 			flex-flow: row nowrap;
+		}
 
-			.inner {
-				margin: 2em auto;
-				display: flex;
-				flex-flow: row wrap;
-				align-items: center;
+		.inner {
+			margin: 2em auto;
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+		}
 
-				.profile-picture {
-					overflow: hidden;
-					background-size: cover;
-					position: relative;
-					height: 150px;
-					width: 150px;
-				}
+		.profile-picture {
+			overflow: hidden;
+			background-size: cover;
+			position: relative;
+			height: 150px;
+			width: 150px;
+		}
 
-				.user-details {
-					display: flex;
-					flex-flow: column nowrap;
-					margin-left: 30px;
+		.user-details {
+			display: flex;
+			flex-flow: column nowrap;
+			margin-left: 30px;
 
-					.username-title {
-						font-family: "Roboto", sans-serif;
-						font-size: 2rem;
-						font-weight: 400;
-					}
-				}
-
+			.username-title {
+				font-family: "Roboto", sans-serif;
+				font-size: 2rem;
+				font-weight: 400;
 			}
 		}
 
@@ -871,6 +870,11 @@ body.dashboard {
 				max-height: -webkit-fill-available;
 				min-height: 1px;
 				height: auto;
+				width: 100%;
+
+				.row {
+					padding: 1em 2em;
+				}
 			}
 
 			.content-header {
