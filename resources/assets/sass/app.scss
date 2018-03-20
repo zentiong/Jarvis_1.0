@@ -35,6 +35,8 @@ a {
 }
 
 .small-profile-picture {
+	display: inline-block;
+	vertical-align: middle;
 	width: 35px;
 	margin-right: 10px;
 	height: 35px;
@@ -338,12 +340,19 @@ body.newsletter {
 			}
 
 			td.calendar-day {
-				background-color: #89801B;
+				background-color: #47441B;
 				color: $white-3;
 				height: 100px;
 
 				.event {
 					color: $white-1;
+				}
+			}
+			td.calendar-day-unique {
+				background-color: #89801B;
+				.day-number-unique {
+					color: $zalora-yellow;
+					font-size: 1.5em;
 				}
 			}
 		}
@@ -1058,6 +1067,13 @@ body.dashboard {
 		.form-control {
 			font-size: inherit;
 		}
+		.form-control.user-photo {
+			background: none;
+
+			input {
+				text-transform: uppercase;
+			}
+		}
 
 		input[type="password"] {
 			display: block;
@@ -1075,7 +1091,7 @@ body.dashboard {
 	}
 
 	.create-bottom-wrapper {
-		margin-top: 1em;
+		margin-top: 3em;
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: center;
@@ -1090,6 +1106,9 @@ body.dashboard {
 			margin: auto 1em;
 			width: 200px;
 		}
+	}
+	.modal-footer.create-bottom-wrapper {
+		margin-top: 0;
 	}
 
 	footer {
@@ -1108,7 +1127,7 @@ body.dashboard {
 	}
 
 	// MEDIA QUERIES FOR .DASHBOARD
-	@media (max-width: 900px) {
+	@media (max-width: 1000px) {
 		#navigation {
 
 			#navOpener {

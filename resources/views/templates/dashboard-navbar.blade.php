@@ -29,7 +29,7 @@
         @if (Route::has('login'))
             @auth
             <li><a id="levels" href="{{ URL::to('levels') }}">Dashboard</a></li>
-            <li><a id="quizzes-history" href="{{ URL::to('history') }}">Quiz History</a></li>
+            <!-- <li><a id="quizzes-history" href="{{ URL::to('history') }}">Quiz History</a></li> -->
             @if ( Auth::user()->department == 'Human Resources')
             <li><a id="users" href="{{ URL::to('users') }}">Employees</a></li>
             <li><a id="skills"  href="{{ URL::to('skills') }}">Skills</a></li>
@@ -37,7 +37,7 @@
             <li><a id="quizzes"  href="{{ URL::to('quizzes') }}">Quizzes</a></li>
             <li><a id="assessments"  href="{{ URL::to('assessments') }}">Assessments</a></li>
             <li><a id="training-sessions"  href="{{ URL::to('trainings') }}">Trainings</a></li>
-            <li><a id="training-sessions"  href="{{ URL::to('events') }}">Events</a></li>
+            <li><a id="events"  href="{{ URL::to('events') }}">Events</a></li>
             @endif
 
     </ul>

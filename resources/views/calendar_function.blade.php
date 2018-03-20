@@ -30,7 +30,7 @@ function draw_calendar($month,$year,$events){
 	/* keep going with days.... */
 	for($list_day = 1; $list_day <= $days_in_month; $list_day++):
 		$checker = 0;
-		$calendar.= '<td class="calendar-day">';
+		
 			/* add in the day number */
 			if ($list_day < 10){
 				$event_day = $year.'-'.$month.'-0'.$list_day;
@@ -49,9 +49,11 @@ function draw_calendar($month,$year,$events){
 			}
 
 			if ($checker==1){
-				$calendar.= '<div class="day-number" style="color:black">'.$list_day.'</div>';
+				$calendar.= '<td class="calendar-day-unique">';
+				$calendar.= '<div class="day-number-unique">'.$list_day.'</div>';
 			} 
 			else {
+				$calendar.= '<td class="calendar-day">';
 				$calendar.= '<div class="day-number">'.$list_day.'</div>';
 			}
 			

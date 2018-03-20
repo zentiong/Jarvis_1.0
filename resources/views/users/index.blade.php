@@ -94,10 +94,9 @@
               </div>
               <div class="modal-body create-page">
                 {{ Form::open(array('url' => 'users')) }}
-
                         <div class="form-group">
                             {{Form::label('user_photo', 'User Photo',['class' => 'control-label'])}}
-                    {{Form::file('user_photo')}}
+                            <div class="form-control user-photo">{{Form::file('user_photo')}}</div>
                         </div>
                     
                         <div class="row">
@@ -162,14 +161,16 @@
                             </div>
                         </div>
                         <!-- Supervisor -->
-                        {{ Form::label('supervisor_id', 'Supervisor') }}
-                        <select id="supervisor_id" class="form-control" name="supervisor_id">
-                        @foreach($users as $key => $value)
-                        <option value="<?php echo $value->id ?>">
-                            {{$value->first_name}} {{$value->last_name}}
-                        </option>
-                        @endforeach
-                        </select>
+                        <div class="form-group">
+                            {{ Form::label('supervisor_id', 'Supervisor') }}
+                            <select id="supervisor_id" class="form-control" name="supervisor_id">
+                            @foreach($users as $key => $value)
+                            <option value="<?php echo $value->id ?>">
+                                {{$value->first_name}} {{$value->last_name}}
+                            </option>
+                            @endforeach
+                            </select>
+                        </div>
 
                         <!-- Manager? -->
                         <div class="form-group">
