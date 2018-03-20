@@ -16,7 +16,7 @@
 
 @section('body')
 
-    <main class="container-fluid">
+    <main class="container">
         <section class="container-fluid">
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">Events</h1>
@@ -48,9 +48,9 @@
                     <tr>
                         <td>{{ $value->id }}</td>
                         <td>{{ $value->title }}</td>
-                        <td>{{ $value->date }}</td>
-                        <td>{{ $value->starting_time }}</td>
-                        <td>{{ $value->ending_time }}</td>   
+                        <td>{{ date('F d, Y', strtotime($value->date)) }}</td>
+                        <td>{{ date('h:i a', strtotime($value->starting_time)) }}</td>
+                        <td>{{ date('h:i a', strtotime($value->ending_time)) }}</td>   
                         <td>{{ $value->venue }}</td>
 
                         <td class="table-actions no-stretch">
