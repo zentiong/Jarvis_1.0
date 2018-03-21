@@ -29,9 +29,4 @@
         a.classList.toggle("active");
     });
 
-    // enables Bootstrap tooltips
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip();
-    });
-
 </script>

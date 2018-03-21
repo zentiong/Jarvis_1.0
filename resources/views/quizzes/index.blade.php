@@ -6,7 +6,7 @@
         <section class="container">
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">All Quizzes</h1>
-               <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Quiz</button>
+                <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Quiz</button>
             </div>
 
             <!-- will be used to show any messages -->

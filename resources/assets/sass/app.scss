@@ -1004,6 +1004,7 @@ body.dashboard {
 			margin: 0.5em 0;
 			padding: 6px 12px;
 			text-transform: uppercase;
+			width: fit-content;
 		}
 
 		table {
@@ -1109,6 +1110,11 @@ body.dashboard {
 	}
 	.modal-footer.create-bottom-wrapper {
 		margin-top: 0;
+	}
+
+	.question-btn {
+		border: 1px solid $white-5;
+		font-size: 0.8em;
 	}
 
 	footer {

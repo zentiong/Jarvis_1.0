@@ -53,7 +53,8 @@
 
                 <?php
                     echo draw_calendar($month,$year,$temp);
-                ?>   
+                ?>
+                <p class="text-center">To sign up for events and trainings, log in to your account.</p>   
             </div>
             <div class="container">
                 <div class="text-right subsection-label-container">
