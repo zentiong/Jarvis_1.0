@@ -1,19 +1,32 @@
 @extends('templates.dashboard-master')
 
 @section('body')
-
-<h1>Training Session about {{ $training->title }} </h1>
-
-    <div class="jumbotron text-center">
-        <p>
-            <strong>Date:</strong> {{ $training->date }}<br>
-            <strong>Starting Time:</strong> {{ $training->starting_time }}<br>
-            <strong>Ending Time:</strong> {{ $training->ending_time }}<br>
-            <strong>Speaker:</strong> {{ $training->speaker }}<br>
-            <strong>Venue:</strong> {{ $training->venue }}<br>
-            
-        </p>
+<main class="container create-page">
+  <section class="row crud-page-top">
+      <h1 class="crud-page-title">Showing Training {{ $training->title }}</h1>
+  </section>
+  <section class="container dashboard-container">
+    <div class="row dashboard-body">
+        <div class="dashboard-content">
+            <h6 class="content-header light">
+                <strong>{{ $training->title }}</strong>
+            </h6>
+            <div class="row">
+                <div class="col-md-6">
+                    <strong>Date:</strong> {{ $training->date }}<br>
+                    <strong>Starting Time:</strong> {{ $training->starting_time }}<br>
+                    <strong>Ending Time:</strong> {{ $training->ending_time }}<br>
+                    <strong>Speaker:</strong> {{ $training->speaker }}<br>
+                    <strong>Venue:</strong> {{ $training->venue }}<br>
+                </div>
+            </div>
+        </div>
     </div>
+
+  </section>
+</main>
+
+
 
     <!-- Sorting -->
     <?php
@@ -91,5 +104,3 @@
     @endforeach
     
 @endsection
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

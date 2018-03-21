@@ -1,5 +1,5 @@
 @extends('templates.dashboard-master') 
-<script src="{{ URL::asset('js/dashboard.js') }}"></script>
+
 
 
 @section('body')
@@ -23,11 +23,12 @@
                 <button class="btn tablinks" onclick="openTab(event, 'personal')">Personal</button>
                 <button class="btn tablinks"  onclick="openTab(event, 'non-personal')">Company-wide</button>
             </div>
+
             <div class="row dashboard-body tabcontent" id="personal">
                 @include('templates.dashboard-skills', ['user_skills' => $user_skills])
                 @include('templates.dashboard-trainings')
             </div>
-            <H3>HR LANDING</H3>
+            
             <!-- NON-PERSONAL CONTENT CONTAINER -->
             <div class="row dashboard-body tabcontent" id="non-personal">
                 <div class="col-md-7">
@@ -116,15 +117,3 @@
     </main>
 
 @endsection
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-</script>
-
-<script type="text/javascript">
-    // enables dynamic navbar
-    // enables tooltips
-    $(document).ready(function() {
-        var a = document.getElementById('levels');
-        a.classList.toggle("active");
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script>

@@ -39,10 +39,12 @@
           <button class="btn tablinks" onclick="openTab(event, 'trainings')">Company-Wide</button>
         </div>
 
-        
+
+        <div class="row dashboard-body tabcontent" id="personal">
         @include('templates.dashboard-skills', ['user_skills' => $user_skills])
             
         @include('templates.dashboard-trainings')
+        </div>
 
             <!-- EMployees CONTENT CONTAINER -->
                 <div class="row dashboard-body tabcontent" id="employees">

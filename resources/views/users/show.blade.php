@@ -22,7 +22,7 @@
                     $pp = asset( 'images/profile_photos/default.png');
                 }
             ?>
-            <h1 class="crud-page-title">Showing employee</h1>
+            <h1 class="crud-page-title">Showing employee {{ $user->first_name }} {{ $user->last_name }}</h1>
         </section>
         <section class="container dashboard-container">
             <div class="row dashboard-body">
@@ -214,13 +214,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row dashboard-body">
-                            <div class="col-md-12">
-                                <div class="dashboard-content">
-                                    @include('templates.dashboard-quiz-evaluations')
-                                </div>
-                            </div>
-                        </div>
+                        
 
 
 
