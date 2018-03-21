@@ -1,7 +1,6 @@
 @extends('templates.dashboard-master') 
 
 
-
 @section('body')
     <main class="container-fluid">
     <section class="container-fluid">
@@ -113,7 +112,20 @@
             </section>
 
         </section>
-
+    </section>
     </main>
 
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{{ URL::asset('js/dashboard.js') }}"></script>
+<script type="text/javascript">
+    // enables dynamic navbar
+    $(document).ready(function() {
+        var a = document.getElementById('levels');
+        a.classList.toggle("active");
+    });
+     // enables Bootstrap tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script> 

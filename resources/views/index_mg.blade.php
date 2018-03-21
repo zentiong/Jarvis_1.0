@@ -27,9 +27,9 @@
                 </div>
                 
                 <div class="row dashboard-body tabcontent" id="personal">
-                @include('templates.dashboard-skills')
-
-                @include('templates.dashboard-trainings')
+                    @include('templates.dashboard-skills')
+                    </div>
+                    @include('templates.dashboard-trainings')
 
                 </div>
                 
@@ -95,3 +95,16 @@
     
 @endsection
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{{ URL::asset('js/dashboard.js') }}"></script>
+<script type="text/javascript">
+    // enables dynamic navbar
+    $(document).ready(function() {
+        var a = document.getElementById('levels');
+        a.classList.toggle("active");
+    });
+     // enables Bootstrap tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

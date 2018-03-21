@@ -1,4 +1,4 @@
-<div>
+
 <?php
     $evals_to_take = array(); // user trainings where quiz has already been training
     $quizzes_taken_id = array();
@@ -37,7 +37,7 @@
         @endforeach        
     @endforeach
 
-    <div>
+    
         <h6 class="content-header light">
             <b>Quizzes to take</b>
         </h6>      
@@ -69,7 +69,7 @@
                     @endif
 
             @endforeach
-    </div>
+    
 
     <!-- Get Quiz IDS 
     -->
@@ -147,5 +147,5 @@
                     @endif
                     </div>
             @endforeach
-</div>  
+        
   
