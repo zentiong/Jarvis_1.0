@@ -8,7 +8,7 @@
             <h5>({{ $quiz->topic }} )</h5>
         </section>
         <hr>
-        <section style="margin-top: 2em">
+        <section>
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
                 <div class="alert alert-info">{{ Session::get('message') }}</div>

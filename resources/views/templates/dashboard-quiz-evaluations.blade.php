@@ -39,49 +39,35 @@
     <div>
         <h6 class="content-header light">
             <b>Quizzes to take</b>
-        </h6>
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <td>Topic</td>
-                    <td></td>
-                </tr>
-            </thead>
-            <tbody>
+        </h6>      
             @foreach($quizzes_to_take as $key => $quiz_to_take)
-                <tr>
+               
                 <?php
-                            $taken = false;
-                        ?>
-                        @foreach($user_quizzes as $key => $user_quiz)
-                        <?php
-                            if(($user_quiz->user_id==$current_id)and($quiz_to_take->quiz_id==$user_quiz->quiz_id))
-                            {
-                                $taken = true;
-                            }
-                        ?>
+                    $taken = false;
+                ?>
+                @foreach($user_quizzes as $key => $user_quiz)
+                <?php
+                    if(($user_quiz->user_id==$current_id)and($quiz_to_take->quiz_id==$user_quiz->quiz_id))
+                        {
+                            $taken = true;
+                        }
+                    ?>
                    
-                        
-                        @endforeach
-                        @if($taken == false)
-                         <!-- 
-                            <a class="btn btn-small btn-info" href="{{ URL::to('quizzes/' . $quiz_to_take->quiz_id . '/take') }}">Take this Quiz</a>
-                         --> <td>{{ $quiz_to_take->topic }}</td>
-                         <td>
+                    @endforeach
+                    @if($taken == false)
+                    <!-- 
+                        <a class="btn btn-small btn-info" href="{{ URL::to('quizzes/' . $quiz_to_take->quiz_id . '/take') }}">Take this Quiz</a>
+                         -->
+                        <div class="trainings-box">
+                            <span>{{ $quiz_to_take->topic }}</span>
+                            {{ Form::open(array('url' => 'verify_pw')) }}
+                            {{ Form::hidden('quiz_id', $value = $quiz_to_take->quiz_id) }}
+                            {{ Form::button('ANSWER', array('type' => 'submit', 'class' => 'btn take-quiz-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Take quiz')) }}
+                            {{ Form::close() }}
+                         </div> 
+                    @endif
 
-                         {{ Form::open(array('url' => 'verify_pw')) }}
-                         {{ Form::hidden('quiz_id', $value = $quiz_to_take->quiz_id) }}
-                        {{ Form::button('<i class="fa fa-pencil fa-lg"></i>', array('type' => 'submit', 'class' => 'btn edit-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Take quiz')) }}
-                        {{ Form::close() }}
-
-
-                        @endif
-
-                        </td>
-                </tr>
             @endforeach
-            </tbody>
-        </table>
     </div>
 
     <!-- Get Quiz IDS 
@@ -96,8 +82,6 @@
 
     <!-- Get Quizzes
     -->
-    
-
     <!-- error here -->
 
     @foreach($quizzes_taken_id as $key => $quiz_taken_id) 
@@ -109,8 +93,6 @@
             @endif
         @endforeach
     @endforeach
-
-   
 
     <!-- Get trainings -->
 
@@ -125,7 +107,6 @@
         @endforeach
     @endforeach
 
-
     <!-- Get trainings -->
     
     @foreach($user_trainings as $key => $user_training) 
@@ -139,46 +120,31 @@
             @endif
         @endforeach
     @endforeach
-
     
     <!-- error here -->
     <div>
         <h6 class="content-header light">
             <b>Evaluations to take</b>
         </h6>
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <td>Training Session</td>
-                    <td></td>
-                </tr>
-            </thead>
-            <tbody>
             @foreach($evals_to_take as $key => $eval)
-                <tr>
+               
                      @if($eval->evaluation==null)
+                     <div class="trainings-box">
                         {{ Form::open(array('url' => 'evaluate')) }}
                          @foreach($trainings_taken as $key => $training)
-                        
-                        
-                        @if($training->id == $eval->training_id)
-                         <!-- 
-                            <a class="btn btn-small btn-info" href="{{ URL::to('quizzes/' . $quiz_to_take->quiz_id . '/take') }}">Take this Quiz</a>
-                         --> <td>{{$training->title}}</td>
-                         @endif
-                         @endforeach 
-                         <td>
+                            @if($training->id == $eval->training_id)
+                             <!-- 
+                                <a class="btn btn-small btn-info" href="{{ URL::to('quizzes/' . $quiz_to_take->quiz_id . '/take') }}">Take this Quiz</a>
+                             --> <span>{{$training->title}}</span>
+                             @endif
+                             @endforeach 
 
-                        {{ Form::hidden('training_id', $value = $eval->training_id) }}
-                        {{ Form::button('<i class="fa fa-pencil fa-lg"></i>', array('type' => 'submit', 'class' => 'btn edit-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Provide Assessment')) }}
-                        {{ Form::close() }}
+                            {{ Form::hidden('training_id', $value = $eval->training_id) }}
+                            {{ Form::button('EVALUATE', array('type' => 'submit', 'class' => 'btn take-quiz-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Provide Assessment')) }}
+                            {{ Form::close() }}
 
-
-                        @endif
-
-                        </td>
-                </tr>
+                    @endif
+                    </div>
             @endforeach
-            </tbody>
-        </table>
-    </div>
+           
+  

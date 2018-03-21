@@ -2,29 +2,37 @@
 
 @section('body')
 
- <br>
- <br> <br>
- <br>
-@if (Session::has('message'))
-    <div class="alert alert-info">{{ Session::get('message') }}</div>
-@endif
+    <main class="container create-page">
+        <section class="crud-page-top">
+            <h1 class="crud-page-title">Input password</h1>
+            <h6>Quiz: <?php echo $quiz->topic ?></h6>
+        </section>
+        <section>
+            @if (Session::has('message'))
+                <div class="alert alert-info">{{ Session::get('message') }}</div>
+            @endif
+
+            {{ Form::open(array('url' =>'redirect_pw' )) }}
+                <div class="form-group">
+                    {{ Form::label('password', 'Password') }}
+                    {{ Form::text('password', Request::old('password'), array('class' => 'form-control')) }}
+                </div>
+
+                {{ Form::hidden('quiz_id', $quiz->quiz_id) }}
+
+                <div class="form-group text-center create-bottom-wrapper">
+                    <a href="{{ URL::to('levels') }}" class="btn cancel-btn">Cancel</a>
+                    {{ Form::submit('Enter', array('class' => 'btn btn-primary create-btn text-center')) }}
+                </div>
+
+            {{ Form::close() }}
+        </section>
+    </main>
 
 
 
-    <h2>Input Password for Quiz: <?php echo $quiz->topic ?></h2>
 
-    {{ Form::open(array('url' =>'redirect_pw' )) }}
-        <div class="form-group">
-            {{ Form::label('password', 'Password') }}
-            {{ Form::text('password', Request::old('password'), array('class' => 'form-control')) }}
-        </div>
-
-        {{ Form::hidden('quiz_id', $quiz->quiz_id) }}
-            
-        <a href="{{ URL::to('levels') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
-        {{ Form::submit('Submit', array('class' => 'btn btn-primary create-btn text-center')) }}
-
-    {{ Form::close() }}
+    
 
 @endsection
 

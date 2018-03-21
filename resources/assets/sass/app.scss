@@ -901,6 +901,9 @@ body.dashboard {
 				color: $white-2;
 				height: fit-content;
 			}
+			.available-quizzes-wrapper {
+				display: flex;
+			}
 
 			.trainings-box {
 				margin: 1em;
@@ -933,6 +936,14 @@ body.dashboard {
 					border: 1px solid $recommended-wrapper;
 					background-color: transparent;
 					color: $black-1;
+				}
+
+				.take-quiz-btn {
+					color: $create-crud;
+					background: none;
+					font-size: 0.9em;
+					letter-spacing: 2px;
+					text-transform: uppercase;
 				}
 
 				.going-state {
@@ -970,7 +981,7 @@ body.dashboard {
 		.crud-page-top {
 			align-items: center;
 			justify-content: space-between;
-			margin: 6em 0 1em;
+			margin: 6em 0 2em;
 
 			.crud-page-title {
 				font-size: 1.4rem;
@@ -1022,7 +1033,6 @@ body.dashboard {
 
 			tbody {
 				
-
 				.table-actions {
 					display: flex;
 					flex-flow: row nowrap;
