@@ -6,7 +6,39 @@
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">All Employees</h1>
                 <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Employee</button>
+                <input type="text" id="search_input" onkeyup="filter_table()" placeholder="Search for employees" title="Type in a name">
             </div>
+
+            <script>
+            function filter_table() 
+            {
+              var input, filter, table, tr, td, i;
+              input = document.getElementById("search_input");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("target_table");
+              tr = table.getElementsByTagName("tr");
+              for (i = 0; i < tr.length; i++) 
+              {
+                td = tr[i].getElementsByTagName("td")[1];
+                td1 = tr[i].getElementsByTagName("td")[2];
+                td2 = tr[i].getElementsByTagName("td")[3];
+                td3 = tr[i].getElementsByTagName("td")[4];
+                td4 = tr[i].getElementsByTagName("td")[5];
+                td5 = tr[i].getElementsByTagName("td")[6];
+                td6 = tr[i].getElementsByTagName("td")[8];
+                td7 = tr[i].getElementsByTagName("td")[9];
+                if (td) 
+                {
+                  if (td.innerHTML.toUpperCase().indexOf(filter) > -1 || td1.innerHTML.toUpperCase().indexOf(filter) > -1 || td2.innerHTML.toUpperCase().indexOf(filter) > -1 || td3.innerHTML.toUpperCase().indexOf(filter) > -1 || td4.innerHTML.toUpperCase().indexOf(filter) > -1 || td5.innerHTML.toUpperCase().indexOf(filter) > -1 || td6.innerHTML.toUpperCase().indexOf(filter) > -1 || td7.innerHTML.toUpperCase().indexOf(filter) > -1) 
+                  {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }       
+              }
+            }
+            </script>
 
             <!-- if there are creation errors, they will show here -->
             {{ Html::ul($errors->all()) }}
@@ -19,7 +51,7 @@
                 </div>
             @endif
 
-            <table class="table table-striped table-bordered">
+            <table id="target_table" class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <td>User ID</td>
