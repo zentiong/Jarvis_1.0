@@ -339,6 +339,40 @@ class UserController extends Controller
         }
     }
 
+    public function edit_dp()
+    {
+        // get the user
+        $user = Auth::user();
+
+        // show the edit form and pass the user
+        return View::make('users.edit_dp')
+            ->with('user', $user);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function store_dp(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        if($request->user_photo!=null) 
+        {
+            $photoName = time().'.'.$request->user_photo->getClientOriginalExtension();
+            $user->profile_photo = $photoName;
+            $request->user_photo->move(public_path('images/profile_photos/'), $photoName);
+        }        
+
+        $user->save();
+
+        // redirect
+        Session::flash('message', 'Successfully Changed Profile Photo!');
+        return Redirect::to('levels');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
