@@ -15,13 +15,9 @@
             {{ Form::model($user, array('route' => array('users.update', $user->id),'files'=>true, 'method' => 'PUT')) }}
 
                 <div class="form-group">
-                    <?php /*
-                    {{ Form::label('profile_photo', 'Profile Photo') }}
-                    {{ Form::text('profile_photo', Request::old('profile_photo'), array('class' => 'form-control')) }}
-                    */ ?>
-
                     {{Form::label('user_photo', 'Profile Picture',['class' => 'control-label'])}}
-                    <div class="form-control user-photo">{{Form::file('user_photo'),Request::old('profile_photo') }} </div>
+                    <div class="form-control user-photo">{{Form::file('user_photo'),Request::old('profile_photo') }} 
+                    </div>
                 </div>
                 
                 <div class="row">

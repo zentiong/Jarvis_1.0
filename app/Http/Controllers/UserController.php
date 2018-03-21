@@ -311,8 +311,7 @@ class UserController extends Controller
                 $photoName = time().'.'.$request->user_photo->getClientOriginalExtension();
                 $user->profile_photo = $photoName;
                 $request->user_photo->move(public_path('images/profile_photos/'), $photoName);
-            }
-            
+            }            
 
             // ---------------- 
 
