@@ -101,10 +101,10 @@
                     @endforeach
                     </tbody>
                     </table>
-                    <!--
-                    <a href="{{ URL::to('quizzes/'.$quiz->quiz_id.'/questions/create') }}" style="float: right;">Add a Question</a>
-                    --> 
-                    <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Question</button>
+                    <div class="text-right">
+                        <button class="btn question-btn" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Question</button>
+                    </div>
+                    
 
                      <!-- Modal -->
                     <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -1,17 +1,4 @@
 @extends('templates.dashboard-master') 
-<script src="{{ URL::asset('js/dashboard.js') }}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-</script>
-
-<script type="text/javascript">
-    // enables dynamic navbar
-    // enables tooltips
-    $(document).ready(function() {
-        var a = document.getElementById('levels');
-        a.classList.toggle("active");
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script>
 
 @section('body')
 
@@ -168,3 +155,17 @@
 
     </main>
 @endsection
+
+<script src="{{ URL::asset('js/dashboard.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+
+<script type="text/javascript">
+    // enables dynamic navbar
+    // enables tooltips
+    $(document).ready(function() {
+        var a = document.getElementById('levels');
+        a.classList.toggle("active");
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

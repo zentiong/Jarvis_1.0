@@ -100,8 +100,6 @@
                     {{ Form::submit('Save changes', array('class' => 'btn btn-primary create-btn text-center')) }}
                 </div>
 
-
-                
             {{ Form::close() }}
         </section>
     </main>

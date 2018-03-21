@@ -1,9 +1,11 @@
 @extends('templates.dashboard-master')
 
+
 @section('body')
 <main class="container create-page">
-  <section class="row crud-page-top">
-      <h1 class="crud-page-title">Showing Training {{ $training->title }}</h1>
+  <section class="crud-page-top">
+      <h1 class="crud-page-title">Showing Training</h1>
+      <h5>{{ $training->title }}</h5>
   </section>
   <section class="container dashboard-container">
     <div class="row dashboard-body">
@@ -112,9 +114,14 @@
   </section>
 </main>
 
-
-    	
-    
-    
-    
 @endsection
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var a = document.getElementById('training-sessions');
+        a.classList.toggle("active");
+    });
+
+</script>
