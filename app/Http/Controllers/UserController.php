@@ -14,6 +14,7 @@ use App\Assessment;
 use App\User_Assessment;
 use App\Training;
 use App\User_Training;
+use App\User_Skill;
 
 use Auth;
 
@@ -150,6 +151,7 @@ class UserController extends Controller
         $skills_quiz = array();
         $skills_assessment = array();
         $now= date('Y-m-d');
+        $user_skills = User_Skill::all();
 
         // ------------------
 
@@ -240,6 +242,7 @@ class UserController extends Controller
             ->with('current_user_photo',$current_user_photo) 
             // ------
             ->with('trainings', $trainings)
+            ->with('user_skills',$user_skills)
             ->with('user_trainings', $user_trainings);
     }
 
