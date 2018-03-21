@@ -7,6 +7,7 @@
             <h1 class="crud-page-title"> Showing questions for this quiz  </h1>
             <h5>({{ $quiz->topic }} )</h5>
         </section>
+        <hr>
         <section style="margin-top: 2em">
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
@@ -41,7 +42,7 @@
                  @foreach($sections as $key => $section)
                     @foreach($skills as $key => $skill)
                         @if($skill->id == $section->skill_id)
-                            {{$skill->name}}
+                            <h6><b>Skill: {{$skill->name}}</b></h6>
                         @endif
                     @endforeach
 
@@ -53,7 +54,7 @@
                         <tr>
                             <td>Question</td>
                             <td>Answer </td>
-                           
+                            <td class="no-stretch">Actions</td>
                         </tr>
                     </thead>
 
@@ -66,21 +67,28 @@
                             <td>{{ $value->answer_item }}</td>
 
                             <!-- we will also add show, edit, and delete buttons -->
-                            <td>
+                            <td class="table-actions">
+                                <!-- show the quiz (uses the show method found at GET /quizzes/{id} -->
+                                <!-- -->
+                                <!-- <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View question" href="{{ URL::to('quizzes/'.$quiz->quiz_id.'/questions/'.$value->id) }}">
+                                    <i class="fa fa-user fa-lg"></i>
+                                </a> -->
+
+                                <!-- edit this quiz (uses the edit method found at GET /quizzes/{id}/edit -->
+                                <!-- -->
+                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit employee" href="{{ URL::to('quizzes/'.$quiz->quiz_id.'/questions/'.$value->id.'/edit') }}">
+                                    <i class="fa fa-pencil fa-lg"></i>
+                                </a>
 
                                 <!-- delete the quiz (uses the destroy method DESTROY /quizzes/{id} -->
                                 <!-- we will add this later since its a little more complicated than the other two buttons -->
                                 {{ Form::open(array('url' => 'quizzes/'.$quiz->quiz_id.'/questions/' . $value->id, 'class' => 'pull-right')) }}
                                     {{ Form::hidden('_method', 'DELETE') }}
-                                    {{ Form::submit('Remove', array('class' => 'btn btn-warning')) }}
+                                    
+                                    <div data-toggle="tooltip" data-placement="bottom" title="Remove question">
+                                        {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'Remove', 'class' => 'btn delete-btn')) }}
+                                    </div>
                                  {{ Form::close() }}
-                                <!-- show the quiz (uses the show method found at GET /quizzes/{id} -->
-                                <!-- -->
-                                <a class="btn btn-small btn-success" href="{{ URL::to('quizzes/'.$quiz->quiz_id.'/questions/'.$value->id) }}">Show this Question</a>
-                               
-                                <!-- edit this quiz (uses the edit method found at GET /quizzes/{id}/edit -->
-                                <!-- -->
-                                <a class="btn btn-small btn-info" href="{{ URL::to('quizzes/'.$quiz->quiz_id.'/questions/'.$value->id.'/edit') }}">Edit this Question</a>
                                 
                             </td>
                         </tr>

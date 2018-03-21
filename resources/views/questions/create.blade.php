@@ -29,17 +29,13 @@
                         {{ Form::text('answer_item', Request::old('answer_item'), array('class' => 'form-control')) }}
                     </div>
 
-                    <!-- <div class="form-group text-center create-bottom-wrapper">
-                        <a href="{{ URL::to('users') }}" class="btn cancel-btn">Cancel</a>
-                         {{ Form::submit('Create employee', array('class' => 'btn btn-primary create-btn text-center')) }}
-                    </div>     -->
-
+                    <div class="form-group text-center create-bottom-wrapper">
+                        <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn">Cancel</a>
+                         {{ Form::submit('Add Question', array('class' => 'btn btn-primary create-btn text-center')) }}
+                    </div>    
                 </div>
-
-                <br>
-                {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
-                
             {{ Form::close() }}
+
         </section>
     </main>
 
