@@ -1,3 +1,4 @@
+<div>
 <?php
     $evals_to_take = array(); // user trainings where quiz has already been training
     $quizzes_taken_id = array();
@@ -122,7 +123,7 @@
     @endforeach
     
     <!-- error here -->
-    <div>
+    
         <h6 class="content-header light">
             <b>Evaluations to take</b>
         </h6>
@@ -146,5 +147,5 @@
                     @endif
                     </div>
             @endforeach
-           
+</div>  
   

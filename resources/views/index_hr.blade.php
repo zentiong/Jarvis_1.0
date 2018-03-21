@@ -23,11 +23,11 @@
                 <button class="btn tablinks" onclick="openTab(event, 'personal')">Personal</button>
                 <button class="btn tablinks"  onclick="openTab(event, 'non-personal')">Company-wide</button>
             </div>
-            
-            @include('templates.dashboard-skills', ['user_skills' => $user_skills])
-            
-            @include('templates.dashboard-trainings')
-            
+            <div class="row dashboard-body tabcontent" id="personal">
+                @include('templates.dashboard-skills', ['user_skills' => $user_skills])
+                @include('templates.dashboard-trainings')
+            </div>
+            <H3>HR LANDING</H3>
             <!-- NON-PERSONAL CONTENT CONTAINER -->
             <div class="row dashboard-body tabcontent" id="non-personal">
                 <div class="col-md-7">

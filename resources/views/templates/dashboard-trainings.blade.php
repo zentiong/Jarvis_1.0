@@ -1,10 +1,10 @@
 <div class="col-md-5">
-        <h5 class="dashboard-header">Trainings</h5>
-        @if($mg==1)
-        <a href="{{ URL::to('recommend') }}" class="btn crud-sub-cta">Recommend Trainings</a>
-        @endif
-        @if(!empty($trainings_personal))
-        <div class="dashboard-content">
+    <h5 class="dashboard-header">Trainings</h5>
+    @if($mg==1)
+    <a href="{{ URL::to('recommend') }}" class="btn crud-sub-cta">Recommend Trainings</a>
+    @endif
+    @if(!empty($trainings_personal))
+    <div class="dashboard-content">
             <div class="recommended-wrapper">
                 <h6 class="content-header dark"><b>Recommended Trainings</b></h6>
                 @foreach($trainings_personal as $key => $training)
@@ -48,9 +48,9 @@
                     @endif
                 @endforeach
             </div>
-        </div>
-        @endif
-        <div class="dashboard-content">
+    </div>
+    @endif
+    <div class="dashboard-content">
             <div class="incoming-wrapper">
                 <h6 class="content-header light"><b>Trainings this month</b></h6>
                 @foreach($trainings_general as $key => $training)
@@ -96,6 +96,5 @@
                     @endif
                 @endforeach
             </div>
-        </div>
     </div>
 </div>

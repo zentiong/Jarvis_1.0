@@ -74,7 +74,7 @@
 
        
             <!-- PERSONAL CONTENT CONTAINER -->
-            <div class="row dashboard-body tabcontent" id="personal">
+            
                 <div class="col-md-7">
                     <h5 class="dashboard-header">Skills</h5>
                     <div class="dashboard-content">
