@@ -1,5 +1,8 @@
 <div class="col-md-5">
         <h5 class="dashboard-header">Trainings</h5>
+        @if($mg==1)
+        <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="Recommend Trainings" href="{{ URL::to('recommend')}}">Recommend Trainings to your Employees</a>
+        @endif
         @if(!empty($trainings_personal))
         <div class="dashboard-content">
             <div class="recommended-wrapper">

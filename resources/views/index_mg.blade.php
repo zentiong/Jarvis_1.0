@@ -29,7 +29,7 @@
                 @include('templates.dashboard-skills')
 
                 @include('templates.dashboard-trainings')
-
+                
                 <!-- NON-PERSONAL CONTENT CONTAINER -->
                 <div class="row dashboard-body tabcontent" id="non-personal">
                     <div class="col-md-12">
