@@ -28,7 +28,6 @@
                 
                 <div class="row dashboard-body tabcontent" id="personal">
                     @include('templates.dashboard-skills')
-                    </div>
                     @include('templates.dashboard-trainings')
 
                 </div>

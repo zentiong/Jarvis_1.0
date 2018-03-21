@@ -20,7 +20,7 @@
         </section>
         <section class="container dashboard-container">
             <div class="row dashboard-body tabcontent" id="personal">
-                @include('templates.dashboard-skills')</div>
+                @include('templates.dashboard-skills')
                 @include('templates.dashboard-trainings')
             </div>
                 

@@ -153,5 +153,5 @@
                     </div>
                     <div class="dashboard-content">
                         @include('templates.dashboard-quiz-evaluations')
-                    
+                    </div>
                 </div>
