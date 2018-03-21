@@ -1,13 +1,14 @@
 <div class="col-md-5">
         <h5 class="dashboard-header">Trainings</h5>
         @if($mg==1)
-        <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="Recommend Trainings" href="{{ URL::to('recommend')}}">Recommend Trainings to your Employees</a>
+        <a href="{{ URL::to('recommend') }}" class="btn crud-sub-cta">Recommend Trainings</a>
         @endif
         @if(!empty($trainings_personal))
         <div class="dashboard-content">
             <div class="recommended-wrapper">
                 <h6 class="content-header dark"><b>Recommended Trainings</b></h6>
                 @foreach($trainings_personal as $key => $training)
+                    @if($training->date >= $now)
                     <div class="trainings-box">
                         <div>
                             <!-- text -->
@@ -44,6 +45,7 @@
                         @endforeach
                         </div>
                     </div>
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -52,7 +54,8 @@
             <div class="incoming-wrapper">
                 <h6 class="content-header light"><b>Trainings this month</b></h6>
                 @foreach($trainings_general as $key => $training)
-                    {{ $present = false }} 
+                    {{ $present = false }}
+                    @if($training->date >= $now) 
                     <div class="trainings-box">
                         <div>
                             <!-- text -->
@@ -90,6 +93,7 @@
                             @endif
                         </div>
                     </div>
+                    @endif
                 @endforeach
             </div>
         </div>

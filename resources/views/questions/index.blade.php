@@ -19,7 +19,10 @@
              -->
             <a href="{{ URL::to('quizzes/'.$quiz->quiz_id.'/add_section') }}" class="btn crud-sub-cta">Add a section</a>
             <br>
-            
+                <?php 
+                $quiz_id = $quiz->quiz_id;
+                
+                 ?>
                 <?php /*
                 <h2>START TEST</h2>
 
@@ -101,12 +104,44 @@
                     <!--
                     <a href="{{ URL::to('quizzes/'.$quiz->quiz_id.'/questions/create') }}" style="float: right;">Add a Question</a>
                     --> 
+                    <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Question</button>
 
-                        {{ Form::open(array('url' => 'quizzes/'.$quiz->quiz_id.'/questions/create', 'class' => 'pull-right')) }}
-                            {{ Form::hidden('quiz_id', $quiz->quiz_id) }}
-                            {{ Form::hidden('section_id', $section->id) }}
-                            {{ Form::submit('Add Question', array('class' => 'btn question-btn text-center')) }}
-                        {{ Form::close() }}
+                     <!-- Modal -->
+                    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add Question</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+
+                                {{ Form::open(array('url' => 'quizzes/'.$quiz_id.'/questions')) }}
+                                {{ Form::hidden('quiz_id', $quiz->quiz_id) }}
+                                {{ Form::hidden('section_id', $section->id) }}
+                                <div class="form-group">
+                                    {{ Form::label('question_item', 'Question') }}
+                                    {{ Form::text('question_item', Request::old('question_item'), array('class' => 'form-control')) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ Form::label('answer_item', 'Answer') }}
+                                    {{ Form::text('answer_item', Request::old('answer_item'), array('class' => 'form-control')) }}
+                                </div>
+
+
+                              </div>
+                              <div class="modal-footer create-bottom-wrapper">
+                                 <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn">Cancel</a>
+                                 {{ Form::submit('Add Question', array('class' => 'btn btn-primary create-btn text-center')) }}
+                              </div>
+                              {{ Form::close() }}
+                            </div>
+                          </div>
+                        </div>
+                                        
+                            
                     <br>
                     <br>
                 @endforeach
@@ -121,7 +156,13 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var a = document.getElementById('quizzes');
+        var a = document.getElementById('positions');
         a.classList.toggle("active");
     });
+
+    // enables Bootstrap tooltips
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
 </script>

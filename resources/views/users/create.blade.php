@@ -11,11 +11,12 @@
                     <div class="alert alert-info">{{ Html::ul($errors->all()) }}</div>
             @endif
 
-            {{ Form::open(array('url' => 'users')) }}
+            {{ Form::open(array('url' => 'users','files'=>true)) }}
 
-            <div class="form-group">
-                     {{Form::label('user_photo', 'User Photo',['class' => 'control-label'])}}
-                    {{Form::file('user_photo')}}array('class' => 'form-control')) }}
+                <div class="form-group">
+                    {{Form::label('user_photo', 'Profile Picture',['class' => 'control-label'])}}
+                    <div class="form-control user-photo">{{Form::file('user_photo'),Request::old('profile_photo') }} 
+                    </div>
                 </div>
             
                 <div class="row">

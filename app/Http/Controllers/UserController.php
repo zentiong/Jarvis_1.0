@@ -14,6 +14,7 @@ use App\Assessment;
 use App\User_Assessment;
 use App\Training;
 use App\User_Training;
+use App\User_Skill;
 
 use Auth;
 
@@ -149,6 +150,8 @@ class UserController extends Controller
         $sections = array();
         $skills_quiz = array();
         $skills_assessment = array();
+        $now= date('Y-m-d');
+        $user_skills = User_Skill::all();
 
         // ------------------
 
@@ -233,11 +236,13 @@ class UserController extends Controller
             ->with('skills_assessment',$skills_assessment)
             ->with('user_assessments', $user_assessments)
             ->with('assessments', $assessments) 
+            ->with('now', $now)
             // ------
             ->with('profile_photo', $profile_photo)
             ->with('current_user_photo',$current_user_photo) 
             // ------
             ->with('trainings', $trainings)
+            ->with('user_skills',$user_skills)
             ->with('user_trainings', $user_trainings);
     }
 
@@ -311,8 +316,7 @@ class UserController extends Controller
                 $photoName = time().'.'.$request->user_photo->getClientOriginalExtension();
                 $user->profile_photo = $photoName;
                 $request->user_photo->move(public_path('images/profile_photos/'), $photoName);
-            }
-            
+            }            
 
             // ---------------- 
 

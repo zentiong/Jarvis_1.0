@@ -39,6 +39,7 @@ Class LevelingController extends Controller
 		$assessments = Assessment::all();
 		$user_assessments = User_Assessment::all();
 		$user_skills = User_Skill::all();
+		$now= date('Y-m-d');
 		
 
 
@@ -111,6 +112,7 @@ Class LevelingController extends Controller
 						->with('assessments',$assessments)
             			->with('user_assessments',$user_assessments)
 						->with('user_skills',$user_skills)
+						->with('now', $now)
 						->with('mg',$mg);
 				}
 				else // HR
@@ -130,6 +132,7 @@ Class LevelingController extends Controller
             			->with('assessments',$assessments)
             			->with('user_assessments',$user_assessments)
             			->with('user_skills',$user_skills)
+            			->with('now', $now)
             			->with('mg',$mg);
 				}	
 
@@ -151,6 +154,7 @@ Class LevelingController extends Controller
 						->with('trainings', $trainings)
 						->with('skills', $skills)
 						->with('user_skills',$user_skills)
+						->with('now', $now)
 						->with('mg',$mg);
 				}
 				else // Normal
@@ -167,6 +171,7 @@ Class LevelingController extends Controller
             			->with('user_assessments',$user_assessments)
             			->with('skills', $skills)
             			->with('user_skills',$user_skills)
+            			->with('now', $now)
             			->with('mg',$mg);
 				}
 			}

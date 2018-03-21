@@ -93,11 +93,12 @@
                 </button>
               </div>
               <div class="modal-body create-page">
-                {{ Form::open(array('url' => 'users')) }}
+                {{ Form::open(array('url' => 'users','files'=>true)) }}
                         <div class="form-group">
                             {{Form::label('user_photo', 'User Photo',['class' => 'control-label'])}}
                             <div class="form-control user-photo">{{Form::file('user_photo')}}</div>
                         </div>
+
                     
                         <div class="row">
                             <div class="col-md-6">

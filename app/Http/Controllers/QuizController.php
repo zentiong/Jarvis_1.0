@@ -52,7 +52,7 @@ class QuizController extends Controller
         //if mali password
         if($realpw != $idealpw)
         {
-            Session::flash('message', 'MALI PASSWORD MO BRAD. Nilagay mo:'.$realpw.', Ang dapat: '.$idealpw);
+            Session::flash('message', 'Incorrect Password');
             return View::make('quizzes.verify_pw')
             ->with('quiz', $quiz);
         }
