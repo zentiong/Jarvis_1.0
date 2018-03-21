@@ -116,7 +116,6 @@ class QuestionController extends Controller
                 ->withInput(Input::except('password'));
         } else {
             // store
-
             foreach ($sections as $key => $section) {
                 if($section->id == Input::get('section_id'))
                 {

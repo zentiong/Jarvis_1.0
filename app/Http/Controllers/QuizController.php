@@ -440,9 +440,12 @@ class QuizController extends Controller
             $quiz->training_id = Input::get('training_id');
             $quiz->save();
 
+            $sections = array();
             // redirect
             Session::flash('message', 'Successfully created quiz!');
-            return Redirect::to('quizzes');
+            return View::make('questions.index')
+            ->with('quiz', $quiz)
+            ->with('sections', $sections);
         }
     }
 
