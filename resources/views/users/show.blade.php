@@ -11,8 +11,16 @@
                 </div>
             @endif
             <?php 
-                $cup = asset( $current_user_photo);
-                $pp = asset( $profile_photo);
+                $check = $user->profile_photo;
+    
+                if($check!=null)
+                {
+                    $pp = asset( 'images/profile_photos/'.$user->profile_photo);
+                }
+                else 
+                {
+                    $pp = asset( 'images/profile_photos/default.png');
+                }
             ?>
             <h1 class="crud-page-title">Showing employee</h1>
         </section>
