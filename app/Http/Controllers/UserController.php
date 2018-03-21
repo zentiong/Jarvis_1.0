@@ -149,6 +149,7 @@ class UserController extends Controller
         $sections = array();
         $skills_quiz = array();
         $skills_assessment = array();
+        $now= date('Y-m-d');
 
         // ------------------
 
@@ -233,6 +234,7 @@ class UserController extends Controller
             ->with('skills_assessment',$skills_assessment)
             ->with('user_assessments', $user_assessments)
             ->with('assessments', $assessments) 
+            ->with('now', $now)
             // ------
             ->with('profile_photo', $profile_photo)
             ->with('current_user_photo',$current_user_photo) 
