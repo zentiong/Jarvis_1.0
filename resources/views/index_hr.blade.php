@@ -49,16 +49,16 @@
                             $skill_id = $value;
                             for($i=0;$i<sizeof($user_skills);$i++)
                             {
-                                if($skill_id==$value->skill_id)
+                                if($skill_id==$user_skills[$i]->skill_id)
                                 {
                                     if($i<sizeof($cwide_score_data))
                                     {
-                                        $cwide_score_res = ($value->q_score/$value->q_score_max)*100;
+                                        $cwide_score_res = ($user_skills[$i]->q_score/$user_skills[$i]->->q_score_max)*100;
                                         array_push($cwide_score_data,$cwide_score_res);
                                     }
                                     else
                                     {
-                                        $cwide_score_res = ($value->q_score/$value->q_score_max)*100;
+                                        $cwide_score_res = ($user_skills[$i]->q_score/$user_skills[$i]->->q_score_max)*100;
                                         $cwide_score_data[$i]+=$cwide_score_res;
 
                                     }
