@@ -1,0 +1,63 @@
+
+// Body
+$body-bg: #f5f8fa;
+
+// Borders
+$laravel-border-color: darken($body-bg, 10%);
+$list-group-border: $laravel-border-color;
+$navbar-default-border: $laravel-border-color;
+$panel-default-border: $laravel-border-color;
+$panel-inner-border: $laravel-border-color;
+
+// Brands
+$brand-primary: #3097D1;
+$brand-info: #8eb4cb;
+$brand-success: #2ab27b;
+$brand-warning: #cbb956;
+$brand-danger: #bf5329;
+
+// Typography
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$font-family-sans-serif: "Raleway", sans-serif;
+$font-size-base: 14px;
+$line-height-base: 1.6;
+$text-color: #636b6f;
+
+// Navbar
+$navbar-default-bg: #fff;
+
+// Buttons
+$btn-default-color: $text-color;
+
+// Inputs
+$input-border: lighten($text-color, 40%);
+$input-border-focus: lighten($brand-primary, 25%);
+$input-color-placeholder: lighten($text-color, 30%);
+
+// Panels
+$panel-default-heading-bg: #fff;
+
+// ZALORA
+$zalora-yellow: #F8E71C;
+$newsletter-bg: #2F2F2F;
+$black-1: #000;
+$black-2: #1F1F1F;
+$black-3: #3d3d3d;
+$black-4: #464646;
+$gray-1: #95989A;
+$white-1: #fff;
+$white-2: #ebebeb;
+$white-3: #BDBDBD;
+$white-4: #B9B9B6;
+$white-5: #959595;
+$dashboard-bg: #FBFBFB;
+$dashboard-content-border: #eee;
+$recommended-wrapper: #03223A;
+$table-action-static: #1F496A;
+$table-delete-red: #F80000;
+$table-edit-blue: #03223A;
+$table-show-green: #28a745;
+$create-crud: #007bff;
+$hr-pastel: #FFFDF9;
+$mg-pastel: #FFF9F9;
+$nr-pastel: #F5FAFB;
