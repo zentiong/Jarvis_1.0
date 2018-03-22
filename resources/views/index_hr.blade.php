@@ -53,12 +53,12 @@
                                 {
                                     if($i<sizeof($cwide_score_data))
                                     {
-                                        $cwide_score_res = ($user_skills[$i]->q_score/$user_skills[$i]->->q_score_max)*100;
+                                        $cwide_score_res = ($user_skills[$i]->q_score/$user_skills[$i]->q_score_max)*100;
                                         array_push($cwide_score_data,$cwide_score_res);
                                     }
                                     else
                                     {
-                                        $cwide_score_res = ($user_skills[$i]->q_score/$user_skills[$i]->->q_score_max)*100;
+                                        $cwide_score_res = ($user_skills[$i]->q_score/$user_skills[$i]->q_score_max)*100;
                                         $cwide_score_data[$i]+=$cwide_score_res;
 
                                     }
