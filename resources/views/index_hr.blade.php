@@ -38,7 +38,7 @@
                         $cwide_skill_id = array();
                         foreach($user_skills as $key=>$value)
                         {
-                            if(!in_array($value->skill_id, $skill_id_data))
+                            if(!in_array($value->skill_id, $cwide_skill_id))
                             {
                                 array_push($cwide_skill_id,$value->skill_id);
                             }
