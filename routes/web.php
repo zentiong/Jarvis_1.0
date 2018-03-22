@@ -31,6 +31,8 @@ Route::resource('levels', 'LevelingController');
 /* Users */
 
 Route::resource('users', 'UserController');
+Route::get('edit_dp','UserController@edit_dp');
+Route::post('store_dp','UserController@store_dp');
 
 
 
