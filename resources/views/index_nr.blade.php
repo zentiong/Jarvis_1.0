@@ -24,6 +24,7 @@
                 @include('templates.dashboard-trainings')
             </div>
                 
+                
             <?php 
             $evals_to_take = array(); // user trainings where quiz has already been training
             ?>

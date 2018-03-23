@@ -72,10 +72,14 @@
                     </div>
                     <div class="col-md-6">
                         <!-- Position -->
-                        <div class="form-group">
-                            {{ Form::label('position', 'Position') }}
-                            {{ Form::select('position', array('President' => 'President', 'Secretary' => 'Secretary', 'Developer' => 'Developer'), Request::old('position'), array('class' => 'form-control')) }}
-                        </div>
+                        {{ Form::label('position', 'Position') }}
+                        <select id="position" class="form-control" name="position">
+                            @foreach($positions as $key => $value)
+                            <option value="<?php echo $value->name ?>">
+                                {{$value->name}} 
+                            </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 

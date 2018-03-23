@@ -91,6 +91,7 @@
             <div class="row dashboard-body tabcontent" id="trainings">
                 <div class="col-md-7">
                     <h5 class="dashboard-header">Overall skills statistics</h5>
+                        <p>A work in progress...</p>
                     <div class="dashboard-content">
                     </div>
                 </div>
@@ -155,17 +156,16 @@
 
     </main>
 @endsection
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="{{ URL::asset('js/dashboard.js') }}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-</script>
-
 <script type="text/javascript">
     // enables dynamic navbar
-    // enables tooltips
     $(document).ready(function() {
         var a = document.getElementById('levels');
         a.classList.toggle("active");
+    });
+     // enables Bootstrap tooltips
+    $(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
-</script>
+</script> 
