@@ -126,11 +126,18 @@
                 @foreach($trainings_taken as $key => $training)
                     @if($training->id == $eval->training_id)
                         <span>{{$training->title}}</span>
+
                         {{ Form::hidden('training_id', $value = $eval->training_id) }}
                         {{ Form::button('EVALUATE', array('type' => 'submit', 'class' => 'btn take-quiz-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Provide Assessment')) }}
                         {{ Form::close() }}
                     @endif
                     
+
+                    @endif
+                    {{ Form::hidden('training_id', $value = $eval->training_id) }}
+                    {{ Form::button('EVALUATE', array('type' => 'submit', 'class' => 'btn take-quiz-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Provide Assessment')) }}
+                    {{ Form::close() }}
+
                 @endforeach 
             </div>
             @endif

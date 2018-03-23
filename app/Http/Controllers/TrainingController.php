@@ -27,9 +27,17 @@ class TrainingController extends Controller
      */
     public function __construct()
     {
+<<<<<<< HEAD
         $this->middleware('auth', ['except' => ['landing', 'landing2']]);
         $this->middleware('HR', ['except' => ['show', 'landing', 'recommend', 'recommend_who', 'fire', 'signup', 'confirm', 'evaluate', 'store_evaluation']]);
     }
+=======
+        $this->middleware('auth', ['except' => ['landing']]);
+        $this->middleware('HR', ['except' => ['show', 'landing', 'recommend', 'recommend_who', 'fire']]);
+
+    }
+    
+>>>>>>> 3e93b917c7b4287e499ef90eddcd0974c5c031f6
 
     public function index()
     {

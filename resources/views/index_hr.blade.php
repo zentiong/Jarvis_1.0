@@ -24,7 +24,11 @@
             </div>
 
             <div class="row dashboard-body tabcontent" id="personal">
+
                 @include('templates.dashboard-skills')
+
+                @include('templates.dashboard-skills', ['user_skills' => $user_skills])
+
                 @include('templates.dashboard-trainings')
             </div>
             
@@ -33,10 +37,17 @@
                 <div class="col-md-7">
                     <h5 class="dashboard-header">Overall skills statistics</h5>
 
+
                         <!--<?php
                         /*$cwide_score_data = array();
                         $cwide_label_data = array();
                         $cwide_skill_id = array();  
+
+                        <?php
+                        $cwide_score_data = array();
+                        $cwide_label_data = array();
+                        $cwide_skill_id = array();
+
                         foreach($user_skills as $key=>$value)
                         {
                             if(!in_array($value->skill_id, $cwide_skill_id))
@@ -80,7 +91,11 @@
                                     array_push($cwide_label_data,$value->name);
                                 }
                             }
+
                         }*/
+
+                        }
+
 
         
                         ?>
@@ -88,9 +103,15 @@
                         <canvas id="cwide_skills_chart" width=100></canvas>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                         <script type="text/javascript">
+
                             
                             var score_data_all = <?php //echo json_encode($cwide_score_data)?>;
                             var labels_all = <?php //echo json_encode($cwide_label_data)?>;
+
+
+                            var score_data_all = <?php //echo json_encode($cwide_score_data)?>;
+                            var labels_all = <?php //echo json_encode($cwide_label_data)?>;
+
                             var tfive = [];
                             if(score_data_all.length>5)
                             {
@@ -153,12 +174,17 @@
                                     }
                                 }
                             });
+
                         </script>-->
+
+                        </script>
 
 
 
                     <div class="dashboard-content">
+
                         <p>A work in progress....</p>
+
                     </div>
                 </div>
                 <div class="col-md-5">

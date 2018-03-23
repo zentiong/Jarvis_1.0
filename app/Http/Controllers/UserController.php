@@ -143,6 +143,7 @@ class UserController extends Controller
     public function show($id)
     {
         // Quiz
+
         $skills = Skill::all();
         $user = User::find($id);
         $user_quizzes = User_Quiz::where('user_id',$id)->get();
@@ -237,7 +238,9 @@ class UserController extends Controller
             ->with('user_assessments', $user_assessments)
             ->with('assessments', $assessments) 
             ->with('now', $now)
+
             ->with('skills', $skills)
+
             // ------
             ->with('profile_photo', $profile_photo)
             ->with('current_user_photo',$current_user_photo) 
@@ -258,13 +261,16 @@ class UserController extends Controller
                  // get the user
         $user = User::find($id);
         $users = User::where('manager_check',1)->get();
+
         $positions = Position::all();
 
 
         // show the edit form and pass the user
         return View::make('users.edit')
             ->with('user', $user)
+
             ->with('positions', $positions)
+
             ->with('users',$users);;
     }
 

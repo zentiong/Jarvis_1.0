@@ -91,7 +91,9 @@
             <div class="row dashboard-body tabcontent" id="trainings">
                 <div class="col-md-7">
                     <h5 class="dashboard-header">Overall skills statistics</h5>
+
                         <p>A work in progress...</p>
+
                     <div class="dashboard-content">
                     </div>
                 </div>
@@ -156,6 +158,7 @@
 
     </main>
 @endsection
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="{{ URL::asset('js/dashboard.js') }}"></script>
 <script type="text/javascript">
@@ -169,3 +172,4 @@
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script> 
+
