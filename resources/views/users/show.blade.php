@@ -136,7 +136,6 @@
                         <!-- PERSONAL CONTENT CONTAINER -->
                         <div class="row dashboard-body" id="personal">
                             <div class="col-md-12">
-                                <h5 class="dashboard-header">Skills</h5>
                                 <div class="dashboard-content">
                                     <button onclick="update_data(myChart,tfive)">Relevant Skills</button>
                                     <button onclick="update_data(myChart,score_data_all)">All Skills</button>

@@ -40,6 +40,10 @@
             <li><a id="events"  href="{{ URL::to('events') }}">Events</a></li>
             @endif
 
+            @if ( Auth::user()->manager_check == 1)
+            <li><a id="users" href="{{ URL::to('make_assessments') }}">Employee Assessment</a></li>
+            @endif
+
     </ul>
 
     <?php 

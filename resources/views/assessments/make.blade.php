@@ -3,25 +3,21 @@
 
 @section('body')
 
-<br>
-<br>
-<br>
+ <main class="container create-page">
+        <section class="row crud-page-top">
+            <h1 class="crud-page-title">Make a  
+                    @foreach($skills as $key => $skill)
+                        @if($skill->id == $assessment->skill_id)
+                            {{$skill->name}}
+                        @endif
+                    @endforeach Assessment </h1>
+        </section>
+            <!-- will be used to show any messages -->
+        @if (Session::has('message'))
+            <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
 
-<h2> Make a {{ $assessment->topic }} Assessment  </h2>
 
-<!--
-<h5> Number of Questions: {{ count($assessment_items) }} </h5>
-
-{{ Auth::user()->id}}
--->
-
-<!-- will be used to show any messages -->
-@if (Session::has('message'))
-    <div class="alert alert-info">{{ Session::get('message') }}</div>
-@endif
-
- <br>
- <br>
     {{ Html::ul($errors->all()) }}
 
     {{ Form::open(array('url' => 'assessments/'.$assessment->id.'/record')) }}
@@ -31,7 +27,7 @@
 
 
     <div class="form-group">
-        {{ Form::label('user', 'Employee') }}
+        <h5>{{ Form::label('user', 'Employee') }}</h5>
   
         <select id="user" class="form-control" name="user">
         @foreach($users as $key => $value)
@@ -46,7 +42,8 @@
     <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <td>Question</td>
+            <td class="no-stretch">Criteria</td>
+            <td>Rating (left-most being the lowest)</td>
         </tr>
     </thead> 
     <tbody>
@@ -87,14 +84,17 @@
     ?>
 
 
-    
-    {{ Form::label('feedback', 'Feedback') }}
+   <div style="padding-top: 30px"> 
+   <h5> {{ Form::label('feedback', 'Feedback') }}</h5>
     {{ Form::text('feedback', Request::old('feedback'), array('class' => 'form-control')) }}
 
 
-   {{ Form::submit('Submit Ratings!', array('class' => 'btn btn-primary')) }}
+   <div style="padding-top: 50px">{{ Form::submit('Submit Ratings!', array('class' => 'btn crud-main-cta')) }}</div>
 
    {{ Form::close() }}
+   </div>
+
+</main>
 @endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

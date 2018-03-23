@@ -1,8 +1,6 @@
 <div class="col-md-5">
     <h5 class="dashboard-header">Trainings</h5>
-    @if($mg==1)
-    <a href="{{ URL::to('recommend') }}" class="btn crud-sub-cta">Recommend Trainings</a>
-    @endif
+    
     @if(!empty($trainings_personal))
     <div class="dashboard-content">
             <div class="recommended-wrapper">
@@ -97,4 +95,7 @@
                 @endforeach
             </div>
     </div>
+    @if($mg==1 || Auth::user()->department == 'Human Resources')
+    <a href="{{ URL::to('recommend') }}" class="btn crud-sub-cta">Recommend Trainings</a>
+    @endif
 </div>

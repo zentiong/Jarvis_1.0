@@ -66,7 +66,7 @@
                     <div class="quick-link">
                         <a href="http://intranet.zalphil.com/hris/" target="_blank">
                             <div class="mx-auto img-container">
-                                <img class="hris" src="../images/quick-links/hris.png" alt="HRIS">
+                                <img class="hris" src="{{ asset('images/quick-links/hris.png')}}" alt="HRIS">
                             </div>
                             <h5 class="label">HRIS</h5>
                             <span>For checking employee profiles, and filling overtime and work from home applications.</span>
@@ -76,7 +76,7 @@
                     <div class="quick-link">
                         <a href="http://intranet.zalphil.com/online-paystatement/" target="_blank">
                             <div class="mx-auto img-container">
-                                <img class="online-payslip" src="../images/quick-links/payslip.png" alt="Online PaySlip">
+                                <img class="online-payslip" src="{{ asset('images/quick-links/payslip.png')}}" alt="Online PaySlip">
                             </div>
                             <h5 class="label">Online PaySlip</h5>
                             <span>For viewing individual pay statements. This can be accessed in BGC, WH, and Hubs.</span>
@@ -86,7 +86,7 @@
                     <div class="quick-link">
                         <a href="https://hcch.hcm.em2.oraclecloud.com/" target="_blank">
                             <div class="mx-auto img-container">
-                                <img class="oracle" src="../images/quick-links/OracleYellow.png" alt="Oracle">
+                                <img class="oracle" src="{{ asset('images/quick-links/OracleYellow.png')}}" alt="Oracle">
                             </div>
                             <h5 class="label">Oracle</h5>
                             <span>Contains the organization structure of Zalora with sub-departments. Also for filling leaves (VL, SL,CTO, CL, ML,PL, SPL).</span>
@@ -96,7 +96,7 @@
                     <div class="quick-link">
                         <a href="https://www.wrike.com/workspace.htm" target="_blank">
                             <div class="mx-auto img-container">
-                                <img class="wrike" src="../images/quick-links/WrikeYellow.png" alt="Wrike">
+                                <img class="wrike" src="{{ asset('images/quick-links/WrikeYellow.png')}}" alt="Wrike">
                             </div>
                             <h5 class="label">Wrike</h5>
                             <span>For requests regarding procurement for different projects under the company. [Limited Access]</span>
@@ -124,7 +124,7 @@
                     <div class="col-md-6">
                         <div class="hr-service">
                             <a href="https://docs.google.com/a/ph.zalora.com/forms/d/e/1FAIpQLSflN8W1q_FJvG46vZ80pf7yrxquWyY8AFsisnB0u2PbT-VRyA/viewform" target="_blank" class="link-wrapper">
-                                <img src="../images/hr-services/key.png" alt="Key">
+                                <img src="{{ asset('images/hr-services/key.png')}}" alt="Key">
                                 <div class="text">
                                     <h6 class="title">On-boarding/ Off-boarding Request for Interns and NFTEs</h6>
                                     <div class="description">
@@ -135,7 +135,7 @@
                         </div>
                         <div class="hr-service">
                             <a href="https://docs.google.com/forms/d/e/1FAIpQLSfi_j3t6TYsjAYKf7f0EiTdpS_i8OinOF2-pasq-NOuSGOrNA/viewform?c=0&w=1" target="_blank" class="link-wrapper">
-                                <img src="../images/hr-services/intern-request.png" alt="Intern Request">
+                                <img src="{{ asset('images/hr-services/intern-request.png')}}" alt="Intern Request">
                                 <div class="text">
                                     <h6 class="title">Intern Request</h6>
                                     <div class="description">
@@ -146,7 +146,7 @@
                         </div>
                         <div class="hr-service">
                             <a href="http://jobs.zalora.com/" target="_blank" class="link-wrapper">
-                                <img src="../images/hr-services/jobs-board.png" alt="Jobs Board">
+                                <img src="{{ asset('images/hr-services/jobs-board.png')}}" alt="Jobs Board">
                                 <div class="text">
                                     <h6 class="title">Jobs Board</h6>
                                     <div class="description">
@@ -159,7 +159,7 @@
                     <div class="col-md-6">
                         <div class="hr-service">
                             <a href="https://docs.google.com/forms/d/e/1FAIpQLSfi_j3t6TYsjAYKf7f0EiTdpS_i8OinOF2-pasq-NOuSGOrNA/viewform?c=0&w=1" target="_blank" class="link-wrapper">
-                                <img src="../images/hr-services/headcount-request.png" alt="Headcount Request">
+                                <img src="{{ asset('images/hr-services/headcount-request.png')}}" alt="Headcount Request">
                                 <div class="text">
                                     <h6 class="title">Headcount Request</h6>
                                     <div class="description">
@@ -170,7 +170,7 @@
                         </div>
                         <div class="hr-service">
                             <a href="https://docs.google.com/a/ph.zalora.com/forms/d/e/1FAIpQLSdW5AMERoM354fZ5XL45NOnHw6IkUoijTEoENqNRT2mNgjfQA/viewform" target="_blank" class="link-wrapper">
-                                <img src="../images/hr-services/nfte-request.png" alt="NFTE Request">
+                                <img src="{{ asset('images/hr-services/nfte-request.png')}}" alt="NFTE Request">
                                 <div class="text">
                                     <h6 class="title">NFTE Request</h6>
                                     <div class="description">
@@ -190,7 +190,7 @@
                     <div class="col-md-6">
                         <div class="hr-service">
                             <a href="https://docs.google.com/a/ph.zalora.com/forms/d/e/1FAIpQLSfqZzjUvIhoPjeiYQpEUJWEI1t5MlJugCw63-r1OIpAHgDRhQ/viewform" target="_blank" class="link-wrapper">
-                                <img src="../images/hr-services/salary-disputes.png" alt="Salary Disputes">
+                                <img src="{{ asset('images/hr-services/salary-disputes.png')}}" alt="Salary Disputes">
                                 <div class="text">
                                     <h6 class="title">Salary Disputes</h6>
                                     <div class="description">
@@ -204,7 +204,7 @@
                         </div>
                         <div class="hr-service">
                             <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJkpmI2lo-rdHLgxIkj2SI9rp-51pQClBjYbKipQTgHz4Zow/viewform" target="_blank" class="link-wrapper">
-                                <img src="../images/hr-services/change-in-schedule.png" alt="Change in Schedule Request">
+                                <img src="{{ asset('images/hr-services/change-in-schedule.png')}}" alt="Change in Schedule Request">
                                 <div class="text">
                                     <h6 class="title">Change in Schedule Request</h6>
                                     <div class="description">
@@ -220,7 +220,7 @@
                     <div class="col-md-6">
                         <div class="hr-service">
                             <a href="https://docs.google.com/a/ph.zalora.com/forms/d/e/1FAIpQLSeoci3wn5ttQE2JNdW5hgbY4IqvolQ11ul3UbsRC5SLsubUpg/viewform?c=0&w=1" target="_blank" class="link-wrapper">
-                                <img src="../images/hr-services/coe-request.png" alt="CoE Request">
+                                <img src="{{ asset('images/hr-services/coe-request.png')}}" alt="CoE Request">
                                 <div class="text">
                                     <h6 class="title">Certificate of Employment Request</h6>
                                     <div class="description">
@@ -240,7 +240,7 @@
                     <div class="col-md-6">
                         <div class="hr-service">
                             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkwFz_-1_StkkoC7vSbFWoEpwlcbFykykpRMmFBUCwle8uLA/viewform" target="_blank" class="link-wrapper">
-                                <img src="../images/hr-services/folder.png" alt="201 Request">
+                                <img src="{{ asset('images/hr-services/folder.png')}}" alt="201 Request">
                                 <div class="text">
                                     <h6 class="title">201 Request</h6>
                                     <div class="description">
@@ -257,7 +257,7 @@
                     <div class="col-md-6">
                         <div class="hr-service">
                             <a href="https://docs.google.com/a/ph.zalora.com/forms/d/e/1FAIpQLSdki__ud1Q2Fbtw5DrcVhfplcNI7e5gnZ115bLXX_HHoStiHQ/viewform?c=0&w=1" target="_blank" class="link-wrapper">
-                                <img src="../images/hr-services/return-to-work.png" alt="Return to Work Order Form">
+                                <img src="{{ asset('images/hr-services/return-to-work.png')}}" alt="Return to Work Order Form">
                                 <div class="text">
                                     <h6 class="title">Return to Work Order Form</h6>
                                     <div class="description">
@@ -277,7 +277,7 @@
                     <div class="col-md-6">
                         <div class="hr-service">
                             <a href="#" target="_blank" class="link-wrapper">
-                                <img src="../images/hr-services/microbus.png" alt="Shuttle Request">
+                                <img src="{{ asset('images/hr-services/microbus.png')}}" alt="Shuttle Request">
                                 <div class="text">
                                     <h6 class="title">Shuttle Request</h6>
                                     <div class="description">
@@ -299,7 +299,7 @@
                     <!-- BIRTHDAYS -->
                     <div class="other-service text-center">
                         <a href="#" target="_blank" class="link-wrapper-2">
-                            <img src="../images/other-services/birthday.png" alt="Birthdays">
+                            <img src="{{ asset('images/other-services/birthday.png')}}" alt="Birthdays">
                             <div class="text">
                                 <h6 class="title">Birthdays</h6>
                                 <div class="description">
@@ -311,7 +311,7 @@
                     <!-- EMPLOYEE PERKS -->
                     <div class="other-service text-center">
                         <a href="#" target="_blank" class="link-wrapper-2">
-                            <img src="../images/other-services/gift.png" alt="Employee Perks">
+                            <img src="{{ asset('images/other-services/gift.png')}}" alt="Employee Perks">
                             <div class="text">
                                 <h6 class="title">Employee Perks</h6>
                                 <div class="description">
@@ -323,7 +323,7 @@
                     <!-- MOVEMENTS -->
                     <div class="other-service text-center">
                         <a href="#" target="_blank" class="link-wrapper-2">
-                            <img src="../images/other-services/diagram.png" alt="Movements">
+                            <img src="{{ asset('images/other-services/diagram.png')}}" alt="Movements">
                             <div class="text">
                                 <h6 class="title">Movements</h6>
                                 <div class="description">
@@ -335,7 +335,7 @@
                     <!-- NEW HIRES -->
                     <div class="other-service text-center">
                         <a href="#" target="_blank" class="link-wrapper-2">
-                            <img src="../images/other-services/megaphone.png" alt="New Hires">
+                            <img src="{{ asset('images/other-services/megaphone.png')}}" alt="New Hires">
                             <div class="text">
                                 <h6 class="title">New Hires</h6>
                                 <div class="description">
@@ -347,7 +347,7 @@
                     <!-- SHARE YOUR MEMORIEZ -->
                     <div class="other-service text-center">
                         <a href="#" target="_blank" class="link-wrapper-2">
-                            <img src="../images/other-services/photo-camera.png" alt="Share Your Memoriez">
+                            <img src="{{ asset('images/other-services/photo-camera.png')}}" alt="Share Your Memoriez">
                             <div class="text">
                                 <h6 class="title">Share Your Memoriez</h6>
                                 <div class="description">
@@ -359,7 +359,7 @@
                     <!-- Z-LIBRARY -->
                     <div class="other-service text-center">
                         <a href="#" target="_blank" class="link-wrapper-2">
-                            <img src="../images/other-services/agenda.png" alt="Z-Libary">
+                            <img src="{{ asset('images/other-services/agenda.png')}}" alt="Z-Libary">
                             <div class="text">
                                 <h6 class="title">Z-Library</h6>
                                 <div class="description">
@@ -382,7 +382,7 @@
                         <!-- BENEFIT PAGE -->
                         <div class="policy">
                             <a href="https://drive.google.com/open?id=0B68wCGt4E6QgZkdzSWxoV3VoTG8" target="_blank" class="link-wrapper-3">
-                                <img src="../images/policy-portal/employee.png" alt="Benefit Page">
+                                <img src="{{ asset('images/policy-portal/employee.png')}}" alt="Benefit Page">
                                 <div class="text">
                                     <h5 class="title">Benefit Page</h5>
                                     <div class="description">
@@ -394,7 +394,7 @@
                         <!-- OPE GUIDELINES -->
                         <div class="policy">
                             <a href="https://drive.google.com/open?id=0B68wCGt4E6Qgc0dqcEk1enRtN3c" target="_blank" class="link-wrapper-3">
-                                <img src="../images/policy-portal/invoice.png" alt="OPE Guidelines">
+                                <img src="{{ asset('images/policy-portal/invoice.png')}}" alt="OPE Guidelines">
                                 <div class="text">
                                     <h5 class="title">OPE Guidelines</h5>
                                     <div class="description">
@@ -406,7 +406,7 @@
                         <!-- HR TIMEKEEPING POLICY -->
                         <div class="policy">
                             <a href="https://drive.google.com/open?id=0B68wCGt4E6Qgbk5GclBtdjZKSUk" target="_blank" class="link-wrapper-3">
-                                <img src="../images/policy-portal/alarm-clock.png" alt="HR Timekeeping Policy">
+                                <img src="{{ asset('images/policy-portal/alarm-clock.png')}}" alt="HR Timekeeping Policy">
                                 <div class="text">
                                     <h5 class="title">HR Timekeeping Policy</h5>
                                     <div class="description">
@@ -421,7 +421,7 @@
                         <!-- EMPLOYEE HANDBOOK -->
                         <div class="policy">
                             <a href="https://drive.google.com/open?id=0B8KFcMH_9clsUlp2VTVxdHZ1T2c" target="_blank" class="link-wrapper-3">
-                                <img src="../images/policy-portal/notebook.png" alt="Employee Handbook">
+                                <img src="{{ asset('images/policy-portal/notebook.png')}}" alt="Employee Handbook">
                                 <div class="text">
                                     <h5 class="title">ZALORA Employee Handbook</h5>
                                     <div class="description">
@@ -433,7 +433,7 @@
                         <!-- CODE OF CONDUCT -->
                         <div class="policy">
                             <a href="https://drive.google.com/open?id=0B68wCGt4E6QgYndEWFBudV9wY2phQkR5YXhrcDhJR3ZiRXJr" target="_blank" class="link-wrapper-3">
-                                <img src="../images/policy-portal/agenda.png" alt="Code of Conduct">
+                                <img src="{{ asset('images/policy-portal/agenda.png')}}" alt="Code of Conduct">
                                 <div class="text">
                                     <h5 class="title">Code of Conduct</h5>
                                     <div class="description">
@@ -445,7 +445,7 @@
                         <!-- NON-TRADE TIMELINE -->
                         <div class="policy">
                             <a href="https://drive.google.com/open?id=0B68wCGt4E6QgTUVlZzVXNHFOSzg" target="_blank" class="link-wrapper-3">
-                                <img src="../images/policy-portal/choices.png" alt="Non-Trade Timeline">
+                                <img src="{{ asset('images/policy-portal/choices.png')}}" alt="Non-Trade Timeline">
                                 <div class="text">
                                     <h5 class="title">Non-Trade Timeline</h5>
                                     <div class="description">

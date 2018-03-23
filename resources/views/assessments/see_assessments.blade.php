@@ -2,20 +2,21 @@
 
 @section('body')
 
-<!-- will be used to show any messages -->
-@if (Session::has('message'))
-    <div class="alert alert-info">{{ Session::get('message') }}</div>
-@endif
 
 <?php 
 $user_id = Auth::user()->id; /* Supervisor */
 ?>
 
-<br>
-<br>
-<br>
+ <main class="container create-page">
+        <section class="row crud-page-top">
+            <h1 class="crud-page-title">See Assessment</h1>
+            <a class="btn crud-main-cta" href="{{ URL::to('make_assessments') }}">Create Another Assessment</a>
+        </section>
+            <!-- will be used to show any messages -->
+        @if (Session::has('message'))
+            <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
 
- <a href="{{ URL::to('make_assessments')}}">Make Assessments</a>
 
 <table class="table table-striped table-bordered">
     <thead>
@@ -55,7 +56,7 @@ $user_id = Auth::user()->id; /* Supervisor */
                 @endforeach
             </td>
             <td>
-                {{ $value->rating }}
+                {{ $value->rating }} / 5
             </td>
             <td>
                  {{ $value->feedback }}
@@ -66,6 +67,7 @@ $user_id = Auth::user()->id; /* Supervisor */
 </table>
 
 </div>
+</main>
 @endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

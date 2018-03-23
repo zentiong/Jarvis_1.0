@@ -34,6 +34,7 @@ class AssessmentController extends Controller
         
   // get all the assessments
         $assessment = Assessment::find($id);
+        $skills = Skill::all();
         $users = User::where('supervisor_id',Auth::user()->id)->get();
 
         //working SQL
@@ -46,6 +47,7 @@ class AssessmentController extends Controller
         return View::make('assessments.make')
             ->with('assessment', $assessment)
             ->with('assessment_items', $assessment_items)
+            ->with('skills', $skills)
             ->with('users',$users);
     }
 
