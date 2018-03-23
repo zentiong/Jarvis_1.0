@@ -18,6 +18,7 @@
 
             @include('templates.dashboard-profile_photo', ['current_user' => $current_user, 'current_id' => $current_id])
         </section>
+        
         <section class="container dashboard-container">
             <div class="row dashboard-body tabcontent" id="personal">
                 @include('templates.dashboard-skills')

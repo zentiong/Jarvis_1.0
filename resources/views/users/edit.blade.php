@@ -82,11 +82,6 @@
                             @endforeach
                         </select>
 
-                        <div class="form-group">
-                            {{ Form::label('position', 'Position') }}
-                            {{ Form::select('position', array('President' => 'President', 'Secretary' => 'Secretary', 'Developer' => 'Developer'), Request::old('position'), array('class' => 'form-control')) }}
-                        </div>
-
                     </div>
                 </div>
                 

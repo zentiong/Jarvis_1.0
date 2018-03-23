@@ -27,8 +27,6 @@
 
                 @include('templates.dashboard-skills')
 
-                @include('templates.dashboard-skills', ['user_skills' => $user_skills])
-
                 @include('templates.dashboard-trainings')
             </div>
             
@@ -94,7 +92,7 @@
 
                         }*/
 
-                        }
+                        
 
 
         
