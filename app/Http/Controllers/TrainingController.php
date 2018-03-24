@@ -57,7 +57,17 @@ class TrainingController extends Controller
         $training_id = Input::get('training');
 
         $training = Training::find($training_id);
-        $users = User::where('supervisor_id', Auth::user()->id)->get();
+
+        if(Auth::user()->department == 'Human Resources')
+        {
+            $users = User::all();
+        }
+        else 
+        {
+            $users = User::where('supervisor_id', Auth::user()->id)->get();
+        }
+        
+
 
         $user_trainings = array();
 

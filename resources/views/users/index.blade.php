@@ -63,7 +63,7 @@
                         <td>Hiring Date</td>
                         <td>Birth Date</td>
                         <td>Department</td>
-                        <td>Supervisor ID</td>
+                        <td>Supervisor</td>
                         <td>Position</td>
                         <td>Manager?</td>
                         <td class="no-stretch">Actions</td>
@@ -79,7 +79,12 @@
                         <td>{{ date('F d, Y', strtotime($value->hiring_date)) }}</td>
                         <td>{{ date('F d, Y', strtotime($value->birth_date)) }}</td>
                         <td>{{ $value->department }}</td>
-                        <td>{{ $value->supervisor_id }}</td>
+                        @foreach($users as $key => $supervisor)
+                            @if($value->supervisor_id == $supervisor->id)
+                                 <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
+                            @endif
+                        @endforeach
+                       
                         <td>{{ $value->position }}</td>
 
                         @if($value->manager_check==true)
