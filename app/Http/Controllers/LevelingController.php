@@ -30,7 +30,8 @@ Class LevelingController extends Controller
 		$current_user = Auth::user(); 
 		$dept = $current_user->department;
 		$mg = $current_user->manager_check;	
-		$users = User::all();
+		//$users = User::all();
+		$users = User::orderBy('last_name')->paginate(3);
 		$trainings = Training::all();
 		$quizzes = Quiz::all();
 		$sections = Section::all();

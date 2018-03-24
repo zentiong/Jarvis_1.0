@@ -52,24 +52,27 @@
                                         <td>Actions</td>
                                     </tr>
                                 </thead>
+                                <?php
+                                    $boss_list = array();
+                                ?>
                                 <tbody>
-                                @foreach($users as $key => $value)
-                                    @if($value->supervisor_id==$current_id)
+                                @foreach($users as $key => $user)
+                                    @if($user->supervisor_id==$current_id)
                                         <tr>
-                                            <td>{{ $value->first_name }}</td>
-                                            <td>{{ $value->last_name }}</td>
-                                            <td>{{ $value->email }}</td>
-                                            <td>{{ $value->hiring_date }}</td>
-                                            <td>{{ $value->birth_date }}</td>
-                                            <td>{{ $value->department }}</td>
+                                            <td>{{ $user->first_name }}</td>
+                                            <td>{{ $user->last_name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->hiring_date }}</td>
+                                            <td>{{ $user->birth_date }}</td>
+                                            <td>{{ $user->department }}</td>
                                             @foreach($users as $key => $supervisor)
-                            @if($value->supervisor_id == $supervisor->id)
-                                 <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
-                            @endif
-                        @endforeach
-                                            <td>{{ $value->position }}</td>
+                                                @if($user->supervisor_id == $supervisor->id)
+                                                     <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
+                                                @endif
+                                            @endforeach
+                                            <td>{{ $user->position }}</td>
 
-                                            @if ($value->manager_check==1)
+                                            @if ($user->manager_check==1)
                                             <td>Yes</td>
                                             @else
                                             <td>No</td>
@@ -77,12 +80,53 @@
 
                                             <!-- we will also add show, edit, and delete buttons -->
                                             <td class="table-actions">
-                                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $value->id) }}">
+                                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $user->id) }}">
                                                     <i class="fa fa-user fa-lg"></i>
                                                 </a>
                                             </td>
                                         </tr>
+                                    <?php
+                                        array_push($boss_list, $user);
+                                    ?>  
                                     @endif
+
+                                    @foreach($boss_list as $key => $boss)
+
+                                    @foreach($users as $key => $list)
+                                    <?php
+                                       //array_shift($list);
+                                    ?>  
+                                    @if($list->supervisor_id==$boss->id)
+                                        <tr>
+                                            <td>{{ $list->first_name }}</td>
+                                            <td>{{ $list->last_name }}</td>
+                                            <td>{{ $list->email }}</td>
+                                            <td>{{ $list->hiring_date }}</td>
+                                            <td>{{ $list->birth_date }}</td>
+                                            <td>{{ $list->department }}</td>
+                                            @foreach($users as $key => $supervisor)
+                                                @if($list->supervisor_id == $supervisor->id)
+                                                     <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
+                                                @endif
+                                            @endforeach
+                                            <td>{{ $list->position }}</td>
+
+                                            @if ($list->manager_check==1)
+                                            <td>Yes</td>
+                                            @else
+                                            <td>No</td>
+                                            @endif
+
+                                            <!-- we will also add show, edit, and delete buttons -->
+                                            <td class="table-actions">
+                                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $list->id) }}">
+                                                    <i class="fa fa-user fa-lg"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endif    
+                                    @endforeach
+                                    @endforeach                                
                                 @endforeach
                                 </tbody>
                             </table>

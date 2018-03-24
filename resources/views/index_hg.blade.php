@@ -64,10 +64,10 @@
                                             <td>{{ $value->birth_date }}</td>
                                             <td>{{ $value->department }}</td>
                                             @foreach($users as $key => $supervisor)
-                            @if($value->supervisor_id == $supervisor->id)
-                                 <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
-                            @endif
-                        @endforeach
+                                                @if($value->supervisor_id == $supervisor->id)
+                                                     <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
+                                                @endif
+                                            @endforeach
                                             <td>{{ $value->position }}</td>
 
                                             @if ($value->manager_check==1)

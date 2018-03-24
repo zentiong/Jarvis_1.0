@@ -43,12 +43,13 @@ class UserController extends Controller
     {
         // get all the users
         $users = User::orderBy('last_name')->paginate(3); // 3 for testing, ought to be 10
-        //$users = User::all();
+        $users_two = User::all();
         $positions = Position::all();
 
         // load the view and pass the users
         return View::make('users.index')
             ->with('users', $users)
+            ->with('users_two', $users_two)
             ->with('positions',$positions);
     }
 

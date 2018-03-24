@@ -52,7 +52,7 @@
             @endif
             <?php /*
              */ ?>
-            {{ $users->links() }}
+            
 
             <table id="target_table" class="table table-striped table-bordered">
                 <thead>
@@ -70,7 +70,7 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                {{ $users->links() }}
                 @foreach($users as $key => $value)
                     <tr>
                         <td>{{ $value->first_name }}</td>
@@ -79,7 +79,8 @@
                         <td>{{ date('F d, Y', strtotime($value->hiring_date)) }}</td>
                         <td>{{ date('F d, Y', strtotime($value->birth_date)) }}</td>
                         <td>{{ $value->department }}</td>
-                        @foreach($users as $key => $supervisor)
+
+                        @foreach($users_two as $key => $supervisor)
                             @if($value->supervisor_id == $supervisor->id)
                                  <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
                             @endif
