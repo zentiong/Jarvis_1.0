@@ -114,7 +114,8 @@ Class LevelingController extends Controller
             			->with('user_assessments',$user_assessments)
 						->with('user_skills',$user_skills)
 						->with('now', $now)
-						->with('mg',$mg);
+						->with('mg',$mg)
+						->with('cwide_skills',$cwide_skills);
 				}
 				else // HR
 				{
@@ -134,6 +135,7 @@ Class LevelingController extends Controller
             			->with('user_assessments',$user_assessments)
             			->with('user_skills',$user_skills)
             			->with('now', $now)
+            			->with('cwide_skills',$cwide_skills)
             			->with('mg',$mg);
 				}	
 
