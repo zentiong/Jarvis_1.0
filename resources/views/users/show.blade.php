@@ -226,8 +226,38 @@
                     
                             
                             @foreach($trainings as $key => $training)
-                                @if($training->date >= $now) 
-                                <div class="trainings-box">
+                                @if($training->date >= $now)
+                                
+                                    @if(!in_array($training, $training_arr))
+                                    <div class="trainings-box">
+                                    <div>
+                                        <!-- text -->
+                                        <p><b>{{$training->title}}</b></p>
+                                        <span>
+                                            {{date('h:i', strtotime($training->starting_time))}}
+                                        </span>
+                                        <span>
+                                            - {{date('h:i a', strtotime($training->ending_time))}}</span>
+                                        <span>
+                                            | {{date('F d', strtotime($training->date))}}
+                                        </span>
+                                        <p>{{$training->venue}}</p>
+                                    </div>
+                                    </div>
+                                    @endif
+                                
+                                @endif
+                                
+                            @endforeach
+                      
+                </div>
+            </div>
+
+            <div class="row dashboard-body">
+                <div class="dashboard-content">
+                    <h6 class="content-header light"><b>Trainings attended by {{ $user->first_name }} {{ $user->last_name }}</b></h6>
+                    @foreach($training_arr as $key => $training)
+                        <div class="trainings-box">
                                 <div>
                                     <!-- text -->
                                     <p><b>{{$training->title}}</b></p>
@@ -242,19 +272,11 @@
                                     <p>{{$training->venue}}</p>
                                 </div>
                                 </div>
-                                @endif
-                                
-                            @endforeach
-                      
+                        
+                    @endforeach
                 </div>
             </div>
 
-            <div class="row dashboard-body">
-                <div class="dashboard-content">
-                    <h6 class="content-header light"><b>Trainings attended by {{ $user->first_name }} {{ $user->last_name }}</b></h6>
-                </div>
-            </div>
-            
         </section>
 
     </main>

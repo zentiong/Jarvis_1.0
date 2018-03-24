@@ -37,7 +37,7 @@
 
 
                         <?php
-                        $cwide_score_data = array();
+                       /* $cwide_score_data = array();
                         $cwide_label_data = array();
                         $cwide_skill_id = array();  
                         $cwide_score_data = array();
@@ -87,7 +87,7 @@
                                 }
                             }
 
-                        }
+                        }*/
 
                         
 
@@ -100,12 +100,12 @@
                         <script type="text/javascript">
 
                             
-                            var score_data_all = <?php echo json_encode($cwide_score_data)?>;
-                            var labels_all = <?php echo json_encode($cwide_label_data)?>;
+                            var score_data_all = <?php //echo json_encode($cwide_score_data)?>;
+                            var labels_all = <?php //echo json_encode($cwide_label_data)?>;
 
 
-                            var score_data_all = <?php echo json_encode($cwide_score_data)?>;
-                            var labels_all = <?php echo json_encode($cwide_label_data)?>;
+                            var score_data_all = <?php //echo json_encode($cwide_score_data)?>;
+                            var labels_all = <?php //echo json_encode($cwide_label_data)?>;
 
                             var tfive = [];
                             if(score_data_all.length>5)

@@ -15,6 +15,7 @@ use App\User_Assessment;
 use App\Training;
 use App\User_Training;
 use App\User_Skill;
+use App\Quiz;
 
 use Auth;
 
@@ -153,6 +154,24 @@ class UserController extends Controller
         $skills_assessment = array();
         $now= date('Y-m-d');
         $user_skills = User_Skill::all();
+        $quiz = Quiz::all();
+        $trainings = Training::all();
+        $quiz_arr = array();
+        $training_arr = array();
+
+
+
+        foreach ($user_quizzes as $key => $user_quiz) {
+            $quiz_temp = Quiz::where('quiz_id', $user_quiz->quiz_id)->first();
+
+            array_push($quiz_arr, $quiz_temp);
+        }
+        
+        foreach ($quiz_arr as $key => $value) {
+            $training_temp = $trainings->where('id', "=", $value->training_id)->first();
+
+            array_push($training_arr, $training_temp);
+        }
 
         // ------------------
 
@@ -238,7 +257,8 @@ class UserController extends Controller
             ->with('user_assessments', $user_assessments)
             ->with('assessments', $assessments) 
             ->with('now', $now)
-
+            //->with('training_arr', $training_arr)
+            ->with('training_arr', $training_arr)
             ->with('skills', $skills)
 
             // ------
