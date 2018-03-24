@@ -43,6 +43,7 @@ class UserController extends Controller
     {
         // get all the users
         $users = User::orderBy('last_name')->paginate(3); // 3 for testing, ought to be 10
+        //$users = User::all();
         $positions = Position::all();
 
         // load the view and pass the users

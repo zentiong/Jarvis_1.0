@@ -50,8 +50,10 @@
                     {{ Html::ul($errors->all()) }}
                 </div>
             @endif
-
+            <?php /*
+             */ ?>
             {{ $users->links() }}
+
             <table id="target_table" class="table table-striped table-bordered">
                 <thead>
                     <tr>
