@@ -1,12 +1,8 @@
 <!-- data collection -->
         <?php
-        $qscore_arr_all = array();
         $labels_arr_all = array();
-        $assessments_arr = array();
         $score_data_all = array();
         $sk_id_arr = array();
-        $quiz_weight = 0;
-        $asmnt_weight = 0;
         ?>
 
         <!-- scores -->
@@ -15,28 +11,7 @@
         {
             if($value->user_id==$current_id)
             {
-                if($value->q_score!=0 and $value->q_max_score!=0)
-                {
-                    $qres = ($value->q_score/$value->q_max_score)*100;
-                    array_push($qscore_arr_all,$qres);
-                }
-                else
-                {
-                    array_push($qscore_arr_all,0);
-                }
-
-                if($value->a_score!=0 and $value->a_amx_score!=0)
-                {
-                    $ares = ($value->a_score/$value->a_max_score)*100;
-                    array_push($assessments_arr,$ares);
-                }
-                else
-                {
-                    array_push($assessments_arr,0);
-                }
-
-                $quiz_weight = $value->knowledge_based_weight/100;
-                $asmnt_weight = $value->skills_based_weight/100;
+                array_push($score_data_all,$value->skill_grade);
                 array_push($sk_id_arr,$value->skill_id);
             }
         }
