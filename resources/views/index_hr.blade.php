@@ -40,7 +40,6 @@
 
                             $cwide_score_data = array();
                             $cwide_assessment_data = array();
-
                             $cwide_score_data = array();
                             $cwide_label_data = array();
                             $cwide_skill_id = array();  
@@ -93,13 +92,10 @@
                                 var labels_all = <?php echo json_encode($cwide_label_data)?>;
                                 var score_data_all = <?php echo json_encode($cwide_score_data)?>;
                                 var labels_all = <?php echo json_encode($cwide_label_data)?>;
-
-                                var score_data_all = <?php //echo json_encode($cwide_score_data)?>;
-                                var labels_all = <?php //echo json_encode($cwide_label_data)?>;
-
-
-                                var score_data_all = <?php //echo json_encode($cwide_score_data)?>;
-                                var labels_all = <?php //echo json_encode($cwide_label_data)?>;
+                                var score_data_all = <?php echo json_encode($cwide_score_data)?>;
+                                var labels_all = <?php echo json_encode($cwide_label_data)?>;
+                                var score_data_all = <?php echo json_encode($cwide_score_data)?>;
+                                var labels_all = <?php echo json_encode($cwide_label_data)?>;
 
 
                                 var tfive = [];
