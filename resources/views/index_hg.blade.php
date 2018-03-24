@@ -63,7 +63,7 @@
                                             <td>{{ $value->hiring_date }}</td>
                                             <td>{{ $value->birth_date }}</td>
                                             <td>{{ $value->department }}</td>
-                                            @foreach($users as $key => $supervisor)
+                                            @foreach($users_two as $key => $supervisor)
                                                 @if($value->supervisor_id == $supervisor->id)
                                                      <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
                                                 @endif

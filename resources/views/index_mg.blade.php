@@ -37,6 +37,7 @@
                     <div class="col-md-12">
                         <h5 class="dashboard-header">Department overview</h5>
                         <div class="dashboard-content">
+
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
@@ -52,10 +53,11 @@
                                         <td>Actions</td>
                                     </tr>
                                 </thead>
+                                
+                                <tbody>
                                 <?php
                                     $boss_list = array();
                                 ?>
-                                <tbody>
                                 @foreach($users as $key => $user)
                                     @if($user->supervisor_id==$current_id)
                                         <tr>
@@ -65,7 +67,7 @@
                                             <td>{{ $user->hiring_date }}</td>
                                             <td>{{ $user->birth_date }}</td>
                                             <td>{{ $user->department }}</td>
-                                            @foreach($users as $key => $supervisor)
+                                            @foreach($users_two as $key => $supervisor)
                                                 @if($user->supervisor_id == $supervisor->id)
                                                      <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
                                                 @endif
@@ -89,44 +91,45 @@
                                         array_push($boss_list, $user);
                                     ?>  
                                     @endif
-
                                     @foreach($boss_list as $key => $boss)
-
-                                    @foreach($users as $key => $list)
-                                    <?php
-                                       //array_shift($list);
-                                    ?>  
-                                    @if($list->supervisor_id==$boss->id)
-                                        <tr>
-                                            <td>{{ $list->first_name }}</td>
-                                            <td>{{ $list->last_name }}</td>
-                                            <td>{{ $list->email }}</td>
-                                            <td>{{ $list->hiring_date }}</td>
-                                            <td>{{ $list->birth_date }}</td>
-                                            <td>{{ $list->department }}</td>
-                                            @foreach($users as $key => $supervisor)
-                                                @if($list->supervisor_id == $supervisor->id)
-                                                     <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
+                                        @foreach($users as $key => $user)
+                                        @if($user->supervisor_id==$boss->id)
+                                            <tr>
+                                                <td>{{ $user->first_name }}</td>
+                                                <td>{{ $user->last_name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->hiring_date }}</td>
+                                                <td>{{ $user->birth_date }}</td>
+                                                <td>{{ $user->department }}</td>
+                                                @foreach($users_two as $key => $supervisor)
+                                                    @if($user->supervisor_id == $supervisor->id)
+                                                         <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
+                                                    @endif
+                                                @endforeach
+                                                <td>{{ $user->position }}</td>
+    
+                                                @if ($user->manager_check==1)
+                                                <td>Yes</td>
+                                                @else
+                                                <td>No</td>
                                                 @endif
-                                            @endforeach
-                                            <td>{{ $list->position }}</td>
+    
+                                                <!-- we will also add show, edit, and delete buttons -->
+                                                <td class="table-actions">
+                                                    <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $user->id) }}">
+                                                        <i class="fa fa-user fa-lg"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                                array_push($boss_list, $user);
+                                            ?>  
+                                        @endif
 
-                                            @if ($list->manager_check==1)
-                                            <td>Yes</td>
-                                            @else
-                                            <td>No</td>
-                                            @endif
-
-                                            <!-- we will also add show, edit, and delete buttons -->
-                                            <td class="table-actions">
-                                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $list->id) }}">
-                                                    <i class="fa fa-user fa-lg"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endif    
+                                        @endforeach                       
                                     @endforeach
-                                    @endforeach                                
+
+                                                                  
                                 @endforeach
                                 </tbody>
                             </table>

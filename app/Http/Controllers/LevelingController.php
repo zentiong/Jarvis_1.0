@@ -32,6 +32,7 @@ Class LevelingController extends Controller
 		$mg = $current_user->manager_check;	
 		//$users = User::all();
 		$users = User::orderBy('last_name')->paginate(3);
+		$users_two = User::all();
 		$trainings = Training::all();
 		$quizzes = Quiz::all();
 		$sections = Section::all();
@@ -100,7 +101,8 @@ Class LevelingController extends Controller
 				if($mg==1) // HR x Manager
 				{
 					return view('index_hg')
-						->with('users', $users) 	
+						->with('users', $users) 
+						->with('users_two', $users_two)	
 						->with('trainings', $trainings)
 						->with('quizzes', $quizzes)
 						->with('sections', $sections)
@@ -147,6 +149,7 @@ Class LevelingController extends Controller
 				{
 					return view('index_mg')
 						->with('users', $users)
+						->with('users_two', $users_two)
 						->with('quizzes', $quizzes)
 						->with('sections', $sections)
 						->with('section_attempts', $section_attempts)
