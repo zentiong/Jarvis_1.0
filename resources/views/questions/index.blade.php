@@ -4,8 +4,8 @@
 
     <main class="container create-page">
         <section class="crud-page-top">
-            <h1 class="crud-page-title"> Showing questions for this quiz  </h1>
-            <h5>({{ $quiz->topic }} )</h5>
+            <h1 class="crud-page-title"> Showing questions for {{ $quiz->topic }} </h1>
+            
         </section>
         <hr>
         <section>

@@ -248,6 +248,13 @@
                       
                 </div>
             </div>
+
+            <div class="row dashboard-body">
+                <div class="dashboard-content">
+                    <h6 class="content-header light"><b>Trainings attended by {{ $user->first_name }} {{ $user->last_name }}</b></h6>
+                </div>
+            </div>
+            
         </section>
 
     </main>
