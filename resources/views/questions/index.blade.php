@@ -4,8 +4,8 @@
 
     <main class="container create-page">
         <section class="crud-page-top">
-            <h1 class="crud-page-title"> Showing questions for this quiz  </h1>
-            <h5>({{ $quiz->topic }} )</h5>
+            <h1 class="crud-page-title"> Showing questions for {{ $quiz->topic }}  </h1>
+           
         </section>
         <hr>
         <section>
@@ -110,7 +110,7 @@
                     </tbody>
                     </table>
                     <div class="text-right">
-                        <button class="btn question-btn" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Question</button>
+                        <button class="open-AddBookDialog btn question-btn" data-id="{{$section->id}}" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Question</button>
                     </div>
                     
                      <!-- Modal -->
@@ -127,9 +127,9 @@
                               <div class="modal-body">
 
                                 {{ Form::open(array('url' => 'quizzes/'.$quiz_id.'/questions')) }}
-                                <h2>Test: Section {{ $section->id}} </h2> 
+                                
                                 {{ Form::hidden('quiz_id', $quiz->quiz_id) }}
-                                {{ Form::hidden('section_id', $section->id) }}
+                                <input type="hidden" name="section_id" id="bookId" value=""/>
                                 <div class="form-group">
                                     {{ Form::label('question_item', 'Question') }}
                                     {{ Form::text('question_item', Request::old('question_item'), array('class' => 'form-control')) }}
@@ -190,6 +190,14 @@
         var a = document.getElementById('positions');
         a.classList.toggle("active");
     });
+    $(document).on("click", ".open-AddBookDialog", function () {
+     var myBookId = $(this).data('id');
+     $(".modal-body #bookId").val( myBookId );
+     // As pointed out in comments, 
+     // it is superfluous to have to manually call the modal.
+     // $('#addBookDialog').modal('show');
+    });
+
 
     // enables Bootstrap tooltips
     $(function () {
