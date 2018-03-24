@@ -40,6 +40,7 @@ Class LevelingController extends Controller
 		$user_assessments = User_Assessment::all();
 		$user_skills = User_Skill::all();
 		$now= date('Y-m-d');
+		$cwide_skills = User_Skill::groupBy('skill_id')->get();
 		
 
 
