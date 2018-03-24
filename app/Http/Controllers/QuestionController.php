@@ -137,7 +137,11 @@ class QuestionController extends Controller
                             break;
                     }
 
-                    $question->answer_item = Input::get('answer_item');
+                    $question->choice_1 = Input::get('choice_1');
+                    $question->choice_2 = Input::get('choice_2');
+                    $question->choice_3 = Input::get('choice_3');
+                    $question->choice_4 = Input::get('choice_4');
+                    
                     $question->section_id =Input::get('section_id');
                     $question->save();
                 }
