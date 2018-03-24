@@ -95,28 +95,28 @@
                 
                 <div class="form-group">
                     {{ Form::label('title', 'Title') }}
-                    {{ Form::text('title', Request::old('title'), array('class' => 'form-control', 'autofocus')) }}
+                    {{ Form::text('title', Request::old('title'), array('class' => 'form-control', 'autofocus', 'required')) }}
                 </div>
 
                 <div class="form-group">
                     {{ Form::label('date', 'Date') }}
-                    {{ Form::date('date', Request::old('date'), array('class' => 'form-control')) }}
+                    {{ Form::date('date', Request::old('date'), array('class' => 'form-control', 'required')) }}
                 </div>
 
                 <div class="form-group">
                     {{ Form::label('starting_time', 'Starting Time') }}
-                    {{ Form::time('starting_time', Request::old('starting_time'), array('class' => 'form-control')) }}
+                    {{ Form::time('starting_time', Request::old('starting_time'), array('class' => 'form-control', 'required')) }}
                 </div>
 
                 <div class="form-group">
                     {{ Form::label('ending_time', 'Ending Time') }}
-                    {{ Form::time('ending_time', Request::old('ending_time'), array('class' => 'form-control')) }}
+                    {{ Form::time('ending_time', Request::old('ending_time'), array('class' => 'form-control', 'required')) }}
                 </div>
 
 
                 <div class="form-group">
                     {{ Form::label('venue', 'Venue') }}
-                    {{ Form::text('venue', Request::old('venue'), array('class' => 'form-control')) }}
+                    {{ Form::text('venue', Request::old('venue'), array('class' => 'form-control', 'required')) }}
                 </div>
               </div>
               <div class="modal-footer create-bottom-wrapper">

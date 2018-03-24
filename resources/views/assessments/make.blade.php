@@ -86,7 +86,7 @@
 
    <div style="padding-top: 30px"> 
    <h5> {{ Form::label('feedback', 'Feedback') }}</h5>
-    {{ Form::text('feedback', Request::old('feedback'), array('class' => 'form-control')) }}
+    {{ Form::text('feedback', Request::old('feedback'), array('class' => 'form-control', 'required')) }}
 
 
    <div style="padding-top: 50px">{{ Form::submit('Submit Ratings!', array('class' => 'btn crud-main-cta')) }}</div>

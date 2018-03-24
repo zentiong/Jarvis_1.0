@@ -78,7 +78,7 @@
                 {{ Form::open(array('url' => 'positions')) }}
                 <div class="form-group">
                     {{ Form::label('name', 'Position Name') }}
-                    {{ Form::text('name', Request::old('name'), array('class' => 'form-control', 'autofocus')) }}
+                    {{ Form::text('name', Request::old('name'), array('class' => 'form-control', 'autofocus', 'required')) }}
                 </div>
                 <div class="form-group">
                     {{ Form::label('job_grade', 'Job Grade') }}
