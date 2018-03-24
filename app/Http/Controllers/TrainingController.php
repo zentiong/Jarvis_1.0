@@ -113,6 +113,8 @@ class TrainingController extends Controller
         $user_training = User_Training::where('training_id',$training_id)
         ->where('user_id',Auth::user()->id)->first();
         $user_training->evaluation = Input::get('evaluation');
+        $user_training->rating_training = Input::get('rating_training');
+        $user_training->rating_speaker = Input::get('rating_speaker');
 
         $user_training->save();
 

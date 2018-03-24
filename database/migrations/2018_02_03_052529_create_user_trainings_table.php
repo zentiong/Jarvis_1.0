@@ -24,6 +24,8 @@ class CreateUserTrainingsTable extends Migration
             $table->boolean('confirmed')->default(false);
 
             $table->longText('evaluation')->nullable();
+            $table->integer('rating_training')->default(3);
+            $table->integer('rating_speaker')->default(3);
 
             //$table->boolean('attended')->default(false);
         });

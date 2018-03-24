@@ -11,8 +11,27 @@
             <h1 class="crud-page-title">Evaluate Training</h1>
         </section>
         <section>
+            
             <div class="form-group">
-                {{ Form::label('evaluation', 'Evaluation') }}
+                {{ Form::label('rating_training', 'How did you find the training?') }}
+                {{ Form::radio('rating_training', '1' ) }}
+                {{ Form::radio('rating_training', '2' ) }}
+                {{ Form::radio('rating_training', '3' ) }}
+                {{ Form::radio('rating_training', '4' ) }}
+                {{ Form::radio('rating_training', '5' ) }}
+
+            </div>
+            <div class="form-group">
+                {{ Form::label('rating_speaker', 'How did you find the speaker?') }}
+                {{ Form::radio('rating_speaker', '1' ) }}
+                {{ Form::radio('rating_speaker', '2' ) }}
+                {{ Form::radio('rating_speaker', '3' ) }}
+                {{ Form::radio('rating_speaker', '4' ) }}
+                {{ Form::radio('rating_speaker', '5' ) }}
+
+            </div>
+            <div class="form-group">
+                {{ Form::label('evaluation', 'Any comments or suggestions?') }}
                 {{ Form::text('evaluation', Request::old('evaluation'), array('class' => 'form-control', 'autofocus')) }}
             </div>
             <div class="form-group text-center create-bottom-wrapper">
