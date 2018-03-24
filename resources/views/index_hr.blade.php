@@ -40,10 +40,8 @@
 
                             $cwide_score_data = array();
                             $cwide_assessment_data = array();
-                            $cwide_score_data = array();
                             $cwide_label_data = array();
                             $cwide_skill_id = array();  
-                            $cwide_score_data = array();
                             $cwide_label_data = array();
                             $cwide_skill_id = array();
                             $cwide_computed_score = array();
