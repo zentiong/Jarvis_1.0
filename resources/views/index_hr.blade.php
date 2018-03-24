@@ -37,14 +37,10 @@
 
 
                             <?php
-
                             $cwide_score_data = array();
                             $cwide_assessment_data = array();
                             $cwide_label_data = array();
                             $cwide_skill_id = array();  
-                            $cwide_label_data = array();
-                            $cwide_skill_id = array();
-                            $cwide_computed_score = array();
 
                             foreach($user_skills as $key=>$value)
                             {
@@ -75,9 +71,7 @@
 
                             }
 
-                            
-
-
+                            print_r($cwide_score_data);
             
                             ?>
 
@@ -86,7 +80,7 @@
                             <script type="text/javascript">
 
                                 
-                                var score_data_all = <?php echo json_encode($cwide_score_data)?>;
+                                var cwide_score_data = <?php echo json_encode($cwide_score_data)?>;
                                 var labels_all = <?php echo json_encode($cwide_label_data)?>;
 
 
@@ -101,22 +95,16 @@
                                 }
 
 
-                                function update_data(chart, data) 
-                                {
-                                    chart.data.datasets[0].data = data;
-                                    chart.update();
-                                }
-
 
                                 Chart.defaults.global.maintainAspectRatio = false;
                                 var ctx = document.getElementById("cwide_skills_chart").getContext('2d');
-                                var myChart = new Chart(ctx, {
+                                var cwide_skills_chart = new Chart(ctx, {
                                     type: 'horizontalBar',
                                     data: {
                                         labels: labels_all,
                                         datasets: [{
                                             label: 'Skill Level by Percentage',
-                                            data: score_data_all,
+                                            data: cwide_score_data,
                                             backgroundColor: [
                                                 'rgba(255, 99, 132, 0.2)',
                                                 'rgba(54, 162, 235, 0.2)',
