@@ -100,7 +100,6 @@ class QuizController extends Controller
             }
         }          
 
-
         // For Max Score
 
         $sections = Section::where('quiz_id',$quiz_id)->get();

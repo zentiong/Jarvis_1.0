@@ -51,11 +51,29 @@
                             <td>{{ $value->question_item }}</td>
                             <!-- we will also add show, edit, and delete buttons -->
                             <td>
-                                {{ Form::text('answer_attempt[]', Request::old('DEFAULT AA'), array('class' => 'form-control')) }}
-                                <?php 
-                                    $var ++;
-                                ?>
+                                {{ Form::radio('answer_attempt['.$var.']', ' $value->choice_1' ) }}
+                                {{ Form::label('choice_1', $value->choice_1) }}
+                                
+
+                                <br>
+                                {{ Form::radio('answer_attempt['.$var.']', ' $value->choice_2' ) }}
+                                {{ Form::label('choice_1', $value->choice_2) }}
+                                
+
+                                <br>
+                                {{ Form::radio('answer_attempt['.$var.']', ' $value->choice_3' ) }}
+                                {{ Form::label('choice_1', $value->choice_3) }}
+                                
+
+                                <br>
+                                {{ Form::radio('answer_attempt['.$var.']', ' $value->choice_4' ) }}
+                                {{ Form::label('choice_1', $value->choice_4) }}
+                                
+                                
                             </td>
+                            <?php 
+                                $var ++;
+                            ?>
                         </tr>
                     @endforeach
                     </tbody>

@@ -121,6 +121,22 @@ class QuestionController extends Controller
                 {
                     $question = new Question;
                     $question->question_item = Input::get('question_item');
+
+                    switch (Input::get('answer_item')) {
+                        case 'choice_1':
+                            $question->answer_item = Input::get('choice_1');
+                            break;
+                        case 'choice_2':
+                            $question->answer_item = Input::get('choice_2');
+                            break;
+                        case 'choice_3':
+                            $question->answer_item = Input::get('choice_3');
+                            break;
+                        case 'choice_4':
+                            $question->answer_item = Input::get('choice_4');
+                            break;
+                    }
+
                     $question->answer_item = Input::get('answer_item');
                     $question->section_id =Input::get('section_id');
                     $question->save();

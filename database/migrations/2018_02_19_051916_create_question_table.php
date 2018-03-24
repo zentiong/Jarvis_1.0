@@ -22,6 +22,11 @@ class CreateQuestionTable extends Migration
 
             $table->string('question_item', 255);
             $table->string('answer_item', 255);
+
+            $table->string('choice_1', 255);
+            $table->string('choice_2', 255);
+            $table->string('choice_3', 255);
+            $table->string('choice_4', 255);
         });
         /*
         DB::table('questions')->insert(
