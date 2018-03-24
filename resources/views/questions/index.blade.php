@@ -4,8 +4,8 @@
 
     <main class="container create-page">
         <section class="crud-page-top">
-            <h1 class="crud-page-title"> Showing questions for {{ $quiz->topic }} </h1>
-            
+            <h1 class="crud-page-title"> Showing questions for this quiz  </h1>
+            <h5>({{ $quiz->topic }} )</h5>
         </section>
         <hr>
         <section>
@@ -57,6 +57,10 @@
                         <tr>
                             <td>Question</td>
                             <td>Answer </td>
+                            <td>Choice 1 </td>
+                            <td>Choice 2 </td>
+                            <td>Choice 3 </td>
+                            <td>Choice 4 </td>
                             <td class="no-stretch">Actions</td>
                         </tr>
                     </thead>
@@ -68,6 +72,10 @@
                         <tr>
                             <td>{{ $value->question_item }}</td>
                             <td>{{ $value->answer_item }}</td>
+                            <td>{{ $value->choice_1 }}</td>
+                            <td>{{ $value->choice_2 }}</td>
+                            <td>{{ $value->choice_3 }}</td>
+                            <td>{{ $value->choice_4 }}</td>
 
                             <!-- we will also add show, edit, and delete buttons -->
                             <td class="table-actions">
@@ -105,8 +113,8 @@
                         <button class="btn question-btn" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Question</button>
                     </div>
                     
-
                      <!-- Modal -->
+                     
                     <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -119,6 +127,7 @@
                               <div class="modal-body">
 
                                 {{ Form::open(array('url' => 'quizzes/'.$quiz_id.'/questions')) }}
+                                <h2>Test: Section {{ $section->id}} </h2> 
                                 {{ Form::hidden('quiz_id', $quiz->quiz_id) }}
                                 {{ Form::hidden('section_id', $section->id) }}
                                 <div class="form-group">
@@ -127,8 +136,30 @@
                                 </div>
                                 <div class="form-group">
                                     {{ Form::label('answer_item', 'Answer') }}
-                                    {{ Form::text('answer_item', Request::old('answer_item'), array('class' => 'form-control')) }}
+                                    {{ Form::select('answer_item', [
+                                       'choice_1' => '1st Choice',
+                                       'choice_2' => '2nd Choice',
+                                       'choice_3' => '3rd Choice',
+                                       'choice_4' => '4th Choice']
+                                    ) }}
                                 </div>
+                                <div class="form-group">
+                                    {{ Form::label('choice_1', '1st Choice') }}
+                                    {{ Form::text('choice_1', Request::old('choice_1'), array('class' => 'form-control')) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ Form::label('choice_2', '2nd Choice') }}
+                                    {{ Form::text('choice_2', Request::old('choice_2'), array('class' => 'form-control')) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ Form::label('choice_3', '3rd Choice') }}
+                                    {{ Form::text('choice_3', Request::old('choice_3'), array('class' => 'form-control')) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ Form::label('choice_4', '4th Choice') }}
+                                    {{ Form::text('choice_4', Request::old('choice_4'), array('class' => 'form-control')) }}
+                                </div>
+
 
 
                               </div>
