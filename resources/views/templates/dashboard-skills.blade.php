@@ -35,16 +35,6 @@
 
         ?>
         <!-- end labels -->
-
-        <!-- calculations -->
-        <?php 
-        for($i=0;$i<sizeof($qscore_arr_all);$i++)
-        {
-            $comp = (($qscore_arr_all[$i]*$quiz_weight)+($assessments_arr[$i]*$asmnt_weight));
-            array_push($score_data_all, $comp);
-        }            
-        ?>
-        <!-- end calculations -->
         <!-- end of data collection -->
 
        
