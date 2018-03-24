@@ -36,12 +36,10 @@
                     <h5 class="dashboard-header">Overall skills statistics</h5>
 
 
-                        <!--<?php
-                        /*$cwide_score_data = array();
+                        <?php
+                        $cwide_score_data = array();
                         $cwide_label_data = array();
                         $cwide_skill_id = array();  
-
-                        <?php
                         $cwide_score_data = array();
                         $cwide_label_data = array();
                         $cwide_skill_id = array();
@@ -61,16 +59,15 @@
                             {
                                 if($skill_id==$user_skills[$i]->skill_id)
                                 {
-                                    if($i<sizeof($cwide_score_data))
+                                    if($i<=sizeof($cwide_score_data))
                                     {
-                                        $cwide_score_res = ($user_skills[$i]->q_score/$user_skills[$i]->q_score_max)*100;
+                                        $cwide_score_res = ($user_skills[$i]->q_score/$user_skills[$i]->q_max_score)*100;
                                         array_push($cwide_score_data,$cwide_score_res);
                                     }
                                     else
                                     {
-                                        $cwide_score_res = ($user_skills[$i]->q_score/$user_skills[$i]->q_score_max)*100;
+                                        $cwide_score_res = ($user_skills[$i]->q_score/$user_skills[$i]->q_max_score)*100;
                                         $cwide_score_data[$i]+=$cwide_score_res;
-
                                     }
 
                                 }
@@ -90,7 +87,7 @@
                                 }
                             }
 
-                        }*/
+                        }
 
                         
 
@@ -103,12 +100,12 @@
                         <script type="text/javascript">
 
                             
-                            var score_data_all = <?php //echo json_encode($cwide_score_data)?>;
-                            var labels_all = <?php //echo json_encode($cwide_label_data)?>;
+                            var score_data_all = <?php echo json_encode($cwide_score_data)?>;
+                            var labels_all = <?php echo json_encode($cwide_label_data)?>;
 
 
-                            var score_data_all = <?php //echo json_encode($cwide_score_data)?>;
-                            var labels_all = <?php //echo json_encode($cwide_label_data)?>;
+                            var score_data_all = <?php echo json_encode($cwide_score_data)?>;
+                            var labels_all = <?php echo json_encode($cwide_label_data)?>;
 
                             var tfive = [];
                             if(score_data_all.length>5)
@@ -173,17 +170,7 @@
                                 }
                             });
 
-                        </script>-->
-
                         </script>
-
-
-
-                    <div class="dashboard-content">
-
-                        <p>A work in progress....</p>
-
-                    </div>
                 </div>
                 <div class="col-md-5">
                     <h5 class="dashboard-header">Overall training statistics</h5>

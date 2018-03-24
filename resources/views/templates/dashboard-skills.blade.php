@@ -25,7 +25,7 @@
                     array_push($qscore_arr_all,0);
                 }
 
-                if($value->a_score!=0 and $value->a_max_score!=0)
+                if($value->a_score!=0 and $value->a_amx_score!=0)
                 {
                     $ares = ($value->a_score/$value->a_max_score)*100;
                     array_push($assessments_arr,$ares);
