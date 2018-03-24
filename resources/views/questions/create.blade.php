@@ -26,8 +26,30 @@
                     </div>
                     <div class="form-group">
                         {{ Form::label('answer_item', 'Answer') }}
-                        {{ Form::text('answer_item', Request::old('answer_item'), array('class' => 'form-control')) }}
+                        {{ Form::select('answer_item', [
+                           'choice_1' => '1st Choice',
+                           'choice_2' => '2nd Choice',
+                           'choice_3' => '3rd Choice',
+                           'choice_4' => '4th Choice']
+                        ) }}
                     </div>
+                    <div class="form-group">
+                        {{ Form::label('choice_1', '1st Choice') }}
+                        {{ Form::text('choice_1', Request::old('choice_1'), array('class' => 'form-control')) }}
+                    </div>
+                    <div class="form-group">
+                        {{ Form::label('choice_2', '2nd Choice') }}
+                        {{ Form::text('choice_2', Request::old('choice_2'), array('class' => 'form-control')) }}
+                    </div>
+                    <div class="form-group">
+                        {{ Form::label('choice_3', '3rd Choice') }}
+                        {{ Form::text('choice_3', Request::old('choice_3'), array('class' => 'form-control')) }}
+                    </div>
+                    <div class="form-group">
+                        {{ Form::label('choice_4', '4th Choice') }}
+                        {{ Form::text('choice_4', Request::old('choice_4'), array('class' => 'form-control')) }}
+                    </div>
+
 
                     <div class="form-group text-center create-bottom-wrapper">
                         <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn">Cancel</a>
