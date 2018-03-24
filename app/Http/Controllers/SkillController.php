@@ -34,7 +34,7 @@ class SkillController extends Controller
     {
         
         
-    	$skills = Skill::all();
+    	$skills = Skill::all()->sortBy('name');
         return View::make('skills.index')
             ->with('skills', $skills);
     }

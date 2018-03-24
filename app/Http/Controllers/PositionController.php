@@ -25,7 +25,7 @@ class PositionController extends Controller
 
     public function index()
     {
-        $positions = Position::all();
+        $positions = Position::all()->sortBy('job_grade');
         $job_grades = Job_Grade::all();
 
         // load the view and pass the employees
