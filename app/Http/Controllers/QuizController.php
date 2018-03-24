@@ -254,12 +254,12 @@ class QuizController extends Controller
                             $user_skill->skill_id = $skill_id;
 
                             // Score
-
+                            $temp_score = 0;
                             $temp_score = $section_attempt->score;  
                             $user_skill->q_score = $temp_score; 
 
                             // Max Score
-
+                            $temp_max_score = 0;
                             $temp_max_score = $section_attempt->max_score;  
                             $user_skill->q_max_score = $temp_max_score;
 
