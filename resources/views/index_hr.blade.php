@@ -40,45 +40,14 @@
                             $cwide_score_data = array();
                             $cwide_label_data = array();
                             $cwide_skill_id = array();
-                            
-
-                            foreach($user_skills as $key=>$value)
-                            {
-                                if(!in_array($value->skill_id, $cwide_skill_id))
-                                {
-                                    array_push($cwide_skill_id,$value->skill_id);
-                                }
-                            }
-                            
                             $count = 0;
 
-                            foreach($user_skills as $key=>$value)
+                            foreach($cwide_skills as $key=>$value)
                             {
-                                $skill_grade = $value->skill_grade;
-                                $ref_id = $value->skill_id;
-
-                                foreach($cwide_skill_id as $key=>$value)
-                                {
-                                    if($value==$ref_id)
-                                    {
-                                        if($count==0)
-                                        {
-                                            array_push($cwide_score_data, $skill_grade);
-                                            $count++;
-                                        }
-                                        elseif($count>sizeof($cwide_score_data))
-                                        {
-                                            array_push($cwide_score_data, $skill_grade);
-                                        }
-                                        else
-                                        {
-                                            $cwide_score_data[$count-1]=$cwide_score_data[$count-1]+$skill_grade;
-                                            $count++;   
-                                        }
-                                    }       
-
-                                }
+                                array_push($cwide_score_data,$value->skill_grade);
+                                array_push($cwide_skill_id,$value->skill_id);
                             }
+ 
  
                             foreach($cwide_skill_id as $key => $value)
                             {
@@ -99,8 +68,11 @@
                         
                         <h5 class="dashboard-header">Overall Quiz Statistics</h5>
 
+                        
                         <!-- data collection -->
                         <?php
+                        /*
+
                         $cwide_quiz_data = array();
                         $cwide_quiz_labels = array();
                         $sk_id_arr = array();
@@ -165,6 +137,7 @@
                                 }
                             }
                         }
+                        */
 
                         ?>
                         <!-- end labels -->
@@ -339,14 +312,15 @@
         });
                         </script>
 <!-- script for overall quiz-->
+<!-- script for overall quiz
                         
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                         <script type="text/javascript">
                             $(document).ready(function() 
                             {
 
-                                var score_data_all = <?php echo json_encode($cwide_quiz_data)?>;
-                                var labels_all = <?php echo json_encode($cwide_quiz_labels)?>;
+                                var score_data_all = <?php //echo json_encode($cwide_quiz_data)?>;
+                                var labels_all = <?php //echo json_encode($cwide_quiz_labels)?>;
                                 var tfive = [];
                                 if(score_data_all.length>5)
                                 {
@@ -411,3 +385,4 @@
                                 });
                             });
                         </script>
+                        -->
