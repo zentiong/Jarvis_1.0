@@ -71,7 +71,6 @@
                         
                         <!-- data collection -->
                         <?php
-                        /*
 
                         $cwide_quiz_data = array();
                         $cwide_quiz_labels = array();
@@ -103,16 +102,16 @@
                                     {
                                         if($qcount==0)
                                         {
-                                            array_push($cwide_quiz_data, $skill_grade);
+                                            array_push($cwide_quiz_data, $quiz_score);
                                             $qcount++;
                                         }
                                         elseif($qcount>sizeof($cwide_quiz_data))
                                         {
-                                            array_push($cwide_quiz_data, $skill_grade);
+                                            array_push($cwide_quiz_data, $quiz_score);
                                         }
                                         else
                                         {
-                                            $cwide_quiz_data[$qcount-1]=$cwide_quiz_data[$qcount-1]+$skill_grade;
+                                            $cwide_quiz_data[$qcount-1]+=$quiz_score;
                                             $qcount++;   
                                         }
                                     }       
@@ -137,7 +136,7 @@
                                 }
                             }
                         }
-                        */
+                        
 
                         ?>
                         <!-- end labels -->
@@ -312,15 +311,14 @@
         });
                         </script>
 <!-- script for overall quiz-->
-<!-- script for overall quiz
                         
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                         <script type="text/javascript">
                             $(document).ready(function() 
                             {
 
-                                var score_data_all = <?php //echo json_encode($cwide_quiz_data)?>;
-                                var labels_all = <?php //echo json_encode($cwide_quiz_labels)?>;
+                                var score_data_all = <?php echo json_encode($cwide_quiz_data)?>;
+                                var labels_all = <?php echo json_encode($cwide_quiz_labels)?>;
                                 var tfive = [];
                                 if(score_data_all.length>5)
                                 {
@@ -385,4 +383,3 @@
                                 });
                             });
                         </script>
-                        -->
