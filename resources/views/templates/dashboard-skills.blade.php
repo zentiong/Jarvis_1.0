@@ -46,7 +46,6 @@
                         <button onclick="update_data(myChart,tfive)">Relevant Skills</button>
                         <button onclick="update_data(myChart,score_data_all)">All Skills</button>
                         <canvas id="myChart" width=100></canvas>
-
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                         <script type="text/javascript">
 
