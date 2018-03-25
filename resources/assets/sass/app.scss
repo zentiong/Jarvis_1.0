@@ -984,20 +984,46 @@ body.dashboard {
 			align-items: center;
 			justify-content: space-between;
 			margin: 6em 0 2em;
+		}
+		.thick-border {
+			background-color: $black-1;
+			padding: 1em;
+		}
+		.crud-page-title {
+			font-size: 1.4rem;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
 
-			.crud-page-title {
-				font-size: 1.4rem;
-				font-weight: bold;
-				text-transform: uppercase;
+		.crud-page-actions {
+			margin-right: 0;
+
+			i {
+				align-self: center;
+				background-color: #f9f9f9;
+				border: 1px solid #afafaf;
+				border-right: 0;
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+				color: #afafaf;
+				padding: 7px 12px;
 			}
 
+			input {
+				font-size: 0.8em;
+				margin-right: 2em;
+				padding: 0 0.9em;
+				border-top-right-radius: 5px;
+				border-bottom-right-radius: 5px;
+				border-style: groove;
+			}
 		}
 
 		.crud-main-cta {
 			display: flex;
 			background-color: $table-edit-blue;
 			border: none;
-			border-radius: 15px;
+			border-radius: 10px;
 			color: $white-1;
 			font-size: 90%;
 			height: fit-content;
