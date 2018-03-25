@@ -8,7 +8,7 @@
                 <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Employee</button>
                 <input type="text" id="search_input" onkeyup="filter_table()" placeholder="Search for employees" title="Type in a name">
             </div>
-
+            
             <script>
             function filter_table() 
             {
