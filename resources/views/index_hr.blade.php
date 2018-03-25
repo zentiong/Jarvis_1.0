@@ -38,9 +38,9 @@
 
                             <?php
                             $cwide_score_data = array();
-                            $cwide_assessment_data = array();
                             $cwide_label_data = array();
-                            $cwide_skill_id = array();  
+                            $cwide_skill_id = array();
+                            
 
                             foreach($user_skills as $key=>$value)
                             {
@@ -49,15 +49,37 @@
                                     array_push($cwide_skill_id,$value->skill_id);
                                 }
                             }
+                            
+                            $count = 0;
 
-                            foreach ($cwide_skills as $key => $value) 
+                            foreach($user_skills as $key=>$value)
                             {
-                                $cwide_score_data = $value->skill_grade;
-                            }
-                            
-                            
+                                $skill_grade = $value->skill_grade;
+                                $ref_id = $value->skill_id;
 
-                            
+                                foreach($cwide_skill_id as $key=>$value)
+                                {
+                                    if($value==$ref_id)
+                                    {
+                                        if($count==0)
+                                        {
+                                            array_push($cwide_score_data, $skill_grade);
+                                            $count++;
+                                        }
+                                        elseif($count>sizeof($cwide_score_data))
+                                        {
+                                            array_push($cwide_score_data, $skill_grade);
+                                        }
+                                        else
+                                        {
+                                            $cwide_score_data[$count-1]=$cwide_score_data[$count-1]+$skill_grade;
+                                            $count++;   
+                                        }
+                                    }       
+
+                                }
+                            }
+ 
                             foreach($cwide_skill_id as $key => $value)
                             {
                                 $sk_id = $value;
@@ -70,78 +92,13 @@
                                 }
 
                             }
-
-                            print_r($cwide_score_data);
-            
                             ?>
 
-                            <canvas id="cwide_skills_chart" width=100></canvas>
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-                            <script type="text/javascript">
-
-                                
-                                var cwide_score_data = <?php echo json_encode($cwide_score_data)?>;
-                                var labels_all = <?php echo json_encode($cwide_label_data)?>;
-
-
-                                var tfive = [];
-                                if(score_data_all.length>5)
-                                {
-                                    tfive = score_data_all.slice(0,5);
-                                }
-                                else
-                                {
-                                    tfive = score_data_all;
-                                }
-
-
-
-                                Chart.defaults.global.maintainAspectRatio = false;
-                                var ctx = document.getElementById("cwide_skills_chart").getContext('2d');
-                                var cwide_skills_chart = new Chart(ctx, {
-                                    type: 'horizontalBar',
-                                    data: {
-                                        labels: labels_all,
-                                        datasets: [{
-                                            label: 'Skill Level by Percentage',
-                                            data: cwide_score_data,
-                                            backgroundColor: [
-                                                'rgba(255, 99, 132, 0.2)',
-                                                'rgba(54, 162, 235, 0.2)',
-                                                'rgba(255, 206, 86, 0.2)',
-                                                'rgba(75, 192, 192, 0.2)',
-                                                'rgba(153, 102, 255, 0.2)',
-                                                'rgba(255, 159, 64, 0.2)'
-                                            ],
-                                            borderColor: [
-                                                'rgba(255,99,132,1)',
-                                                'rgba(54, 162, 235, 1)',
-                                                'rgba(255, 206, 86, 1)',
-                                                'rgba(75, 192, 192, 1)',
-                                                'rgba(153, 102, 255, 1)',
-                                                'rgba(255, 159, 64, 1)'
-                                            ],
-                                            borderWidth: 1
-                                        }]
-                                    },
-                                    options: {
-                                        scales: {
-                                            yAxes: [{
-                                                ticks: {
-                                                    beginAtZero:true
-                                                }
-                                            }],
-                                            xAxes: [{
-                                                ticks: {
-                                                    beginAtZero:true
-                                                }
-                                            }]
-
-                                        }
-                                    }
-                                });
-
-                            </script>
+                        
+                        <canvas id="cwide_skills_chart" width=100></canvas>
+                        
+                        
+                        
                     </div>
                     <div class="col-md-5">
                         <h5 class="dashboard-header">Overall training statistics</h5>
@@ -237,3 +194,75 @@
             $('[data-toggle="tooltip"]').tooltip();
         });
     </script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() 
+        {
+
+                            var score_data_all = <?php echo json_encode($cwide_score_data)?>;
+                            var labels_all = <?php echo json_encode($cwide_label_data)?>;
+                            var tfive = [];
+                            if(score_data_all.length>5)
+                            {
+                                tfive = score_data_all.slice(0,5);
+                            }
+                            else
+                            {
+                                tfive = score_data_all;
+                            }
+
+
+                            function update_data(chart, data) 
+                            {
+                                chart.data.datasets[0].data = data;
+                                chart.update();
+                            }
+
+
+                            Chart.defaults.global.maintainAspectRatio = false;
+                            var ctx = document.getElementById("cwide_skills_chart").getContext('2d');
+                            var new_chart = new Chart(ctx, {
+                                type: 'horizontalBar',
+                                data: {
+                                    labels: labels_all,
+                                    datasets: [{
+                                        label: 'Skill Level by Percentage',
+                                        data: score_data_all,
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255,99,132,1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero:true
+                                            }
+                                        }],
+                                        xAxes: [{
+                                            ticks: {
+                                                beginAtZero:true
+                                            }
+                                        }]
+
+                                    }
+                                }
+                            });
+        });
+                        </script>
