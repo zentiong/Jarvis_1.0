@@ -93,7 +93,56 @@
 
         </div>
     </div>
-
+     <div class="row dashboard-body">
+        <div class="dashboard-content">
+            <h6 class="content-header light">
+                <strong>Training Rating</strong>
+            </h6>
+            <div class="row">
+                <div class="col-md-12"><center>
+                <?php 
+                  $average_rating_training = 0;
+                  $counter = 0;
+                ?>
+                @foreach($user_trainings as $key => $user_training)
+                  @if($user_training->rating_training!=NUll)
+                    <?php 
+                      $average_rating_training += $user_training->rating_training;
+                      $counter++;
+                    ?>
+                  @endif
+                @endforeach
+                <h4>{{$average_rating_training/$counter}}</h4>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="row dashboard-body">
+        <div class="dashboard-content">
+            <h6 class="content-header light">
+                <strong>Speaker Rating</strong>
+            </h6>
+            <div class="row">
+                <div class="col-md-12"><center>
+                <?php 
+                  $average_rating_speaker = 0;
+                  $counter = 0;
+                ?>
+                @foreach($user_trainings as $key => $user_training)
+                  @if($user_training->rating_speaker!=NUll)
+                    <?php 
+                      $average_rating_speaker += $user_training->rating_speaker;
+                      $counter++;
+                    ?>
+                  @endif
+                @endforeach
+                <h4>{{$average_rating_speaker/$counter}}</h4>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row dashboard-body">
         <div class="dashboard-content">
             <h6 class="content-header light">

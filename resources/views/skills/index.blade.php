@@ -20,7 +20,6 @@
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <td>ID</td>
                         <td>Skill Name</td>
                         <td>Description</td>
                         <td class="no-stretch">Actions</td>
@@ -29,9 +28,6 @@
                 <tbody>
                 @foreach($skills as $key => $value)
                     <tr>
-                        
-
-                        <td>{{ $value->id }}</td>
                         <td>{{ $value->name}}</td>
                         <td>{{ $value->description}}</td>
 

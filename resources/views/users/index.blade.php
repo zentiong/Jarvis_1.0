@@ -50,34 +50,42 @@
                     {{ Html::ul($errors->all()) }}
                 </div>
             @endif
+            <?php /*
+             */ ?>
+            
 
             <table id="target_table" class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <td>User ID</td>
                         <td>First Name</td>
                         <td>Last Name</td>
                         <td>Email</td>
                         <td>Hiring Date</td>
                         <td>Birth Date</td>
                         <td>Department</td>
-                        <td>Supervisor ID</td>
+                        <td>Supervisor</td>
                         <td>Position</td>
                         <td>Manager?</td>
                         <td class="no-stretch">Actions</td>
                     </tr>
                 </thead>
                 <tbody>
+                {{ $users->links() }}
                 @foreach($users as $key => $value)
                     <tr>
-                        <td>{{ $value->id }}</td>
                         <td>{{ $value->first_name }}</td>
                         <td>{{ $value->last_name }}</td>
                         <td>{{ $value->email }}</td>
                         <td>{{ date('F d, Y', strtotime($value->hiring_date)) }}</td>
                         <td>{{ date('F d, Y', strtotime($value->birth_date)) }}</td>
                         <td>{{ $value->department }}</td>
-                        <td>{{ $value->supervisor_id }}</td>
+
+                        @foreach($users_two as $key => $supervisor)
+                            @if($value->supervisor_id == $supervisor->id)
+                                 <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
+                            @endif
+                        @endforeach
+                       
                         <td>{{ $value->position }}</td>
 
                         @if($value->manager_check==true)

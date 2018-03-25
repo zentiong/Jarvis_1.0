@@ -26,6 +26,7 @@
                     </thead>
                     <tbody>
                          @foreach($users as $key => $user)
+                            @if($user->id!=Auth::user()->id)
                             <?php
                                 $recommended = false;
                             ?>
@@ -50,7 +51,8 @@
                                 {{ Form::label($user->id, $user->first_name.' '.$user->last_name) }}
                                 </td>
                             </tr>
-                    @endforeach
+                            @endif
+                        @endforeach
 
                     </tbody>
                     </table>
