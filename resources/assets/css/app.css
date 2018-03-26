@@ -284,7 +284,8 @@ body.newsletter {
         body.newsletter #calendar-container table.calendar td.calendar-day .event {
           color: #fff; }
       body.newsletter #calendar-container table.calendar td.calendar-day-unique {
-        background-color: #89801B; }
+        background-color: #89801B;
+        height: 100px; }
         body.newsletter #calendar-container table.calendar td.calendar-day-unique .day-number-unique {
           color: #F8E71C;
           font-size: 1.5em; }

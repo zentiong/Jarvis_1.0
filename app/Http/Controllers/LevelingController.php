@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use View;
 use Auth;
+use DB;
 
 Class LevelingController extends Controller
 {
@@ -42,7 +43,7 @@ Class LevelingController extends Controller
 		$user_assessments = User_Assessment::all();
 		$user_skills = User_Skill::all();
 		$now= date('Y-m-d');
-		$cwide_skills = User_Skill::groupBy('skill_id')->get();
+		$cwide_skills = DB::select(DB::raw("select skill_id, sum(skill_grade) as skill_grade from user_skills group by skill_id"));
 		
 
 
@@ -117,8 +118,7 @@ Class LevelingController extends Controller
             			->with('user_assessments',$user_assessments)
 						->with('user_skills',$user_skills)
 						->with('now', $now)
-						->with('mg',$mg)
-						->with('cwide_skills',$cwide_skills);
+						->with('mg',$mg);
 				}
 				else // HR
 				{

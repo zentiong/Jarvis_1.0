@@ -4,7 +4,9 @@
 
     <main class="container create-page">
         <section class="row crud-page-top">
-            <h1 class="crud-page-title">Edit Training Session</h1>
+            <div>
+                <h1 class="crud-page-title">Edit Training Session</h1>
+            </div>
         </section>
         <section>
             {{ Html::ul($errors->all()) }}

@@ -3,9 +3,12 @@
 @section('body')
 
     <main class="container create-page">
-        <section class="crud-page-top">
-            <h1 class="crud-page-title"> Showing questions for {{ $quiz->topic }}  </h1>
-           
+        <section class="row crud-page-top">
+            <div>
+                <h1 class="crud-page-title">Questions</h1> 
+                <h6>Quiz Topic: {{ $quiz->topic }}</h6>
+            </div>
+            <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn">Back to Quizzes</a>
         </section>
         <hr>
         <section>
@@ -17,7 +20,7 @@
              <!-- 
              <a href="{{ URL::to('quizzes/'.$quiz->quiz_id.'/questions/create') }}" style="float: right;">Add a Question</a>
              -->
-            <a href="{{ URL::to('quizzes/'.$quiz->quiz_id.'/add_section') }}" class="btn crud-sub-cta">Add a section</a>
+            <a href="{{ URL::to('quizzes/'.$quiz->quiz_id.'/add_section') }}" class="btn crud-sub-cta">&#43; Add section</a>
             <br>
                 <?php 
                 $quiz_id = $quiz->quiz_id;
@@ -110,7 +113,7 @@
                     </tbody>
                     </table>
                     <div class="text-right">
-                        <button class="open-AddBookDialog btn question-btn" data-id="{{$section->id}}" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Question</button>
+                        <button class="open-AddBookDialog btn question-btn" data-id="{{$section->id}}" type="button" data-toggle="modal" data-target="#createModal">&#43; Add question for this section</button>
                     </div>
                     
                      <!-- Modal -->
@@ -187,7 +190,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var a = document.getElementById('positions');
+        var a = document.getElementById('quizzes');
         a.classList.toggle("active");
     });
     $(document).on("click", ".open-AddBookDialog", function () {

@@ -61,7 +61,7 @@
                             
                             <!-- show the quiz (uses the show method found at GET /assessments/{id} -->
                             <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View assessment"  href="{{ URL::to('assessments/' . $assessment->id . '/assessment_items') }}">
-                                <i class="fa fa-file-o fa-lg"></i>
+                                <i class="fa fa-user fa-lg"></i>
                             </a>
 
                             

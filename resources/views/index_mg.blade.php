@@ -35,7 +35,7 @@
                 <!-- NON-PERSONAL CONTENT CONTAINER -->
                 <div class="row dashboard-body tabcontent" id="non-personal">
                     <div class="col-md-12">
-                        <h5 class="dashboard-header">Department overview</h5>
+                        <h5 class="dashboard-header"><i class="fa fa-users"></i>Department overview</h5>
                         <div class="dashboard-content">
 
                             <table class="table table-striped table-bordered">

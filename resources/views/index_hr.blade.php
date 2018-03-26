@@ -33,31 +33,25 @@
                 <!-- NON-PERSONAL CONTENT CONTAINER -->
                 <div class="row dashboard-body tabcontent" id="non-personal">
                     <div class="col-md-7">
-                        <h5 class="dashboard-header">Overall skills statistics</h5>
-
+                        <h5 class="dashboard-header">
+                            <i class="fa fa-area-chart"></i>
+                            Overall Skills Statistics
+                        </h5>
+                        <div class="dashboard-content">
 
                             <?php
                             $cwide_score_data = array();
-                            $cwide_assessment_data = array();
                             $cwide_label_data = array();
-                            $cwide_skill_id = array();  
+                            $cwide_skill_id = array();
+                            $count = 0;
 
-                            foreach($user_skills as $key=>$value)
+                            foreach($cwide_skills as $key=>$value)
                             {
-                                if(!in_array($value->skill_id, $cwide_skill_id))
-                                {
-                                    array_push($cwide_skill_id,$value->skill_id);
-                                }
+                                array_push($cwide_score_data,$value->skill_grade);
+                                array_push($cwide_skill_id,$value->skill_id);
                             }
-
-                            foreach ($cwide_skills as $key => $value) 
-                            {
-                                $cwide_score_data = $value->skill_grade;
-                            }
-                            
-                            
-
-                            
+ 
+ 
                             foreach($cwide_skill_id as $key => $value)
                             {
                                 $sk_id = $value;
@@ -70,81 +64,94 @@
                                 }
 
                             }
+                            ?>
+                        
+                            <canvas id="cwide_skills_chart" width=100></canvas>
+                        </div>
+                        
+                        <h5 class="dashboard-header"><i class="fa fa-pie-chart"></i>Overall Quiz Statistics</h5>
+                        <div class="dashboard-content">
+                            <!-- data collection -->
+                            <?php
 
-                            print_r($cwide_score_data);
-            
+                            $cwide_quiz_data = array();
+                            $cwide_quiz_labels = array();
+                            $sk_id_arr = array();
+                            $cwide_quiz_id = array();
                             ?>
 
-                            <canvas id="cwide_skills_chart" width=100></canvas>
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-                            <script type="text/javascript">
-
-                                
-                                var cwide_score_data = <?php echo json_encode($cwide_score_data)?>;
-                                var labels_all = <?php echo json_encode($cwide_label_data)?>;
-
-
-                                var tfive = [];
-                                if(score_data_all.length>5)
+                            <?php
+                                foreach($user_skills as $key=>$value)
                                 {
-                                    tfive = score_data_all.slice(0,5);
-                                }
-                                else
-                                {
-                                    tfive = score_data_all;
-                                }
-
-
-
-                                Chart.defaults.global.maintainAspectRatio = false;
-                                var ctx = document.getElementById("cwide_skills_chart").getContext('2d');
-                                var cwide_skills_chart = new Chart(ctx, {
-                                    type: 'horizontalBar',
-                                    data: {
-                                        labels: labels_all,
-                                        datasets: [{
-                                            label: 'Skill Level by Percentage',
-                                            data: cwide_score_data,
-                                            backgroundColor: [
-                                                'rgba(255, 99, 132, 0.2)',
-                                                'rgba(54, 162, 235, 0.2)',
-                                                'rgba(255, 206, 86, 0.2)',
-                                                'rgba(75, 192, 192, 0.2)',
-                                                'rgba(153, 102, 255, 0.2)',
-                                                'rgba(255, 159, 64, 0.2)'
-                                            ],
-                                            borderColor: [
-                                                'rgba(255,99,132,1)',
-                                                'rgba(54, 162, 235, 1)',
-                                                'rgba(255, 206, 86, 1)',
-                                                'rgba(75, 192, 192, 1)',
-                                                'rgba(153, 102, 255, 1)',
-                                                'rgba(255, 159, 64, 1)'
-                                            ],
-                                            borderWidth: 1
-                                        }]
-                                    },
-                                    options: {
-                                        scales: {
-                                            yAxes: [{
-                                                ticks: {
-                                                    beginAtZero:true
-                                                }
-                                            }],
-                                            xAxes: [{
-                                                ticks: {
-                                                    beginAtZero:true
-                                                }
-                                            }]
-
-                                        }
+                                    if(!in_array($value->skill_id, $cwide_quiz_id))
+                                    {
+                                        array_push($cwide_quiz_id,$value->skill_id);
                                     }
-                                });
+                                }
+                            ?>
+                            <!-- scores -->
+                            <?php
+                            $qcount = 0;
 
-                            </script>
+                                foreach($user_skills as $key=>$value)
+                                {
+                                    $quiz_score = ($value->q_score/$value->q_max_score)*$value->knowledge_based_weight;
+                                    $ref_id = $value->skill_id;
+
+                                    foreach($cwide_skill_id as $key=>$value)
+                                    {
+                                        if($value==$ref_id)
+                                        {
+                                            if($qcount==0)
+                                            {
+                                                array_push($cwide_quiz_data, $quiz_score);
+                                                $qcount++;
+                                            }
+                                            elseif($qcount>sizeof($cwide_quiz_data))
+                                            {
+                                                array_push($cwide_quiz_data, $quiz_score);
+                                            }
+                                            else
+                                            {
+                                                $cwide_quiz_data[$qcount-1]+=$quiz_score;
+                                                $qcount++;   
+                                            }
+                                        }       
+
+                                    }
+                                }
+     
+                            ?>
+                            <!-- end scores -->
+
+                            <!-- labels -->
+
+                            <?php
+                            foreach($cwide_quiz_id as $key => $value)
+                            {
+                                $sk_id = $value;
+                                foreach($skills as $key => $value)
+                                {
+                                    if($sk_id==$value->id)
+                                    {
+                                        array_push($cwide_quiz_labels,$value->name);
+                                    }
+                                }
+                            }
+                            
+
+                            ?>
+                            <!-- end labels -->
+                            <!-- end of data collection -->
+                            <canvas id="cwide_quiz_chart" width=100></canvas>
+                        </div>
                     </div>
                     <div class="col-md-5">
-                        <h5 class="dashboard-header">Overall training statistics</h5>
+                        <div class="row dashboard-header">
+                            <h5><i class="fa fa-line-chart"></i>Overall training statistics</h5>
+                            <a class="crud-sub-cta" href="trainings/create">&#43; Add Training</a>
+                        </div>
+                        
                         <div class="dashboard-content">
                             <table class="table table-striped table-bordered">
                                 <thead>
@@ -168,20 +175,20 @@
                                         <td class="table-actions no-stretch">
 
                                             <!-- show the employee (uses the show method found at GET /employees/{id} -->
-                                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $value->id) }}">
+                                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View training" href="{{ URL::to('trainings/' . $value->id) }}">
                                                 <i class="fa fa-user fa-lg"></i>
                                             </a>
 
                                             <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
-                                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit employee" href="{{ URL::to('users/' . $value->id . '/edit') }}">
+                                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit training" href="{{ URL::to('trainings/' . $value->id . '/edit') }}">
                                                  <i class="fa fa-pencil fa-lg"></i>
                                             </a>
 
                                             <!-- delete the employee (uses the destroy method DESTROY /employees/{id} -->
                                             <!-- we will add this later since its a little more complicated than the other two buttons -->
-                                                {{ Form::open(array('url' => 'users/' . $value->id, 'class' => 'pull-right')) }}
+                                                {{ Form::open(array('url' => 'trainings/' . $value->id, 'class' => 'pull-right')) }}
                                                 {{ Form::hidden('_method', 'DELETE') }}
-                                                <div data-toggle="tooltip" data-placement="bottom" title="Delete employee" data-animation="true">
+                                                <div data-toggle="tooltip" data-placement="bottom" title="Delete training" data-animation="true">
                                                     {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
                                                 </div>
 
@@ -192,9 +199,9 @@
                                     </tr>
                                 @endforeach
                                 </tbody>
-                            </table>  
-                            <a class="crud-main-cta" href="trainings/create">&#43; Add Training</a> 
+                            </table>   
                         </div>
+
                     </div>
                 </div>
 
@@ -237,3 +244,148 @@
             $('[data-toggle="tooltip"]').tooltip();
         });
     </script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<!-- script for overall skills-->
+    <script type="text/javascript">
+        $(document).ready(function() 
+        {
+
+                            var score_data_all = <?php echo json_encode($cwide_score_data)?>;
+                            var labels_all = <?php echo json_encode($cwide_label_data)?>;
+                            var tfive = [];
+                            if(score_data_all.length>5)
+                            {
+                                tfive = score_data_all.slice(0,5);
+                            }
+                            else
+                            {
+                                tfive = score_data_all;
+                            }
+
+
+                            function update_data(chart, data) 
+                            {
+                                chart.data.datasets[0].data = data;
+                                chart.update();
+                            }
+
+
+                            Chart.defaults.global.maintainAspectRatio = false;
+                            var ctx = document.getElementById("cwide_skills_chart").getContext('2d');
+                            var new_chart = new Chart(ctx, {
+                                type: 'horizontalBar',
+                                data: {
+                                    labels: labels_all,
+                                    datasets: [{
+                                        label: 'Skill Level by Percentage',
+                                        data: score_data_all,
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255,99,132,1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero:true
+                                            }
+                                        }],
+                                        xAxes: [{
+                                            ticks: {
+                                                beginAtZero:true
+                                            }
+                                        }]
+
+                                    }
+                                }
+                            });
+        });
+                        </script>
+<!-- script for overall quiz-->
+                        
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+                        <script type="text/javascript">
+                            $(document).ready(function() 
+                            {
+
+                                var score_data_all = <?php echo json_encode($cwide_quiz_data)?>;
+                                var labels_all = <?php echo json_encode($cwide_quiz_labels)?>;
+                                var tfive = [];
+                                if(score_data_all.length>5)
+                                {
+                                    tfive = score_data_all.slice(0,5);
+                                }
+                                else
+                                {
+                                    tfive = score_data_all;
+                                }
+
+
+                                function update_data(chart, data) 
+                                {
+                                    chart.data.datasets[0].data = data;
+                                    chart.update();
+                                }
+
+
+                                Chart.defaults.global.maintainAspectRatio = false;
+                                var ctx = document.getElementById("cwide_quiz_chart").getContext('2d');
+                                var myChart = new Chart(ctx, {
+                                    type: 'horizontalBar',
+                                    data: {
+                                        labels: labels_all,
+                                        datasets: [{
+                                            label: 'Quiz Score Total',
+                                            data: score_data_all,
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.2)',
+                                                'rgba(54, 162, 235, 0.2)',
+                                                'rgba(255, 206, 86, 0.2)',
+                                                'rgba(75, 192, 192, 0.2)',
+                                                'rgba(153, 102, 255, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255,99,132,1)',
+                                                'rgba(54, 162, 235, 1)',
+                                                'rgba(255, 206, 86, 1)',
+                                                'rgba(75, 192, 192, 1)',
+                                                'rgba(153, 102, 255, 1)',
+                                                'rgba(255, 159, 64, 1)'
+                                            ],
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero:true
+                                                }
+                                            }],
+                                            xAxes: [{
+                                                ticks: {
+                                                    beginAtZero:true
+                                                }
+                                            }]
+
+                                        }
+                                    }
+                                });
+                            });
+                        </script>

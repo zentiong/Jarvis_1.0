@@ -4,7 +4,11 @@
 @section('body')
      <main class="container create-page">
         <section class="row crud-page-top">
-            <h1 class="crud-page-title">Who to Recommend {{$training->title}}</h1>
+            <div>
+                <h1 class="crud-page-title">Chooose employees</h1> 
+                <h6>{{$training->title}}</h6>
+            </div>
+            <p><strong>STEP 2: Give recommendations</strong></p>
         </section>
         <section>
 
@@ -58,8 +62,11 @@
                     </table>
                    
                 </div>
-                             
-                {{ Form::submit('Recommend', array('class' => 'btn btn-primary create-btn text-center')) }}
+
+                <div class="form-group text-center create-bottom-wrapper">
+                    <a href="{{ URL::to('recommend') }}" class="btn cancel-btn">Go back</a>
+                    {{ Form::submit('Recommend', array('class' => 'btn btn-primary create-btn text-center')) }}
+                </div>
                 {{ Form::close() }}
             </div>
         </section>
@@ -71,7 +78,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var a = document.getElementById('training-sessions');
+        var a = document.getElementById('levels');
         a.classList.toggle("active");
     });
 

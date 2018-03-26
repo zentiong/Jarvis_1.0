@@ -21,6 +21,8 @@ class CreateUserSkillsTable extends Migration
             $table->integer('skill_id')->unsigned();
             $table->foreign('skill_id')->references('id')->on('skills');
 
+            $table->string('department', 255);
+
             // goods
 
             $table->integer('q_score')->default(0);

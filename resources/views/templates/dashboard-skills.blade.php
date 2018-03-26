@@ -41,12 +41,11 @@
             <!-- PERSONAL CONTENT CONTAINER -->
             
                 <div class="col-md-7">
-                    <h5 class="dashboard-header">Skills</h5>
+                    <h5 class="dashboard-header"><i class="fa fa-bar-chart"></i>Skills</h5>
                     <div class="dashboard-content">
                         <button onclick="update_data(myChart,tfive)">Relevant Skills</button>
                         <button onclick="update_data(myChart,score_data_all)">All Skills</button>
                         <canvas id="myChart" width=100></canvas>
-
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                         <script type="text/javascript">
 
@@ -116,7 +115,5 @@
                             });
                         </script>
                     </div>
-                    <div class="dashboard-content">
-                        @include('templates.dashboard-quiz-evaluations')
-                    </div>
+                    @include('templates.dashboard-quiz-evaluations')
                 </div>
