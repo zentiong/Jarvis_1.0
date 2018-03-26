@@ -54,7 +54,40 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($users as $key => $value)
+                                <?php
+
+                                    /* 
+                                        1) Buffer to Extraction Area
+                                        2) Extract
+                                        3) Extracted Children to Buffer
+                                        4) Parents to List
+
+                                    */
+
+                                    $list = array();
+                                    $extraction = array();
+                                    $buffer = array();
+
+                                    array_push($buffer, $current_user);
+
+                                    while(!empty($buffer)) {
+                                        $extraction = $buffer;
+                                        $buffer = array();
+                                        foreach ($extraction as $key => $parent) {
+                                            if(!in_array($parent, $list))
+                                            {
+                                                array_push($list, $parent);
+                                                $children = $parent->subordinates()->get();
+                                                foreach ($children as $key => $child) {
+                                                    array_push($buffer, $child);
+                                                }
+                                                
+                                            }
+                                        }
+                                    }
+
+                                ?>
+                                @foreach($list as $key => $value)
                                     @if($value->supervisor_id==$current_id)
                                         <tr>
                                             <td>{{ $value->first_name }}</td>

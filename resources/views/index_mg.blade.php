@@ -57,35 +57,38 @@
                                 <tbody>
                                 <?php
 
+                                    /* 
+                                        1) Buffer to Extraction Area
+                                        2) Extract
+                                        3) Extracted Children to Buffer
+                                        4) Parents to List
+
+                                    */
+
                                     $list = array();
+                                    $extraction = array();
+                                    $buffer = array();
 
-                                    $output = subordinates($current_user);
+                                    array_push($buffer, $current_user);
 
-                                    while(!empty($output)) {
-
-                                        $buffer = $output;
-                                        $output = array();
-
-                                        foreach ($buffer as $key => $input) {
-                                            if(!in_array($input, $list))
+                                    while(!empty($buffer)) {
+                                        $extraction = $buffer;
+                                        $buffer = array();
+                                        foreach ($extraction as $key => $parent) {
+                                            if(!in_array($parent, $list))
                                             {
-                                                array_push($list, $input);
-                                                $output = subordinates($input);
+                                                array_push($list, $parent);
+                                                $children = $parent->subordinates()->get();
+                                                foreach ($children as $key => $child) {
+                                                    array_push($buffer, $child);
+                                                }
+                                                
                                             }
                                         }
                                     }
 
-
-
-                                    /*--------*/
-
-                                    function subordinates ($user) {
-                                        $output = $user->subordinates()->get();
-
-                                        return $output;
-                                    } 
-
                                 ?>
+                                
                                 @foreach($list as $key => $user)
                                     <tr>
                                         <td>{{ $user->first_name }}</td>
