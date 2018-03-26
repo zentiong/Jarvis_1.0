@@ -4,6 +4,7 @@
      <main class="container create-page">
         <section class="row crud-page-top">
             <h1 class="crud-page-title">Recommend Trainings</h1>
+            <p><strong>STEP 1: Choose a training</strong></p>
         </section>
         <section>
             @if (Session::has('message'))
@@ -24,8 +25,8 @@
                 </select>
             </div>
             <div class="form-group text-center create-bottom-wrapper">
-                <a href="{{ URL::to('trainings') }}" class="btn cancel-btn">Cancel</a>
-                {{ Form::submit('Recommend', array('class' => 'btn btn-primary create-btn text-center')) }}
+                <a href="{{ URL::to('levels') }}" class="btn cancel-btn">Cancel</a>
+                {{ Form::submit('Proceed to next step', array('class' => 'btn btn-primary create-btn text-center')) }}
             </div>
             {{ Form::close() }}
         </section>

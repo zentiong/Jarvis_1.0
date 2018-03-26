@@ -964,7 +964,7 @@ body.dashboard {
 		}
 
 		canvas {
-			max-height: 300px !important;
+			height: 300px !important;
 		}
 
 		.hr-pastel {
@@ -1043,6 +1043,16 @@ body.dashboard {
 			padding: 6px 12px;
 			text-transform: uppercase;
 			width: fit-content;
+		}
+		.crud-main-cta:hover {
+			background-color: $table-action-static;
+			-webkit-transition: background-color 0.3s;
+			transition: background-color 0.3s;
+		}
+		.crud-sub-cta:hover {
+			background-color: $white-2;
+			-webkit-transition: background-color 0.3s;
+			transition: background-color 0.3s;
 		}
 
 		table {

@@ -175,7 +175,7 @@ body.dashboard main .dashboard-container .trainings-box .going-state { font-size
 body.dashboard main .dashboard-container .trainings-box .going-state.dark { color: #1F1F1F; }
 body.dashboard main .dashboard-container .trainings-box .going-state.light { color: #ebebeb; }
 body.dashboard main .dashboard-container .trainings-box:last-child { border-bottom: none; }
-body.dashboard main canvas { max-height: 300px !important; }
+body.dashboard main canvas { height: 300px !important; }
 body.dashboard main .hr-pastel { background-color: #FFFDF9; }
 body.dashboard main .mg-pastel { background-color: #FFF9F9; }
 body.dashboard main .nr-pastel { background-color: #F5FAFB; }
@@ -187,6 +187,8 @@ body.dashboard main .crud-page-actions i { align-self: center; background-color:
 body.dashboard main .crud-page-actions input { font-size: 0.8em; margin-right: 2em; padding: 0 0.9em; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-style: groove; }
 body.dashboard main .crud-main-cta { display: flex; width: fit-content; background-color: #03223A; border: none; border-radius: 10px; color: #fff; font-size: 90%; height: fit-content; letter-spacing: 2px; padding: 6px 12px; text-transform: uppercase; }
 body.dashboard main .crud-sub-cta { display: flex; width: fit-content; background-color: transparent; border: 1px solid #03223A; border-radius: 10px; color: #03223A; font-size: 90%; height: fit-content; letter-spacing: 2px; margin: 0.5em 0; padding: 6px 12px; text-transform: uppercase; width: fit-content; }
+body.dashboard main .crud-main-cta:hover { background-color: #1F496A; -webkit-transition: background-color 0.3s; transition: background-color 0.3s; }
+body.dashboard main .crud-sub-cta:hover { background-color: #ebebeb; -webkit-transition: background-color 0.3s; transition: background-color 0.3s; }
 body.dashboard main table { font-size: 90%; }
 body.dashboard main table .no-stretch { width: 1%; margin: auto; }
 body.dashboard main table thead { font-weight: bold; text-align: center; }

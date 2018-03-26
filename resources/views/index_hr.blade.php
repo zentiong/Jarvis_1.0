@@ -33,8 +33,11 @@
                 <!-- NON-PERSONAL CONTENT CONTAINER -->
                 <div class="row dashboard-body tabcontent" id="non-personal">
                     <div class="col-md-7">
-                        <h5 class="dashboard-header"><i class="fa fa-area-chart"></i>Overall Skills Statistics</h5>
-
+                        <h5 class="dashboard-header">
+                            <i class="fa fa-area-chart"></i>
+                            Overall Skills Statistics
+                        </h5>
+                        <div class="dashboard-content">
 
                             <?php
                             $cwide_score_data = array();
@@ -62,87 +65,86 @@
 
                             }
                             ?>
-
                         
-                        <canvas id="cwide_skills_chart" width=100></canvas>
+                            <canvas id="cwide_skills_chart" width=100></canvas>
+                        </div>
                         
                         <h5 class="dashboard-header"><i class="fa fa-pie-chart"></i>Overall Quiz Statistics</h5>
+                        <div class="dashboard-content">
+                            <!-- data collection -->
+                            <?php
 
-                        
-                        <!-- data collection -->
-                        <?php
+                            $cwide_quiz_data = array();
+                            $cwide_quiz_labels = array();
+                            $sk_id_arr = array();
+                            $cwide_quiz_id = array();
+                            ?>
 
-                        $cwide_quiz_data = array();
-                        $cwide_quiz_labels = array();
-                        $sk_id_arr = array();
-                        $cwide_quiz_id = array();
-                        ?>
-
-                        <?php
-                            foreach($user_skills as $key=>$value)
-                            {
-                                if(!in_array($value->skill_id, $cwide_quiz_id))
+                            <?php
+                                foreach($user_skills as $key=>$value)
                                 {
-                                    array_push($cwide_quiz_id,$value->skill_id);
-                                }
-                            }
-                        ?>
-                        <!-- scores -->
-                        <?php
-                        $qcount = 0;
-
-                            foreach($user_skills as $key=>$value)
-                            {
-                                $quiz_score = ($value->q_score/$value->q_max_score)*$value->knowledge_based_weight;
-                                $ref_id = $value->skill_id;
-
-                                foreach($cwide_skill_id as $key=>$value)
-                                {
-                                    if($value==$ref_id)
+                                    if(!in_array($value->skill_id, $cwide_quiz_id))
                                     {
-                                        if($qcount==0)
-                                        {
-                                            array_push($cwide_quiz_data, $quiz_score);
-                                            $qcount++;
-                                        }
-                                        elseif($qcount>sizeof($cwide_quiz_data))
-                                        {
-                                            array_push($cwide_quiz_data, $quiz_score);
-                                        }
-                                        else
-                                        {
-                                            $cwide_quiz_data[$qcount-1]+=$quiz_score;
-                                            $qcount++;   
-                                        }
-                                    }       
-
+                                        array_push($cwide_quiz_id,$value->skill_id);
+                                    }
                                 }
-                            }
- 
-                        ?>
-                        <!-- end scores -->
+                            ?>
+                            <!-- scores -->
+                            <?php
+                            $qcount = 0;
 
-                        <!-- labels -->
-
-                        <?php
-                        foreach($cwide_quiz_id as $key => $value)
-                        {
-                            $sk_id = $value;
-                            foreach($skills as $key => $value)
-                            {
-                                if($sk_id==$value->id)
+                                foreach($user_skills as $key=>$value)
                                 {
-                                    array_push($cwide_quiz_labels,$value->name);
+                                    $quiz_score = ($value->q_score/$value->q_max_score)*$value->knowledge_based_weight;
+                                    $ref_id = $value->skill_id;
+
+                                    foreach($cwide_skill_id as $key=>$value)
+                                    {
+                                        if($value==$ref_id)
+                                        {
+                                            if($qcount==0)
+                                            {
+                                                array_push($cwide_quiz_data, $quiz_score);
+                                                $qcount++;
+                                            }
+                                            elseif($qcount>sizeof($cwide_quiz_data))
+                                            {
+                                                array_push($cwide_quiz_data, $quiz_score);
+                                            }
+                                            else
+                                            {
+                                                $cwide_quiz_data[$qcount-1]+=$quiz_score;
+                                                $qcount++;   
+                                            }
+                                        }       
+
+                                    }
+                                }
+     
+                            ?>
+                            <!-- end scores -->
+
+                            <!-- labels -->
+
+                            <?php
+                            foreach($cwide_quiz_id as $key => $value)
+                            {
+                                $sk_id = $value;
+                                foreach($skills as $key => $value)
+                                {
+                                    if($sk_id==$value->id)
+                                    {
+                                        array_push($cwide_quiz_labels,$value->name);
+                                    }
                                 }
                             }
-                        }
-                        
+                            
 
-                        ?>
-                        <!-- end labels -->
-                        <!-- end of data collection -->
-                        <canvas id="cwide_quiz_chart" width=100></canvas>
-                        
+                            ?>
+                            <!-- end labels -->
+                            <!-- end of data collection -->
+                            <canvas id="cwide_quiz_chart" width=100></canvas>
+                        </div>
                     </div>
                     <div class="col-md-5">
                         <div class="row dashboard-header">
@@ -173,12 +175,12 @@
                                         <td class="table-actions no-stretch">
 
                                             <!-- show the employee (uses the show method found at GET /employees/{id} -->
-                                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $value->id) }}">
+                                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View training" href="{{ URL::to('users/' . $value->id) }}">
                                                 <i class="fa fa-user fa-lg"></i>
                                             </a>
 
                                             <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
-                                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit employee" href="{{ URL::to('users/' . $value->id . '/edit') }}">
+                                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit training" href="{{ URL::to('users/' . $value->id . '/edit') }}">
                                                  <i class="fa fa-pencil fa-lg"></i>
                                             </a>
 
@@ -186,7 +188,7 @@
                                             <!-- we will add this later since its a little more complicated than the other two buttons -->
                                                 {{ Form::open(array('url' => 'users/' . $value->id, 'class' => 'pull-right')) }}
                                                 {{ Form::hidden('_method', 'DELETE') }}
-                                                <div data-toggle="tooltip" data-placement="bottom" title="Delete employee" data-animation="true">
+                                                <div data-toggle="tooltip" data-placement="bottom" title="Delete training" data-animation="true">
                                                     {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
                                                 </div>
 
