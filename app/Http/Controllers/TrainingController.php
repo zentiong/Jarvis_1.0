@@ -112,21 +112,43 @@ class TrainingController extends Controller
     public function evaluate()
     {
         $training_id = Input::get('training_id');
-        $user_training = User_Training::where('training_id',$training_id)->first();
+        $training_title = Training::find($training_id)->title;
+        $user_training = User_Training::where('training_id',$training_id)
+        ->where('user_id',Auth::user()->id)->first();
         return View::make('trainings.evaluate')
-        ->with('user_training', $user_training);
+        ->with('user_training', $user_training)
+        ->with('training_title', $training_title);
     }
 
     public function store_evaluation()
     {
         $training_id = Input::get('training_id');
+        $training_title = Training::find($training_id)->title;
         $user_training = User_Training::where('training_id',$training_id)
         ->where('user_id',Auth::user()->id)->first();
+
+        $rules = array(
+            'evaluation'       => 'required',
+            'rating_training'       => 'required',
+            'rating_speaker'       => 'required'
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+             Session::flash('message', 'Please fill up all the fields.');
+            return View::make('trainings.evaluate')
+            ->with('user_training', $user_training)
+            ->with('training_title', $training_title);
+        } else {
+
         $user_training->evaluation = Input::get('evaluation');
         $user_training->rating_training = Input::get('rating_training');
         $user_training->rating_speaker = Input::get('rating_speaker');
 
         $user_training->save();
+
+        }
 
         Session::flash('message', 'Successfully evaluated training session!');
         return Redirect::to('levels');

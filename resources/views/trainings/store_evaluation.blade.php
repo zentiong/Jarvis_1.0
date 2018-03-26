@@ -5,15 +5,10 @@
 
     {{ $user_training->training_id}}
 
-    
-
     {{ Form::hidden('training_id', $value = $user_training->training_id) }}
     <main class="container create-page">
-        @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
-        @endif
         <section class="crud-page-top">
-            <h1 class="crud-page-title">Evaluate Training: {{ $training_title}}</h1>
+            <h1 class="crud-page-title">Evaluate Training</h1>
         </section>
         <section>
             
