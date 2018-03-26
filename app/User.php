@@ -29,6 +29,10 @@ class User extends Authenticatable
     return $this->hasMany("App\User_Quiz",'id');
     }
 
+    public function subordinates() {
+    return $this->hasMany("App\User",'supervisor_id','id');
+    }
+
      public function user_trainings()
     {
         return $this->hasMany('App\User_Training');

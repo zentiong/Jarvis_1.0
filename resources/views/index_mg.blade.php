@@ -56,80 +56,62 @@
                                 
                                 <tbody>
                                 <?php
-                                    $boss_list = array();
+
+                                    $list = array();
+
+                                    $output = subordinates($current_user);
+
+                                    while(!empty($output)) {
+
+                                        $buffer = $output;
+                                        $output = array();
+
+                                        foreach ($buffer as $key => $input) {
+                                            if(!in_array($input, $list))
+                                            {
+                                                array_push($list, $input);
+                                                $output = subordinates($input);
+                                            }
+                                        }
+                                    }
+
+
+
+                                    /*--------*/
+
+                                    function subordinates ($user) {
+                                        $output = $user->subordinates()->get();
+
+                                        return $output;
+                                    } 
+
                                 ?>
-                                @foreach($users as $key => $user)
-                                    @if($user->supervisor_id==$current_id)
-                                        <tr>
-                                            <td>{{ $user->first_name }}</td>
-                                            <td>{{ $user->last_name }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->hiring_date }}</td>
-                                            <td>{{ $user->birth_date }}</td>
-                                            <td>{{ $user->department }}</td>
-                                            @foreach($users_two as $key => $supervisor)
-                                                @if($user->supervisor_id == $supervisor->id)
-                                                     <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
-                                                @endif
-                                            @endforeach
-                                            <td>{{ $user->position }}</td>
-
-                                            @if ($user->manager_check==1)
-                                            <td>Yes</td>
-                                            @else
-                                            <td>No</td>
+                                @foreach($list as $key => $user)
+                                    <tr>
+                                        <td>{{ $user->first_name }}</td>
+                                        <td>{{ $user->last_name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->hiring_date }}</td>
+                                        <td>{{ $user->birth_date }}</td>
+                                        <td>{{ $user->department }}</td>
+                                        @foreach($users_two as $key => $supervisor)
+                                            @if($user->supervisor_id == $supervisor->id)
+                                                 <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
                                             @endif
-
-                                            <!-- we will also add show, edit, and delete buttons -->
-                                            <td class="table-actions">
-                                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $user->id) }}">
-                                                    <i class="fa fa-user fa-lg"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    <?php
-                                        array_push($boss_list, $user);
-                                    ?>  
-                                    @endif
-                                    @foreach($boss_list as $key => $boss)
-                                        @foreach($users as $key => $user)
-                                        @if($user->supervisor_id==$boss->id)
-                                            <tr>
-                                                <td>{{ $user->first_name }}</td>
-                                                <td>{{ $user->last_name }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->hiring_date }}</td>
-                                                <td>{{ $user->birth_date }}</td>
-                                                <td>{{ $user->department }}</td>
-                                                @foreach($users_two as $key => $supervisor)
-                                                    @if($user->supervisor_id == $supervisor->id)
-                                                         <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
-                                                    @endif
-                                                @endforeach
-                                                <td>{{ $user->position }}</td>
-    
-                                                @if ($user->manager_check==1)
-                                                <td>Yes</td>
-                                                @else
-                                                <td>No</td>
-                                                @endif
-    
-                                                <!-- we will also add show, edit, and delete buttons -->
-                                                <td class="table-actions">
-                                                    <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $user->id) }}">
-                                                        <i class="fa fa-user fa-lg"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <?php
-                                                array_push($boss_list, $user);
-                                            ?>  
+                                        @endforeach
+                                        <td>{{ $user->position }}</td>
+                                        @if ($user->manager_check==1)
+                                        <td>Yes</td>
+                                        @else
+                                        <td>No</td>
                                         @endif
-
-                                        @endforeach                       
-                                    @endforeach
-
-                                                                  
+                                        <!-- we will also add show, edit, and delete buttons -->
+                                        <td class="table-actions">
+                                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $user->id) }}">
+                                                <i class="fa fa-user fa-lg"></i>
+                                            </a>
+                                        </td>
+                                        </tr>                
                                 @endforeach
                                 </tbody>
                             </table>
