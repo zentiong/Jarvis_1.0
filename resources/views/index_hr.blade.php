@@ -155,7 +155,7 @@
                             <select id="chartType">
                                 <option value="" disabled selected>Select your option</option>
                             @foreach($result as $key => $value)
-                                <option value="{{$value[1]}}">{{$value[0]}}</option>
+                                <option value="{{$value[1]}}|{{$value[0]}}">{{$value[0]}}</option>
                             @endforeach
                             </select>
                             <button id="clear">Clear Graph</button>
@@ -409,7 +409,6 @@
         
             <script src="{{asset('js/Chart.bundle.js')}}"></script>
             <script src="{{asset('js/utils.js')}}"></script>
-          
             <script type="text/javascript">
             $(document).ready(function() 
                             {
@@ -419,7 +418,7 @@
                 
 
                 var horizontalBardata = {
-                    labels: ["Attendance"],
+                    labels: [],
                     datasets: []
                 }
 
@@ -445,13 +444,15 @@
                     
                     var colorNames = Object.keys(window.chartColors);
                     var numData = 0;
+                    var datasetName = "";
+
 
                     document.getElementById('addData').addEventListener('click',
                     function() {
                     var colorName = colorNames[horizontalBardata.datasets.length % colorNames.length];
                     var dsColor = window.chartColors[colorName];
                     var newDataset = {
-                        label: 'Dataset ' + horizontalBardata.datasets.length,
+                        label: datasetName,
                         backgroundColor: color(dsColor).alpha(0.5).rgbString(),
                         borderColor: dsColor,
                         data: []
@@ -466,7 +467,11 @@
                     });
 
                     document.getElementById('chartType').addEventListener('change', function(){
-                        numData = $("#chartType").val();
+                        var res = $("#chartType").val().split("|");
+
+                        numData = res[0];
+                        datasetName = res[1];
+
                     });
 
                     document.getElementById('clear').addEventListener('click', function(){
