@@ -2,7 +2,7 @@
     <div class="row dashboard-header">
         <h5><i class="fa fa-rocket"></i>Trainings</h5>
         @if($mg==1 || Auth::user()->department == 'Human Resources')
-        <a href="{{ URL::to('recommend') }}" class="btn crud-sub-cta">Recommend Trainings</a>
+        <a href="{{ URL::to('recommend') }}" class="btn crud-sub-cta">&#9733; Recommend Trainings</a>
         @endif
     </div>
     @if(!empty($trainings_personal))
