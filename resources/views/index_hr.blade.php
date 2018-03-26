@@ -37,36 +37,15 @@
                             <i class="fa fa-area-chart"></i>
                             Overall Skills Statistics
                         </h5>
+                        @include('templates.dashboard-overall-skills-template')
                         <div class="dashboard-content">
-
-                            <?php
-                            $cwide_score_data = array();
-                            $cwide_label_data = array();
-                            $cwide_skill_id = array();
-                            $count = 0;
-
-                            foreach($cwide_skills as $key=>$value)
-                            {
-                                array_push($cwide_score_data,$value->skill_grade);
-                                array_push($cwide_skill_id,$value->skill_id);
-                            }
- 
- 
-                            foreach($cwide_skill_id as $key => $value)
-                            {
-                                $sk_id = $value;
-                                foreach($skills as $key => $value)
-                                {
-                                    if($sk_id==$value->id)
-                                    {
-                                        array_push($cwide_label_data,$value->name);
-                                    }
-                                }
-
-                            }
-                            ?>
-                        
+                            
+                            <button onclick="update_chart(cwide_skills_chart, 'Human Resources')">HR</button>
+                            <button onclick="update_chart(cwide_skills_chart, 'Finance')">Finance</button>
+                            <button onclick="update_chart(cwide_skills_chart, 'Customer Service')">Customer Service</button>
+                            <button onclick="update_chart(cwide_skills_chart, 'Marketing')">Mktg</button>
                             <canvas id="cwide_skills_chart" width=100></canvas>
+
                         </div>
                         
                         <h5 class="dashboard-header"><i class="fa fa-pie-chart"></i>Overall Quiz Statistics</h5>
@@ -78,6 +57,7 @@
                             $cwide_quiz_labels = array();
                             $sk_id_arr = array();
                             $cwide_quiz_id = array();
+                            $cwide_skill_id = array();
                             ?>
 
                             <?php
@@ -273,77 +253,6 @@
         });
     </script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-<!-- script for overall skills-->
-    <script type="text/javascript">
-        $(document).ready(function() 
-        {
-
-                            var score_data_all = <?php echo json_encode($cwide_score_data)?>;
-                            var labels_all = <?php echo json_encode($cwide_label_data)?>;
-                            var tfive = [];
-                            if(score_data_all.length>5)
-                            {
-                                tfive = score_data_all.slice(0,5);
-                            }
-                            else
-                            {
-                                tfive = score_data_all;
-                            }
-
-
-                            function update_data(chart, data) 
-                            {
-                                chart.data.datasets[0].data = data;
-                                chart.update();
-                            }
-
-
-                            Chart.defaults.global.maintainAspectRatio = false;
-                            var ctx = document.getElementById("cwide_skills_chart").getContext('2d');
-                            var new_chart = new Chart(ctx, {
-                                type: 'horizontalBar',
-                                data: {
-                                    labels: labels_all,
-                                    datasets: [{
-                                        label: 'Skill Level by Percentage',
-                                        data: score_data_all,
-                                        backgroundColor: [
-                                            'rgba(255, 99, 132, 0.2)',
-                                            'rgba(54, 162, 235, 0.2)',
-                                            'rgba(255, 206, 86, 0.2)',
-                                            'rgba(75, 192, 192, 0.2)',
-                                            'rgba(153, 102, 255, 0.2)',
-                                            'rgba(255, 159, 64, 0.2)'
-                                        ],
-                                        borderColor: [
-                                            'rgba(255,99,132,1)',
-                                            'rgba(54, 162, 235, 1)',
-                                            'rgba(255, 206, 86, 1)',
-                                            'rgba(75, 192, 192, 1)',
-                                            'rgba(153, 102, 255, 1)',
-                                            'rgba(255, 159, 64, 1)'
-                                        ],
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        yAxes: [{
-                                            ticks: {
-                                                beginAtZero:true
-                                            }
-                                        }],
-                                        xAxes: [{
-                                            ticks: {
-                                                beginAtZero:true
-                                            }
-                                        }]
-
-                                    }
-                                }
-                            });
-        });
-                        </script>
 <!-- script for overall quiz-->
                         
                         <script type="text/javascript">
@@ -360,13 +269,6 @@
                                 else
                                 {
                                     tfive = score_data_all;
-                                }
-
-
-                                function update_data(chart, data) 
-                                {
-                                    chart.data.datasets[0].data = data;
-                                    chart.update();
                                 }
 
 

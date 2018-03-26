@@ -44,6 +44,7 @@ Class LevelingController extends Controller
 		$user_skills = User_Skill::all();
 		$now= date('Y-m-d');
 		$cwide_skills = DB::select(DB::raw("select skill_id, sum(skill_grade) as skill_grade from user_skills group by skill_id"));
+        $filter_data = DB::select(DB::raw("select skill_id, sum(skill_grade) as skill_grade,department from user_skills group by department,skill_id"));
         $trainings2 = Training::all();//where('date', '<', $now)->get();
         $quiz = array();
         $result = array();
@@ -202,6 +203,7 @@ Class LevelingController extends Controller
             			->with('user_skills',$user_skills)
             			->with('now', $now)
             			->with('cwide_skills',$cwide_skills)
+                        ->with('filter_data', $filter_data)
             			->with('mg',$mg);
 				}	
 
