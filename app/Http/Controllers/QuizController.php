@@ -252,6 +252,7 @@ class QuizController extends Controller
                             $user_skill = new User_Skill;
                             $user_skill->user_id = Auth::user()->id;                        
                             $user_skill->skill_id = $skill_id;
+                            $user_skill->department = Auth::user()->department;
 
                             // Score
                             $temp_score = 0;
