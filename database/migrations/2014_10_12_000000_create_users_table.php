@@ -46,7 +46,7 @@ class CreateUsersTable extends Migration
             'password' => bcrypt('asdasd'),
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
-            'department' => 'Administration',
+            'department' => 'Executive Board',
             'supervisor_id' => '1',
             'position' => 'Developer',
             'manager_check' => true
@@ -75,7 +75,7 @@ class CreateUsersTable extends Migration
             'password' => bcrypt('1'),
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
-            'department' => 'Information Technology',
+            'department' => 'Finance',
             'supervisor_id' => '1', 
             'position' => 'Developer',
             'manager_check' => true
@@ -103,7 +103,7 @@ class CreateUsersTable extends Migration
             'password' => bcrypt('1'),
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
-            'department' => 'Marketing',
+            'department' => 'Customer Service',
             'supervisor_id' => '3', 
             'position' => 'Developer',
             'manager_check' => false
