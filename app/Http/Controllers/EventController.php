@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Training;
+use App\Quiz;
+use App\User_Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -20,9 +23,36 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
+        $now = date('Y-m-d');
+        $trainings = Training::where('date', '<', $now)->get();
+        $quiz = array();
+        $result = array();
+        
+        $counter = 0;
+
+        foreach($trainings as $key => $training) {
+            $quiz_temp = Quiz::where('training_id',$training->id)->first(); 
+            array_push($quiz, $quiz_temp);
+            $result[$counter][0] = $training->title;   
+            $counter++; 
+        }
+       
+        $counter = 0;
+        foreach ($quiz as $key => $q) {
+            $i =0;
+            $user_temp = User_Quiz::where('quiz_id', $q->quiz_id)->get();
+            foreach ($user_temp as $key => $value) {
+               $i++;
+            }
+            $result[$counter][1] = $i;
+           
+            $counter++;
+        }
+
 
         // load the view and pass the employees
         return View::make('events.index')
+            ->with('result', $result)
             ->with('events', $events);
     }
 

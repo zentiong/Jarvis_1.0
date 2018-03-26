@@ -112,8 +112,9 @@
                     ?>
                   @endif
                 @endforeach
+                @if($counter != 0)
                 <h4>{{$average_rating_training/$counter}}</h4>
-                    
+                @endif    
                 </div>
             </div>
         </div>
@@ -137,8 +138,9 @@
                     ?>
                   @endif
                 @endforeach
+                 @if($counter != 0)
                 <h4>{{$average_rating_speaker/$counter}}</h4>
-                    
+                  @endif
                 </div>
             </div>
         </div>
