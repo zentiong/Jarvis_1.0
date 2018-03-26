@@ -44,8 +44,31 @@ Class LevelingController extends Controller
 		$user_skills = User_Skill::all();
 		$now= date('Y-m-d');
 		$cwide_skills = DB::select(DB::raw("select skill_id, sum(skill_grade) as skill_grade from user_skills group by skill_id"));
-		
+        $trainings2 = Training::where('date', '<', $now)->get();
+        $quiz = array();
+        $result = array();
 
+        //Training Attendance
+        $counter = 0;
+
+        foreach($trainings2 as $key => $training) {
+            $quiz_temp = Quiz::where('training_id',$training->id)->first(); 
+            array_push($quiz, $quiz_temp);
+            $result[$counter][0] = $training->title;   
+            $counter++; 
+        }
+       
+        $counter = 0;
+        foreach ($quiz as $key => $q) {
+            $i =0;
+            $user_temp = User_Quiz::where('quiz_id', $q->quiz_id)->get();
+            foreach ($user_temp as $key => $value) {
+               $i++;
+            }
+            $result[$counter][1] = $i;
+           
+            $counter++;
+        }
 
 		// Trainings
 
@@ -118,6 +141,7 @@ Class LevelingController extends Controller
             			->with('user_assessments',$user_assessments)
 						->with('user_skills',$user_skills)
 						->with('now', $now)
+						->with('result', $result)
 						->with('mg',$mg);
 				}
 				else // HR
@@ -134,6 +158,7 @@ Class LevelingController extends Controller
             			->with('trainings_general', $trainings_general)
             			->with('user_quizzes', $user_quizzes)
             			->with('skills', $skills)
+            			->with('result', $result)
             			->with('assessments',$assessments)
             			->with('user_assessments',$user_assessments)
             			->with('user_skills',$user_skills)
