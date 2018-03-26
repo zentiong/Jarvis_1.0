@@ -324,7 +324,7 @@
 <script src="{{asset('js/Chart.bundle.js')}}"></script>
 <script src="{{asset('js/utils.js')}}"></script>
 <script type="text/javascript">
-$(document).ready(function() {
+    
     var ctx = document.getElementById("training_attendance").getContext('2d');
     var color = Chart.helpers.color;
     var horizontalBardata = {
