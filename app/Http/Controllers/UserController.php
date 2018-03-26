@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function __construct() {
         $this->middleware('auth');
-        $this->middleware('HR', ['except' => 'show','edit_dp']);
+        $this->middleware('HR', ['except' => ['show','edit_dp','store_dp']]);
     }
 
     public function index()

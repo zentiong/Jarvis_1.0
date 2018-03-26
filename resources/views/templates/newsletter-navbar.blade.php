@@ -37,9 +37,10 @@
             
     ?>
 	<div class="login-button" id="login-button">
-		<!-- <img class="img-circle small-profile-picture" src="{{ $cup }}" alt="Your profile picture"> -->
-		<div class="img-circle small-profile-picture" style="background-image: url('{{ $cup }}')" alt="Your profile picture">
+		<a href="edit_dp">
+        <div class="img-circle small-profile-picture" style="background-image: url('{{ $cup }}')" alt="Your profile picture">
         </div>
+        </a>
     	<h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
         
 		<a class="logout-link clicked" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LOG OUT</a>
