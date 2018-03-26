@@ -33,7 +33,7 @@
                 <!-- NON-PERSONAL CONTENT CONTAINER -->
                 <div class="row dashboard-body tabcontent" id="non-personal">
                     <div class="col-md-7">
-                        <h5 class="dashboard-header">Overall Skills Statistics</h5>
+                        <h5 class="dashboard-header"><i class="fa fa-area-chart"></i>Overall Skills Statistics</h5>
 
 
                             <?php
@@ -66,7 +66,7 @@
                         
                         <canvas id="cwide_skills_chart" width=100></canvas>
                         
-                        <h5 class="dashboard-header">Overall Quiz Statistics</h5>
+                        <h5 class="dashboard-header"><i class="fa fa-pie-chart"></i>Overall Quiz Statistics</h5>
 
                         
                         <!-- data collection -->
@@ -145,7 +145,11 @@
                         
                     </div>
                     <div class="col-md-5">
-                        <h5 class="dashboard-header">Overall training statistics</h5>
+                        <div class="row dashboard-header">
+                            <h5><i class="fa fa-line-chart"></i>Overall training statistics</h5>
+                            <a class="crud-sub-cta" href="trainings/create">&#43; Add Training</a>
+                        </div>
+                        
                         <div class="dashboard-content">
                             <table class="table table-striped table-bordered">
                                 <thead>
@@ -193,9 +197,9 @@
                                     </tr>
                                 @endforeach
                                 </tbody>
-                            </table>  
-                            <a class="crud-main-cta" href="trainings/create">&#43; Add Training</a> 
+                            </table>   
                         </div>
+
                     </div>
                 </div>
 

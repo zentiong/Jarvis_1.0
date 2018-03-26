@@ -36,7 +36,7 @@
             <!-- EMployees CONTENT CONTAINER -->
                 <div class="row dashboard-body tabcontent" id="employees">
                     <div class="col-md-12">
-                        <h5 class="dashboard-header">Department overview</h5>
+                        <h5 class="dashboard-header"><i class="fa fa-users"></i>Department overview</h5>
                         <div class="dashboard-content">
                             <table class="table table-striped table-bordered">
                                 <thead>
@@ -94,7 +94,7 @@
                  <!-- TRAININGS CONTENT CONTAINER -->
             <div class="row dashboard-body tabcontent" id="trainings">
                 <div class="col-md-7">
-                    <h5 class="dashboard-header">Overall skills statistics</h5>
+                    <h5 class="dashboard-header"><i class="fa fa-area-chart"></i>Overall skills statistics</h5>
 
                         <p>A work in progress...</p>
 
@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <h5 class="dashboard-header">Overall training statistics</h5>
+                    <h5 class="dashboard-header"><i class="fa fa-line-chart"></i>Overall training statistics</h5>
                     <div class="dashboard-content">
                         <table class="table table-striped table-bordered">
                             <thead>

@@ -845,21 +845,6 @@ body.dashboard {
 					width: 200px;
 				}
 
-				// .tablinks:first-child:before {
-				// 	content: "";
-				// 	background-color: $black-1;
-				// 	width: 50px;
-				// 	padding: 1.15rem;
-				// 	z-index: 1;
-				// 	right: 194px;
-				// 	top: 1px;
-				// 	position: absolute;
-				// 	transform: skew(-45deg);
-				// 	-o-transform: skew(-45deg);
-				// 	-moz-transform: skew(-45deg);
-				// 	-webkit-transform: skew(-45deg);
-				// }
-
 				.tablinks.active {
 					background-color: $black-1;
 					color: $white-1;
@@ -870,8 +855,21 @@ body.dashboard {
 				}
 			}
 
+			.dashboard-body {
+				margin-bottom: 3em;
+			}
+
 			.dashboard-header {
-				margin-top: 2em;
+				align-items: center;
+				justify-content: space-between;
+				margin: 2em 0 0.5em;
+
+				h5 {
+					margin: 0;
+				}
+				i {
+					margin-right: 0.5em;
+				}
 			}
 
 			.dashboard-content {
@@ -909,7 +907,7 @@ body.dashboard {
 
 			.trainings-box {
 				margin: 1em;
-				padding: 0 1em 1em;
+				padding: 0 0 1em;
 				border-bottom: 1px solid $white-3;
 				display: flex;
 				flex-flow: row nowrap;
@@ -944,7 +942,6 @@ body.dashboard {
 					color: $create-crud;
 					background: none;
 					font-size: 0.9em;
-					letter-spacing: 2px;
 					text-transform: uppercase;
 				}
 
@@ -1021,6 +1018,7 @@ body.dashboard {
 
 		.crud-main-cta {
 			display: flex;
+			width: fit-content;
 			background-color: $table-edit-blue;
 			border: none;
 			border-radius: 10px;
@@ -1033,9 +1031,10 @@ body.dashboard {
 		}
 		.crud-sub-cta {
 			display: flex;
+			width: fit-content;
 			background-color: transparent;
 			border: 1px solid $table-edit-blue;
-			border-radius: 15px;
+			border-radius: 10px;
 			color: $table-edit-blue;
 			font-size: 90%;
 			height: fit-content;
@@ -1136,16 +1135,16 @@ body.dashboard {
 		justify-content: center;
 		align-items: center;
 
-		.cancel-btn {
-			border: 1px solid;
-			border-radius: 2px;
-		}
-
 		> * {
 			margin: auto 1em;
 			width: 200px;
 		}
 	}
+
+	.cancel-btn {
+			border: 1px solid;
+			border-radius: 2px;
+		}
 	.modal-footer.create-bottom-wrapper {
 		margin-top: 0;
 	}
@@ -1156,7 +1155,7 @@ body.dashboard {
 	}
 
 	footer {
-		margin-top: 10em;
+		margin-top: 20em;
 		width: 100%;
 		border-top: 1px solid $white-2;
 		background-color: $white-1;

@@ -153,7 +153,10 @@ body.dashboard main .dashboard-container .dashboard-tab-container { font-family:
 body.dashboard main .dashboard-container .dashboard-tab-container .tablinks { background: transparent; border: 1px solid #95989A; border-radius: 1px; color: #464646; font-size: 1em; padding: 5px; text-transform: uppercase; position: relative; width: 200px; }
 body.dashboard main .dashboard-container .dashboard-tab-container .tablinks.active { background-color: #000; color: #fff; border: none; }
 body.dashboard main .dashboard-container .dashboard-tab-container .tablinks.active:focus { box-shadow: none; }
-body.dashboard main .dashboard-container .dashboard-header { margin-top: 2em; }
+body.dashboard main .dashboard-container .dashboard-body { margin-bottom: 3em; }
+body.dashboard main .dashboard-container .dashboard-header { align-items: center; justify-content: space-between; margin: 2em 0 0.5em; }
+body.dashboard main .dashboard-container .dashboard-header h5 { margin: 0; }
+body.dashboard main .dashboard-container .dashboard-header i { margin-right: 0.5em; }
 body.dashboard main .dashboard-container .dashboard-content { background-color: #fff; border: 1px solid #eee; margin-bottom: 1em; max-height: -webkit-fill-available; min-height: 1px; height: auto; width: 100%; }
 body.dashboard main .dashboard-container .dashboard-content .row { padding: 1em 2em; }
 body.dashboard main .dashboard-container .content-header { padding: 1em; }
@@ -161,13 +164,13 @@ body.dashboard main .dashboard-container .content-header.dark { border-bottom: 1
 body.dashboard main .dashboard-container .content-header.light { border-bottom: 1px solid #464646; }
 body.dashboard main .dashboard-container .recommended-wrapper { background-color: #03223A; color: #ebebeb; height: fit-content; }
 body.dashboard main .dashboard-container .available-quizzes-wrapper { display: flex; }
-body.dashboard main .dashboard-container .trainings-box { margin: 1em; padding: 0 1em 1em; border-bottom: 1px solid #BDBDBD; display: flex; flex-flow: row nowrap; align-items: center; justify-content: space-between; }
+body.dashboard main .dashboard-container .trainings-box { margin: 1em; padding: 0 0 1em; border-bottom: 1px solid #BDBDBD; display: flex; flex-flow: row nowrap; align-items: center; justify-content: space-between; }
 body.dashboard main .dashboard-container .trainings-box p { margin: 0; }
 body.dashboard main .dashboard-container .trainings-box form { margin: 0; }
 body.dashboard main .dashboard-container .trainings-box .sign-up-btn { border-radius: 15px; font-size: 0.8em; letter-spacing: 2px; text-transform: uppercase; }
 body.dashboard main .dashboard-container .trainings-box .sign-up-btn.light { background-color: #fff; color: #000; }
 body.dashboard main .dashboard-container .trainings-box .sign-up-btn.outline { border: 1px solid #03223A; background-color: transparent; color: #000; }
-body.dashboard main .dashboard-container .trainings-box .take-quiz-btn { color: #007bff; background: none; font-size: 0.9em; letter-spacing: 2px; text-transform: uppercase; }
+body.dashboard main .dashboard-container .trainings-box .take-quiz-btn { color: #007bff; background: none; font-size: 0.9em; text-transform: uppercase; }
 body.dashboard main .dashboard-container .trainings-box .going-state { font-size: 0.8em; letter-spacing: 1px; text-transform: uppercase; }
 body.dashboard main .dashboard-container .trainings-box .going-state.dark { color: #1F1F1F; }
 body.dashboard main .dashboard-container .trainings-box .going-state.light { color: #ebebeb; }
@@ -182,8 +185,8 @@ body.dashboard main .crud-page-title { font-size: 1.4rem; font-weight: bold; tex
 body.dashboard main .crud-page-actions { margin-right: 0; }
 body.dashboard main .crud-page-actions i { align-self: center; background-color: #f9f9f9; border: 1px solid #afafaf; border-right: 0; border-top-left-radius: 5px; border-bottom-left-radius: 5px; color: #afafaf; padding: 7px 12px; }
 body.dashboard main .crud-page-actions input { font-size: 0.8em; margin-right: 2em; padding: 0 0.9em; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-style: groove; }
-body.dashboard main .crud-main-cta { display: flex; background-color: #03223A; border: none; border-radius: 10px; color: #fff; font-size: 90%; height: fit-content; letter-spacing: 2px; padding: 6px 12px; text-transform: uppercase; }
-body.dashboard main .crud-sub-cta { display: flex; background-color: transparent; border: 1px solid #03223A; border-radius: 15px; color: #03223A; font-size: 90%; height: fit-content; letter-spacing: 2px; margin: 0.5em 0; padding: 6px 12px; text-transform: uppercase; width: fit-content; }
+body.dashboard main .crud-main-cta { display: flex; width: fit-content; background-color: #03223A; border: none; border-radius: 10px; color: #fff; font-size: 90%; height: fit-content; letter-spacing: 2px; padding: 6px 12px; text-transform: uppercase; }
+body.dashboard main .crud-sub-cta { display: flex; width: fit-content; background-color: transparent; border: 1px solid #03223A; border-radius: 10px; color: #03223A; font-size: 90%; height: fit-content; letter-spacing: 2px; margin: 0.5em 0; padding: 6px 12px; text-transform: uppercase; width: fit-content; }
 body.dashboard main table { font-size: 90%; }
 body.dashboard main table .no-stretch { width: 1%; margin: auto; }
 body.dashboard main table thead { font-weight: bold; text-align: center; }
@@ -201,11 +204,11 @@ body.dashboard .create-page .form-control.user-photo { background: none; }
 body.dashboard .create-page .form-control.user-photo input { text-transform: uppercase; }
 body.dashboard .create-page input[type="password"] { display: block; width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: .25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; }
 body.dashboard .create-bottom-wrapper { margin-top: 3em; display: flex; flex-flow: row wrap; justify-content: center; align-items: center; }
-body.dashboard .create-bottom-wrapper .cancel-btn { border: 1px solid; border-radius: 2px; }
 body.dashboard .create-bottom-wrapper > * { margin: auto 1em; width: 200px; }
+body.dashboard .cancel-btn { border: 1px solid; border-radius: 2px; }
 body.dashboard .modal-footer.create-bottom-wrapper { margin-top: 0; }
 body.dashboard .question-btn { border: 1px solid #959595; font-size: 0.8em; }
-body.dashboard footer { margin-top: 10em; width: 100%; border-top: 1px solid #ebebeb; background-color: #fff; color: #BDBDBD; font-family: 'Open Sans', sans-serif; padding: 1em; line-height: 1.2; }
+body.dashboard footer { margin-top: 20em; width: 100%; border-top: 1px solid #ebebeb; background-color: #fff; color: #BDBDBD; font-family: 'Open Sans', sans-serif; padding: 1em; line-height: 1.2; }
 body.dashboard footer b { color: #54749A; }
 @media (max-width: 1000px) { body.dashboard #navigation #navOpener { display: inline; }
   body.dashboard .nav-links { flex-flow: row wrap; position: absolute; left: 0; top: 30; width: 15em; }

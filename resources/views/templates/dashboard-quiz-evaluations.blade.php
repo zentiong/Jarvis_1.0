@@ -37,32 +37,34 @@
         @endforeach        
     @endforeach
 
-    
-        <h6 class="content-header light">
-            <b>Quizzes to take</b>
-        </h6>      
-        @foreach($quizzes_to_take as $key => $quiz_to_take)
-            <?php
-                $taken = false;
-            ?>
-            @foreach($user_quizzes as $key => $user_quiz)
-            <?php
-                if(($user_quiz->user_id==$current_id)and($quiz_to_take->quiz_id==$user_quiz->quiz_id))
-                    {
-                        $taken = true;
-                    }
+    <div class="row">
+        <div class="dashboard-content col-md-6">
+            <h6 class="content-header light">
+                <b>Quizzes to take</b>
+            </h6>      
+            @foreach($quizzes_to_take as $key => $quiz_to_take)
+                <?php
+                    $taken = false;
                 ?>
+                @foreach($user_quizzes as $key => $user_quiz)
+                <?php
+                    if(($user_quiz->user_id==$current_id)and($quiz_to_take->quiz_id==$user_quiz->quiz_id))
+                        {
+                            $taken = true;
+                        }
+                    ?>
+                @endforeach
+                @if($taken == false)
+                    <div class="trainings-box">
+                        <span>{{ $quiz_to_take->topic }}</span>
+                        {{ Form::open(array('url' => 'verify_pw')) }}
+                        {{ Form::hidden('quiz_id', $value = $quiz_to_take->quiz_id) }}
+                        {{ Form::button('ANSWER', array('type' => 'submit', 'class' => 'btn take-quiz-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Take quiz')) }}
+                        {{ Form::close() }}
+                    </div> 
+                @endif
             @endforeach
-            @if($taken == false)
-                <div class="trainings-box">
-                    <span>{{ $quiz_to_take->topic }}</span>
-                    {{ Form::open(array('url' => 'verify_pw')) }}
-                    {{ Form::hidden('quiz_id', $value = $quiz_to_take->quiz_id) }}
-                    {{ Form::button('ANSWER', array('type' => 'submit', 'class' => 'btn take-quiz-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Take quiz')) }}
-                    {{ Form::close() }}
-                </div> 
-            @endif
-        @endforeach
+        </div>
     <!-- Get Quiz IDS 
     -->
     @foreach($user_quizzes as $key => $user_quiz) 
@@ -115,24 +117,25 @@
     @endforeach
     
     <!-- error here -->
-    
-        <h6 class="content-header light">
-            <b>Evaluations to take</b>
-        </h6>
-        @foreach($evals_to_take as $key => $eval)
-            @if($eval->evaluation==null)
-            <div class="trainings-box">
-                {{ Form::open(array('url' => 'evaluate')) }}
-                @foreach($trainings_taken as $key => $training)
-                    @if($training->id == $eval->training_id)
-                        <span>{{$training->title}}</span>
+        <div class="dashboard-content col-md-6">
+            <h6 class="content-header light">
+                <b>Evaluations to take</b>
+            </h6>
+            @foreach($evals_to_take as $key => $eval)
+                @if($eval->evaluation==null)
+                <div class="trainings-box">
+                    {{ Form::open(array('url' => 'evaluate')) }}
+                    @foreach($trainings_taken as $key => $training)
+                        @if($training->id == $eval->training_id)
+                            <span>{{$training->title}}</span>
 
-                        {{ Form::hidden('training_id', $value = $eval->training_id) }}
-                        {{ Form::button('EVALUATE', array('type' => 'submit', 'class' => 'btn take-quiz-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Provide Assessment')) }}
-                        {{ Form::close() }}
-                    @endif
-                @endforeach 
-            </div>
-            @endif
-        @endforeach
-  
+                            {{ Form::hidden('training_id', $value = $eval->training_id) }}
+                            {{ Form::button('EVALUATE', array('type' => 'submit', 'class' => 'btn take-quiz-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Provide Assessment')) }}
+                            {{ Form::close() }}
+                        @endif
+                    @endforeach 
+                </div>
+                @endif
+            @endforeach
+        </div>
+    </div>

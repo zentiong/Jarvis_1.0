@@ -22,13 +22,14 @@
                     $pp = asset( 'images/profile_photos/default.png');
                 }
             ?>
-            <h1 class="crud-page-title">Showing employee {{ $user->first_name }} {{ $user->last_name }}</h1>
+            <h2>{{ $user->first_name }} {{ $user->last_name }}</h2>
+            <a href="{{ URL::to('levels') }}" class="btn cancel-btn">Back to Dashboard</a>
         </section>
         <section class="container dashboard-container">
             <div class="row dashboard-body">
                 <div class="dashboard-content">
                     <h6 class="content-header light">
-                        <strong>{{ $user->first_name }} {{ $user->last_name }}</strong>
+                        <strong>Details</strong>
                     </h6>
                     <div class="row">
                         <div class="col-md-6">
