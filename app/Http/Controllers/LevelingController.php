@@ -63,9 +63,9 @@ Class LevelingController extends Controller
         foreach ($quiz as $key => $q) {
             $i =0;
             if (!is_null($q)){
-            	$user_temp = User_Quiz::where('quiz_id', $q->quiz_id)->get();
+            $user_temp = User_Quiz::where('quiz_id', $q->quiz_id)->get();
             foreach ($user_temp as $key => $value) {
-               $i++;
+              $i++;
             }
             
             }

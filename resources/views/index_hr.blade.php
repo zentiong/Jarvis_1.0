@@ -458,9 +458,8 @@
                         data: []
 
                     }
-                    for (var index = 0; index < horizontalBardata.labels.length; ++index) {
-                        newDataset.data.push(numData);
-                    }
+                    
+                    newDataset.data.push(numData);
 
                     horizontalBardata.datasets.push(newDataset);
                     window.myChart.update();

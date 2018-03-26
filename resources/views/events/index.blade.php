@@ -30,35 +30,30 @@
             @if (Session::has('message'))
                 <div class="alert alert-info">{{ Session::get('message') }}</div>
             @endif
-            <h5 class="dashboard-header"><i class="fa fa-pie-chart"></i>Training Attendance Statistics</h5>
-                        <div class="dashboard-content">
-                            <canvas id="training_attendance" width=100></canvas>
-                             <button id="addData">Add Data Point</button>
-            
-                            <select id="chartType">
-                                <option value="" disabled selected>Select your option</option>
-                            @foreach($result as $key => $value)
-                                <option value="{{$value[1]}}|{{$value[0]}}">{{$value[0]}}</option>
-                            @endforeach
-                            </select>
-                            <button id="clear">Clear Graph</button>
-                        </div>
+          
+            <canvas id="training_attendance"></canvas>
+             <button id="addData">Add Data Point</button>
+
+            <select id="chartType">
+                <option value="" disabled selected>Select your option</option>
+            @foreach($result as $key => $value)
+                <option value="{{$value[1]}}|{{$value[0]}}">{{$value[0]}}</option>
+            @endforeach
+            </select>
+                     
             <script src="{{asset('js/Chart.bundle.js')}}"></script>
             <script src="{{asset('js/utils.js')}}"></script>
+            <script src="{{asset('js/analytics.js')}}"></script>
             <script type="text/javascript">
             $(document).ready(function() 
-                            {
-
+             {
                 var ctx = document.getElementById("training_attendance").getContext('2d');
-                var color = Chart.helpers.color;
-                
-
                 var horizontalBardata = {
-                    labels: ["Attendance"],
+                    labels: [],
                     datasets: []
                 }
-
-                
+                var color = Chart.helpers.color;
+                window.onload = function(){
                     window.myChart = new Chart(ctx, {
                     type: 'horizontalBar',
                     data: horizontalBardata,
@@ -77,6 +72,8 @@
                         }
                     }
                 });
+               
+          
                     
                     var colorNames = Object.keys(window.chartColors);
                     var numData = 0;
@@ -93,10 +90,9 @@
                         data: []
 
                     }
-                    for (var index = 0; index < horizontalBardata.labels.length; ++index) {
+                    
                         newDataset.data.push(numData);
-                    }
-
+                  
                     horizontalBardata.datasets.push(newDataset);
                     window.myChart.update();
                     });
@@ -104,16 +100,10 @@
                     document.getElementById('chartType').addEventListener('change', function(){
                         var res = $("#chartType").val().split("|");
 
-                        numData = res[0];
+                        numData = parseInt(res[0]);
                         datasetName = res[1];
-                    });
-
-                    document.getElementById('clear').addEventListener('click', function(){
-                        horizontalBardata.datasets =[];
-                        window.myChart.update();
-                    });
-              
-
+                    });     
+                };
             });
             </script>
 

@@ -24,7 +24,7 @@ class EventController extends Controller
     {
         $events = Event::all();
         $now = date('Y-m-d');
-         $trainings2 = Training::where('date', '<', $now)->get();
+         $trainings2 = Training::all();//where('date', '<', $now)->get();
         $quiz = array();
         $result = array();
 
