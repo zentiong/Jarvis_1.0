@@ -31,13 +31,13 @@
                 <div class="alert alert-info">{{ Session::get('message') }}</div>
             @endif
           
-            <canvas id="training_attendance"></canvas>
-             <button id="addData">Add Data Point</button>
+            <canvas id="training_evals"></canvas>
+            
 
             <select id="chartType">
                 <option value="" disabled selected>Select your option</option>
             @foreach($result as $key => $value)
-                <option value="{{$value[1]}}|{{$value[0]}}">{{$value[0]}}</option>
+                <option value="{{$value[1]}}|{{$value[0]}}|{{$value[2]}}">{{$value[0]}}</option>
             @endforeach
             </select>
                      
@@ -47,7 +47,7 @@
             <script type="text/javascript">
             $(document).ready(function() 
              {
-                var ctx = document.getElementById("training_attendance").getContext('2d');
+                var ctx = document.getElementById("training_evals").getContext('2d');
                 var horizontalBardata = {
                     labels: [],
                     datasets: []
@@ -77,31 +77,44 @@
                     
                     var colorNames = Object.keys(window.chartColors);
                     var numData = 0;
+                    var numData2= 0;
                     var datasetName = "";
 
-                    document.getElementById('addData').addEventListener('click',
-                    function() {
-                    var colorName = colorNames[horizontalBardata.datasets.length % colorNames.length];
-                    var dsColor = window.chartColors[colorName];
-                    var newDataset = {
-                        label: datasetName,
-                        backgroundColor: color(dsColor).alpha(0.5).rgbString(),
-                        borderColor: dsColor,
-                        data: []
-
-                    }
-                    
-                        newDataset.data.push(numData);
-                  
-                    horizontalBardata.datasets.push(newDataset);
-                    window.myChart.update();
-                    });
 
                     document.getElementById('chartType').addEventListener('change', function(){
                         var res = $("#chartType").val().split("|");
-
-                        numData = parseInt(res[0]);
+                        numData = parseFloat(res[0]);
+                        numData2 = parseFloat(res[2]);
                         datasetName = res[1];
+
+                        var newDataset = {
+                            label: "Training Rating",
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                                            
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            data: []
+                        }
+
+                        newDataset.data.push(numData);
+                        horizontalBardata.datasets[0] =newDataset;
+
+                        
+
+                        var newDataset2 = {
+                            label: "Speaker Rating",
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            data: []
+
+                        }
+                        
+                        newDataset2.data.push(numData2);
+
+                        horizontalBardata.labels[0] = datasetName;
+
+                        
+                        horizontalBardata.datasets[1] = newDataset2;
+                        window.myChart.update();
                     });     
                 };
             });

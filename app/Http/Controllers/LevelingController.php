@@ -44,10 +44,42 @@ Class LevelingController extends Controller
 		$user_skills = User_Skill::all();
 		$now= date('Y-m-d');
 		$cwide_skills = DB::select(DB::raw("select skill_id, sum(skill_grade) as skill_grade from user_skills group by skill_id"));
-        $trainings2 = Training::where('date', '<', $now)->get();
+        $trainings2 = Training::all();//where('date', '<', $now)->get();
         $quiz = array();
         $result = array();
 
+        //Training evals
+        $user_t = array();
+        $result2 = array();
+       
+        $counter = 0;
+       
+        //Training Rating
+        foreach($trainings2 as $key => $training) {
+            $user_temp = User_Training::where('training_id',$training->id)->get(); 
+            $i = 0;
+            $rating_t = 0;
+            $rating_s = 0;
+
+            foreach ($user_temp as $key => $value) {
+                $rating_t += $value->rating_training;
+                $rating_s += $value->rating_speaker;
+                $i++;
+            }
+            
+            $result2[$counter][0] = $training->title;
+            if($i != 0){
+                $result2[$counter][1] = $rating_t/$i;
+                $result2[$counter][2] = $rating_s/$i;
+            }
+            else{
+                $result2[$counter][1] = 0;
+                $result2[$counter][2] = 0;
+            }
+            
+            $counter++;
+        }
+        
         //Training Attendance
         $counter = 0;
 
@@ -146,6 +178,7 @@ Class LevelingController extends Controller
 						->with('user_skills',$user_skills)
 						->with('now', $now)
 						->with('result', $result)
+						->with('result2', $result2)
 						->with('mg',$mg);
 				}
 				else // HR
@@ -163,6 +196,7 @@ Class LevelingController extends Controller
             			->with('user_quizzes', $user_quizzes)
             			->with('skills', $skills)
             			->with('result', $result)
+            			->with('result2', $result2)
             			->with('assessments',$assessments)
             			->with('user_assessments',$user_assessments)
             			->with('user_skills',$user_skills)
