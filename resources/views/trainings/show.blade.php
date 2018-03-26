@@ -93,6 +93,32 @@
 
         </div>
     </div>
+    <div class="row dashboard-body">
+        <div class="dashboard-content">
+            <h6 class="content-header light">
+                <strong>Respondents</strong>
+            </h6>
+            <div class="row">
+                <div class="col-md-12"><center>
+                <?php 
+                  $counter = 0;
+                ?>
+                @foreach($user_trainings as $key => $user_training)
+                  @if($user_training->rating_training!=NUll)
+                    <?php 
+                      $counter++;
+                    ?>
+                  @endif
+                @endforeach
+                @if($counter != 0)
+                <h4>{{$counter}}</h4>
+                @else
+                <h4>None</h4>
+                @endif    
+                </div>
+            </div>
+        </div>
+    </div>
      <div class="row dashboard-body">
         <div class="dashboard-content">
             <h6 class="content-header light">
