@@ -226,6 +226,7 @@ Class LevelingController extends Controller
             			->with('now', $now)
             			->with('cwide_skills',$cwide_skills)
                         ->with('filter_data', $filter_data)
+                        ->with('grades',$grades)
             			->with('mg',$mg);
 				}	
 

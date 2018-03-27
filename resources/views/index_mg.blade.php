@@ -305,8 +305,8 @@
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                         <script type="text/javascript">
 
-                            var score_data_all = <?php echo json_encode($init_criteria_score)?>;
-                            var labels_all = <?php echo json_encode($init_criteria_label)?>;
+                            var init_criteria_score = <?php echo json_encode($init_criteria_score)?>;
+                            var init_criteria_label = <?php echo json_encode($init_criteria_label)?>;
 
 
                             Chart.defaults.global.maintainAspectRatio = false;
@@ -314,10 +314,10 @@
                             var eum_criteria_chart = new Chart(ctx, {
                                 type: 'horizontalBar',
                                 data: {
-                                    labels: labels_all,
+                                    labels: init_criteria_label,
                                     datasets: [{
-                                        label: 'Skill Level by Percentage',
-                                        data: score_data_all,
+                                        label: 'Total Assessment Scores',
+                                        data: init_criteria_score,
                                         backgroundColor: [
                                             'rgba(255, 99, 132, 0.5)',
                                             'rgba(54, 162, 235, 0.5)',
