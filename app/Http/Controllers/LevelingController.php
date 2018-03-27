@@ -12,6 +12,7 @@ use App\Skill;
 use App\Section_Attempt;
 use App\Assessment;
 use App\User_Assessment;
+use App\Grades;
 use App\User_Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -48,6 +49,27 @@ Class LevelingController extends Controller
         $trainings2 = Training::all();//where('date', '<', $now)->get();
         $quiz = array();
         $result = array();
+
+        // ------- Grades ni Vicente -------
+        $grades = DB::table('grades')
+            ->leftJoin('user_assessments', 
+                'grades.user_assessment_id', '=', 'user_assessments.id')
+            ->leftJoin('assessment_items', 
+                'assessment_items.assessment_id', '=', 'user_assessments.assessment_id')
+            ->leftJoin('assessments', 
+                'assessments.id', '=', 'user_assessments.assessment_id')
+            ->leftJoin('skills', 
+                'skills.id', '=', 'assessments.skill_id')
+            ->leftJoin('users', 
+                'users.id', '=', 'user_assessments.employee_id')
+            ->select('users.supervisor_id as supervisor_id',
+                'users.id as employee_id', 
+                'skills.name as skill', 
+                'assessment_items.criteria as criteria',
+                'grades.grade as grade')
+            ->groupBy('grades.id')
+            ->get();
+        // ---------------------------------
 
         //Training evals
         $user_t = array();
@@ -227,7 +249,8 @@ Class LevelingController extends Controller
 						->with('skills', $skills)
 						->with('user_skills',$user_skills)
 						->with('now', $now)
-						->with('mg',$mg);
+						->with('mg',$mg)
+                        ->with('grades',$grades);
 				}
 				else // Normal
 				{
