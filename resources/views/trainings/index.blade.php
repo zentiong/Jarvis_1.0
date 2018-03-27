@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="form-group">
-                    {{ Form::label('date', 'Date') }}
+                    {{ Form::label('date', 'Date (dd/mm/yy)') }}
                     {{ Form::date('date', Request::old('date'), array('class' => 'form-control')) }}
                 </div>
 
@@ -131,11 +131,21 @@
     $(document).ready(function() {
         var a = document.getElementById('training-sessions');
         a.classList.toggle("active");
+        // prevents multiple form submissions
+        $("input[type='submit'], button[type='submit']").click(function() {
+            $(this).closest('form').submit();
+            // $(this).attr('disabled','disabled');            
+        });
     });
 
     // enables Bootstrap tooltips
     $(function () {
       $('[data-toggle="tooltip"]').tooltip();
     });
+
+    function submitForm(el) {
+        el.disabled = true;
+        document.getElementById('btnSubmit').submit();
+    }
 
 </script>
