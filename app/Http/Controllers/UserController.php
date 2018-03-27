@@ -53,6 +53,7 @@ class UserController extends Controller
             ->with('users', $users)
             ->with('users_two', $users_two)
             ->with('positions',$positions);
+            
     }
 
     /**

@@ -52,8 +52,9 @@
                     {{ Html::ul($errors->all()) }}
                 </div>
             @endif
-            <?php /*
-             */ ?>
+            <?php 
+                
+              ?>
             
 
             <table id="target_table" class="table table-striped table-bordered">
@@ -72,7 +73,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                {{ $users->links() }}
+
+               {{ $users->links('users.paginate', ['paginator' => '$users']) }}
+                <?php /*
                 @foreach($users as $key => $value)
                     <tr>
                         <td>{{ $value->first_name }}</td>
@@ -120,6 +123,7 @@
                         </td>
                     </tr>
                 @endforeach
+                */?>
                 </tbody>
             </table>
         </section>

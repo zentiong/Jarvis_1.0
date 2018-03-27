@@ -89,9 +89,15 @@ class TrainingController extends Controller
 
     public function fire()
     {
-        $users = User::where('supervisor_id', Auth::user()->id)->get();
-
-        // foreach user
+        if( Auth::user()->department == "Human Resources")
+        {
+            $users = User::all();
+        }
+        else
+        {
+            $users = User::where('supervisor_id', Auth::user()->id)->get();
+        }
+        
 
         foreach ($users as $key => $user) {
 
