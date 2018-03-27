@@ -80,7 +80,8 @@ class CreateUsersTable extends Migration
             'department' => 'Finance',
             'supervisor_id' => '1', 
             'position' => 'Developer',
-            'manager_check' => true
+            'manager_check' => true,
+            'profile_photo' => 'zen.jpg'
         ));   
 
          DB::table('users')->insert(
@@ -94,7 +95,8 @@ class CreateUsersTable extends Migration
             'department' => 'Human Resources',
             'supervisor_id' => '3', 
             'position' => 'Developer',
-            'manager_check' => false
+            'manager_check' => false,
+            'profile_photo' => 'stephen.jpg'
         ));   
 
          DB::table('users')->insert(
@@ -108,7 +110,8 @@ class CreateUsersTable extends Migration
             'department' => 'Customer Service',
             'supervisor_id' => '3', 
             'position' => 'Developer',
-            'manager_check' => false
+            'manager_check' => false,
+            'profile_photo' => 'vicente.jpg'
         ));   
 
          DB::table('users')->insert(
@@ -121,14 +124,10 @@ class CreateUsersTable extends Migration
             'birth_date' => '2018-12-31',
             'department' => 'Human Resources',
             'supervisor_id' => '1', 
-            'position' => 'HR Manager',
+            'position' => 'Developer',
             'manager_check' => true
         ));
 
-
-
-
-  
     }
 
     /**
