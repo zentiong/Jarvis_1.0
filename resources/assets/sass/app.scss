@@ -686,8 +686,8 @@ body.newsletter {
 		color: $white-5;
 		font-family: 'Open Sans', sans-serif;
 		font-weight: 100;
-		padding: 1em;
-		line-height: 1.2;
+		padding: 1em 5em;
+		line-height: 1.4;
 
 		b {
 			color: #54749A;
@@ -969,7 +969,6 @@ body.dashboard {
 			.trainings-box:last-child {
 				border-bottom: none;
 			}	
-			
 		}
 
 		canvas {
@@ -999,30 +998,6 @@ body.dashboard {
 			font-size: 1.4rem;
 			font-weight: bold;
 			text-transform: uppercase;
-		}
-
-		.crud-page-actions {
-			margin-right: 0;
-
-			i {
-				align-self: center;
-				background-color: $white-5;
-				border: 1px solid $gray-2;
-				border-right: 0;
-				border-top-left-radius: 5px;
-				border-bottom-left-radius: 5px;
-				color: $gray-2;
-				padding: 7px 12px;
-			}
-
-			input {
-				font-size: 0.8em;
-				margin-right: 2em;
-				padding: 0 0.9em;
-				border-top-right-radius: 5px;
-				border-bottom-right-radius: 5px;
-				border-style: groove;
-			}
 		}
 
 		.crud-main-cta {
@@ -1118,6 +1093,72 @@ body.dashboard {
 		}
 	}
 
+	.crud-page-actions {
+		align-items: center;
+		justify-content: space-between;
+		margin: 1.4em 0;
+
+		div {
+			display: flex;
+		}
+
+		i {
+			align-self: center;
+			background-color: $white-5;
+			border: 1px solid $gray-2;
+			border-right: 0;
+			border-top-left-radius: 5px;
+			border-bottom-left-radius: 5px;
+			color: $gray-2;
+			font-size: 0.8em;
+			padding: 10px;
+		}
+
+		input {
+			font-size: 0.8em;
+			margin-right: 2em;
+			padding: 5px 1em;
+			border-top-right-radius: 5px;
+			border-bottom-right-radius: 5px;
+			border-style: groove;
+		}
+	}
+
+	.pagination {
+		margin: 0;
+
+		li {
+			border: 1px solid $white-2;
+			font-size: 0.9em;
+			padding: 0.3em 0.7em;
+		}
+		li:first-child {
+			border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
+		}
+		li:last-child {
+			border-top-right-radius: 3px;
+			border-bottom-left-radius: 3px;
+		}
+		li.page-item.disabled {
+			color: $gray-2;
+		}
+		li.page-item.active {
+			background-color: $create-crud;
+			border: 1px solid $create-crud;
+			color: $white-1;
+			cursor: pointer;
+		}
+		li.page-item.active:hover {
+			background-color: $create-crud;
+		}
+		li:not(.disabled):hover {
+			background-color: $white-2;
+			-webkit-transition: background-color 0.3s;
+			transition: background-color 0.3s;
+		}
+	}
+
 	.create-page {
 		max-width: 650px;
 
@@ -1180,8 +1221,8 @@ body.dashboard {
 		background-color: $white-1;
 		color: $white-3;
 		font-family: 'Open Sans', sans-serif;
-		padding: 1em;
-		line-height: 1.2;
+		padding: 1em 5em;
+		line-height: 1.4;
 
 		b {
 			color: #54749A;
