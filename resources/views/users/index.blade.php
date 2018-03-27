@@ -74,7 +74,7 @@
                 </thead>
                 <tbody>
 
-               {{ $users->links('users.paginate')}}
+               {{ $users->links()}}
                 
                 @foreach($users as $key => $value)
                     <tr>
