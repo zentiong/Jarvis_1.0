@@ -297,6 +297,7 @@
     <table class="table table-striped table-bordered">
     <thead>
         <tr>
+            <td>Department</td>
             <td>Supervisor ID</td>
             <td>Employee ID</td>
             <td>Skill</td>
@@ -307,6 +308,7 @@
     <tbody>
         @foreach($grades as $key => $grade)
         <tr>
+            <td>{{$grade->department}}</td>
             <td>{{$grade->supervisor_id}}</td>
             <td>{{$grade->employee_id}}</td>
             <td>{{$grade->skill}}</td>

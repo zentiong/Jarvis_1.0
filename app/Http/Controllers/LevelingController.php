@@ -66,7 +66,7 @@ Class LevelingController extends Controller
                 'users.id as employee_id', 
                 'skills.name as skill', 
                 'assessment_items.criteria as criteria',
-                'grades.grade as grade')
+                'grades.grade as grade','users.department as department')
             ->groupBy('grades.id')
             ->get();
         // ---------------------------------
