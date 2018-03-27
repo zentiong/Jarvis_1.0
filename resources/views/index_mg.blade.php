@@ -301,7 +301,7 @@
                             }
                         }
                         ?>
-                        <canvas id="eum_criteria_chart" width="100px" height="100px"></canvas>
+                        <canvas id="eum_criteria_chart" width="100" height="100"></canvas>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                         <script type="text/javascript">
 

@@ -6,8 +6,17 @@ $count = 0;
 
 foreach($cwide_skills as $key=>$value)
 {
-    array_push($cwide_score_data,$value->skill_grade);
-    array_push($cwide_skill_id,$value->skill_id);
+    
+    if(in_array($value->skill_id, $cwide_skill_id)==false)
+    {
+        array_push($cwide_score_data, $value->skill_grade);
+        array_push($cwide_skill_id, $value->skill_id);
+    }
+    else
+    {
+        $key = $key = array_search($value->skill_id, $cwide_skill_id);
+        $cwide_score_data[$key]+=$value->skill_grade;
+    }
 }
 
 
