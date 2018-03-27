@@ -112,10 +112,11 @@
                                         if(filter_data[i].department == filter)
                                         {
                                             filtered_data.push(filter_data[i].skill_grade);
-                                            filtered_data.push(filter_data[i].skill_id);
+                                            filtered_labels.push(filter_data[i].skill_id);
                                         }
                                     }
                                     target_chart.data.datasets[0].data = filtered_data;
+                                    target_chart.data.datasets[0].labels = filtered_labels;
                                     target_chart.update(); 
                                 }
                             }
