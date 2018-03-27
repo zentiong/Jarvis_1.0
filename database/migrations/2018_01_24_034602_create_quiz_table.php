@@ -24,20 +24,6 @@ class CreateQuizTable extends Migration
             
             
         });
-        /*
-        DB::table('quizzes')->insert(
-        array(
-            'topic' => 'Communication',
-            'skill_id' => '2'
-        )  );
-
-        DB::table('quizzes')->insert(
-        array(
-            'topic' => 'Customer Relations',
-            'skill_id' => '4'
-        )  );
-        */
-
         
     }
 

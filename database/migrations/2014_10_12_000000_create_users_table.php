@@ -51,6 +51,7 @@ class CreateUsersTable extends Migration
             'position' => 'Developer',
             'manager_check' => true
 
+
         )  );
 
         DB::table('users')->insert(
@@ -64,7 +65,8 @@ class CreateUsersTable extends Migration
             'department' => 'Human Resources',
             'supervisor_id' => '3', 
             'position' => 'Developer',
-            'manager_check' => false
+            'manager_check' => false,
+            'profile_photo' => 'ferny.jpg'
         ));   
 
          DB::table('users')->insert(

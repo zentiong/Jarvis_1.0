@@ -90,7 +90,8 @@ class UserController extends Controller
             'department' => 'required',
             'supervisor_id' => 'required',
             'position' => 'required',
-            'password' => 'required| min:9'
+            'password' => 'required| min:9',
+            'user_photo' => 'max:2048'
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -398,7 +399,12 @@ class UserController extends Controller
             $photoName = time().'.'.$request->user_photo->getClientOriginalExtension();
             $user->profile_photo = $photoName;
             $request->user_photo->move(public_path('images/profile_photos/'), $photoName);
-        }        
+        }    
+        else
+        {
+            Session::flash('message', 'No photo uploaded');
+            return Redirect::to('levels');
+        }    
 
         $user->save();
 

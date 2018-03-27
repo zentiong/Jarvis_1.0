@@ -26,7 +26,7 @@ class CreateTrainingsTable extends Migration
         
         DB::table('trainings')->insert(
         array(
-            'date' => '1212-12-12',
+            'date' => '2018-5-12',
             'starting_time' => '18:00:00 ',
             'ending_time' => '20:00:00 ',
             'title' => 'Welcome to the Dark Side',
