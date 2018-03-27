@@ -16,8 +16,8 @@
             @endif
             
             <section class="row personal-details mg-pastel">
-
-            @include('templates.dashboard-profile_photo', ['current_user' => $current_user, 'current_id' => $current_id])
+                @include('templates.dashboard-profile_photo', ['current_user' => $current_user, 'current_id' => $current_id])
+            </section>
 
             <section class="container dashboard-container">
                 <!-- TAB CONTAINER -->

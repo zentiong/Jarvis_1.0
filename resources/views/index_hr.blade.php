@@ -1,8 +1,7 @@
 @extends('templates.dashboard-master') 
 
-
-    @section('body')
-        <main class="container-fluid">
+@section('body')
+    <main class="container-fluid">
         <section class="container-fluid">
             <?php 
                 $current_user = Auth::user();
@@ -14,41 +13,42 @@
             @endif
 
             <section class="row personal-details hr-pastel">
+                @include('templates.dashboard-profile_photo', ['current_user' => $current_user, 'current_id' => $current_id])
+            </section>
 
-            @include('templates.dashboard-profile_photo', ['current_user' => $current_user, 'current_id' => $current_id])
-             <section class="container dashboard-container">
+            <section class="container dashboard-container">
                 <!-- TAB CONTAINER -->
                 <div class="row dashboard-tab-container">
                     <button class="btn tablinks" onclick="openTab(event, 'personal')">Personal</button>
                     <button class="btn tablinks"  onclick="openTab(event, 'non-personal')">Company-wide</button>
                 </div>
 
+                <!-- PERSONAL CONTENT CONTAINER -->
                 <div class="row dashboard-body tabcontent" id="personal">
-
                     @include('templates.dashboard-skills')
-
                     @include('templates.dashboard-trainings')
                 </div>
                 
                 <!-- NON-PERSONAL CONTENT CONTAINER -->
                 <div class="row dashboard-body tabcontent" id="non-personal">
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                         <h5 class="dashboard-header">
                             <i class="fa fa-area-chart"></i>
                             Overall Skills Statistics
                         </h5>
                         @include('templates.dashboard-overall-skills-template')
-                        <div class="dashboard-content">
-                            
+                        <div class="dashboard-content">        
                             <button onclick="update_chart(cwide_skills_chart, 'Human Resources')">HR</button>
                             <button onclick="update_chart(cwide_skills_chart, 'Finance')">Finance</button>
                             <button onclick="update_chart(cwide_skills_chart, 'Customer Service')">Customer Service</button>
                             <button onclick="update_chart(cwide_skills_chart, 'Marketing')">Mktg</button>
                             <canvas id="cwide_skills_chart" width=100></canvas>
-
                         </div>
                         
-                        <h5 class="dashboard-header"><i class="fa fa-pie-chart"></i>Overall Quiz Statistics</h5>
+                        <h5 class="dashboard-header">
+                            <i class="fa fa-pie-chart"></i>
+                            Overall Quiz Statistics
+                        </h5>
                         <div class="dashboard-content">
                             <!-- data collection -->
                             <?php
@@ -124,38 +124,15 @@
                             <!-- end labels -->
                             <!-- end of data collection -->
                             <canvas id="cwide_quiz_chart" width=100></canvas>
-
-                        </div>
-
-                         <h5 class="dashboard-header"><i class="fa fa-pie-chart"></i>Training Attendance Statistics</h5>
-                        <div class="dashboard-content">
-                            <canvas id="training_attendance" width=100></canvas>
-                             <button id="addData">Add Data Point</button>
-            
-                            <select id="chartType">
-                                <option value="" disabled selected>Select your option</option>
-                            @foreach($result as $key => $value)
-                                <option value="{{$value[1]}}|{{$value[0]}}">{{$value[0]}}</option>
-                            @endforeach
-                            </select>
-                            <button id="clear">Clear Graph</button>
-                        </div>
-                        <h5 class="dashboard-header"><i class="fa fa-pie-chart"></i>Training Evaluations Statistics</h5>
-                        <div class="dashboard-content">
-                            <canvas id="training_evals"></canvas>
-                            <select id="chartEvals">
-                                <option value="" disabled selected>Select your option</option>
-                            @foreach($result2 as $key => $value)
-                                <option value="{{$value[1]}}|{{$value[0]}}|{{$value[2]}}">{{$value[0]}}</option>
-                            @endforeach
-                            </select>
                         </div>
                     </div>
 
-
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div class="row dashboard-header">
-                            <h5><i class="fa fa-line-chart"></i>Overall training statistics</h5>
+                            <h5>
+                                <i class="fa fa-line-chart"></i>
+                                Overall training statistics
+                            </h5>
                             <a class="crud-sub-cta" href="trainings/create">&#43; Add Training</a>
                         </div>
                         
@@ -209,6 +186,37 @@
                             </table>   
                         </div>
 
+                        <h5 class="dashboard-header">
+                            <i class="fa fa-pie-chart"></i>
+                            Training Attendance Statistics
+                        </h5>
+                        <div class="dashboard-content">
+                            <canvas id="training_attendance" width=100></canvas>
+                            <div class="row">
+                                <button id="addData">Add Data Point</button>&nbsp;
+                                <select id="chartType">
+                                    <option value="" disabled selected>Select your option</option>
+                                @foreach($result as $key => $value)
+                                    <option value="{{$value[1]}}|{{$value[0]}}">{{$value[0]}}</option>
+                                @endforeach
+                                </select>&nbsp;
+                                <button id="clear">Clear Graph</button>
+                            </div>
+                        </div>
+
+                        <h5 class="dashboard-header">
+                            <i class="fa fa-pie-chart"></i>
+                            Training Evaluations Statistics
+                        </h5>
+                        <div class="dashboard-content">
+                            <canvas id="training_evals"></canvas>
+                            <select id="chartEvals">
+                                <option value="" disabled selected>Select your option</option>
+                            @foreach($result2 as $key => $value)
+                                <option value="{{$value[1]}}|{{$value[0]}}|{{$value[2]}}">{{$value[0]}}</option>
+                            @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -236,9 +244,9 @@
 
             </section>
         </section>
-        </main>
-
+    </main>
     @endsection
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ URL::asset('js/dashboard.js') }}"></script>
     <script type="text/javascript">
@@ -255,7 +263,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 <!-- script for overall quiz-->
                         
-                        <script type="text/javascript">
+    <script type="text/javascript">
                             $(document).ready(function() 
                             {
 
@@ -317,144 +325,144 @@
                                     }
                                 });
                             });
-                        </script>
+    </script>
 
 
         
-<script src="{{asset('js/Chart.bundle.js')}}"></script>
-<script src="{{asset('js/utils.js')}}"></script>
-<script type="text/javascript">
-    
-    var ctx = document.getElementById("training_attendance").getContext('2d');
-    var color = Chart.helpers.color;
-    var horizontalBardata = {
-        labels: [],
-        datasets: []
-    }
+    <script src="{{asset('js/Chart.bundle.js')}}"></script>
+    <script src="{{asset('js/utils.js')}}"></script>
+    <script type="text/javascript">
         
-    var myChart = new Chart(ctx, {
-        type: 'horizontalBar',
-        data: horizontalBardata,
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }],
-                 xAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
+        var ctx = document.getElementById("training_attendance").getContext('2d');
+        var color = Chart.helpers.color;
+        var horizontalBardata = {
+            labels: [],
+            datasets: []
+        }
+            
+        var myChart = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: horizontalBardata,
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }],
+                     xAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
             }
-        }
-    });
-    
-    var colorNames = Object.keys(chartColors);
-    var numData = 0;
-    var datasetName = "";
-
-    document.getElementById('addData').addEventListener('click', function() {
-        var colorName = colorNames[horizontalBardata.datasets.length % colorNames.length];
-        var dsColor = chartColors[colorName];
-        var newDataset = {
-            label: datasetName,
-            backgroundColor: color(dsColor).alpha(0.5).rgbString(),
-            borderColor: dsColor,
-            data: []
-
-        }
+        });
         
-        newDataset.data.push(numData);
+        var colorNames = Object.keys(chartColors);
+        var numData = 0;
+        var datasetName = "";
 
-        horizontalBardata.datasets.push(newDataset);
-        myChart.update();
-    });
+        document.getElementById('addData').addEventListener('click', function() {
+            var colorName = colorNames[horizontalBardata.datasets.length % colorNames.length];
+            var dsColor = chartColors[colorName];
+            var newDataset = {
+                label: datasetName,
+                backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+                borderColor: dsColor,
+                data: []
 
-    document.getElementById('chartType').addEventListener('change', function(){
-        var res = $("#chartType").val().split("|");
-
-        numData = res[0];
-        datasetName = res[1];
-
-    });
-
-    document.getElementById('clear').addEventListener('click', function(){
-        horizontalBardata.datasets =[];
-        myChart.update();
-    });
-
-});
-</script>
-
-<!-- script for training evals -->
-
-<script type="text/javascript">
-$(document).ready(function() 
- {
-    var ctx = document.getElementById("training_evals").getContext('2d');
-    var horizontalBardata = {
-        labels: [],
-        datasets: []
-    }
-    var color = Chart.helpers.color;
-   
-    var myChart = new Chart(ctx, {
-        type: 'horizontalBar',
-        data: horizontalBardata,
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }],
-                 xAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
             }
-        }
+            
+            newDataset.data.push(numData);
+
+            horizontalBardata.datasets.push(newDataset);
+            myChart.update();
+        });
+
+        document.getElementById('chartType').addEventListener('change', function(){
+            var res = $("#chartType").val().split("|");
+
+            numData = res[0];
+            datasetName = res[1];
+
+        });
+
+        document.getElementById('clear').addEventListener('click', function(){
+            horizontalBardata.datasets =[];
+            myChart.update();
+        });
+
     });
-           
-    var colorNames = Object.keys(chartColors);
-    var numData = 0;
-    var numData2= 0;
-    var datasetName = "";
+    </script>
 
+    <!-- script for training evals -->
 
-    document.getElementById('chartEvals').addEventListener('change', function(){
-        var res = $("#chartEvals").val().split("|");
-        numData = parseFloat(res[0]);
-        numData2 = parseFloat(res[2]);
-        datasetName = res[1];
-
-        var newDataset = {
-            label: "Training Rating",
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',    
-            borderColor: 'rgba(255, 99, 132, 1)',
-            data: []
+    <script type="text/javascript">
+    $(document).ready(function() 
+     {
+        var ctx = document.getElementById("training_evals").getContext('2d');
+        var horizontalBardata = {
+            labels: [],
+            datasets: []
         }
+        var color = Chart.helpers.color;
+       
+        var myChart = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: horizontalBardata,
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }],
+                     xAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+               
+        var colorNames = Object.keys(chartColors);
+        var numData = 0;
+        var numData2= 0;
+        var datasetName = "";
 
-        newDataset.data.push(numData);
-        horizontalBardata.datasets[0] =newDataset;
 
-        var newDataset2 = {
-            label: "Speaker Rating",
-            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            data: []
+        document.getElementById('chartEvals').addEventListener('change', function(){
+            var res = $("#chartEvals").val().split("|");
+            numData = parseFloat(res[0]);
+            numData2 = parseFloat(res[2]);
+            datasetName = res[1];
 
-        }
-        
-        newDataset2.data.push(numData2);
+            var newDataset = {
+                label: "Training Rating",
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',    
+                borderColor: 'rgba(255, 99, 132, 1)',
+                data: []
+            }
 
-        horizontalBardata.labels[0] = datasetName;
-        horizontalBardata.datasets[1] = newDataset2;
-        myChart.update();
-    });     
-   
-});
-</script>
+            newDataset.data.push(numData);
+            horizontalBardata.datasets[0] =newDataset;
+
+            var newDataset2 = {
+                label: "Speaker Rating",
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                data: []
+
+            }
+            
+            newDataset2.data.push(numData2);
+
+            horizontalBardata.labels[0] = datasetName;
+            horizontalBardata.datasets[1] = newDataset2;
+            myChart.update();
+        });     
+       
+    });
+    </script>

@@ -8,7 +8,6 @@
                 <h1 class="crud-page-title">All Training Sessions</h1>
                 <div class="text-right">
                     <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Training Session</button>
-                    
                 </div>             
             </div>
 

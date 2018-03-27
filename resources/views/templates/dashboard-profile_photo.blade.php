@@ -14,9 +14,10 @@
 ?>
 
 <div class="inner">
-    <div class="img-circle profile-picture" style="background-image: url('{{ $cup }}')" alt="Your profile picture">
-    </div>
-    
+    <a href="edit_dp" data-toggle="tooltip" data-placement="bottom" title="Edit profile picture" data-animation="true">
+        <div class="img-circle profile-picture" style="background-image: url('{{ $cup }}')" alt="Your profile picture">
+        </div>
+    </a>
     <div class="user-details">
          @auth
         <h1 class="username-title">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h1>
@@ -27,5 +28,3 @@
         @endauth
     </div>
 </div>
-
-</section>

@@ -15,8 +15,8 @@
         @endif
         
         <section class="row personal-details hr-pastel">
-
-        @include('templates.dashboard-profile_photo', ['current_user' => $current_user, 'current_id' => $current_id])
+            @include('templates.dashboard-profile_photo', ['current_user' => $current_user, 'current_id' => $current_id])
+        </section>
 
         <section class="container dashboard-container">
 
@@ -127,7 +127,7 @@
 
                  <!-- TRAININGS CONTENT CONTAINER -->
             <div class="row dashboard-body tabcontent" id="trainings">
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <h5 class="dashboard-header"><i class="fa fa-area-chart"></i>Overall skills statistics</h5>
 
                         <p>A work in progress...</p>
@@ -135,8 +135,15 @@
                     <div class="dashboard-content">
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <h5 class="dashboard-header"><i class="fa fa-line-chart"></i>Overall training statistics</h5>
+                <div class="col-md-6">
+                    <div class="row dashboard-header">
+                        <h5>
+                            <i class="fa fa-line-chart"></i>
+                            Overall training statistics
+                        </h5>
+                        <a class="crud-main-cta" href="trainings/create">&#43; Add Training</a> 
+                    </div>
+                    
                     <div class="dashboard-content">
                         <table class="table table-striped table-bordered">
                             <thead>
@@ -185,7 +192,7 @@
                             @endforeach
                             </tbody>
                         </table>  
-                        <a class="crud-main-cta" href="trainings/create">&#43; Add Training</a> 
+                        
                     </div>
                 </div>
             </div>

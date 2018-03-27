@@ -63,8 +63,8 @@
 
     <div class="login-button" id="login-button">
         <a href="edit_dp">
-        <div class="img-circle small-profile-picture" style="background-image: url('{{ $cup }}')" alt="Your profile picture">
-        </div>
+            <div class="img-circle small-profile-picture" style="background-image: url('{{ $cup }}')" alt="Your profile picture">
+            </div>
         </a>
         <div>
             <h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
