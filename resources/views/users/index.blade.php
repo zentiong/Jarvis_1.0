@@ -74,8 +74,8 @@
                 </thead>
                 <tbody>
 
-               {{ $users->links('users.paginate', ['paginator' => '$users']) }}
-                <?php /*
+               {{ $users->links('users.paginate')}}
+                
                 @foreach($users as $key => $value)
                     <tr>
                         <td>{{ $value->first_name }}</td>
@@ -123,7 +123,7 @@
                         </td>
                     </tr>
                 @endforeach
-                */?>
+                
                 </tbody>
             </table>
         </section>
