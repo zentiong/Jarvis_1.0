@@ -90,7 +90,6 @@
                             array_push($dwide_sk_id,$value->skill_id);
                         }
                     }
-                    print_r($emp_under)
                     ?>
                     <!-- end dept wide scores -->
 
@@ -204,47 +203,24 @@
                         <h5 class="dashboard-header"><i class="fa fa-users"></i>Department overview</h5>
                         <div class="dashboard-content">
 
-                           
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td>First Name</td>
+                                        <td>Last Name</td>
+                                        <td>Email</td>
+                                        <td>Hiring Date</td>
+                                        <td>Birth Date</td>
+                                        <td>Department</td>
+                                        <td>Supervisor</td>
+                                        <td>Position</td>
+                                        <td>Manager?</td>
+                                        <td>Actions</td>
+                                    </tr>
+                                </thead>
                                 
-
-
-
-
-                    </div>
-                </div>
-
-            </section>
-        
-       </section>
-
-    </main>
-
-    <table class="table table-striped table-bordered">
-    <thead>
-        <tr>
-            <td>Department</td>
-            <td>Supervisor ID</td>
-            <td>Employee ID</td>
-            <td>Skill</td>
-            <td>Criteria</td>
-            <td>Grade</td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($grades as $key => $grade)
-        <tr>
-            <td>{{$grade->department}}</td>
-            <td>{{$grade->supervisor_id}}</td>
-            <td>{{$grade->employee_id}}</td>
-            <td>{{$grade->skill}}</td>
-            <td>{{$grade->criteria}}</td>
-            <td>{{$grade->grade}}</td>
-        </tr>
-        @endforeach
-    </tbody>
-    </table>
-
-    <?php
+                                <tbody>
+                                <?php
 
                                     /* 
                                         1) Buffer to Extraction Area
@@ -278,11 +254,44 @@
 
                                 ?>
                                 
+                                @foreach($list as $key => $user)
+                                    <tr>
+                                        <td>{{ $user->first_name }}</td>
+                                        <td>{{ $user->last_name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->hiring_date }}</td>
+                                        <td>{{ $user->birth_date }}</td>
+                                        <td>{{ $user->department }}</td>
+                                        @foreach($users_two as $key => $supervisor)
+                                            @if($user->supervisor_id == $supervisor->id)
+                                                 <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
+                                            @endif
+                                        @endforeach
+                                        <td>{{ $user->position }}</td>
+                                        @if ($user->manager_check==1)
+                                        <td>Yes</td>
+                                        @else
+                                        <td>No</td>
+                                        @endif
+                                        <!-- we will also add show, edit, and delete buttons -->
+                                        <td class="table-actions">
+                                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $user->id) }}">
+                                                <i class="fa fa-user fa-lg"></i>
+                                            </a>
+                                        </td>
+                                        </tr>                
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
 
                         <?php
                         $init_criteria_label = array();
                         $init_criteria_score = array();
+                        $ems_assessment_score = array();
+                        $ems_assessment_id = array();
+                        $ems_assessment_label = array();
+
 
                         foreach($grades as $key=>$value)
                         {
@@ -298,15 +307,67 @@
                                     $key = $key = array_search($value->criteria, $init_criteria_label);
                                     $init_criteria_score[$key]+=$value->grade;
                                 }
+
+                                if(in_array($value->employee_id, $ems_assessment_id)==false)
+                                {
+                                    array_push($ems_assessment_score, $value->grade);
+                                    array_push($ems_assessment_id, $value->employee_id);
+                                }
+                                else
+                                {
+                                    $key = $key = array_search($value->employee_id, $ems_assessment_id);
+                                    $ems_assessment_score[$key]+=$value->grade;
+                                }
+
                             }
                         }
+                        print_r($ems_assessment_score);
+                        
+
+                        foreach($ems_assessment_id as $key=>$value)
+                        {
+                            $ref_id = $value;
+                            foreach($users as $key=>$value)
+                            {
+                                if($ref_id==$value->id)
+                                {
+                                    $res = $value->first_name . " " . $value->last_name;
+                                    array_push($ems_assessment_label,$res);
+                                }
+                            }
+                        }
+                        print_r($ems_assessment_id);
+                        print_r($ems_assessment_label);
+
+
                         ?>
-                        <canvas id="eum_criteria_chart" width="100" height="100"></canvas>
+                        <button onclick="update_chart(eum_criteria_chart, 'by_criteria')">By Criteria</button>
+                        <button onclick="update_chart(eum_criteria_chart, 'by_employee')">By Employee</button>
+                        <canvas id="eum_criteria_chart" width="100" height="100px"></canvas>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                         <script type="text/javascript">
 
                             var init_criteria_score = <?php echo json_encode($init_criteria_score)?>;
                             var init_criteria_label = <?php echo json_encode($init_criteria_label)?>;
+                            var ems_assessment_score = <?php echo json_encode($ems_assessment_score)?>;
+                            var ems_assessment_label = <?php echo json_encode($ems_assessment_label)?>;
+
+                            function update_chart(target_chart, filter)
+                            {
+                                if(filter=="by_criteria")
+                                {
+                                    target_chart.data.datasets[0].data = init_criteria_score;
+                                    target_chart.data.datasets[0].labels = init_criteria_label;
+                                    target_chart.update();
+                                }
+                                else
+                                {
+                                    target_chart.data.datasets[0].data = ems_assessment_score;
+                                    target_chart.data.datasets[0].labels = ems_assessment_label;
+                                    target_chart.update(); 
+                                }
+                            }
+                            
 
 
                             Chart.defaults.global.maintainAspectRatio = false;
@@ -355,6 +416,20 @@
                             });
                         </script>
 
+
+
+
+                    </div>
+                </div>
+
+            </section>
+        
+       </section>
+
+    </main>
+
+
+    
 @endsection
 
 <style>
