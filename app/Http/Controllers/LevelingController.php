@@ -83,6 +83,28 @@ Class LevelingController extends Controller
             ->groupBy('grades.id')
             ->get();
         // ---------------------------------
+        // Assessment criteria
+        $query2 = DB::select('SELECT a.id, s.name, ai.criteria, AVG(g.grade) as grade from grades g LEFT JOIN assessment_items ai ON g.assessment_item_id = ai.id LEFT JOIN assessments a ON ai.assessment_id = a.id LEFT JOIN skills s ON a.skill_id = s.id GROUP BY ai.id');
+        $counter = 0;
+        $result4 = array();
+
+
+        foreach ($skills as $key => $skill) {
+            $input = "";
+            $temp = array();
+            foreach ($query2 as $key => $q) {
+                if($skill->name == $q->name){
+                    $input .= $q->criteria.":".$q->grade.":";
+                } 
+            }
+            if($input == ""){
+                    $input = "No assessments made:0";
+                }
+            array_push($temp, $skill->name);
+            array_push($temp, $input);
+            array_push($result4, $temp);
+        }
+
         //Training Quiz
         
         $query = DB::select('SELECT sk.name, s.quiz_id, AVG(sa.score) as score, AVG(sa.max_score) as max_score FROM (sections s, skills sk) LEFT JOIN section_attempts sa ON (s.id = sa.section_id)  WHERE s.skill_id = sk.id GROUP BY s.id'); 
@@ -252,6 +274,7 @@ Class LevelingController extends Controller
 						->with('result', $result)
 						->with('result2', $result2)
                         ->with('result3', $result3)
+                        ->with('result4', $result4)
 						->with('mg',$mg);
 				}
 				else // HR
@@ -271,6 +294,7 @@ Class LevelingController extends Controller
             			->with('result', $result)
             			->with('result2', $result2)
                         ->with('result3', $result3)
+                        ->with('result4', $result4)
             			->with('assessments',$assessments)
             			->with('user_assessments',$user_assessments)
             			->with('user_skills',$user_skills)

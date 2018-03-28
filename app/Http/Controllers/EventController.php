@@ -6,6 +6,7 @@ use App\Event;
 use App\Quiz;
 use App\User_Quiz;
 use App\Training;
+use App\Skill;
 use App\User_Training;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,11 +26,16 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
-        $now = date('Y-m-d');
+       
+        
          
-        /*SELECT sk.name, s.quiz_id, AVG(sa.score), AVG(sa.max_score) FROM (sections s, skills sk) LEFT JOIN section_attempts sa ON (s.id = sa.section_id)  WHERE s.skill_id = sk.id GROUP BY s.id; 
+        /*SELECT s.name, ai.criteria, ua.rating FROM (assessments a, skills s) LEFT JOIN assessment_items ai ON (a.id = ai.assessment_id) LEFT JOIN user_assessments ua ON a.id = ua.assessment_id  WHERE a.skill_id = s.id; 
 
-        (SELECT sk.name from sections s, skills sk WHERE s.skill_id = sk.id)*/
+        SELECT s.name, ua.rating FROM (user_assessments ua, skills s) LEFT JOIN assessments a ON a.id = ua.assessment_id WHERE s.id = a.skill_id;
+
+        SELECT s.name AS skill_name, ai.criteria AS criteria, a.id as assessment_id FROM (assessment_items ai, skills s) LEFT JOIN assessments a ON (a.id = ai.assessment_id) WHERE a.skill_id = s.id;
+
+        (SELECT a.id, s.name, ai.criteria, AVG(g.grade) as grade from grades g LEFT JOIN assessment_items ai ON g.assessment_item_id = ai.id LEFT JOIN assessments a ON ai.assessment_id = a.id LEFT JOIN skills s ON a.skill_id = s.id GROUP BY ai.id; */
 
         // load the view and pass the employees
         return View::make('events.index')

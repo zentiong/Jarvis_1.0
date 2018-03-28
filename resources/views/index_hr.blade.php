@@ -445,6 +445,19 @@
                                 @endforeach
                                 </select>
                         </div>
+                        <h5 class="dashboard-header">
+                            <i class="fa fa-paperclip"></i>
+                            Assessment statistics
+                        </h5>
+                        <div class="dashboard-content">
+                            <canvas id="assessment_criteria"></canvas>
+                            <select id="chartACriteria">
+                                <option value="" disabled selected>Select your option</option>
+                            @foreach($result4 as $key => $value)
+                                <option value="{{$value[0]}}|{{$value[1]}}">{{$value[0]}}</option>
+                            @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -708,7 +721,7 @@ $(document).ready(function()
     }
     var numData = 0;
     
-    var chartName = "";
+    
     
 
     var color = Chart.helpers.color;
@@ -718,7 +731,7 @@ $(document).ready(function()
         options: {
             title: {
                 display: true,
-                text: chartName
+                text: []
             },
             scales: {
                 yAxes: [{
@@ -754,7 +767,7 @@ $(document).ready(function()
         
         var datasetName = [];
         var input = res[2];   
-        chartName = res[0];
+        myChart.options.title.text = res[0];
         var segmented = input.split(":");
         var z = 0;
 
@@ -774,6 +787,82 @@ $(document).ready(function()
             temp.push(newDataset);
 
             z = z +3;
+
+        }
+        horizontalBardata.datasets = temp;
+        
+        myChart.update();
+    });     
+
+});
+</script>
+
+<!-- script for Assessment Criteria Stats -->
+<script type="text/javascript">
+$(document).ready(function() 
+ {
+    var ctx = document.getElementById("assessment_criteria").getContext('2d');
+    var horizontalBardata = {
+        labels: [],
+        datasets: []
+    }
+    
+    var color = Chart.helpers.color;
+    var myChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: horizontalBardata,
+        options: {
+            title: {
+                display: true,
+                text: []
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }],
+                 xAxes: [{
+                    ticks: {
+                       min: 0,
+                       max: 5    
+                    }              
+                }]
+            }
+        }
+    });
+   
+
+        
+    var colorNames = Object.keys(chartColors);
+
+    document.getElementById('chartACriteria').addEventListener('change', function(){
+        var temp = [];
+             
+        var res = $("#chartACriteria").val().split("|");
+        
+        var datasetName = [];
+        var input = res[1];   
+        myChart.options.title.text = res[0];
+        var segmented = input.split(":");
+        var z = 0;
+
+        for(var i=0; i<(parseInt(segmented.length/2)); i++){
+            var colorName = colorNames[temp.length % colorNames.length];
+            var dsColor = chartColors[colorName];  
+            datasetName = segmented[z];
+            
+            var newDataset = {
+                label: [datasetName],
+                backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+                borderColor: dsColor,
+                data: []
+            }
+
+            newDataset.data.push(segmented[z+1]);
+            temp.push(newDataset);
+
+            z = z +2;
 
         }
         horizontalBardata.datasets = temp;
