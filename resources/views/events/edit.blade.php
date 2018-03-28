@@ -54,7 +54,7 @@
 
                 <div class="form-group text-center create-bottom-wrapper">
                     <a href="{{ URL::to('events') }}" class="btn cancel-btn">Cancel</a>
-                    {{ Form::submit('Edit Training Session', array('class' => 'btn btn-primary create-btn text-center')) }}
+                    {{ Form::submit('Save changes', array('class' => 'btn btn-primary create-btn text-center')) }}
                 </div>
                 
             {{ Form::close() }}

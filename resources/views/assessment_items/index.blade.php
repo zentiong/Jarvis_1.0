@@ -6,7 +6,11 @@
             <div class="row crud-page-top">
                  @foreach($skills as $key => $skill)
                             @if($skill->id == $assessment->skill_id)
-                                <h1 class="crud-page-title">Assessment for: {{$skill->name}}</h1>
+                            <div>
+                                <h1 class="crud-page-title">Assessment for: </h1>
+                                <h5>{{$skill->name}}</h5>
+                            </div>
+                                
                               
                                 
                             @endif
@@ -19,11 +23,6 @@
         @if (Session::has('message'))
             <div class="alert alert-info">{{ Session::get('message') }}</div>
         @endif
-
-         
-         <br>
-         <br>
-
             <table class="table table-striped table-bordered">
             <thead>
                 <tr>

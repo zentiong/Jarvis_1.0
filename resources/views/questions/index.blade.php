@@ -6,9 +6,9 @@
         <section class="row crud-page-top">
             <div>
                 <h1 class="crud-page-title">Questions</h1> 
-                <h6>Quiz Topic: {{ $quiz->topic }}</h6>
+                <h5>Quiz Topic: {{ $quiz->topic }}</h5>
             </div>
-            <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn">Back to Quizzes</a>
+            <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn">Back to All Quizzes</a>
         </section>
         @if (Session::has('message'))
             <div class="alert alert-info">{{ Session::get('message') }}</div>

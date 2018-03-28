@@ -22,7 +22,7 @@
                     $pp = asset( 'images/profile_photos/default.png');
                 }
             ?>
-            <h2>{{ $user->first_name }} {{ $user->last_name }}</h2>
+            <h1 class="crud-page-title">Employee</h1>
             <a href="{{ URL::to('users') }}" class="btn cancel-btn">Back to All Employees</a>
         </section>
         <section class="container dashboard-container">
@@ -32,9 +32,9 @@
                         <strong>Details</strong>
                     </h6>
                     <div class="row">
-                        <div class="col-md-6">
-                            <p><strong>Profile picture:</strong></p>
-                            <div class="img-circle profile-picture" style="background-image: url('{{ $pp }}')" alt="Your profile picture"></div>
+                        <div class="col-md-6 flex-column-center">
+                            <div class="img-circle profile-picture" style="background-image: url('{{ $pp }}')" alt="Your profile picture"></div><br>
+                            <h4>{{ $user->first_name }} {{ $user->last_name }}</h4>
                         </div>
                         <div class="col-md-6">
                             <p><strong>Email address:</strong> {{ $user->email }}</p>

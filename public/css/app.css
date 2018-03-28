@@ -31,6 +31,8 @@ a { text-decoration: none !important; }
 
 .nav-opener { background: transparent; }
 
+.flex-column-center { display: flex; flex-flow: column nowrap; align-items: center; justify-content: center; }
+
 body.newsletter { background-color: #2F2F2F; color: #ebebeb; font-family: "Apercu Regular", sans-serif; padding-top: 70px; position: relative; font-size: 85%; }
 body.newsletter i.fa { margin-right: 0.8em; }
 body.newsletter .branding { border: 2px solid #F8E71C; color: #F8E71C; font-family: "Apercu Regular", sans-serif; font-size: 1.25em; padding: 0 5px; }
@@ -84,7 +86,7 @@ body.newsletter .quick-links-container .quick-link span { color: #B9B9B6; }
 body.newsletter .quick-links-container .quick-link:hover { background-color: #3d3d3d; -webkit-transition: background-color 0.3s; transition: background-color 0.3s; }
 body.newsletter #services-container .hr-service-label { color: #F8E71C; font-family: "Apercu Regular", sans-serif; font-size: 1.25rem; text-transform: uppercase; }
 body.newsletter #services-container .service-label-container { display: flex; flex-flow: row nowrap; align-items: center; }
-body.newsletter #services-container .hr-service { background-color: #1F1F1F; border: 1px solid #f9f9f9; border-right: 15px solid #F8E71C !important; margin: 20px auto; padding: 5px 5px; }
+body.newsletter #services-container .hr-service { background-color: #1F1F1F; border: 1px solid #959595; border-right: 15px solid #F8E71C !important; margin: 20px auto; padding: 5px 5px; }
 body.newsletter #services-container .hr-service .link-wrapper { display: flex; flex-flow: row nowrap; align-items: center; }
 body.newsletter #services-container .hr-service img { margin: auto 20px; min-width: 35px; }
 body.newsletter #services-container .hr-service .text { margin-right: 15px; }
@@ -129,7 +131,7 @@ body.newsletter #hr-corp-container .hr-corp-row .hr-corp-single { margin: 1em 0.
 body.newsletter #hr-corp-container .hr-corp-row .hr-corp-single img { width: 120px; margin-bottom: 1em; }
 body.newsletter #hr-corp-container .hr-corp-row .hr-corp-single .label h6 { color: #F8E71C; font-weight: bold; }
 body.newsletter #hr-corp-container .hr-corp-row .hr-corp-single .label small { display: block; line-height: 1.2; }
-body.newsletter footer { margin-top: 10em; width: 100%; background-color: #000; color: #f9f9f9; font-family: 'Open Sans', sans-serif; font-weight: 100; padding: 1em 5em; line-height: 1.4; }
+body.newsletter footer { margin-top: 10em; width: 100%; background-color: #000; color: #959595; font-family: 'Open Sans', sans-serif; font-weight: 100; padding: 1em 5em; line-height: 1.4; }
 body.newsletter footer b { color: #54749A; }
 body.newsletter #services-container .hr-service:hover, body.newsletter #services-container .other-service:hover, body.newsletter #policy-container .policy:hover { cursor: pointer; background-color: #3d3d3d; -webkit-transition: background-color 0.3s; transition: background-color 0.3s; }
 
@@ -178,6 +180,21 @@ body.dashboard main .dashboard-container .trainings-box .going-state { font-size
 body.dashboard main .dashboard-container .trainings-box .going-state.dark { color: #1F1F1F; }
 body.dashboard main .dashboard-container .trainings-box .going-state.light { color: #ebebeb; }
 body.dashboard main .dashboard-container .trainings-box:last-child { border-bottom: none; }
+body.dashboard main .show-training-details { justify-content: center; padding: 0 !important; }
+body.dashboard main .show-training-details * { margin: 0; }
+body.dashboard main .show-training-details .col-md-6:first-child { background-color: #1F496A; }
+body.dashboard main .show-training-details .col-md-6:last-child { padding-left: 0; }
+body.dashboard main .show-training-details .training-title { border-bottom: 2px solid #ebebeb; color: #fff; font-weight: lighter; margin-bottom: 1em; padding: 0.5em; }
+body.dashboard main .show-training-details .row { align-items: center; border-bottom: 1px solid #BDBDBD; justify-content: space-evenly; padding: 0.8em !important; }
+body.dashboard main .show-training-details .row div { width: 50%; }
+body.dashboard main .show-training-details .row h6 { font-weight: bold; margin-bottom: 5px; }
+body.dashboard main .show-training-details .row small { color: #1F496A; text-transform: uppercase; }
+body.dashboard main .show-training-details .row.time div { display: inline-flex; }
+body.dashboard main .show-training-details .row.time div span { margin: 0 1em; }
+body.dashboard main .show-training-details .row.time div .start-time { color: #28a745; }
+body.dashboard main .show-training-details .row.time div .end-time { color: #F80000; }
+body.dashboard main .show-training-details i { color: #28a745; font-size: 2rem; }
+body.dashboard main .show-training-details .row:last-child { border-bottom: none; }
 body.dashboard main canvas { height: 300px !important; }
 body.dashboard main .hr-pastel { background-color: #FFFDF9; }
 body.dashboard main .mg-pastel { background-color: #FFF9F9; }
@@ -221,7 +238,7 @@ body.dashboard .create-bottom-wrapper { margin-top: 3em; display: flex; flex-flo
 body.dashboard .create-bottom-wrapper > * { margin: auto 1em; width: 200px; }
 body.dashboard .cancel-btn { border: 1px solid; border-radius: 2px; }
 body.dashboard .modal-footer.create-bottom-wrapper { margin-top: 0; }
-body.dashboard .question-btn { border: 1px solid #f9f9f9; font-size: 0.8em; }
+body.dashboard .question-btn { border: 1px solid #959595; font-size: 0.8em; }
 body.dashboard footer { margin-top: 20em; width: 100%; border-top: 1px solid #ebebeb; background-color: #fff; color: #BDBDBD; font-family: 'Open Sans', sans-serif; padding: 1em 5em; line-height: 1.4; }
 body.dashboard footer b { color: #54749A; }
 @media (max-width: 1000px) { body.dashboard #navigation #navOpener { display: inline; }

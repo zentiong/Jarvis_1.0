@@ -3,23 +3,57 @@
 
 @section('body')
 <main class="container create-page">
-  <section class="crud-page-top">
-      <h1 class="crud-page-title">Showing Training</h1>
-      <h5>{{ $training->title }}</h5>
+  <section class="row crud-page-top">
+      <div>
+        <h1 class="crud-page-title">Training</h1>
+      </div>
+      <a href="{{ URL::to('trainings') }}" class="btn cancel-btn">Back to All Trainings</a>
   </section>
   <section class="container dashboard-container">
     <div class="row dashboard-body">
         <div class="dashboard-content">
-            <h6 class="content-header light">
-                <strong>{{ $training->title }}</strong>
-            </h6>
-            <div class="row">
-                <div class="col-md-12"><center>
-                    <strong>Date:</strong> {{ $training->date }}<br>
-                    <strong>Starting Time:</strong> {{ $training->starting_time }}<br>
-                    <strong>Ending Time:</strong> {{ $training->ending_time }}<br>
-                    <strong>Speaker:</strong> {{ $training->speaker }}<br>
-                    <strong>Venue:</strong> {{ $training->venue }}<br></center>
+            
+            <div class="row show-training-details">
+                <div class="col-md-6 flex-column-center">
+                  <h5 class="training-title">{{ $training->title }}</h5>
+                </div>
+                
+                <div class="col-md-6">
+                  <div class="row date">
+                    <i class="fa fa-calendar-o"></i>
+                    <div class="text-center">
+                      <h6>{{ date('F d, Y', strtotime($training->date)) }}</h6>
+                      <small>DATE</small>
+                    </div>
+                  </div>
+                  <div class="row time">
+                    <i class="fa fa-clock-o"></i>
+                    <div class="text-center">
+                      <span>
+                        <h6>{{ date('h:i A', strtotime($training->starting_time)) }}</h6>
+                        <small class="start-time">START</small>
+                      </span>
+                      &nbsp;&ndash;
+                      <span>
+                        <h6>{{ date('h:i A', strtotime($training->ending_time)) }}</h6>
+                        <small class="end-time">END</small>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row speaker">
+                    <i class="fa fa-id-card"></i>
+                    <div class="text-center">
+                      <h6>{{ $training->speaker }}</h6>
+                      <small>SPEAKER</small>
+                    </div>
+                  </div>
+                  <div class="row venue">
+                    <i class="fa fa-flag"></i>
+                    <div class="text-center">
+                      <h6>{{ $training->venue }}</h6>
+                      <small>VENUE</small>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>

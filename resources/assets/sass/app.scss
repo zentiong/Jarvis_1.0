@@ -60,6 +60,13 @@ a {
 	background: transparent;
 }
 
+.flex-column-center {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+}
+
 body.newsletter {
 	background-color: $newsletter-bg;
 	color: $white-2;
@@ -971,6 +978,72 @@ body.dashboard {
 			}	
 		}
 
+		.show-training-details {
+			justify-content: center;
+			padding: 0 !important;
+
+			* {
+				margin: 0
+			}
+
+			.col-md-6:first-child {
+				background-color: $table-action-static;
+			}
+			.col-md-6:last-child {
+				padding-left: 0;
+			}
+
+			.training-title {
+				border-bottom: 2px solid $white-2;
+				color: $white-1;
+				font-weight: lighter;
+				margin-bottom: 1em;
+				padding: 0.5em;
+			}
+
+			.row {
+				align-items: center;
+				border-bottom: 1px solid $white-3;
+				justify-content: space-evenly;
+				padding: 0.8em !important;
+
+				div {
+					width: 50%;
+				}
+
+				h6 {
+					font-weight: bold;
+					margin-bottom: 5px;
+				}
+				small {
+					color: $table-action-static;
+					text-transform: uppercase;
+				}
+			}
+			.row.time {
+				div {
+					display: inline-flex;
+					span {
+						margin: 0 1em;
+					}
+					.start-time {
+						color: $table-show-green;
+					}
+					.end-time {
+						color: $table-delete-red;
+					}
+				}	
+			}
+
+			i {
+				color: $table-show-green;
+				font-size: 2rem;
+			}
+			.row:last-child {
+				border-bottom: none;
+			}
+		}
+
 		canvas {
 			height: 300px !important;
 		}
@@ -1104,7 +1177,7 @@ body.dashboard {
 
 		i {
 			align-self: center;
-			background-color: $white-5;
+			background-color: $white-6;
 			border: 1px solid $gray-2;
 			border-right: 0;
 			border-top-left-radius: 5px;

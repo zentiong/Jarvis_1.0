@@ -4,7 +4,11 @@
 
     <main class="container create-page">
         <section class="row crud-page-top">
-            <h1 class="crud-page-title">Edit {{ $quiz->topic }}</h1>
+            <div>
+                <h1 class="crud-page-title">Edit quiz</h1>
+                <h5>Quiz Topic: {{ $quiz->topic }}</h5>
+            </div>
+            
         </section>
         <section>
             <!-- if there are creation errors, they will show here -->
