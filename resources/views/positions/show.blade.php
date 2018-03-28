@@ -15,6 +15,9 @@
                 <p>
                     <strong>Position name:</strong> {{ $position->name }}<br>
                     <strong>Current Employees:</strong><br>
+                    @foreach($users as $key=>$user)
+                        {{$user->first_name}} {{$user->last_name}}<br>
+                    @endforeach
                 </p>
             </div>
         </section>

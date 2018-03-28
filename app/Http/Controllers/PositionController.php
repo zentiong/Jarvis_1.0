@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Position;
 use App\Job_Grade;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
@@ -87,9 +88,11 @@ class PositionController extends Controller
     public function show($id)
     {
         $position = Position::find($id);
+        $users = User::where('position', $position->name)->get();
 
         // show the view and pass the user to it
         return View::make('positions.show')
+            ->with('users', $users)
             ->with('position', $position);
     }
 
