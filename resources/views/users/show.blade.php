@@ -23,7 +23,7 @@
                 }
             ?>
             <h2>{{ $user->first_name }} {{ $user->last_name }}</h2>
-            <a href="{{ URL::to('levels') }}" class="btn cancel-btn">Back to Dashboard</a>
+            <a href="{{ URL::to('users') }}" class="btn cancel-btn">Back to All Employees</a>
         </section>
         <section class="container dashboard-container">
             <div class="row dashboard-body">

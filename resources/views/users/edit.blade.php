@@ -4,7 +4,10 @@
 
     <main class="container create-page">
         <section class="row crud-page-top">
-            <h1 class="crud-page-title">Edit {{ $user->first_name }} {{ $user->last_name }}</h1>
+            <div>
+                <h1 class="crud-page-title">Edit employee details</h1>
+                <h5>Showing: {{ $user->first_name }} {{ $user->last_name }}</h5>
+            </div>
         </section>
         <section>
             <!-- if there are creation errors, they will show here -->
@@ -85,16 +88,18 @@
                     </div>
                 </div>
                 
-                <!-- Supervisor ID -->
-                {{ Form::label('supervisor_id', 'Supervisor') }}
-                <select id="supervisor_id" class="form-control" name="supervisor_id">
-                    @foreach($users as $key => $value)
-                    <option value="<?php echo $value->id ?>">
-                        {{$value->first_name}} {{$value->last_name}}
-                    </option>
-                    @endforeach
-                </select>
-
+                <div class="form-group">
+                    <!-- Supervisor ID -->
+                    {{ Form::label('supervisor_id', 'Supervisor') }}
+                    <select id="supervisor_id" class="form-control" name="supervisor_id">
+                        @foreach($users as $key => $value)
+                        <option value="<?php echo $value->id ?>">
+                            {{$value->first_name}} {{$value->last_name}}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+                
                 <!-- Manager? -->
                 <div class="form-group">
                     {{ Form::label('manager_check', 'Manager?') }}

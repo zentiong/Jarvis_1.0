@@ -127,16 +127,6 @@
             </div>
           </div>
         </div>
-        <p><?php 
-            $key = 'asdfasd';
-            
-        
-        $temp = array_keys(array_column($query, 'quiz_id'), '8');
-        print_r($temp);
-        print_r($result);
-        
-        
-        ?></p>
     </main>
 
 @endsection

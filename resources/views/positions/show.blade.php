@@ -2,15 +2,25 @@
 
 @section('body')
 
-<h1>Information about {{ $position->name }} </h1>
+    <main class="container create-page">
+        <section class="row crud-page-top">
+            <div>
+                <h1 class="crud-page-title">Information about position</h1>
+                <h5>Showing: {{ $position->name }}</h5>
+            </div>
+            <a href="{{ URL::to('positions') }}" class="btn cancel-btn">Back to All Positions</a>
+        </section>
+        <section>
+             <div class="jumbotron text-center">
+                <p>
+                    <strong>Position name:</strong> {{ $position->name }}<br>
+                    <strong>Current Employees:</strong><br>
+                </p>
+            </div>
+        </section>
+    </main>
 
-    <div class="jumbotron text-center">
-        <p>
-            <strong>Name:</strong> {{ $position->name }}<br>
-            <strong>Current Employees:</strong><br>
-            
-        </p>
-    </div>
+   
 
 @endsection
 

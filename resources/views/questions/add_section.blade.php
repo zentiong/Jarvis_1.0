@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="form-group text-center create-bottom-wrapper">
-                    <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn">Cancel</a>
+                    <a href="{{ url()->previous() }}" class="btn cancel-btn">Cancel</a>
                     {{ Form::submit('Add Section', array('class' => 'btn btn-primary create-btn text-center')) }}
                 </div>
                 

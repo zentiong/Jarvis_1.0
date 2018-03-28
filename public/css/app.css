@@ -138,9 +138,9 @@ body.dashboard .branding { border: 2px solid #000; color: #000; font-family: "Ap
 body.dashboard nav { display: flex; flex-flow: row nowrap; align-items: center; padding: 0 10px; position: fixed; top: 0; width: 100%; background-color: #fff; border-bottom: 1px solid #95989A; }
 body.dashboard nav button { display: none; }
 body.dashboard nav ul { list-style-type: none; margin: 0; padding: 0; display: flex; align-items: center; height: 3.4em; }
-body.dashboard nav ul li { display: inline; margin: 0 1.1em; }
-body.dashboard nav ul li a { color: #000; font-family: "Apercu Regular", sans-serif; font-size: 1em; }
-body.dashboard nav .active { border-top: 4px solid #000; color: #000; font-weight: 600; padding: 0.8em 0; }
+body.dashboard nav ul li { display: inline; margin: 0 1em; }
+body.dashboard nav ul li a { color: #000; font-family: "Apercu Regular", sans-serif; font-size: 13px; }
+body.dashboard nav .active { border-top: 4px solid #000; color: #000; font-weight: 600; padding: 0.9em 0; }
 body.dashboard nav .open { display: block !important; position: relative; top: 20px; padding: 0.5em; text-align: center; width: 100%; z-index: 10; background-color: #fff; }
 body.dashboard .login-button { text-align: right; margin-left: auto; margin-top: 5px; margin-bottom: 5px; display: flex; flex-flow: row nowrap; align-items: center; }
 body.dashboard .login-button .current-username { font-family: Roboto, sans-serif; font-weight: 500; font-size: 0.9em; margin-bottom: 2px; }

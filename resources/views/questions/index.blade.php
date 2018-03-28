@@ -10,17 +10,18 @@
             </div>
             <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn">Back to Quizzes</a>
         </section>
+        @if (Session::has('message'))
+            <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
         <hr>
         <section>
             <!-- will be used to show any messages -->
-            @if (Session::has('message'))
-                <div class="alert alert-info">{{ Session::get('message') }}</div>
-            @endif
+            
 
              <!-- 
              <a href="{{ URL::to('quizzes/'.$quiz->quiz_id.'/questions/create') }}" style="float: right;">Add a Question</a>
              -->
-            <a href="{{ URL::to('quizzes/'.$quiz->quiz_id.'/add_section') }}" class="btn crud-sub-cta">&#43; Add section</a>
+            <a href="{{ URL::to('quizzes/'.$quiz->quiz_id.'/add_section') }}" class="btn crud-main-cta">&#43; Add section</a>
             <br>
                 <?php 
                 $quiz_id = $quiz->quiz_id;
@@ -162,12 +163,9 @@
                                     {{ Form::label('choice_4', '4th Choice') }}
                                     {{ Form::text('choice_4', Request::old('choice_4'), array('class' => 'form-control')) }}
                                 </div>
-
-
-
                               </div>
                               <div class="modal-footer create-bottom-wrapper">
-                                 <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
+                                 <a href="{{ URL::to('quizzes/' . $value->quiz_id . '/questions') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
                                  {{ Form::submit('Add Question', array('class' => 'btn btn-primary create-btn text-center')) }}
                               </div>
                               {{ Form::close() }}
