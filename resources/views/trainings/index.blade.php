@@ -80,7 +80,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                {{ Form::open(array('url' => 'trainings')) }}
+                {{ Form::open(array('url' => 'trainings', 'id' => 'finalizeBtn')) }}
                 
                 <div class="form-group">
                     {{ Form::label('title', 'Title') }}
@@ -114,7 +114,7 @@
               </div>
               <div class="modal-footer create-bottom-wrapper">
                 <a href="{{ URL::to('trainings') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
-                {{ Form::submit('Create training session', array('class' => 'btn btn-primary create-btn text-center')) }}
+                {{ Form::submit('Create training session', array('class' => 'btn btn-primary create-btn text-center', 'id' => 'submitBtn')) }}
               </div>
               {{ Form::close() }}
             </div>
@@ -132,9 +132,10 @@
         var a = document.getElementById('training-sessions');
         a.classList.toggle("active");
         // prevents multiple form submissions
-        $("input[type='submit'], button[type='submit']").click(function() {
-            $(this).closest('form').submit();
-            // $(this).attr('disabled','disabled');            
+        // $("input[type='submit'], button[type='submit']"
+        // let element = document.querySelectorAll('btn, input, form');
+        $("#finalizeBtn").on('submit', function() {
+            $('#submitBtn').attr('disabled','true');
         });
     });
 
