@@ -426,6 +426,19 @@
                             @endforeach
                             </select>
                         </div>
+                        <h5 class="dashboard-header">
+                            <i class="fa fa-pie-chart"></i>
+                            Training Quiz Statistics
+                        </h5>
+                        <div class="dashboard-content">
+                                <canvas id="training_quiz"></canvas>
+                                <select id="chartTQuiz">
+                                    <option value="" disabled selected>Select your option</option>
+                                @foreach($result3 as $key => $value)
+                                    <option value="{{$value[0]}}|{{$value[1]}}|{{$value[2]}}">{{$value[0]}}</option>
+                                @endforeach
+                                </select>
+                        </div>
                     </div>
                 </div>
 
@@ -542,7 +555,8 @@
     <script src="{{asset('js/Chart.bundle.js')}}"></script>
     <script src="{{asset('js/utils.js')}}"></script>
     <script type="text/javascript">
-        
+    $(document).ready(function() 
+        {
         var ctx = document.getElementById("training_attendance").getContext('2d');
         var color = Chart.helpers.color;
         var horizontalBardata = {
@@ -581,7 +595,6 @@
                 backgroundColor: color(dsColor).alpha(0.5).rgbString(),
                 borderColor: dsColor,
                 data: []
-
             }
             
             newDataset.data.push(numData);
@@ -630,7 +643,8 @@
                     }],
                      xAxes: [{
                         ticks: {
-                            beginAtZero:true
+                            min: 0,
+                            max: 5
                         }
                     }]
                 }
@@ -676,3 +690,90 @@
        
     });
     </script>
+
+<!-- script for Training Quiz Stats -->
+<script type="text/javascript">
+$(document).ready(function() 
+ {
+    var ctx = document.getElementById("training_quiz").getContext('2d');
+    var horizontalBardata = {
+        labels: [],
+        datasets: []
+    }
+    var numData = 0;
+    
+    var chartName = "";
+    
+
+    var color = Chart.helpers.color;
+    var myChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: horizontalBardata,
+        options: {
+            title: {
+                display: true,
+                text: chartName
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }],
+                 xAxes: [{
+                    ticks: {
+                       min: 0,
+                       max: 100,
+                       callback: function(value) {
+                           return value + "%"
+                            }
+                       },
+                       scaleLabel: {
+                           display: true,
+                           labelString: "Percentage"
+                       }                    
+                }]
+            }
+        }
+    });
+   
+
+        
+    var colorNames = Object.keys(chartColors);
+
+    document.getElementById('chartTQuiz').addEventListener('change', function(){
+        var temp = [];
+             
+        var res = $("#chartTQuiz").val().split("|");
+        
+        var datasetName = [];
+        var input = res[2];   
+        chartName = res[0];
+        var segmented = input.split(":");
+        var z = 0;
+
+        for(var i=0; i<(parseInt(segmented.length/3)); i++){
+            var colorName = colorNames[temp.length % colorNames.length];
+            var dsColor = chartColors[colorName];  
+            datasetName = segmented[z];
+            var percentage = parseFloat(segmented[z+1]/segmented[z+2])*100;
+            var newDataset = {
+                label: [datasetName],
+                backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+                borderColor: dsColor,
+                data: []
+            }
+
+            newDataset.data.push(percentage);
+            temp.push(newDataset);
+
+            z = z +3;
+
+        }
+        horizontalBardata.datasets = temp;
+        
+        myChart.update();
+    });     
+
+});
+</script>

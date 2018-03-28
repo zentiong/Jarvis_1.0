@@ -8,6 +8,7 @@ use App\User_Quiz;
 use App\Training;
 use App\User_Training;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
@@ -25,42 +26,13 @@ class EventController extends Controller
     {
         $events = Event::all();
         $now = date('Y-m-d');
-        $trainings2 = Training::all();//where('date', '<', $now)->get();
-        $user_t = array();
-        $result = array();
-       
-        $counter = 0;
-       
-        //Training Rating
-        foreach($trainings2 as $key => $training) {
-            $user_temp = User_Training::where('training_id',$training->id)->get(); 
-            $i = 0;
-            $rating_t = 0;
-            $rating_s = 0;
+         
+        /*SELECT sk.name, s.quiz_id, AVG(sa.score), AVG(sa.max_score) FROM (sections s, skills sk) LEFT JOIN section_attempts sa ON (s.id = sa.section_id)  WHERE s.skill_id = sk.id GROUP BY s.id; 
 
-            foreach ($user_temp as $key => $value) {
-                $rating_t += $value->rating_training;
-                $rating_s += $value->rating_speaker;
-                $i++;
-            }
-            
-            $result[$counter][0] = $training->title;
-            if($i != 0){
-                $result[$counter][1] = $rating_t/$i;
-                $result[$counter][2] = $rating_s/$i;
-            }
-            else{
-                $result[$counter][1] = 0;
-                $result[$counter][2] = 0;
-            }
-            
-            $counter++;
-        }
-                
+        (SELECT sk.name from sections s, skills sk WHERE s.skill_id = sk.id)*/
 
         // load the view and pass the employees
         return View::make('events.index')
-            ->with('result', $result)
             ->with('events', $events);
     }
 

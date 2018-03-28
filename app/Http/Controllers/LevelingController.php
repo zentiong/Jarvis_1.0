@@ -83,6 +83,42 @@ Class LevelingController extends Controller
             ->groupBy('grades.id')
             ->get();
         // ---------------------------------
+        //Training Quiz
+        
+        $query = DB::select('SELECT sk.name, s.quiz_id, AVG(sa.score) as score, AVG(sa.max_score) as max_score FROM (sections s, skills sk) LEFT JOIN section_attempts sa ON (s.id = sa.section_id)  WHERE s.skill_id = sk.id GROUP BY s.id'); 
+
+        $result3 = array();
+       
+        $counter = 0;
+
+       
+        foreach($trainings2 as $key => $training) {
+            $quiz_temp = Quiz::where('training_id',$training->id)->first();
+            $result3[$counter][0] = $training->title;
+            if(!is_null($quiz_temp)){
+                $result3[$counter][1] = $quiz_temp->quiz_id;    
+            } else {
+                $result3[$counter][1] = "No quiz made";
+            }
+            
+            $counter++;
+        }
+        
+
+        $counter = 0;
+        foreach ($result3 as $key => $value) {
+           $temp = array_keys(array_column($query, 'quiz_id'), $value[1]);
+            if(!empty($temp)){
+                $input = "";
+                foreach ($temp as $key => $section) {
+                    $input .= $query[$section]->name.':'.$query[$section]->score.':'.$query[$section]->max_score.':';
+                }
+               $result3[$counter][2] = $input;
+            } else {
+              $result3[$counter][2] = 'No Quiz:0:0';
+            } 
+             $counter++;
+        }
 
         //Training evals
         $user_t = array();
@@ -215,6 +251,7 @@ Class LevelingController extends Controller
 						->with('now', $now)
 						->with('result', $result)
 						->with('result2', $result2)
+                        ->with('result3', $result3)
 						->with('mg',$mg);
 				}
 				else // HR
@@ -233,6 +270,7 @@ Class LevelingController extends Controller
             			->with('skills', $skills)
             			->with('result', $result)
             			->with('result2', $result2)
+                        ->with('result3', $result3)
             			->with('assessments',$assessments)
             			->with('user_assessments',$user_assessments)
             			->with('user_skills',$user_skills)

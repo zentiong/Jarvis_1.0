@@ -30,96 +30,6 @@
             @if (Session::has('message'))
                 <div class="alert alert-info">{{ Session::get('message') }}</div>
             @endif
-          
-            <canvas id="training_evals"></canvas>
-            
-
-            <select id="chartType">
-                <option value="" disabled selected>Select your option</option>
-            @foreach($result as $key => $value)
-                <option value="{{$value[1]}}|{{$value[0]}}|{{$value[2]}}">{{$value[0]}}</option>
-            @endforeach
-            </select>
-                     
-            <script src="{{asset('js/Chart.bundle.js')}}"></script>
-            <script src="{{asset('js/utils.js')}}"></script>
-            <script src="{{asset('js/analytics.js')}}"></script>
-            <script type="text/javascript">
-            $(document).ready(function() 
-             {
-                var ctx = document.getElementById("training_evals").getContext('2d');
-                var horizontalBardata = {
-                    labels: [],
-                    datasets: []
-                }
-                var color = Chart.helpers.color;
-                window.onload = function(){
-                    window.myChart = new Chart(ctx, {
-                    type: 'horizontalBar',
-                    data: horizontalBardata,
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero:true
-                                }
-                            }],
-                             xAxes: [{
-                                            ticks: {
-                                                beginAtZero:true
-                                            }
-                                        }]
-                        }
-                    }
-                });
-               
-          
-                    
-                    var colorNames = Object.keys(window.chartColors);
-                    var numData = 0;
-                    var numData2= 0;
-                    var datasetName = "";
-
-
-                    document.getElementById('chartType').addEventListener('change', function(){
-                        var res = $("#chartType").val().split("|");
-                        numData = parseFloat(res[0]);
-                        numData2 = parseFloat(res[2]);
-                        datasetName = res[1];
-
-                        var newDataset = {
-                            label: "Training Rating",
-                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                                            
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            data: []
-                        }
-
-                        newDataset.data.push(numData);
-                        horizontalBardata.datasets[0] =newDataset;
-
-                        
-
-                        var newDataset2 = {
-                            label: "Speaker Rating",
-                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            data: []
-
-                        }
-                        
-                        newDataset2.data.push(numData2);
-
-                        horizontalBardata.labels[0] = datasetName;
-
-                        
-                        horizontalBardata.datasets[1] = newDataset2;
-                        window.myChart.update();
-                    });     
-                };
-            });
-            </script>
-
 
             <table class="table table-striped table-bordered">
                 <thead>
@@ -217,7 +127,16 @@
             </div>
           </div>
         </div>
-        <p><?php print_r($result)?></p>
+        <p><?php 
+            $key = 'asdfasd';
+            
+        
+        $temp = array_keys(array_column($query, 'quiz_id'), '8');
+        print_r($temp);
+        print_r($result);
+        
+        
+        ?></p>
     </main>
 
 @endsection
