@@ -52,5 +52,10 @@
         console.log('jQuery is defined!');
     }
 
+    // prevents multiple form submissions
+        $("form").on('submit', function() {
+            $('.btn.create-btn, button.delete-btn, .btn.sign-up-btn, .btn.take-quiz-btn').attr('disabled','true');
+        });
+
 </script>
 </html>

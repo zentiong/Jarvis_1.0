@@ -90,7 +90,7 @@
 
                                 <!-- edit this quiz (uses the edit method found at GET /quizzes/{id}/edit -->
                                 <!-- -->
-                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit employee" href="{{ URL::to('quizzes/'.$quiz->quiz_id.'/questions/'.$value->id.'/edit') }}">
+                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit question item" href="{{ URL::to('quizzes/'.$quiz->quiz_id.'/questions/'.$value->id.'/edit') }}">
                                     <i class="fa fa-pencil fa-lg"></i>
                                 </a>
 
@@ -99,7 +99,7 @@
                                 {{ Form::open(array('url' => 'quizzes/'.$quiz->quiz_id.'/questions/' . $value->id, 'class' => 'pull-right')) }}
                                     {{ Form::hidden('_method', 'DELETE') }}
                                     
-                                    <div data-toggle="tooltip" data-placement="bottom" title="Remove question">
+                                    <div data-toggle="tooltip" data-placement="bottom" title="Remove question item">
                                         {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'Remove', 'class' => 'btn delete-btn')) }}
                                     </div>
                                  {{ Form::close() }}
@@ -167,7 +167,7 @@
 
                               </div>
                               <div class="modal-footer create-bottom-wrapper">
-                                 <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn">Cancel</a>
+                                 <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
                                  {{ Form::submit('Add Question', array('class' => 'btn btn-primary create-btn text-center')) }}
                               </div>
                               {{ Form::close() }}

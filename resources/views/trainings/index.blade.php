@@ -131,12 +131,6 @@
     $(document).ready(function() {
         var a = document.getElementById('training-sessions');
         a.classList.toggle("active");
-        // prevents multiple form submissions
-        // $("input[type='submit'], button[type='submit']"
-        // let element = document.querySelectorAll('btn, input, form');
-        $("#finalizeBtn").on('submit', function() {
-            $('#submitBtn').attr('disabled','true');
-        });
     });
 
     // enables Bootstrap tooltips
