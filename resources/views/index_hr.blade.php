@@ -150,7 +150,7 @@
                         <div class="row dashboard-header">
                             <h5>
                                 <i class="fa fa-line-chart"></i>
-                                Overall training statistics
+                                Training Details
                             </h5>
                             <a class="crud-sub-cta" href="trainings/create">&#43; Add Training</a>
                         </div>
