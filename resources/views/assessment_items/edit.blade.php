@@ -4,7 +4,7 @@
 	<main class="container create-page">
 		<section class="row crud-page-top">
 			<h1 class="crud-page-title">Edit {{ $assessment->criteria }}</h1>
-			<a href="{{ ur()->previous() }}" class="btn cancel-btn">Go Back</a>
+			<a href="{{ url()->previous() }}" class="btn cancel-btn">Go Back</a>
 		</section>
 		<section>
 			<!-- if there are creation errors, they will show here -->

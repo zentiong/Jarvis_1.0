@@ -355,9 +355,13 @@ class AssessmentController extends Controller
          // get the assessment
         $assessment = Assessment::find($id);
 
+        $skills = Skill::all();
+       
+
         // show the edit form and pass the assessment
         return View::make('assessments.edit')
-            ->with('assessment', $assessment);
+            ->with('assessment', $assessment)
+            ->with('skills', $skills);
     }
 
     /**
