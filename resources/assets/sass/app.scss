@@ -66,6 +66,12 @@ a {
 	align-items: center;
 	justify-content: center;
 }
+.flex-row-center {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+}
 
 body.newsletter {
 	background-color: $newsletter-bg;
@@ -1162,6 +1168,20 @@ body.dashboard {
 					}
 
 				}
+			}
+		}
+
+		.employees-positions {
+			> div {
+				border-bottom: 1px solid $white-2;
+				padding: 1em 0;
+				width: 50%;
+			}
+
+			.profile-picture {
+				margin-right: auto;
+				height: 100px;
+				width: 100px; 
 			}
 		}
 	}
