@@ -3,13 +3,19 @@
 @section('body')
 
 <main class="container create-page">
-	<section class="row crud-page-top">
+	<section class="crud-page-top">
         <h1 class="crud-page-title">Add New Skill</h1>
+        <a href="{{ URL::to('skills') }}" class="btn cancel-btn">Back to All Skills</a>
     </section>
     <section>
     	<!-- if there are creation errors, they will show here -->
-		{{ Html::ul($errors->all()) }}
-
+        @if (Session::has('errors'))
+            <div class="alert alert-warning" role="alert">
+                <strong>Warning</strong>
+                {{ Html::ul($errors->all()) }}
+            </div>
+        @endif
+        
 		{{ Form::open(array('url' => 'skills')) }}
 
 		    <div class="form-group"> 

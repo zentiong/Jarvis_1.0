@@ -5,8 +5,6 @@
 
     {{ $user_training->training_id}}
 
-    
-
     {{ Form::hidden('training_id', $value = $user_training->training_id) }}
     <main class="container create-page">
         @if (Session::has('message'))

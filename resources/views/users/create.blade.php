@@ -4,11 +4,16 @@
     <main class="container create-page">
         <section class="row crud-page-top">
             <h1 class="crud-page-title">Create Employee</h1>
+            <a href="{{ URL::to('users') }}" class="btn cancel-btn">Back to All Employees</a>
         </section>
+
         <section>
             <!-- if there are creation errors, they will show here -->
             @if (Session::has('errors'))
-                    <div class="alert alert-info">{{ Html::ul($errors->all()) }}</div>
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
             @endif
 
             {{ Form::open(array('url' => 'users','files'=>true)) }}
@@ -80,15 +85,19 @@
                         </select>
                     </div>
                 </div>
-                <!-- Supervisor -->
-                {{ Form::label('supervisor_id', 'Supervisor') }}
-                <select id="supervisor_id" class="form-control" name="supervisor_id">
-                @foreach($users as $key => $value)
-                <option value="<?php echo $value->id ?>">
-                    {{$value->first_name}} {{$value->last_name}}
-                </option>
-                @endforeach
-                </select>
+
+                <div class="form-group">
+                    <!-- Supervisor -->
+                    {{ Form::label('supervisor_id', 'Supervisor') }}
+                    <select id="supervisor_id" class="form-control" name="supervisor_id">
+                    @foreach($users as $key => $value)
+                    <option value="<?php echo $value->id ?>">
+                        {{$value->first_name}} {{$value->last_name}}
+                    </option>
+                    @endforeach
+                    </select>
+                </div>
+                
 
                 <!-- Manager? -->
                 <div class="form-group">

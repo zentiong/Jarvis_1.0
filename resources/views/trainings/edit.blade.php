@@ -7,9 +7,16 @@
             <div>
                 <h1 class="crud-page-title">Edit Training Session</h1>
             </div>
+            <a href="{{ URL::to('trainings') }}" class="btn cancel-btn">Back to All Trainings</a>
         </section>
         <section>
-            {{ Html::ul($errors->all()) }}
+            <!-- if there are creation errors, they will show here -->
+            @if (Session::has('errors'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
+            @endif
 
             {{ Form::model($training, 
             array('route' => array('trainings.update', $training->id), 'method' => 'PUT')) }}

@@ -11,10 +11,19 @@
 
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
-                <div class="alert alert-info">{{ Session::get('message') }}</div>
+                <div class="alert alert-info" role="alert">
+                    <strong>Heads up</strong>
+                    {{ Session::get('message') }}
+                </div>
             @endif
 
-            {{ Html::ul($errors->all()) }}
+            <!-- if there are creation errors, they will show here -->
+            @if (Session::has('errors'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
+            @endif
 
             <?php 
             $user_id = Auth::user()->id;

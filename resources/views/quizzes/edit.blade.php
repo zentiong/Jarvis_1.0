@@ -8,12 +8,16 @@
                 <h1 class="crud-page-title">Edit quiz</h1>
                 <h5>Quiz Topic: {{ $quiz->topic }}</h5>
             </div>
-            
+            <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn">Back to All Quizzes</a>
         </section>
         <section>
             <!-- if there are creation errors, they will show here -->
-            {{ Html::ul($errors->all()) }}
-
+            @if (Session::has('errors'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
+            @endif
 
             {{ Form::model($quiz, array('route' => array('quizzes.update', $quiz->quiz_id), 'method' => 'PUT')) }}
                 
