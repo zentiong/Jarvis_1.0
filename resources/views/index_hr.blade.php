@@ -446,8 +446,8 @@
                                 </select>
                         </div>
                         <h5 class="dashboard-header">
-                            <i class="fa fa-paperclip"></i>
-                            Assessment statistics
+                            <i class="fa fa-columns"></i>
+                            Trainings assessment statistics
                         </h5>
                         <div class="dashboard-content">
                             <canvas id="assessment_criteria"></canvas>
