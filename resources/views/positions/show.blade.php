@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div>
-                        <a href="">LINK TO PROFILE</a>
+                        <a href="<?php echo '../users/'.$user->id?>">LINK TO PROFILE</a>
                     </div>
                 </div>
             @endforeach
