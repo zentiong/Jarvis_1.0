@@ -163,6 +163,7 @@ class AssessmentController extends Controller
 
             $user_skill->user_id = Input::get('user');
             $user_skill->skill_id = $skill_id;
+            $user_skill->department = $user->department;
 
             $user_skill->a_score = $user_assessment->rating; 
             $user_skill->a_max_score = 5;

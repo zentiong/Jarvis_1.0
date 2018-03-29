@@ -36,140 +36,16 @@
                             <i class="fa fa-area-chart"></i>
                             Overall skills statistics
                         </h5>
-                        <?php
-                        $cwide_score_data = array();
-                        $cwide_label_data = array();
-                        $cwide_skill_id = array();
-                        $count = 0;
-
-                        foreach($cwide_skills as $key=>$value)
-                        {
-                            
-                            if(in_array($value->skill_id, $cwide_skill_id)==false)
-                            {
-                                array_push($cwide_score_data, $value->skill_grade);
-                                array_push($cwide_skill_id, $value->skill_id);
-                            }
-                            else
-                            {
-                                $key = $key = array_search($value->skill_id, $cwide_skill_id);
-                                $cwide_score_data[$key]+=$value->skill_grade;
-                            }
-                        }
-
-
-                        foreach($cwide_skill_id as $key => $value)
-                        {
-                            $sk_id = $value;
-                            foreach($skills as $key => $value)
-                            {
-                                if($sk_id==$value->id)
-                                {
-                                    array_push($cwide_label_data,$value->name);
-                                }
-                            }
-
-                        }
-                        ?>
-
-                        <div class="dashboard-content">        
-                            <button onclick="update_chart(cwide_skills_chart, 'All')">All</button>
-                            <button onclick="update_chart(cwide_skills_chart, 'Human Resources')">HR</button>
-                            <button onclick="update_chart(cwide_skills_chart, 'Finance')">Finance</button>
-                            <button onclick="update_chart(cwide_skills_chart, 'Customer Service')">Customer Service</button>
-                            <button onclick="update_chart(cwide_skills_chart, 'Marketing')">Mktg</button>
-                            <canvas id="cwide_skills_chart" width=100></canvas>
+                        <div class="dashboard-content">
+                            <canvas id="cw_overall_skills"></canvas>
+                            <select id="chartCWSkills">
+                                <option value="" disabled selected>Select your option</option>
+                                <option value="{{$result5[0][0]}}|{{$result5[0][1]}}" id="defaultCW" hidden></option>
+                            @foreach($result5 as $key => $value)
+                                <option value="{{$value[0]}}|{{$value[1]}}">{{$value[0]}}</option>
+                            @endforeach
+                            </select>
                         </div>
-
-                        <script type="text/javascript">
-                            var cwide_score_data = <?php echo json_encode($cwide_score_data)?>;
-                            var cwide_label_data = <?php echo json_encode($cwide_label_data)?>;
-                            var tfive = [];
-                            var filter_data = <?php echo json_encode($filter_data)?>;
-                            var filtered_data = [];
-                            var filtered_ids = [];
-                            var filtered_labels = [];
-                            console.log(filter_data);
-                            if(score_data_all.length>5)
-                            {
-                                tfive = score_data_all.slice(0,5);
-                            }
-                            else
-                            {
-                                tfive = score_data_all;
-                            }
-                            function update_chart(target_chart, filter)
-                            {
-                                if(filter=="All")
-                                {
-                                    target_chart.data.datasets[0].data = cwide_score_data;
-                                    target_chart.update();
-                                }
-                                else
-                                {
-                                    for(var i=0;i<filter_data.length;i++)
-                                    {
-                                        if(filter_data[i].department == filter)
-                                        {
-                                            filtered_data.push(filter_data[i].skill_grade);
-                                            filtered_labels.push(filter_data[i].skill_id);
-                                        }
-                                    }
-                                    target_chart.data.datasets[0].data = filtered_data;
-                                    target_chart.data.datasets[0].labels = filtered_labels;
-                                    target_chart.update(); 
-                                }
-                            }
-
-
-
-
-
-                            Chart.defaults.global.maintainAspectRatio = false;
-                            var ctx = document.getElementById("cwide_skills_chart").getContext('2d');
-                            var cwide_skills_chart = new Chart(ctx, {
-                                type: 'horizontalBar',
-                                data: {
-                                    labels: cwide_label_data,
-                                    datasets: [{
-                                        label: 'Skill Level by Percentage',
-                                        data: cwide_score_data,
-                                        backgroundColor: [
-                                            'rgba(255, 99, 132, 0.2)',
-                                            'rgba(54, 162, 235, 0.2)',
-                                            'rgba(255, 206, 86, 0.2)',
-                                            'rgba(75, 192, 192, 0.2)',
-                                            'rgba(153, 102, 255, 0.2)',
-                                            'rgba(255, 159, 64, 0.2)'
-                                        ],
-                                        borderColor: [
-                                            'rgba(255,99,132,1)',
-                                            'rgba(54, 162, 235, 1)',
-                                            'rgba(255, 206, 86, 1)',
-                                            'rgba(75, 192, 192, 1)',
-                                            'rgba(153, 102, 255, 1)',
-                                            'rgba(255, 159, 64, 1)'
-                                        ],
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        yAxes: [{
-                                            ticks: {
-                                                beginAtZero:true
-                                            }
-                                        }],
-                                        xAxes: [{
-                                            ticks: {
-                                                beginAtZero:true
-                                            }
-                                        }]
-
-                                    }
-                                }
-                            });
-                        </script>
 
                         
                         <h5 class="dashboard-header">
@@ -447,7 +323,7 @@
                         </div>
                         <h5 class="dashboard-header">
                             <i class="fa fa-columns"></i>
-                            Trainings assessment statistics
+                            Assessment statistics per Criteria
                         </h5>
                         <div class="dashboard-content">
                             <canvas id="assessment_criteria"></canvas>
@@ -714,6 +590,7 @@
 <script type="text/javascript">
 $(document).ready(function() 
  {
+
     var ctx = document.getElementById("training_quiz").getContext('2d');
     var horizontalBardata = {
         labels: [],
@@ -747,10 +624,10 @@ $(document).ready(function()
                            return value + "%"
                             }
                        },
-                       scaleLabel: {
-                           display: true,
-                           labelString: "Percentage"
-                       }                    
+                   scaleLabel: {
+                       display: true,
+                       labelString: "Percentage"
+                   }                    
                 }]
             }
         }
@@ -840,6 +717,118 @@ $(document).ready(function()
         var temp = [];
              
         var res = $("#chartACriteria").val().split("|");
+        
+        var datasetName = [];
+        var input = res[1];   
+        myChart.options.title.text = res[0];
+        var segmented = input.split(":");
+        var z = 0;
+
+        for(var i=0; i<(parseInt(segmented.length/2)); i++){
+            var colorName = colorNames[temp.length % colorNames.length];
+            var dsColor = chartColors[colorName];  
+            datasetName = segmented[z];
+            
+            var newDataset = {
+                label: [datasetName],
+                backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+                borderColor: dsColor,
+                data: []
+            }
+
+            newDataset.data.push(segmented[z+1]);
+            temp.push(newDataset);
+
+            z = z +2;
+
+        }
+        horizontalBardata.datasets = temp;
+        
+        myChart.update();
+    });     
+
+});
+</script>
+
+<!-- script for Overall skill Stats -->
+<script type="text/javascript">
+$(document).ready(function() 
+ {
+    var ctx = document.getElementById("cw_overall_skills").getContext('2d');
+    var color = Chart.helpers.color;
+    var colorNames = Object.keys(chartColors);
+    var defaultCW = $("#defaultCW").val().split("|");
+
+
+    var seg = defaultCW[1].split(':');
+    var counter = 0;
+    var temp2 =[];
+
+    for(var i=0; i<(parseInt(seg.length/2)); i++){
+            var colorName = colorNames[temp2.length % colorNames.length];
+            var dsColor = chartColors[colorName];  
+            var datasetName = seg[counter];
+            
+            var newDataset = {
+                label: [datasetName],
+                backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+                borderColor: dsColor,
+                data: []
+            }
+
+            newDataset.data.push(seg[counter+1]);
+            temp2.push(newDataset);
+
+            counter= counter + 2;
+
+        }
+        
+    
+    var horizontalBardata = {
+        labels: [],
+        datasets: temp2
+    }
+    
+
+    var myChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: horizontalBardata,
+        options: {
+            title: {
+                display: true,
+                text: defaultCW[0]
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }],
+                 xAxes: [{
+                    ticks: {
+                       min: 0,
+                       max: 100,
+                       callback: function(value) {
+                           return value + "%"
+                            }
+                       },
+                   scaleLabel: {
+                       display: true,
+                       labelString: "Percentage"
+                   }               
+                }]
+            }
+        }
+    });
+   
+
+        
+    
+
+    document.getElementById('chartCWSkills').addEventListener('change', function(){
+        var temp = [];
+             
+        var res = $("#chartCWSkills").val().split("|");
         
         var datasetName = [];
         var input = res[1];   
