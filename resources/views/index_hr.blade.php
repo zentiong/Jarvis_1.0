@@ -63,60 +63,35 @@
                         <div class="dashboard-content">
                             <!-- data collection -->
                             <?php
-
                             $cwide_quiz_data = array();
                             $cwide_quiz_labels = array();
-                            $sk_id_arr = array();
                             $cwide_quiz_id = array();
-                            $cwide_skill_id = array();
                             ?>
 
-                            <?php
-                                foreach($user_skills as $key=>$value)
-                                {
-                                    if(!in_array($value->skill_id, $cwide_quiz_id))
-                                    {
-                                        array_push($cwide_quiz_id,$value->skill_id);
-                                    }
-                                }
-                            ?>
+
                             <!-- scores -->
                             <?php
-                            $qcount = 0;
 
                                 foreach($user_skills as $key=>$value)
                                 {
                                     if($value->q_max_score==0)
                                     {
-                                        $quiz_score = 0;
+                                        $quiz_score=0;
                                     }
                                     else
                                     {
                                         $quiz_score = ($value->q_score/$value->q_max_score)*$value->knowledge_based_weight;
                                     }
-                                    
-                                    $ref_id = $value->skill_id;
-
-                                    foreach($cwide_skill_id as $key=>$value)
+                                    if(in_array($value->skill_id, $cwide_quiz_id)==false)
                                     {
-                                        if($value==$ref_id)
-                                        {
-                                            if($qcount==0)
-                                            {
-                                                array_push($cwide_quiz_data, $quiz_score);
-                                                $qcount++;
-                                            }
-                                            elseif($qcount>sizeof($cwide_quiz_data))
-                                            {
-                                                array_push($cwide_quiz_data, $quiz_score);
-                                            }
-                                            else
-                                            {
-                                                $cwide_quiz_data[$qcount-1]+=$quiz_score;
-                                                $qcount++;   
-                                            }
-                                        }       
-
+                                        array_push($cwide_quiz_data, $quiz_score);
+                                        array_push($cwide_quiz_id, $value->skill_id);
+                                        
+                                    }
+                                    else
+                                    {
+                                        $key = $key = array_search($value->skill_id, $cwide_quiz_id);
+                                        $cwide_quiz_data[$key]+=$quiz_score;
                                     }
                                 }
      
