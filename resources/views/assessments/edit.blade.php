@@ -22,9 +22,13 @@
 			{{ Form::model($assessment, array('route' => array('assessments.update', $assessment->assessment_id), 'method' => 'PUT')) }}
 
 			    <div class="form-group">
-			        {{ Form::label('topic', 'Topic') }}
-			        {{ Form::text('topic', Request::old('topic'), array('class' => 'form-control', 'autofocus')) }}
-			    </div>
+                    {{ Form::label('skill_id', 'Relevant skill') }}
+                    <select id="skill" class="form-control" name="skill">
+                        @foreach($skills as $key => $value)
+                            <option value="<?php echo $value->id ?>">{{$value->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
 
 			    <div class="form-group text-center create-bottom-wrapper">
                     <a href="{{ URL::to('assessments') }}" class="btn cancel-btn">Cancel</a>

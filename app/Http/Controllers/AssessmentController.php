@@ -356,9 +356,13 @@ class AssessmentController extends Controller
          // get the assessment
         $assessment = Assessment::find($id);
 
+        $skills = Skill::all();
+       
+
         // show the edit form and pass the assessment
         return View::make('assessments.edit')
-            ->with('assessment', $assessment);
+            ->with('assessment', $assessment)
+            ->with('skills', $skills);
     }
 
     /**
@@ -385,9 +389,8 @@ class AssessmentController extends Controller
         } else {
              // store
             $assessment = Assessment::find($id);
-            $assessment->topic = Input::get('topic');
+            $assessment->skill_id = Input::get('skill');
             $assessment->save();
-
             // redirect
             Session::flash('message', 'Successfully updated assessment!');
             return Redirect::to('assessments');
