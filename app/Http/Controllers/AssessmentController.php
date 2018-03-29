@@ -384,9 +384,8 @@ class AssessmentController extends Controller
         } else {
              // store
             $assessment = Assessment::find($id);
-            $assessment->topic = Input::get('topic');
+            $assessment->skill_id = Input::get('skill');
             $assessment->save();
-
             // redirect
             Session::flash('message', 'Successfully updated assessment!');
             return Redirect::to('assessments');
