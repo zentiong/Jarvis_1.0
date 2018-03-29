@@ -219,8 +219,10 @@ body.dashboard main table tbody .table-actions .edit-btn:hover { background-colo
 body.dashboard main table tbody .table-actions .show-btn { background-color: transparent; border: 1px solid #B9B9B6; border-radius: 5px; color: #1F496A; display: block; font-size: inherit; font-weight: 500; margin: 0.5em 0.1em; padding: 0.6em 1em; text-transform: uppercase; }
 body.dashboard main table tbody .table-actions .show-btn:hover { background-color: #28a745; color: #fff; transition: background-color, 0.3s; -webkit-transition: background-color, 0.3s; }
 body.dashboard main table tbody .table-actions .tooltip-inner { background-color: #1F1F1F; color: #ebebeb; }
-body.dashboard main .employees-positions > div { border-bottom: 1px solid #ebebeb; padding: 1em 0; width: 50%; }
+body.dashboard main .employees-positions > div { border-bottom: 1px solid #ebebeb; padding: 1em 0; width: 360px; }
 body.dashboard main .employees-positions .profile-picture { margin-right: auto; height: 100px; width: 100px; }
+body.dashboard main .employees-positions .small-details * { text-align: center; }
+body.dashboard main .employees-positions a { font-size: 0.8em; margin-left: auto; }
 body.dashboard .crud-page-actions { align-items: center; justify-content: space-between; margin: 1.4em 0; }
 body.dashboard .crud-page-actions div { display: flex; }
 body.dashboard .crud-page-actions i { align-self: center; background-color: #f9f9f9; border: 1px solid #afafaf; border-right: 0; border-top-left-radius: 5px; border-bottom-left-radius: 5px; color: #afafaf; font-size: 0.8em; padding: 10px; }

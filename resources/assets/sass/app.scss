@@ -1175,13 +1175,24 @@ body.dashboard {
 			> div {
 				border-bottom: 1px solid $white-2;
 				padding: 1em 0;
-				width: 50%;
+				width: 360px;
 			}
 
 			.profile-picture {
 				margin-right: auto;
 				height: 100px;
 				width: 100px; 
+			}
+
+			.small-details {
+				* {
+					text-align: center;
+				}
+			}
+
+			a {
+				font-size: 0.8em;
+				margin-left: auto;
 			}
 		}
 	}

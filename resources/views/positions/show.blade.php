@@ -25,7 +25,7 @@
                 ?>
                 <div class="flex-row-center">
                     <div class="img-circle profile-picture" style="background-image: url('{{ $pp }}');" alt="Your profile picture"></div>
-                    <div class="flex-column-center">
+                    <div class="flex-column-center small-details">
                         <div>
                             <strong>{{$user->first_name}} {{$user->last_name}}</strong> 
                         </div>
@@ -33,9 +33,7 @@
                             {{$user->department}} 
                         </div>
                     </div>
-                    <div>
-                        <a href="<?php echo '../users/'.$user->id?>">LINK TO PROFILE</a>
-                    </div>
+                    <a href="<?php echo '../users/'.$user->id?>" target="_blank">LINK TO <br> PROFILE</a>
                 </div>
             @endforeach
         </section>
