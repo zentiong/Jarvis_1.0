@@ -8,11 +8,15 @@
                 <h1 class="crud-page-title">Edit employee details</h1>
                 <h5>Showing: {{ $user->first_name }} {{ $user->last_name }}</h5>
             </div>
+            <a href="{{ url()->previous() }}" class="btn cancel-btn">Back to All Employees</a>
         </section>
         <section>
             <!-- if there are creation errors, they will show here -->
             @if (Session::has('errors'))
-                    <div class="alert alert-info">{{ Html::ul($errors->all()) }}</div>
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
             @endif
 
             {{ Form::model($user, array('route' => array('users.update', $user->id),'files'=>true, 'method' => 'PUT')) }}

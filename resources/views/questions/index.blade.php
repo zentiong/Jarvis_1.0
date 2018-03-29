@@ -15,7 +15,6 @@
         @endif
         <hr>
         <section>
-            <!-- will be used to show any messages -->
             
 
              <!-- 

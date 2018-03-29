@@ -354,10 +354,6 @@ body.newsletter {
 				background-color: #47441B;
 				color: $white-3;
 				height: 100px;
-
-				.event {
-					color: $white-1;
-				}
 			}
 			td.calendar-day-unique {
 				background-color: #89801B;
@@ -366,6 +362,10 @@ body.newsletter {
 				.day-number-unique {
 					color: $zalora-yellow;
 					font-size: 1.5em;
+				}
+
+				.event {
+					color: $white-2;
 				}
 			}
 		}
@@ -1194,6 +1194,14 @@ body.dashboard {
 			border-top-right-radius: 5px;
 			border-bottom-right-radius: 5px;
 			border-style: groove;
+		}
+	}
+
+	.alert {
+		strong {
+			display: block;
+			margin-bottom: 0.5em;
+			text-transform: uppercase;
 		}
 	}
 

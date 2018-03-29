@@ -43,7 +43,7 @@ function draw_calendar($month,$year,$events){
 				if ($event['date']==$event_day){
 					$checker=1;
 					
-					$temp.= '<div class="event">'.$event['title'].'</div>';
+					$temp.= '<div class="event">&nbsp;&#8250;&nbsp;'.$event['title'].'</div>';
 				} 
 				
 			}

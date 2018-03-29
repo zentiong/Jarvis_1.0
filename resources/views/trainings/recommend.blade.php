@@ -7,8 +7,12 @@
             <p><strong>STEP 1: Choose a training</strong></p>
         </section>
         <section>
+            <!-- will be used to show any messages -->
             @if (Session::has('message'))
-                <div class="alert alert-info">{{ Session::get('message') }}</div>
+                <div class="alert alert-info">
+                    <strong>Heads up</strong>
+                    {{ Session::get('message') }}
+                </div>
             @endif
             
             {{ Form::open(array('url' => 'recommend_who')) }}

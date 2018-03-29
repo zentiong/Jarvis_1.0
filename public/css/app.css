@@ -73,9 +73,9 @@ body.newsletter #calendar-container table.calendar { background-color: #1F1F1F; 
 body.newsletter #calendar-container table.calendar tr.calendar-row { margin-top: 35px; text-align: center; }
 body.newsletter #calendar-container table.calendar td.calendar-day-head { color: #BDBDBD; font-size: 1.25em; }
 body.newsletter #calendar-container table.calendar td.calendar-day { background-color: #47441B; color: #BDBDBD; height: 100px; }
-body.newsletter #calendar-container table.calendar td.calendar-day .event { color: #fff; }
 body.newsletter #calendar-container table.calendar td.calendar-day-unique { background-color: #89801B; height: 100px; }
 body.newsletter #calendar-container table.calendar td.calendar-day-unique .day-number-unique { color: #F8E71C; font-size: 1.5em; }
+body.newsletter #calendar-container table.calendar td.calendar-day-unique .event { color: #ebebeb; }
 body.newsletter .quick-links-container { display: flex; flex-flow: row wrap; justify-content: space-evenly; }
 body.newsletter .quick-links-container .quick-link { margin-bottom: 15px; max-width: 240px; padding: 10px 5px; }
 body.newsletter .quick-links-container .quick-link .img-container { border: 1px solid #F8E71C; border-radius: 50%; display: flex; justify-content: center; align-items: center; height: 70px; width: 70px; }
@@ -221,6 +221,7 @@ body.dashboard .crud-page-actions { align-items: center; justify-content: space-
 body.dashboard .crud-page-actions div { display: flex; }
 body.dashboard .crud-page-actions i { align-self: center; background-color: #f9f9f9; border: 1px solid #afafaf; border-right: 0; border-top-left-radius: 5px; border-bottom-left-radius: 5px; color: #afafaf; font-size: 0.8em; padding: 10px; }
 body.dashboard .crud-page-actions input { font-size: 0.8em; margin-right: 2em; padding: 5px 1em; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-style: groove; }
+body.dashboard .alert strong { display: block; margin-bottom: 0.5em; text-transform: uppercase; }
 body.dashboard .pagination { margin: 0; }
 body.dashboard .pagination li { border: 1px solid #ebebeb; font-size: 0.9em; padding: 0.3em 0.7em; }
 body.dashboard .pagination li:first-child { border-top-left-radius: 3px; border-bottom-left-radius: 3px; }

@@ -12,11 +12,19 @@
             </div>
 
             <!-- if there are creation errors, they will show here -->
-            {{ Html::ul($errors->all()) }}
+            @if (Session::has('errors'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
+            @endif
 
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
-                <div class="alert alert-info">{{ Session::get('message') }}</div>
+                <div class="alert alert-info" role="alert">
+                    <strong>Heads up</strong>
+                    {{ Session::get('message') }}
+                </div>
             @endif
 
             <table class="table table-striped table-bordered">

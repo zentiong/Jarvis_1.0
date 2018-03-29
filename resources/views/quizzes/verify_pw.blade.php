@@ -5,11 +5,15 @@
     <main class="container create-page">
         <section class="crud-page-top">
             <h1 class="crud-page-title">Input password</h1>
-            <h6>Quiz: <?php echo $quiz->topic ?></h6>
+            <h5>Quiz: <?php echo $quiz->topic ?></h5>
         </section>
         <section>
+            <!-- will be used to show any messages -->
             @if (Session::has('message'))
-                <div class="alert alert-info">{{ Session::get('message') }}</div>
+                <div class="alert alert-info" role="alert">
+                    <strong>Heads up</strong>
+                    {{ Session::get('message') }}
+                </div>
             @endif
 
             {{ Form::open(array('url' =>'redirect_pw' )) }}
@@ -28,11 +32,6 @@
             {{ Form::close() }}
         </section>
     </main>
-
-
-
-
-    
 
 @endsection
 

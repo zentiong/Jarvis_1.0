@@ -5,7 +5,7 @@
     <main class="container create-page">
         <section class="row crud-page-top">
              @if (Session::has('message'))
-                <div class="alert alert-info">
+                <div class="alert alert-info" role="alert">
                     {{ Session::get('message') }}
                     {{ Html::ul($errors->all()) }}
                 </div>

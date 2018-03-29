@@ -8,12 +8,14 @@
                 <h1 class="crud-page-title">Change Profile Photo: </h1>
                 <h5>{{ $user->first_name }} {{ $user->last_name }}</h5>
             </div>
-            
         </section>
         <section>
             <!-- if there are creation errors, they will show here -->
             @if (Session::has('errors'))
-                    <div class="alert alert-info">{{ Html::ul($errors->all()) }}</div>
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
             @endif
 
             
