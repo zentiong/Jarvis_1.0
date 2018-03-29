@@ -215,9 +215,29 @@ class QuestionController extends Controller
         } else {
             // store
             $question = Question::find($id);
+
             $question->question_item = Input::get('question_item');
-            $question->answer_item = Input::get('answer_item');
-            $question->section_id =Input::get('section_id');
+
+            switch (Input::get('answer_item')) {
+                case 'choice_1':
+                    $question->answer_item = Input::get('choice_1');
+                    break;
+                case 'choice_2':
+                    $question->answer_item = Input::get('choice_2');
+                    break;
+                case 'choice_3':
+                    $question->answer_item = Input::get('choice_3');
+                    break;
+                case 'choice_4':
+                    $question->answer_item = Input::get('choice_4');
+                    break;
+            }
+
+            $question->choice_1 = Input::get('choice_1');
+            $question->choice_2 = Input::get('choice_2');
+            $question->choice_3 = Input::get('choice_3');
+            $question->choice_4 = Input::get('choice_4');
+
             $question->save();
 
             // redirect

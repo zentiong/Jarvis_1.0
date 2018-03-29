@@ -165,7 +165,7 @@
                                 </div>
                               </div>
                               <div class="modal-footer create-bottom-wrapper">
-                                 <a href="{{ URL::to('quizzes/' . $value->quiz_id . '/questions') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
+                                 <a href="{{ URL::to('quizzes/' . $quiz->quiz_id . '/questions') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
                                  {{ Form::submit('Add Question', array('class' => 'btn btn-primary create-btn text-center')) }}
                               </div>
                               {{ Form::close() }}
