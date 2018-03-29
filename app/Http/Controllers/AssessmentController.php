@@ -311,9 +311,15 @@ class AssessmentController extends Controller
             $assessment->skill_id = Input::get('skill');
             $assessment->save();
 
+            $skills = Skill::all();
+            $assessment_items = $assessment->assessment_items()->get();
+
             // redirect
             Session::flash('message', 'Successfully created assessment!');
-            return Redirect::to('assessments');
+            return View::make('assessment_items.index')
+            ->with('assessment', $assessment)
+            ->with('skills', $skills)
+            ->with('assessment_items', $assessment_items);
         }
     }
 
