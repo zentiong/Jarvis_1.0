@@ -73,7 +73,7 @@
                             </a>
                             
                             <!-- edit this assessment (uses the edit method found at GET /employees/{id}/edit -->
-                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit assessment" href="{{ URL::to('assessments/' . $value->id . '/edit') }}">
+                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit assessment" href="{{ URL::to('assessments/' . $assessment->id . '/edit') }}">
                                 <i class="fa fa-pencil fa-lg"></i>
                             </a>
                             
