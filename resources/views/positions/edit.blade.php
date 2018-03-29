@@ -5,9 +5,16 @@
 	<main class="container create-page">
 		<section class="row crud-page-top">
             <h1 class="crud-page-title">Edit Position</h1>
+            <a href="{{ URL::to('positions') }}" class="btn cancel-btn">Back to All Positions</a>
         </section>
         <section>
-        	{{ Html::ul($errors->all()) }}
+        	<!-- if there are creation errors, they will show here -->
+            @if (Session::has('errors'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
+            @endif
 
 			{{ Form::model($position, 
 			array('route' => array('positions.update', $position->id), 'method' => 'PUT')) }}

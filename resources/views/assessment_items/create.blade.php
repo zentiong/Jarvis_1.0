@@ -6,10 +6,16 @@
 	<main class="container create-page">
 		<section class="row crud-page-to">
 			<h1 class="crud-page-title">Add a Criteria</h1>
+			<a href="{{ ur()->previous() }}" class="btn cancel-btn">Go Back</a>
 		</section>
 		<section>
 			<!-- if there are creation errors, they will show here -->
-			{{ Html::ul($errors->all()) }}
+            @if (Session::has('errors'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
+            @endif
 
 			{{ Form::open(array('url' => 'assessments/'.$id.'/assessment_items')) }}
 			    <div class="form-group" >

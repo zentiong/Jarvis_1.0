@@ -4,13 +4,21 @@
 @section('body')
 
 	<main class="container create-page">
-		<section class="crud-page-top">
-			<h1 class="crud-page-title">Edit Question Item</h1>
-			<h5>{{ $question->question_item }}</h5>
+		<section class="row crud-page-top">
+            <div>
+                <h1 class="crud-page-title">Edit Question Item</h1>
+                <h5>{{ $question->question_item }}</h5>
+            </div>
+			<a href="{{ url()->previous() }}" class="btn cancel-btn">Back to Questions</a>
 		</section>
 		<section>
 			<!-- if there are creation errors, they will show here -->
-			{{ Html::ul($errors->all()) }}
+            @if (Session::has('errors'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
+            @endif
 
 			{{ Form::model($question, array('route' => array('quizzes.questions.update', $quiz->quiz_id, $question->id ), 'method' => 'PUT')) }}
 

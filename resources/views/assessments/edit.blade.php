@@ -4,22 +4,27 @@
 
 	<main class="container create-page">
 		<section class="row crud-page-top">
-            <h1 class="crud-page-title">Edit {{ $assessment->topic }}</h1>
+            <div>
+                <h1 class="crud-page-title">Edit Assessment</h1>
+                <h5>{{ $assessment->topic }}</h5>
+            </div>
+            <a href="{{ URL::to('assessments') }}" class="btn cancel-btn">Back to All Assessments</a>
         </section>
         <section>
         	<!-- if there are creation errors, they will show here -->
-			{{ Html::ul($errors->all()) }}
+            @if (Session::has('errors'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
+            @endif
 
 			{{ Form::model($assessment, array('route' => array('assessments.update', $assessment->assessment_id), 'method' => 'PUT')) }}
-
-                <?php /*
 
 			    <div class="form-group">
 			        {{ Form::label('topic', 'Topic') }}
 			        {{ Form::text('topic', Request::old('topic'), array('class' => 'form-control', 'autofocus')) }}
 			    </div>
-
-                */ ?>
 
 			    <div class="form-group text-center create-bottom-wrapper">
                     <a href="{{ URL::to('assessments') }}" class="btn cancel-btn">Cancel</a>

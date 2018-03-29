@@ -10,7 +10,12 @@
             </div>
 
             <!-- if there are creation errors, they will show here -->
-            {{ Html::ul($errors->all()) }}
+            @if (Session::has('errors'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
+            @endif
 
             <?php
                 $section_skills = array();

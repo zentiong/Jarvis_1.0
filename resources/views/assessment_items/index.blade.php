@@ -5,24 +5,32 @@
         <section class="container">
             <div class="row crud-page-top">
                  @foreach($skills as $key => $skill)
-                            @if($skill->id == $assessment->skill_id)
-                            <div>
-                                <h1 class="crud-page-title">Assessment for: </h1>
-                                <h5>{{$skill->name}}</h5>
-                            </div>
-                                
-                              
-                                
-                            @endif
-                        @endforeach
-                
+                    @if($skill->id == $assessment->skill_id)
+                    <div>
+                        <h1 class="crud-page-title">Assessment for: </h1>
+                        <h5>{{$skill->name}}</h5>
+                    </div>
+                    @endif
+                @endforeach
                 <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Assessment Item</button>
             </div>
 
             <!-- will be used to show any messages -->
-        @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
-        @endif
+            @if (Session::has('message'))
+                <div class="alert alert-info" role="alert">
+                    <strong>Heads up</strong>
+                    {{ Session::get('message') }}
+                </div>
+            @endif
+
+            <!-- if there are creation errors, they will show here -->
+            @if (Session::has('errors'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
+            @endif
+
             <table class="table table-striped table-bordered">
             <thead>
                 <tr>

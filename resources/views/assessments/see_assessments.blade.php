@@ -12,10 +12,13 @@ $user_id = Auth::user()->id; /* Supervisor */
             <h1 class="crud-page-title">See Assessment</h1>
             <a class="btn crud-main-cta" href="{{ URL::to('make_assessments') }}">Create Another Assessment</a>
         </section>
-            <!-- will be used to show any messages -->
-        @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
-        @endif
+        <!-- will be used to show any messages -->
+            @if (Session::has('message'))
+                <div class="alert alert-info" role="alert">
+                    <strong>Heads up</strong>
+                    {{ Session::get('message') }}
+                </div>
+            @endif
 
 
 <table class="table table-striped table-bordered">

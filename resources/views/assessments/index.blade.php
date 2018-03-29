@@ -13,11 +13,19 @@
             </div>
 
             <!-- if there are creation errors, they will show here -->
-            {{ Html::ul($errors->all()) }}
+            @if (Session::has('errors'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
+            @endif
 
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
-                <div class="alert alert-info">{{ Session::get('message') }}</div>
+                <div class="alert alert-info" role="alert">
+                    <strong>Heads up</strong>
+                    {{ Session::get('message') }}
+                </div>
             @endif
 
             <?php 
@@ -63,7 +71,11 @@
                             <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View assessment"  href="{{ URL::to('assessments/' . $assessment->id . '/assessment_items') }}">
                                 <i class="fa fa-user fa-lg"></i>
                             </a>
-
+                            
+                            <!-- edit this assessment (uses the edit method found at GET /employees/{id}/edit -->
+                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit assessment" href="{{ URL::to('assessments/' . $value->id . '/edit') }}">
+                                <i class="fa fa-pencil fa-lg"></i>
+                            </a>
                             
 
                             <!-- delete the quiz (uses the destroy method DESTROY /assessments/{id} -->

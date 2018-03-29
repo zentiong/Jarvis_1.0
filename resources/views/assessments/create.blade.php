@@ -5,10 +5,24 @@
     <main class="container create-page">
         <section class="row crud-page-top">
             <h1 class="crud-page-title">Create Assessment</h1>
+            <a href="{{ URL::to('assessments') }}" class="btn cancel-btn">Back to All Assessments</a>
         </section>
         <section>
+            <!-- will be used to show any messages -->
+            @if (Session::has('message'))
+                <div class="alert alert-info" role="alert">
+                    <strong>Heads up</strong>
+                    {{ Session::get('message') }}
+                </div>
+            @endif
+
             <!-- if there are creation errors, they will show here -->
-            {{ Html::ul($errors->all()) }}
+            @if (Session::has('errors'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
+            @endif
 
             {{ Form::open(array('url' => 'assessments')) }}
 

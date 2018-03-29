@@ -10,9 +10,13 @@
             </div>
             <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn">Back to All Quizzes</a>
         </section>
-        @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
-        @endif
+        <!-- will be used to show any messages -->
+            @if (Session::has('message'))
+                <div class="alert alert-info" role="alert">
+                    <strong>Heads up</strong>
+                    {{ Session::get('message') }}
+                </div>
+            @endif
         <hr>
         <section>
             

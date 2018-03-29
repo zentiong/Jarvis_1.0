@@ -12,13 +12,22 @@
                         @endif
                     @endforeach Assessment </h1>
         </section>
-            <!-- will be used to show any messages -->
-        @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
-        @endif
+        <!-- will be used to show any messages -->
+            @if (Session::has('message'))
+                <div class="alert alert-info" role="alert">
+                    <strong>Heads up</strong>
+                    {{ Session::get('message') }}
+                </div>
+            @endif
 
 
-    {{ Html::ul($errors->all()) }}
+    <!-- if there are creation errors, they will show here -->
+            @if (Session::has('errors'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
+            @endif
 
     {{ Form::open(array('url' => 'assessments/'.$assessment->id.'/record')) }}
 

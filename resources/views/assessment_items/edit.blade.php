@@ -4,10 +4,16 @@
 	<main class="container create-page">
 		<section class="row crud-page-top">
 			<h1 class="crud-page-title">Edit {{ $assessment->criteria }}</h1>
+			<a href="{{ ur()->previous() }}" class="btn cancel-btn">Go Back</a>
 		</section>
 		<section>
 			<!-- if there are creation errors, they will show here -->
-			{{ Html::ul($errors->all()) }}
+            @if (Session::has('errors'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning</strong>
+                    {{ Html::ul($errors->all()) }}
+                </div>
+            @endif
 
 			{{ Form::model($assessment, array('route' => array('assessments.assessment_items.update', $assessment->id, $assessment_item->id ), 'method' => 'PUT')) }}
 
