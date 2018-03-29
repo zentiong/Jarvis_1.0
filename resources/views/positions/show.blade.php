@@ -15,9 +15,42 @@
                 <p>
                     <strong>Position name:</strong> {{ $position->name }}<br>
                     <strong>Current Employees:</strong><br>
-                    @foreach($users as $key=>$user)
-                        {{$user->first_name}} {{$user->last_name}}<br>
-                    @endforeach
+                    <table>
+                    <thead>
+                        <tr>Photo</tr>
+                        <tr>Name</tr>
+                        <tr>Department</tr>
+                        
+                    </thead>
+                    <tbody>
+                        @foreach($users as $key=>$user)
+                            <tr>
+                                <?php 
+                                    $check = $user->profile_photo;
+    
+                                    if($check!=null)
+                                    {
+                                        $pp = asset( 'images/profile_photos/'.$user->profile_photo);
+                                    }
+                                    
+                                    else 
+                                    
+                                    {
+                                    
+                                        $pp = asset( 'images/profile_photos/default.png');
+                                    
+                                    }
+                                ?>
+
+                            <div class="img-circle profile-picture" style="background-image: url('{{ $pp }}')" alt="Your profile picture"></div>
+
+                            </tr>
+                            <tr>{{$user->first_name}} {{$user->last_name}} </tr>
+                            <tr>{{$user->department}}  </tr>
+                        @endforeach
+                    </tbody>
+                    
+                    </table>
                 </p>
             </div>
         </section>
