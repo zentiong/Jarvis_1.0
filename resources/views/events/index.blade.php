@@ -39,10 +39,6 @@
                 </div>
             @endif
 
-
-
-
-
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>

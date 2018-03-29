@@ -53,79 +53,7 @@
                             Overall assessment statistics
                         </h5>
                         <div class="dashboard-content">
-                            <?php
-
-                            $overall_criteria_score = array();
-                            $overall_criteria_label = array();
-                            foreach($grades as $key=>$value)
-                            {
-                                if(in_array($value->criteria, $overall_criteria_label)==false)
-                                {
-                                    array_push($overall_criteria_score, $value->grade);
-                                    array_push($overall_criteria_label, $value->criteria);
-                                }
-                                else
-                                {
-                                    $key = $key = array_search($value->criteria, $overall_criteria_label);
-                                    $overall_criteria_score[$key]+=$value->grade;
-                                }
-
-                            }
-                            ?>
-                            <canvas id="cwide_criteria_chart" width="100px" height="100px"></canvas>
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-                            <script type="text/javascript">
-
-                                var overall_criteria_score = <?php echo json_encode($overall_criteria_score)?>;
-                                var overall_criteria_label = <?php echo json_encode($overall_criteria_label)?>;
-
-
-                                Chart.defaults.global.maintainAspectRatio = false;
-                                var ctx = document.getElementById("cwide_criteria_chart").getContext('2d');
-                                var cwide_criteria_chart = new Chart(ctx, {
-                                    type: 'horizontalBar',
-                                    data: {
-                                        labels: overall_criteria_label,
-                                        datasets: [{
-                                            label: 'Total SKill Level',
-                                            data: overall_criteria_score,
-                                            backgroundColor: [
-                                                'rgba(255, 99, 132, 0.5)',
-                                                'rgba(54, 162, 235, 0.5)',
-                                                'rgba(255, 206, 86, 0.5)',
-                                                'rgba(75, 192, 192, 0.5)',
-                                                'rgba(153, 102, 255, 0.5)',
-                                                'rgba(255, 159, 64, 0.5)'
-                                            ],
-                                            borderColor: [
-                                                'rgba(255,99,132,1)',
-                                                'rgba(54, 162, 235, 1)',
-                                                'rgba(255, 206, 86, 1)',
-                                                'rgba(75, 192, 192, 1)',
-                                                'rgba(153, 102, 255, 1)',
-                                                'rgba(255, 159, 64, 1)'
-                                            ],
-                                            borderWidth: 1
-                                        }]
-                                    },
-                                    options: {
-                                        scales: {
-                                            yAxes: [{
-                                                ticks: {
-                                                    beginAtZero:true
-                                                }
-                                            }],
-                                            xAxes: [{
-                                                ticks: {
-                                                    beginAtZero:true
-                                                }
-                                            }]
-
-                                        }
-                                    }
-                                });
-                            </script>
-
+                            <canvas id="cw_overall_assessment"></canvas>
                         </div>
                         
                         <h5 class="dashboard-header">
@@ -702,8 +630,15 @@ $(document).ready(function()
                  xAxes: [{
                     ticks: {
                        min: 0,
-                       max: 5    
-                    }              
+                       max: 100,
+                       callback: function(value) {
+                           return value + "%"
+                            }
+                       },
+                   scaleLabel: {
+                       display: true,
+                       labelString: "Percentage"
+                   }                
                 }]
             }
         }
@@ -736,7 +671,7 @@ $(document).ready(function()
                 data: []
             }
 
-            newDataset.data.push(segmented[z+1]);
+            newDataset.data.push(100*parseFloat(segmented[z+1])/5);
             temp.push(newDataset);
 
             z = z +2;
@@ -858,6 +793,74 @@ $(document).ready(function()
         
         myChart.update();
     });     
+
+});
+</script>
+
+<!-- script for Overall assessment Stats -->
+<script type="text/javascript">
+$(document).ready(function() 
+ {
+    var ctx = document.getElementById("cw_overall_assessment").getContext('2d');
+    var result6 = <?php echo json_encode($result6)?>;
+    var temp = [];
+    var color = Chart.helpers.color;
+    var colorNames = Object.keys(chartColors);
+    var horizontalBardata = {
+        labels: [],
+        datasets: []
+    }
+
+    for (var i=0; i<result6.length; i++){
+        var colorName = colorNames[temp.length % colorNames.length];
+        var dsColor = chartColors[colorName];  
+        
+        
+        var newDataset = {
+            label: [result6[i].name],
+            backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+            borderColor: dsColor,
+            data: []
+        }
+
+        newDataset.data.push(parseFloat(result6[i].rating)*100);
+        temp.push(newDataset);
+    }
+ 
+    horizontalBardata.datasets = temp;   
+
+    
+    var myChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: horizontalBardata,
+        options: {
+            title: {
+                display: true,
+                text: 'Assessment Ratings'
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }],
+                 xAxes: [{
+                    ticks: {
+                       min: 0,
+                       max: 100,
+                       callback: function(value) {
+                           return value + "%"
+                            }
+                       },
+                   scaleLabel: {
+                       display: true,
+                       labelString: "Percentage"
+                   }               
+                }]
+            }
+        }
+    });
+    
 
 });
 </script>

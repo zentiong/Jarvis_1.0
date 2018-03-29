@@ -26,9 +26,17 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
+
+        
+
+
+
+       
         
          
-        /*SELECT s.name, AVG(us.skill_grade) as skill_grade FROM user_skills us, skills s WHERE s.id = us.skill_id GROUP BY s.name;
+        /*
+        SELECT s.name, AVG(ua.rating)/5 as rating FROM skills s, user_assessments ua LEFT JOIN assessments a ON a.id = ua.assessment_id WHERE a.skill_id = s.id GROUP BY s.name;
+        SELECT s.name, AVG(us.skill_grade) as skill_grade FROM user_skills us, skills s WHERE s.id = us.skill_id GROUP BY s.name;
 
         SELECT us.department, s.name, us.skill_grade FROM user_skills us, skills s WHERE s.id = us.skill_id;
 
