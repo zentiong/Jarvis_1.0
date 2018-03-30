@@ -23,7 +23,7 @@
 
 			    <div class="form-group">
 			        {{ Form::label('criteria', 'Criteria') }}
-			        {{ Form::text('criteria', Request::old('criteria'), array('class' => 'form-control', 'autofocus')) }}
+			        {{ Form::text('criteria', Request::old('criteria'), array('class' => 'form-control', 'autofocus', 'pattern' => '[a-zA-z ]+', 'required', 'title' => 'Please use alphabet characters only')) }}
 			    </div>
 				
 				<div class="form-group text-center create-bottom-wrapper">

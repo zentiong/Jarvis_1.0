@@ -29,40 +29,41 @@
                         <!-- FIRST NAME -->
                         <div class="form-group">
                             {{ Form::label('first_name', 'First Name') }}
-                            {{ Form::text('first_name', Request::old('first_name'), array('class' => 'form-control', 'autofocus')) }}
+                            {{ Form::text('first_name', Request::old('first_name'), array('class' => 'form-control', 'autofocus', 'pattern' => '[a-zA-z ]+', 'required', 'title' => 'Please use alphabet characters only')) }}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <!-- LAST NAME -->
-                         <div class="form-group">
+                        <div class="form-group">
                             {{ Form::label('last_name', 'Last Name') }}
-                            {{ Form::text('last_name', Request::old('last_name'), array('class' => 'form-control')) }}
+                            {{ Form::text('last_name', Request::old('last_name'), array('class' => 'form-control', 'pattern' => '[a-zA-z ]+', 'required', 'title' => 'Please use alphabet characters only')) }}
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- EMAIL -->
                 <div class="form-group">
                     {{ Form::label('email', 'Email') }}
-                    {{ Form::email('email', Request::old('email'), array('class' => 'form-control')) }}
+                    {{ Form::email('email', Request::old('email'), array('class' => 'form-control', 'required')) }}
                 </div>
                 
                 <!-- PASSWORD -->
                 <div class="form-group">
                     {{ Form::label('password', 'Password') }}
-                    {{ Form::password('password', Request::old('password'), array('class' => 'form-control')) }}
+                    {{ Form::password('password', Request::old('password'), array('class' => 'form-control', 'required')) }}
                 </div>
+
 
                 <!-- Hiring Date -->
                 <div class="form-group">
                     {{ Form::label('hiring_date', 'Hiring Date') }}
-                    {{ Form::date('hiring_date', Request::old('hiring_date'), array('class' => 'form-control')) }}
+                    {{ Form::date('hiring_date', Request::old('hiring_date'), array('class' => 'form-control', 'required', 'max' => '2000-01-01', 'id' => 'hdate')) }}
                 </div>
 
                 <!-- Birth Date -->
                 <div class="form-group">
                     {{ Form::label('birth_date', 'Birth Date') }}
-                    {{ Form::date('birth_date', Request::old('birth_date'), array('class' => 'form-control')) }}
+                    {{ Form::date('birth_date', Request::old('birth_date'), array('class' => 'form-control', 'required', 'max' => '2000-01-01', 'id' => 'bdate')) }}
                 </div>
                 
                 <div class="row">
@@ -122,6 +123,14 @@
     $(document).ready(function() {
         var a = document.getElementById('users');
         a.classList.toggle("active");
+
+        var now = new Date();
+        now.setDate(now.getDate() + 1);
+
+        var today = now.toISOString().substring(0,10);
+
+        document.getElementById("bdate").setAttribute("max", today);
+        document.getElementById("hdate").setAttribute("max", today);
     });
 
     // enables Bootstrap tooltips

@@ -87,7 +87,7 @@
                 {{ Form::open(array('url' => 'positions')) }}
                 <div class="form-group">
                     {{ Form::label('name', 'Position Name') }}
-                    {{ Form::text('name', Request::old('name'), array('class' => 'form-control', 'autofocus', 'required')) }}
+                    {{ Form::text('name', Request::old('name'), array('class' => 'form-control', 'autofocus', 'pattern' => '[a-zA-z ]+', 'required', 'title' => 'Please use alphabet characters only')) }}
                 </div>
                 <div class="form-group">
                     {{ Form::label('job_grade', 'Job Grade') }}

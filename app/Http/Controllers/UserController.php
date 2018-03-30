@@ -287,14 +287,14 @@ class UserController extends Controller
                  // get the user
         $user = User::find($id);
         $users = User::where('manager_check',1)->get();
-
+        $now= date('Y-m-d');
         $positions = Position::all();
 
 
         // show the edit form and pass the user
         return View::make('users.edit')
             ->with('user', $user)
-
+            ->with('now', $now)
             ->with('positions', $positions)
 
             ->with('users',$users);;

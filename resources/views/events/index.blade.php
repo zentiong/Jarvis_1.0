@@ -5,6 +5,13 @@
     $(document).ready(function() {
         var a = document.getElementById('events');
         a.classList.toggle("active");
+
+        var now = new Date();
+        now.setDate(now.getDate() + 1);
+
+        var today = now.toISOString().substring(0,10);
+
+        document.getElementById("date").setAttribute("min", today);
     });
 
     // enables Bootstrap tooltips
@@ -108,7 +115,7 @@
 
                 <div class="form-group">
                     {{ Form::label('date', 'Date') }}
-                    {{ Form::date('date', Request::old('date'), array('class' => 'form-control', 'required')) }}
+                    {{ Form::date('date', Request::old('date'), array('class' => 'form-control', 'required', 'min' => '2000-01-01', 'id' => 'date')) }}
                 </div>
 
                 <div class="form-group">

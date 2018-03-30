@@ -5,6 +5,13 @@
     $(document).ready(function() {
         var a = document.getElementById('training-sessions');
         a.classList.toggle("active");
+
+        var now = new Date();
+        now.setDate(now.getDate() + 1);
+
+        var today = now.toISOString().substring(0,10);
+
+        document.getElementById("date").setAttribute("min", today);
     });
 
     // enables Bootstrap tooltips
@@ -35,27 +42,27 @@
                 
                 <div class="form-group">
                     {{ Form::label('title', 'Title') }}
-                    {{ Form::text('title', Request::old('title'), array('class' => 'form-control', 'autofocus')) }}
+                    {{ Form::text('title', Request::old('title'), array('class' => 'form-control', 'autofocus', 'required')) }}
                 </div>
 
                 <div class="form-group">
                     {{ Form::label('date', 'Date') }}
-                    {{ Form::date('date', Request::old('date'), array('class' => 'form-control')) }}
+                    {{ Form::date('date', Request::old('date'), array('class' => 'form-control', 'required', 'min' => '2000-01-01', 'id' => 'date')) }}
                 </div>
 
                 <div class="form-group">
                     {{ Form::label('starting_time', 'Starting Time') }}
-                    {{ Form::time('starting_time', Request::old('starting_time'), array('class' => 'form-control')) }}
+                    {{ Form::time('starting_time', Request::old('starting_time'), array('class' => 'form-control', 'required')) }}
                 </div>
 
                 <div class="form-group">
                     {{ Form::label('ending_time', 'Ending Time') }}
-                    {{ Form::time('ending_time', Request::old('ending_time'), array('class' => 'form-control')) }}
+                    {{ Form::time('ending_time', Request::old('ending_time'), array('class' => 'form-control', 'required')) }}
                 </div>
 
                 <div class="form-group">
                     {{ Form::label('venue', 'Venue') }}
-                    {{ Form::text('venue', Request::old('venue'), array('class' => 'form-control')) }}
+                    {{ Form::text('venue', Request::old('venue'), array('class' => 'form-control', 'required')) }}
                 </div>
 
                 <div class="form-group text-center create-bottom-wrapper">

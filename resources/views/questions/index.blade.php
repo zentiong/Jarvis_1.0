@@ -139,7 +139,7 @@
                                 <input type="hidden" name="section_id" id="bookId" value=""/>
                                 <div class="form-group">
                                     {{ Form::label('question_item', 'Question') }}
-                                    {{ Form::text('question_item', Request::old('question_item'), array('class' => 'form-control')) }}
+                                    {{ Form::text('question_item', Request::old('question_item'), array('class' => 'form-control', 'required')) }}
                                 </div>
                                 <div class="form-group">
                                     {{ Form::label('answer_item', 'Answer') }}
@@ -152,19 +152,19 @@
                                 </div>
                                 <div class="form-group">
                                     {{ Form::label('choice_1', '1st Choice') }}
-                                    {{ Form::text('choice_1', Request::old('choice_1'), array('class' => 'form-control')) }}
+                                    {{ Form::text('choice_1', Request::old('choice_1'), array('class' => 'form-control', 'required', 'id' => 'choice')) }}
                                 </div>
                                 <div class="form-group">
                                     {{ Form::label('choice_2', '2nd Choice') }}
-                                    {{ Form::text('choice_2', Request::old('choice_2'), array('class' => 'form-control')) }}
+                                    {{ Form::text('choice_2', Request::old('choice_2'), array('class' => 'form-control', 'required', 'id' => 'choice')) }}
                                 </div>
                                 <div class="form-group">
                                     {{ Form::label('choice_3', '3rd Choice') }}
-                                    {{ Form::text('choice_3', Request::old('choice_3'), array('class' => 'form-control')) }}
+                                    {{ Form::text('choice_3', Request::old('choice_3'), array('class' => 'form-control', 'required', 'id' => 'choice')) }}
                                 </div>
                                 <div class="form-group">
                                     {{ Form::label('choice_4', '4th Choice') }}
-                                    {{ Form::text('choice_4', Request::old('choice_4'), array('class' => 'form-control')) }}
+                                    {{ Form::text('choice_4', Request::old('choice_4'), array('class' => 'form-control', 'required', 'id' => 'choice')) }}
                                 </div>
                               </div>
                               <div class="modal-footer create-bottom-wrapper">
@@ -200,7 +200,10 @@
      // As pointed out in comments, 
      // it is superfluous to have to manually call the modal.
      // $('#addBookDialog').modal('show');
+     
     });
+
+    
 
 
     // enables Bootstrap tooltips

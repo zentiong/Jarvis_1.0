@@ -24,7 +24,7 @@
                 
                 <div class="form-group">
                     {{ Form::label('topic', 'Topic') }}
-                    {{ Form::text('topic', Request::old('topic'), array('class' => 'form-control')) }}
+                    {{ Form::text('topic', Request::old('topic'), array('class' => 'form-control', 'required')) }}
                 </div>
 
                 {{ Form::label('training', 'Training') }}
