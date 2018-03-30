@@ -8,14 +8,14 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 // Google
 
 
-/*
+
 use App\User;
 use Validator;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Socialite;
 //use Auth;
 use Exception;
-*/
+
 
 class LoginController extends Controller
 {
@@ -41,20 +41,20 @@ class LoginController extends Controller
     protected $redirectTo = '/levels';
 
     // Google
-    /*
-    use ThrottlesLogins;
+    
+    //use ThrottlesLogins; //nasa authenticate na daw
 
     
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            //'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            //'password' => 'required|confirmed|min:6',
         ]);
     }
 
-
+    /*
     protected function create(array $data)
     {
         return User::create([
@@ -63,6 +63,7 @@ class LoginController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+    */
 
 
     public function redirectToGoogle()
