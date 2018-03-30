@@ -40,47 +40,42 @@
                     $var = 0; 
                 ?>   
                 
-             
-                <table class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <td>Question</td>
-                            <td>Answer</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($questions as $key => $value)
-                        <tr>
-                            <td>{{ $value->question_item }}</td>
-                            <td>
-                                <div class="quiz-item-row">
-                                    {{ Form::radio('answer_attempt['.$var.']', $value->choice_1 ) }}
-                                    {{ Form::label('choice_1', $value->choice_1) }}
-                                </div>
-                                <div class="quiz-item-row">
-                                    {{ Form::radio('answer_attempt['.$var.']',  $value->choice_2 ) }}
-                                    {{ Form::label('choice_1', $value->choice_2) }}
-                                </div>
-                                <div class="quiz-item-row">
-                                    {{ Form::radio('answer_attempt['.$var.']',  $value->choice_3 ) }}
-                                    {{ Form::label('choice_1', $value->choice_3) }}
-                                </div>
-                                <div class="quiz-item-row">
-                                   {{ Form::radio('answer_attempt['.$var.']',  $value->choice_4 ) }}
-                                    {{ Form::label('choice_1', $value->choice_4) }} 
-                                </div>
-                            </td>
-                            <?php 
-                                $var ++;
-                            ?>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                <hr>
+
+                @foreach($questions as $key => $value)
+                <div class="take-quiz-wrapper">
+                    <h6><strong>{{$var+1}}. {{ $value->question_item }}</strong></h6>
+                    <div class="row answer-items" data-toggle="buttons">
+                        <div class="col-md">
+                            <div class="answer-item-row btn">
+                                {{ Form::radio( 'answer_attempt['.$var.']', $value->choice_1 ) }}
+                                a. {{ Form::label('choice_1', $value->choice_1) }}
+                            </div>
+                            <div class="answer-item-row btn">
+                                {{ Form::radio('answer_attempt['.$var.']',  $value->choice_2 ) }}
+                                b. {{ Form::label('choice_1', $value->choice_2) }}
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="answer-item-row btn">
+                                {{ Form::radio('answer_attempt['.$var.']',  $value->choice_3 ) }}
+                                c. {{ Form::label('choice_1', $value->choice_3) }}
+                            </div>
+                            <div class="answer-item-row btn">
+                                {{ Form::radio('answer_attempt['.$var.']',  $value->choice_4 ) }}
+                                d. {{ Form::label('choice_1', $value->choice_4) }} 
+                            </div>
+                        </div>
+                        <?php 
+                            $var ++;
+                        ?>
+                    </div>
+                </div>
+                @endforeach
 
                 <div class="form-group text-center create-bottom-wrapper">
                     <a href="{{ URL::to('levels') }}" class="btn cancel-btn">Cancel</a>
-                    {{ Form::submit('Submit Answers', array('class' => 'btn btn-primary create-btn text-center')) }}
+                    {{ Form::submit('Submit answers', array('class' => 'btn btn-primary create-btn text-center')) }}
                 </div>
 
                {{ Form::close() }}
@@ -97,12 +92,10 @@
         var a = document.getElementById('quizzes');
         a.classList.toggle("active");
 
-        // $(".quiz-item-row input[type='radio']").click(function() {
-            
-        //     if ($(".quiz-item-row input[type='radio']").is(':checked')) { 
-        //         alert("it's checked");
-        //         $(".quiz-item-row").css('background-color', 'green');
-        //     }
+        // var $radios = $('input:radio');
+        // $radios.change(function () {
+        //   $radios.parent().removeClass('checked');
+        //   $(this).parent().addClass('checked');
         // });
     });
     

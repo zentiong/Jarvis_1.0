@@ -3,7 +3,7 @@
 @section('body')
 
 	<main class="container create-page">
-		<section class="crud-page-top">
+		<section class="row crud-page-top">
 			<h1 class="crud-page-title">Edit Skill</h1>
 			<a href="{{ URL::to('skills') }}" class="btn cancel-btn">Back to All Skills</a>
 		</section>

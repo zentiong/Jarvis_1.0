@@ -224,6 +224,12 @@ body.dashboard main .employees-positions > div { border-bottom: 1px solid #ebebe
 body.dashboard main .employees-positions .profile-picture { margin-right: auto; height: 100px; width: 100px; }
 body.dashboard main .employees-positions .small-details * { text-align: center; }
 body.dashboard main .employees-positions a { font-size: 0.8em; margin-left: auto; }
+body.dashboard main .answer-items { margin-bottom: 10em; }
+body.dashboard main .answer-item-row { display: flex; flex-flow: row nowrap; align-items: center; margin: 0.5em 0; color: #575757; background-color: #ebebeb; cursor: pointer; }
+body.dashboard main .answer-item-row label { margin-bottom: 0; padding-left: 6px; cursor: pointer; }
+body.dashboard main .answer-item-row input[type=radio] { visibility: hidden; }
+body.dashboard main .answer-item-row input[type=radio]:checked + label { font-weight: bold; }
+body.dashboard main .answer-item-row.active { background-color: #0059B6; color: #ebebeb; }
 body.dashboard .modal { width: 100vw; }
 body.dashboard .crud-page-actions { align-items: center; justify-content: space-between; padding: 0 15px; }
 body.dashboard .crud-page-actions div, body.dashboard .crud-page-actions ul { margin: 1em 0; }

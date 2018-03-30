@@ -123,8 +123,8 @@
             </h6>
             @foreach($evals_to_take as $key => $eval)
                 @if($eval->evaluation==null)
+                {{ Form::open(array('url' => 'evaluate')) }}
                 <div class="trainings-box">
-                    {{ Form::open(array('url' => 'evaluate')) }}
                     @foreach($trainings_taken as $key => $training)
                         @if($training->id == $eval->training_id)
                             <span>{{$training->title}}</span>

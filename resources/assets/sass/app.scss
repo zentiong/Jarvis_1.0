@@ -1196,6 +1196,37 @@ body.dashboard {
 				margin-left: auto;
 			}
 		}
+
+		.answer-items {
+			margin-bottom: 10em;
+		}
+
+		.answer-item-row {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			margin: 0.5em 0;
+			color: $black-5;
+			background-color: $white-2; 
+			cursor: pointer;
+
+			label {
+				margin-bottom: 0;
+				padding-left: 6px;
+				cursor: pointer;
+			}
+			input[type=radio] {
+				visibility: hidden;
+			}
+			input[type=radio]:checked + label {
+				font-weight: bold;
+			}
+		}
+
+		.answer-item-row.active {
+			background-color: $create-crud-sub;
+			color: $white-2;
+		}
 	}
 
 	.modal {
