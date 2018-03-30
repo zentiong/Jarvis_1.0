@@ -20,12 +20,12 @@
 
 			    <div class="form-group">
 			        {{ Form::label('name', 'Name') }}
-			        {{ Form::text('name', Request::old('name'), array('class' => 'form-control', 'autofocus')) }}
+			        {{ Form::text('name', Request::old('name'), array('class' => 'form-control', 'autofocus', 'required')) }}
 			    </div>
 
 			    <div class="form-group"> 
 		        {{ Form::label('description', 'Description') }}
-		        {{ Form::text('description', Request::old('description'), array('class' => 'form-control')) }}
+		        {{ Form::text('description', Request::old('description'), array('class' => 'form-control', 'required')) }}
 		    	</div>
 			
 				
