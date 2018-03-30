@@ -47,15 +47,6 @@
                             </select>
                         </div>
 
-                        
-                        <h5 class="dashboard-header">
-                            <i class="fa fa-book"></i>
-                            Overall assessment statistics
-                        </h5>
-                        <div class="dashboard-content">
-                            <canvas id="cw_overall_assessment"></canvas>
-                        </div>
-                        
                         <h5 class="dashboard-header">
                             <i class="fa fa-font"></i>
                             Overall quiz statistics
@@ -119,6 +110,29 @@
                             <!-- end of data collection -->
                             <canvas id="cwide_quiz_chart" width=100></canvas>
                         </div>
+                        
+                        <h5 class="dashboard-header">
+                            <i class="fa fa-book"></i>
+                            Overall assessment statistics
+                        </h5>
+                        <div class="dashboard-content">
+                            <canvas id="cw_overall_assessment"></canvas>
+                        </div>
+
+                        <h5 class="dashboard-header">
+                            <i class="fa fa-columns"></i>
+                            Assessment Statistics Per Criteria
+                        </h5>
+                        <div class="dashboard-content">
+                            <canvas id="assessment_criteria"></canvas>
+                            <select id="chartACriteria">
+                                <option value="" disabled selected>Select your option</option>
+                            @foreach($result4 as $key => $value)
+                                <option value="{{$value[0]}}|{{$value[1]}}">{{$value[0]}}</option>
+                            @endforeach
+                            </select>
+                        </div>
+                        
                     </div>
 
                     <div class="col-md-6">
@@ -223,19 +237,6 @@
                                     <option value="{{$value[0]}}|{{$value[1]}}|{{$value[2]}}">{{$value[0]}}</option>
                                 @endforeach
                                 </select>
-                        </div>
-                        <h5 class="dashboard-header">
-                            <i class="fa fa-columns"></i>
-                            Assessment statistics per Criteria
-                        </h5>
-                        <div class="dashboard-content">
-                            <canvas id="assessment_criteria"></canvas>
-                            <select id="chartACriteria">
-                                <option value="" disabled selected>Select your option</option>
-                            @foreach($result4 as $key => $value)
-                                <option value="{{$value[0]}}|{{$value[1]}}">{{$value[0]}}</option>
-                            @endforeach
-                            </select>
                         </div>
                     </div>
                 </div>
