@@ -29,7 +29,12 @@
                 {{ Form::label('training', 'Training') }}
                     <select id="training_id" class="form-control" name="training_id">
                       @foreach($trainings as $key => $value)
-                        <option value="<?php echo $value->id ?>">{{$value->title}}</option>
+                        @if($value->id == $quiz->training_id)
+                             <option selected="selected" value="<?php echo $value->id ?>">{{$value->title}}</option>
+                        @else
+                             <option value="<?php echo $value->id ?>">{{$value->title}}</option>
+                        @endif
+            
                       @endforeach
                     </select>
                     
