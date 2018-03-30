@@ -2,7 +2,7 @@
 
 @section('body')
 
-    <main class="container-fluid">
+    <main>
         <section class="container">
             <div class="row crud-page-top">
                 <h1 class="crud-page-title">All Training Sessions</h1>

@@ -277,16 +277,17 @@ body.newsletter {
 	} 
 
 	.login-button {
-		text-align: right;
 		margin-left: auto;
-		right: 0;
-		margin-right: 10px;
+		text-align: right;
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
 
 		.current-username {
-			display: inline;
-			margin-right: 5px;
+			margin-bottom: 2px;
 			font-family: Roboto, sans-serif;
 	    	font-weight: 300;
+	    	font-size: 0.9em
 		}
 
 	    .logout-link {
@@ -295,12 +296,10 @@ body.newsletter {
 		    background-color: $zalora-yellow;
 		    color: $newsletter-bg;
 		    cursor: pointer;
-		    display: inline-block;
-		    padding: 5px 15px;
-		    margin-left: auto !important;
 		    border: 1px solid $gray-1;
 		    border-radius: 2px;
 		    font-family: "Apercu Bold", sans-serif !important;
+		    font-size: 0.9em;
 	    }
 	}
 	.login-button-yellow {
@@ -693,7 +692,6 @@ body.newsletter {
 	}
 
 	footer {
-		margin-top: 10em;
 		width: 100%;
 		background-color: $black-1;
 		color: $white-5;
@@ -720,6 +718,7 @@ body.dashboard {
 	color: $black-2;
 	font-family: "Open Sans", sans-serif;
 	font-size: 90%;
+	position: relative;
 
 	.branding {
 		border: 2px solid $black-1;
@@ -739,6 +738,7 @@ body.dashboard {
 		width: 100%;
 		background-color: $white-1;
 		border-bottom: 1px solid $gray-1;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
 
 		button {
 			display: none;
@@ -808,7 +808,7 @@ body.dashboard {
 	}
 
 	main {
-		margin: 3.4em auto;
+		margin-top: 2em;
 
 		.personal-details {
 			padding: 10px;
@@ -844,6 +844,7 @@ body.dashboard {
 		}
 
 		.dashboard-container {
+			max-width: 1500px;
 
 			.dashboard-tab-container {
 				font-family: Roboto, sans-serif;
@@ -1076,6 +1077,7 @@ body.dashboard {
 		.crud-page-title {
 			font-size: 1.4rem;
 			font-weight: bold;
+			margin-bottom: 0.5em;
 			text-transform: uppercase;
 		}
 
@@ -1197,10 +1199,18 @@ body.dashboard {
 		}
 	}
 
+	.modal {
+		width: 100vw;
+	}
+
 	.crud-page-actions {
 		align-items: center;
 		justify-content: space-between;
-		margin: 1.4em 0;
+		padding: 0 15px;
+
+		div, ul {
+			margin: 1em 0;
+		}
 
 		div {
 			display: flex;
@@ -1303,7 +1313,7 @@ body.dashboard {
 	.create-bottom-wrapper {
 		margin-top: 3em;
 		display: flex;
-		flex-flow: row wrap;
+		flex-flow: row nowrap;
 		justify-content: center;
 		align-items: center;
 
@@ -1327,14 +1337,15 @@ body.dashboard {
 	}
 
 	footer {
-		margin-top: 20em;
 		width: 100%;
 		border-top: 1px solid $white-2;
 		background-color: $white-1;
 		color: $white-3;
 		font-family: 'Open Sans', sans-serif;
+		margin-top: 3em;
 		padding: 1em 5em;
 		line-height: 1.4;
+		height: fit-content;
 
 		b {
 			color: #54749A;
@@ -1350,10 +1361,6 @@ body.dashboard {
 			}
 		}
 
-		// #navigation ul li {
-		// 	display: block;
-		// }
-
 		.nav-links {
 			flex-flow: row wrap;
 			position: absolute;
@@ -1365,6 +1372,7 @@ body.dashboard {
 				border: 1px solid $gray-1;
 				box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.2), 1px 10px 15px rgba(0, 0, 0, 0.2);
 				display: none;
+				font-size: 2em;
 			}
 
 			li:nth-child(odd) {
@@ -1378,6 +1386,9 @@ body.dashboard {
 			}
 		}
 
+		.user-details {
+			margin: 1em 0 0 0 !important;
+		}
 
 	}
 }

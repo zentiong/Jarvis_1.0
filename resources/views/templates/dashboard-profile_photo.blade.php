@@ -13,7 +13,7 @@
 
 ?>
 
-<div class="inner">
+<div class="inner flex-column-center">
     <a href="edit_dp" data-toggle="tooltip" data-placement="bottom" title="Click to edit profile picture" data-animation="true">
         <div class="img-circle profile-picture" style="background-image: url('{{ $cup }}')" alt="Your profile picture">
         </div>

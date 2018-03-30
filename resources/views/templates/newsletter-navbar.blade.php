@@ -10,17 +10,7 @@
     <!-- LOGGED IN STATE -->
     @auth
     <ul class="nav-links" id="nav-links">	
-	
-		<li><a id="levels" href="{{ URL::to('levels') }}">Back to Dashboard</a></li>
-		<!-- @if ( Auth::user()->department == 'Human Resources')
-			<li><a id="levels" href="{{ URL::to('history') }}">Quiz History</a></li>
-			<li><a id="users" href="{{ URL::to('users') }}">Employees</a></li>
-			<li><a id="skills"  href="{{ URL::to('skills') }}">Skills</a></li>
-			<li><a id="positions"  href="{{ URL::to('positions') }}">Positions</a></li>
-			<li><a id="quizzes"  href="{{ URL::to('quizzes') }}">Quizzes</a></li>
-			<li><a id="assessments"  href="{{ URL::to('assessments') }}">Assessments</a></li>
-			<li><a id="training-sessions"  href="{{ URL::to('trainings') }}">Trainings</a></li>
-		@endif -->
+		<li><a id="levels" href="{{ URL::to('levels') }}">Dashboard</a></li>
 	</ul>
 	<?php 
 
@@ -38,15 +28,17 @@
     ?>
 	<div class="login-button" id="login-button">
 		<a href="edit_dp">
-        <div class="img-circle small-profile-picture" style="background-image: url('{{ $cup }}')" alt="Your profile picture">
-        </div>
+            <div class="img-circle small-profile-picture" style="background-image: url('{{ $cup }}')" alt="Your profile picture">
+            </div>
         </a>
-    	<h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
-        
-		<a class="logout-link clicked" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LOG OUT</a>
-		<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-			{{ csrf_field() }}
-		</form>
+        <div>
+            <h6 class="current-username">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
+            <a class="logout-link clicked" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LOG OUT</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+        </div>
+    	
 	</div>
 	@else
 	<!-- LOGGED OUT STATE -->
