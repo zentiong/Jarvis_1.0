@@ -349,7 +349,7 @@ class TrainingController extends Controller
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('users/create')
+            return Redirect::to('trainings/create')
                 ->withErrors($validator);
         } else {
             // store

@@ -71,6 +71,22 @@ class LoginController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
+    // Original
+    /*
+    public function handleGoogleCallback()
+    {
+        try {
+            $user = Socialite::driver('google')->user();
+            
+            $userModel = new User;
+            $createdUser = $userModel->addNew($user);
+            Auth::loginUsingId($createdUser->id);
+            return redirect()->route('home');
+        } catch (Exception $e) {
+            return redirect('/levels');
+        }
+    }
+    */
 
     public function handleGoogleCallback()
     {
@@ -82,7 +98,7 @@ class LoginController extends Controller
             Auth::loginUsingId($createdUser->id);
             return redirect()->route('home');
         } catch (Exception $e) {
-            return redirect('auth/facebook');
+            return redirect('auth/google/callback');
         }
     }
 
