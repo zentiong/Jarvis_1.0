@@ -109,12 +109,21 @@
                       {{ Form::text('password', Request::old('password'), array('class' => 'form-control', 'required')) }}
                   </div>
 
+                    <?php 
+                        $meron = false;
+                    ?>
+                    @if($meron)
+
+                    @endif
 
                     {{ Form::label('training', 'Training') }}
+
                     <select id="training_id" class="form-control" name="training_id">
                         @foreach($trainings as $key => $training)
                         <?php
                             $taken = false;
+
+                            $present = false;
                         ?>
                         <!-- Implement 1 quiz is to 1 training -->
                             @foreach($quizzes as $key => $quiz)
@@ -125,14 +134,23 @@
                                 @endif
                             @endforeach
                             @if(!$taken)
-                                <option value="<?php echo $training->id ?>">{{$training->title}}</option>
+                                <?php
+                                    $present = true;
+                                ?>
+                                <option value="<?php echo $training->id ?>">{{$training->title}}</option>                            
+                            @endif
+                            @if(!$present)
+                                <option>No Training Available</option>   
                             @endif
                         @endforeach
                     </select>
+
                 </div>
               <div class="modal-footer create-bottom-wrapper">
                 <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
+                @if($present)
                 {{ Form::submit('Create quiz', array('class' => 'btn btn-primary create-btn text-center')) }}
+                @endif
               </div>
               {{ Form::close() }}
             </div>
