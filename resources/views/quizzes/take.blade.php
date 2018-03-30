@@ -7,6 +7,7 @@
             <h1 class="crud-page-title">Currently taking quiz</h1>
             <h5>{{ $quiz->topic }}</h5>
         </section>
+        <hr>
         <section>
             <!-- 
 

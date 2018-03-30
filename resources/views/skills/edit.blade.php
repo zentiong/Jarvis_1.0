@@ -4,9 +4,13 @@
 
 	<main class="container create-page">
 		<section class="row crud-page-top">
-			<h1 class="crud-page-title">Edit Skill</h1>
+			<div>
+				<h1 class="crud-page-title">Edit Skill</h1>
+				<h5>Showing: {{ $skill->name }}</h5>
+			</div>
 			<a href="{{ URL::to('skills') }}" class="btn cancel-btn">Back to All Skills</a>
 		</section>
+		<hr>
 		<section>
 			<!-- if there are creation errors, they will show here -->
 	        @if (Session::has('errors'))

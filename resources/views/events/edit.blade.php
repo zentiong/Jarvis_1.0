@@ -18,9 +18,13 @@
 
     <main class="container create-page">
         <section class="row crud-page-top">
-            <h1 class="crud-page-title">Edit Event</h1>
+            <div>
+                <h1 class="crud-page-title">Edit Event</h1>
+                <h5>{{ $event->title }}</h5>
+            </div>
             <a href="{{ URL::to('events') }}" class="btn cancel-btn">Back to All Events</a>
         </section>
+        <hr>
         <section>
             <!-- if there are creation errors, they will show here -->
             @if (Session::has('errors'))

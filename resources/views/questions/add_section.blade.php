@@ -6,9 +6,12 @@
     <main class="container-fluid">
         <section class="container create-page">
             <div class="row crud-page-top">
-                <h1 class="crud-page-title">Add Section for this Quiz</h1>
+                <div>
+                    <h1 class="crud-page-title">Add Section for this Quiz</h1>
+                </div>
+                <a href="{{ url()->previous() }}" class="btn cancel-btn">Back to Questions</a>
             </div>
-
+            <hr>
             <!-- if there are creation errors, they will show here -->
             @if (Session::has('errors'))
                 <div class="alert alert-warning" role="alert">

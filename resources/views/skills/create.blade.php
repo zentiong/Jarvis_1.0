@@ -7,6 +7,7 @@
         <h1 class="crud-page-title">Add New Skill</h1>
         <a href="{{ URL::to('skills') }}" class="btn cancel-btn">Back to All Skills</a>
     </section>
+    <hr>
     <section>
     	<!-- if there are creation errors, they will show here -->
         @if (Session::has('errors'))

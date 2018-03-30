@@ -7,6 +7,7 @@
             <h1 class="crud-page-title">Create Assessment</h1>
             <a href="{{ URL::to('assessments') }}" class="btn cancel-btn">Back to All Assessments</a>
         </section>
+        <hr>
         <section>
             <!-- will be used to show any messages -->
             @if (Session::has('message'))

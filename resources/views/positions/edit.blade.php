@@ -7,6 +7,7 @@
             <h1 class="crud-page-title">Edit Position</h1>
             <a href="{{ URL::to('positions') }}" class="btn cancel-btn">Back to All Positions</a>
         </section>
+        <hr>
         <section>
         	<!-- if there are creation errors, they will show here -->
             @if (Session::has('errors'))

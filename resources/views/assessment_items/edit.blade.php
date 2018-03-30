@@ -3,9 +3,13 @@
 @section('body')
 	<main class="container create-page">
 		<section class="row crud-page-top">
-			<h1 class="crud-page-title">Edit {{ $assessment->criteria }}</h1>
-			<a href="{{ url()->previous() }}" class="btn cancel-btn">Go Back</a>
+			<div>
+				<h1 class="crud-page-title">Edit Assessment Criteria</h1>
+				<h5>{{ $assessment->criteria }}</h5>
+			</div>
+			<a href="{{ url()->previous() }}" class="btn cancel-btn">Go Back to Criteria</a>
 		</section>
+		<hr>
 		<section>
 			<!-- if there are creation errors, they will show here -->
             @if (Session::has('errors'))

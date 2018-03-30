@@ -1173,6 +1173,9 @@ body.dashboard {
 		}
 
 		.employees-positions {
+			background-color: $white-1;
+			border: 1px solid $dashboard-content-border;
+
 			> div {
 				border-bottom: 1px solid $white-2;
 				padding: 1em 0;

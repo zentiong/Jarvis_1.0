@@ -23,6 +23,7 @@ or Supervisor sees assessments or dropdown skills?
             <h1 class="crud-page-title">Create Assessment</h1>
             <a class="btn crud-main-cta" href="{{ URL::to('see_assessments') }}">See Assessments</a>
         </section>
+        <hr>
         <!-- will be used to show any messages -->
             @if (Session::has('message'))
                 <div class="alert alert-info" role="alert">

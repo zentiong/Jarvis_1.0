@@ -10,6 +10,7 @@
             </div>
             <a href="{{ URL::to('assessments') }}" class="btn cancel-btn">Back to All Assessments</a>
         </section>
+        <hr>
         <section>
         	<!-- if there are creation errors, they will show here -->
             @if (Session::has('errors'))

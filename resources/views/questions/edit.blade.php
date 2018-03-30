@@ -11,6 +11,7 @@
             </div>
 			<a href="{{ url()->previous() }}" class="btn cancel-btn">Back to Questions</a>
 		</section>
+        <hr>
 		<section>
 			<!-- if there are creation errors, they will show here -->
             @if (Session::has('errors'))

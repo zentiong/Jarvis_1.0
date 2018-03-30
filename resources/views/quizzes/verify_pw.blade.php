@@ -7,6 +7,7 @@
             <h1 class="crud-page-title">Input password</h1>
             <h5>Quiz: <?php echo $quiz->topic ?></h5>
         </section>
+        <hr>
         <section>
             <!-- will be used to show any messages -->
             @if (Session::has('message'))

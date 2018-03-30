@@ -12,6 +12,7 @@
                         @endif
                     @endforeach Assessment </h1>
         </section>
+        <hr>
         <!-- will be used to show any messages -->
             @if (Session::has('message'))
                 <div class="alert alert-info" role="alert">

@@ -6,6 +6,7 @@
           <h1 class="crud-page-title">Add Quiz</h1>
           <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn">Back to All Quizzes</a>
       </section>
+      <hr>
       <section>
           <!-- if there are creation errors, they will show here -->
           @if (Session::has('errors'))

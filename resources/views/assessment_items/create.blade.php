@@ -8,6 +8,7 @@
 			<h1 class="crud-page-title">Add a Criteria</h1>
 			<a href="{{ ur()->previous() }}" class="btn cancel-btn">Go Back</a>
 		</section>
+		<hr>
 		<section>
 			<!-- if there are creation errors, they will show here -->
             @if (Session::has('errors'))

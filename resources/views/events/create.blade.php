@@ -21,6 +21,7 @@
             <h1 class="crud-page-title">Create Event</h1>
             <a href="{{ URL::to('events') }}" class="btn cancel-btn">Back to All Events</a>
         </section>
+        <hr>
         <section>
             <!-- if there are creation errors, they will show here -->
             @if (Session::has('errors'))

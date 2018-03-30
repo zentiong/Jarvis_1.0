@@ -6,7 +6,7 @@
             <h1 class="crud-page-title">Create Employee</h1>
             <a href="{{ URL::to('users') }}" class="btn cancel-btn">Back to All Employees</a>
         </section>
-
+        <hr>
         <section>
             <!-- if there are creation errors, they will show here -->
             @if (Session::has('errors'))

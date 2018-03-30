@@ -10,6 +10,7 @@
             </div>
             <a href="{{ URL::to('positions') }}" class="btn cancel-btn">Back to All Positions</a>
         </section>
+        <hr>
         <section class="container flex-column-center employees-positions">
             @foreach($users as $key=>$user)
                 <?php 
