@@ -47,7 +47,7 @@ class CreateUsersTable extends Migration
             'first_name' => 'Quin',
             'last_name' => 'Tech',
             'email' => 'qt@qt.com',
-            'password' => bcrypt('asdasd'),
+            'password' => bcrypt('password00'),
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
             'department' => 'Executive Board',
@@ -63,7 +63,7 @@ class CreateUsersTable extends Migration
             'first_name' => 'Anferny',
             'last_name' => 'Vanta',
             'email' => 'vantanferny@gmail.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('password00'),
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
             'department' => 'Human Resources',
@@ -78,7 +78,7 @@ class CreateUsersTable extends Migration
             'first_name' => 'Zen',
             'last_name' => 'Tiongson',
             'email' => 'zt@zt.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('password00'),
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
             'department' => 'Finance',
@@ -93,7 +93,7 @@ class CreateUsersTable extends Migration
             'first_name' => 'Stephen',
             'last_name' => 'Wenceslao',
             'email' => 'sw@sw.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('password00'),
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
             'department' => 'Human Resources',
@@ -108,7 +108,7 @@ class CreateUsersTable extends Migration
             'first_name' => 'Vince',
             'last_name' => 'Agbayani',
             'email' => 'va@va.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('password00'),
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
             'department' => 'Customer Service',
@@ -123,13 +123,55 @@ class CreateUsersTable extends Migration
             'first_name' => 'Chesco',
             'last_name' => 'Mamaradlo',
             'email' => 'cm@cm.com',
-            'password' => bcrypt('1'),
+            'password' => bcrypt('password00'),
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
             'department' => 'Human Resources',
             'supervisor_id' => '1', 
             'position' => 'Developer',
             'manager_check' => true
+        ));
+
+         DB::table('users')->insert(
+        array(
+            'first_name' => 'Quin',
+            'last_name' => 'Technologies',
+            'email' => 'quintech@ph.zalora.com',
+            'password' => bcrypt('password00'),
+            'hiring_date' => '2018-12-31',
+            'birth_date' => '2018-12-31',
+            'department' => 'Finance',
+            'supervisor_id' => '1', 
+            'position' => 'Developer',
+            'manager_check' => false
+        ));
+
+         DB::table('users')->insert(
+        array(
+            'first_name' => 'Manager',
+            'last_name' => 'Account',
+            'email' => 'manager@ph.zalora.com',
+            'password' => bcrypt('password01'),
+            'hiring_date' => '2018-12-31',
+            'birth_date' => '2018-12-31',
+            'department' => 'Finance',
+            'supervisor_id' => '1', 
+            'position' => 'Developer',
+            'manager_check' => true
+        ));
+
+         DB::table('users')->insert(
+        array(
+            'first_name' => 'HR',
+            'last_name' => 'Account',
+            'email' => 'hr@ph.zalora.com',
+            'password' => bcrypt('password02'),
+            'hiring_date' => '2018-12-31',
+            'birth_date' => '2018-12-31',
+            'department' => 'Human Resources',
+            'supervisor_id' => '1', 
+            'position' => 'Developer',
+            'manager_check' => false
         ));
 
     }
