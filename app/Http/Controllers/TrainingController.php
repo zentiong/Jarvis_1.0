@@ -338,7 +338,7 @@ class TrainingController extends Controller
     public function store()
     {
         $rules = array(
-            'date'=> 'required',
+            'date'=> 'required|after_or_equal:today',
             'starting_time'=> 'required',
             'ending_time'=> 'required',
             'title' => 'required',
@@ -432,7 +432,7 @@ class TrainingController extends Controller
     public function update($id)
     {
         $rules = array(
-            'date'=> 'required',
+            'date'=> 'required|after_or_equal:today',
             'starting_time'=> 'required',
             'starting_time'=> 'required',
             'title' => 'required',
