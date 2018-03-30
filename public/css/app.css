@@ -43,7 +43,7 @@ body.newsletter nav ul { list-style-type: none; margin: 0; padding: 0; display: 
 body.newsletter nav ul li { display: inline; margin: 0 1.1em; }
 body.newsletter nav ul li a { color: #ebebeb; font-family: "Apercu Regular", sans-serif; font-size: 1em; }
 body.newsletter nav .active { border-top: 3px solid #F8E71C; color: #fff; }
-body.newsletter .login-popup { display: none; width: 290px; background-color: #fff; border: 1px solid #95989A; border-radius: 2px; padding: 20px; position: fixed; right: 0; top: 55px; z-index: 10; }
+body.newsletter .login-popup { display: none; width: 290px; background-color: #f9f9f9; border: 1px solid #95989A; border-radius: 2px; padding: 20px; position: fixed; right: 0; top: 55px; z-index: 10; }
 body.newsletter .login-popup form input[type="email"], body.newsletter .login-popup form input[type="password"] { font-family: "Helvetica Neue", sans-serif !important; font-size: 1em; width: 250px; border: 1px solid #707070; border-radius: 2px; padding: 5px; }
 body.newsletter .login-popup form input[type="checkbox"] { margin-right: 5px; padding: 15px; height: 15px; width: 15px; vertical-align: middle; }
 body.newsletter .login-popup form label { color: #1F1F1F; font-family: "Helvetica Neue", sans-serif !important; }

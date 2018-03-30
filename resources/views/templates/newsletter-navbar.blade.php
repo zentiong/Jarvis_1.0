@@ -73,7 +73,8 @@
 	            <input type="checkbox" name="keep-logged-in" id="keep-logged-in" {{ old('remember') ? 'checked' : '' }}>
 	            <label for="keep-logged-in">Keep me logged in</label>
 	            <input class="login-button-yellow" type="submit" style="display: table;" value="LOG IN">
-	            <a href="{{URL::to('auth/google')}}"><i class="fa fa-google"></i>Sign In with Google</a>
+                <hr>
+	            <a href="{{URL::to('auth/google')}}"><img src="{{ asset('images/btn_google_signin_light_normal_web@2x.png') }}" alt="Sign In with Google" style="width: 180px;"></a>
         </form>
         
     </div>
