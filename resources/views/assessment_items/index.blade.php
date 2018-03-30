@@ -85,7 +85,7 @@
                {{ Form::open(array('url' => 'assessments/'.$assessment->id.'/assessment_items')) }}
                 <div class="form-group" >
                     {{ Form::label('criteria', 'Criteria') }}
-                    {{ Form::text('criteria', Request::old('criteria'), array('class' => 'form-control', 'autofocus')) }}
+                    {{ Form::text('criteria', Request::old('criteria'), array('class' => 'form-control', 'autofocus', 'required')) }}
                 </div>
 
                 <div class="form-group text-center create-bottom-wrapper">
