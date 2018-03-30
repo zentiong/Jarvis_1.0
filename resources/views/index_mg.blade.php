@@ -384,20 +384,11 @@
                                 }
                             }
                         }
-                        
-                        print_r($subs_skill_id);
-                        print_r($subs_skill_labels);
-                        print_r($subs_skill_scores);
-
                         ?>
 
 
 
 
-                        <button onclick="update_chart(eum_criteria_chart, 'by_criteria')">By Criteria</button>
-                        <button onclick="update_chart(eum_criteria_chart, 'by_employee')">By Employee</button>
-                        <h1>Assessment Statistics - Subordinates</h1>
-                        <canvas id="eum_criteria_chart" width="100" height="100px"></canvas>
                         <div class="dashboard-content">
                             <h1>Skills Statistics - Subordinates</h1>
                             <canvas id="eum_skills_chart" width="100" height="100px"></canvas>
@@ -410,76 +401,6 @@
                             </select>
                         </div>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-                        <script type="text/javascript">
-
-                            var init_criteria_score = <?php echo json_encode($init_criteria_score)?>;
-                            var init_criteria_label = <?php echo json_encode($init_criteria_label)?>;
-                            var ems_assessment_score = <?php echo json_encode($ems_assessment_score)?>;
-                            var ems_assessment_label = <?php echo json_encode($ems_assessment_label)?>;
-
-                            function update_chart(target_chart, filter)
-                            {
-                                if(filter=="by_criteria")
-                                {
-                                    target_chart.data.datasets[0].data = init_criteria_score;
-                                    target_chart.data.labels = init_criteria_label;
-                                    target_chart.update();
-                                }
-                                else
-                                {
-                                    target_chart.data.datasets[0].data = ems_assessment_score;
-                                    target_chart.data.labels = ems_assessment_label;
-                                    target_chart.update(); 
-                                }
-                            }
-                            
-
-
-                            Chart.defaults.global.maintainAspectRatio = false;
-                            var ctx = document.getElementById("eum_criteria_chart").getContext('2d');
-                            var eum_criteria_chart = new Chart(ctx, {
-                                type: 'horizontalBar',
-                                data: {
-                                    labels: init_criteria_label,
-                                    datasets: [{
-                                        label: 'Total Assessment Scores',
-                                        data: init_criteria_score,
-                                        backgroundColor: [
-                                            'rgba(255, 99, 132, 0.5)',
-                                            'rgba(54, 162, 235, 0.5)',
-                                            'rgba(255, 206, 86, 0.5)',
-                                            'rgba(75, 192, 192, 0.5)',
-                                            'rgba(153, 102, 255, 0.5)',
-                                            'rgba(255, 159, 64, 0.5)'
-                                        ],
-                                        borderColor: [
-                                            'rgba(255,99,132,1)',
-                                            'rgba(54, 162, 235, 1)',
-                                            'rgba(255, 206, 86, 1)',
-                                            'rgba(75, 192, 192, 1)',
-                                            'rgba(153, 102, 255, 1)',
-                                            'rgba(255, 159, 64, 1)'
-                                        ],
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        yAxes: [{
-                                            ticks: {
-                                                beginAtZero:true
-                                            }
-                                        }],
-                                        xAxes: [{
-                                            ticks: {
-                                                beginAtZero:true
-                                            }
-                                        }]
-
-                                    }
-                                }
-                            });
-                        </script>
                         <!--script for employee skills-->
                         <?php
                         for($i=0;$i<sizeof($user_skills);$i++   )
