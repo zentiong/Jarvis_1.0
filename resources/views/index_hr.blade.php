@@ -1,7 +1,7 @@
 @extends('templates.dashboard-master') 
 
 @section('body')
-    <main class="container-fluid">
+    <main>
         <section class="container-fluid">
             <?php 
                 $current_user = Auth::user();
