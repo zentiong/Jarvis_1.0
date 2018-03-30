@@ -9,6 +9,7 @@
       </div>
       <a href="{{ URL::to('trainings') }}" class="btn cancel-btn">Back to All Trainings</a>
   </section>
+  <hr>
   <section class="container dashboard-container">
     <div class="row dashboard-body">
         <div class="dashboard-content">
@@ -102,8 +103,6 @@
                 <div class="col-md-4">
                     <h6 class="content-header light"> Attended</h6>
                  </div>
-
-                
            </div>
            <div class="row" style="padding-top: 0em">
                 <div class="col-md-4">
