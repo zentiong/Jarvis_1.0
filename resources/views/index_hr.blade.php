@@ -62,11 +62,13 @@
                             $cwide_quiz_data = array();
                             $cwide_quiz_labels = array();
                             $cwide_quiz_id = array();
+                            $q_counter = array();
                             ?>
 
 
                             <!-- scores -->
                             <?php
+
 
                                 foreach($user_skills as $key=>$value)
                                 {
@@ -82,14 +84,22 @@
                                     {
                                         array_push($cwide_quiz_data, $quiz_score);
                                         array_push($cwide_quiz_id, $value->skill_id);
+                                        array_push($q_counter, 1);
                                         
                                     }
                                     else
                                     {
                                         $key = $key = array_search($value->skill_id, $cwide_quiz_id);
                                         $cwide_quiz_data[$key]+=$quiz_score;
+                                        $q_counter[$key]+=1;
                                     }
                                 }
+
+                                for($i=0;$i<sizeof($cwide_quiz_data);$i++)
+                                {
+                                    $cwide_quiz_data[$i] = $cwide_quiz_data[$i]/$q_counter[$i]; 
+                                }
+                                print_r($q_counter); 
      
                             ?>
                             <!-- end scores -->
