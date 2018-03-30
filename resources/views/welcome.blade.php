@@ -30,6 +30,11 @@
     @extends('templates.newsletter-navbar')
 
     <main>
+        @if (Session::has('message'))
+            <div class="alert alert-info" role="alert">
+                {{ Session::get('message') }}
+            </div>
+        @endif
         <section class="container-fluid text-center" id="welcome-banner">
             <div class="container">
                 <h1>ALFRED 3.0</h1>

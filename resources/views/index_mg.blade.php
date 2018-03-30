@@ -398,8 +398,17 @@
                         <button onclick="update_chart(eum_criteria_chart, 'by_employee')">By Employee</button>
                         <h1>Assessment Statistics - Subordinates</h1>
                         <canvas id="eum_criteria_chart" width="100" height="100px"></canvas>
-                        <h1>Skills Statistics - Subordinates</h1>
-                        <canvas id="eum_skills_chart" width="100" height="100px"></canvas>
+                        <div class="dashboard-content">
+                            <h1>Skills Statistics - Subordinates</h1>
+                            <canvas id="eum_skills_chart" width="100" height="100px"></canvas>
+                            <select id="skills_select" onchange="update_eskills_chart(eum_skills_chart,this)">
+                                <option value="" disabled selected>Select your option</option>
+                                <option value="all">All Employees</option>
+                                @foreach($eum_names as $key => $value)
+                                    <option value="{{$value->id}}">{{$value->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                         <script type="text/javascript">
 
@@ -472,20 +481,65 @@
                             });
                         </script>
                         <!--script for employee skills-->
+                        <?php
+                        for($i=0;$i<sizeof($user_skills);$i++   )
+                        {
+                            $ref = $user_skills[$i]->skill_id;
+                            foreach($skills as $key=>$value)
+                            {
+                                if($value->id==$ref)
+                                {
+                                    $user_skills[$i]->skill_id = $value->name;
+
+                                }
+                            }
+                        }
+
+                        ?>
                         <script type="text/javascript">
 
                             var subs_skill_scores = <?php echo json_encode($subs_skill_scores)?>;
                             var subs_skill_labels = <?php echo json_encode($subs_skill_labels)?>;
-
-                            function update_chart(target_chart, filter)
-                            {
-                            }
+                            var user_skills = <?php echo json_encode($user_skills)?>;
                             
+
+                            function update_eskills_chart(target_chart,filter)
+                            {
+                                var fvalue = filter.options[filter.selectedIndex].value;
+                                var filtered_skill_scores = [];
+                                var filtered_skill_ids = [];
+
+                                if(fvalue=="all")
+                                {
+                                    target_chart.data.datasets[0].data = subs_skill_scores;
+                                    target_chart.data.labels = subs_skill_labels;
+                                    target_chart.update(); 
+                                }
+                                else
+                                {
+                                    for(var i=0;i<user_skills.length;i++)
+                                    {
+                                        if(user_skills[i].user_id==fvalue)
+                                        {
+                                            filtered_skill_scores.push(user_skills[i].skill_grade);
+                                            filtered_skill_ids.push(user_skills[i].skill_id);
+                                        }
+                                    }
+
+                                    target_chart.data.datasets[0].data = filtered_skill_scores;
+                                    target_chart.data.labels = filtered_skill_ids;
+                                    target_chart.update();
+                                }
+
+
+                                 
+                                
+                            }
 
 
                             Chart.defaults.global.maintainAspectRatio = false;
                             var ctx = document.getElementById("eum_skills_chart").getContext('2d');
-                            var eum_criteria_chart = new Chart(ctx, {
+                            var eum_skills_chart = new Chart(ctx, {
                                 type: 'horizontalBar',
                                 data: {
                                     labels: subs_skill_labels,

@@ -7,9 +7,10 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 // Google
 
-
+use Illuminate\Support\Facades\Session;
 
 use App\User;
+use Auth;
 use Validator;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Socialite;
@@ -90,16 +91,25 @@ class LoginController extends Controller
 
     public function handleGoogleCallback()
     {
-        try {
-            $user = Socialite::driver('google')->user();
+        /*
+        $user_google = Socialite::driver('google')->user();
+        $current_user = User::where('email',$user_google->getEmail())->first();
+        Auth::loginUsingId($current_user->id);
+        return redirect('/levels')->with('current_user',$current_user);
+        */
             
-            $userModel = new User;
-            $createdUser = $userModel->addNew($user);
-            Auth::loginUsingId($createdUser->id);
-            return redirect()->route('home');
+        try {
+            $user_google = Socialite::driver('google')->user();
+            $current_user = User::where('email',$user_google->getEmail())->first();
+            Auth::loginUsingId($current_user->id);
+            return redirect('/levels');
+
         } catch (Exception $e) {
-            return redirect('auth/google/callback');
+            Session::flash('message', 'Invalid Email');
+            return redirect('/');
+
         }
+        
     }
 
     // Google
