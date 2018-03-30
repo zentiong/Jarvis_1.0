@@ -10,194 +10,199 @@
             $current_id = Auth::user()->id;
             
         ?>
-        @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
-        @endif
         
         <section class="row personal-details hr-pastel">
             @include('templates.dashboard-profile_photo', ['current_user' => $current_user, 'current_id' => $current_id])
         </section>
 
+        <!-- will be used to show any messages -->
+            @if (Session::has('message'))
+                <div class="alert alert-info" role="alert">
+                    <strong>Heads up</strong>
+                    {{ Session::get('message') }}
+                </div>
+            @endif
+
         <section class="container dashboard-container">
 
-        <div class="row dashboard-tab-container">
-          <button class="btn tablinks" onclick="openTab(event, 'personal')">Personal</button>
-          <button class="btn tablinks" onclick="openTab(event, 'employees')">Department-Wide</button>
-          <button class="btn tablinks" onclick="openTab(event, 'trainings')">Company-Wide</button>
-        </div>
+            <div class="row dashboard-tab-container">
+              <button class="btn tablinks" onclick="openTab(event, 'personal')">Personal</button>
+              <button class="btn tablinks" onclick="openTab(event, 'employees')">Department-Wide</button>
+              <button class="btn tablinks" onclick="openTab(event, 'trainings')">Company-Wide</button>
+            </div>
 
 
-        <div class="row dashboard-body tabcontent" id="personal">
-        @include('templates.dashboard-skills', ['user_skills' => $user_skills])
-            
-        @include('templates.dashboard-trainings')
-        </div>
+            <div class="row dashboard-body tabcontent" id="personal">
+            @include('templates.dashboard-skills', ['user_skills' => $user_skills])
+                
+            @include('templates.dashboard-trainings')
+            </div>
 
-            <!-- EMployees CONTENT CONTAINER -->
-                <div class="row dashboard-body tabcontent" id="employees">
-                    <div class="col-md-12">
-                        <h5 class="dashboard-header"><i class="fa fa-users"></i>Department overview</h5>
+                <!-- EMployees CONTENT CONTAINER -->
+                    <div class="row dashboard-body tabcontent" id="employees">
+                        <div class="col-md-12">
+                            <h5 class="dashboard-header"><i class="fa fa-users"></i>Department overview</h5>
+                            <div class="dashboard-content">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td>First Name</td>
+                                            <td>Last Name</td>
+                                            <td>Email</td>
+                                            <td>Hiring Date</td>
+                                            <td>Birth Date</td>
+                                            <td>Department</td>
+                                            <td>Supervisor</td>
+                                            <td>Position</td>
+                                            <td>Manager?</td>
+                                            <td>Actions</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+
+                                        /* 
+                                            1) Buffer to Extraction Area
+                                            2) Extract
+                                            3) Extracted Children to Buffer
+                                            4) Parents to List
+                                            5) Repeat
+
+                                        */
+
+                                        $list = array();
+                                        $extraction = array();
+                                        $buffer = array();
+
+                                        array_push($buffer, $current_user);
+
+                                        while(!empty($buffer)) {
+                                            $extraction = $buffer;
+                                            $buffer = array();
+                                            foreach ($extraction as $key => $parent) {
+                                                if(!in_array($parent, $list))
+                                                {
+                                                    array_push($list, $parent);
+                                                    $children = $parent->subordinates()->get();
+                                                    foreach ($children as $key => $child) {
+                                                        array_push($buffer, $child);
+                                                    }
+                                                    
+                                                }
+                                            }
+                                        }
+
+                                    ?>
+                                    @foreach($list as $key => $value)
+                                        @if($value->supervisor_id==$current_id)
+                                            <tr>
+                                                <td>{{ $value->first_name }}</td>
+                                                <td>{{ $value->last_name }}</td>
+                                                <td>{{ $value->email }}</td>
+                                                <td>{{ $value->hiring_date }}</td>
+                                                <td>{{ $value->birth_date }}</td>
+                                                <td>{{ $value->department }}</td>
+                                                @foreach($users_two as $key => $supervisor)
+                                                    @if($value->supervisor_id == $supervisor->id)
+                                                         <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
+                                                    @endif
+                                                @endforeach
+                                                <td>{{ $value->position }}</td>
+
+                                                @if ($value->manager_check==1)
+                                                <td>Yes</td>
+                                                @else
+                                                <td>No</td>
+                                                @endif
+
+                                                <!-- we will also add show, edit, and delete buttons -->
+                                                <td class="table-actions">
+                                                    <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $value->id) }}">
+                                                        <i class="fa fa-user fa-lg"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- TRAININGS CONTENT CONTAINER -->
+                <div class="row dashboard-body tabcontent" id="trainings">
+                    <div class="col-md-6">
+                        <h5 class="dashboard-header"><i class="fa fa-area-chart"></i>Overall skills statistics</h5>
+
+                            <p>A work in progress...</p>
+
+                        <div class="dashboard-content">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row dashboard-header">
+                            <h5>
+                                <i class="fa fa-line-chart"></i>
+                                Overall training statistics
+                            </h5>
+                            <a class="crud-main-cta" href="trainings/create">&#43; Add Training</a> 
+                        </div>
+                        
                         <div class="dashboard-content">
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <td>First Name</td>
-                                        <td>Last Name</td>
-                                        <td>Email</td>
-                                        <td>Hiring Date</td>
-                                        <td>Birth Date</td>
-                                        <td>Department</td>
-                                        <td>Supervisor</td>
-                                        <td>Position</td>
-                                        <td>Manager?</td>
-                                        <td>Actions</td>
+                                        <td>Date</td>
+                                        <td>Title</td>
+                                        <td>Speaker</td>
+                                        <td>Venue</td>
+                                        <td class="no-stretch">Actions</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php
+                                @foreach($trainings as $key => $value)
+                                    <tr>
+                                        <td>{{ $value->date }}</td>
+                                        <td>{{ $value->title }}</td>
+                                        <td>{{ $value->speaker }}</td>
+                                        <td>{{ $value->venue }}</td>
 
-                                    /* 
-                                        1) Buffer to Extraction Area
-                                        2) Extract
-                                        3) Extracted Children to Buffer
-                                        4) Parents to List
-                                        5) Repeat
+                                        <!-- we will also add show, edit, and delete buttons -->
+                                        <td class="table-actions no-stretch">
 
-                                    */
+                                            <!-- show the employee (uses the show method found at GET /employees/{id} -->
+                                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $value->id) }}">
+                                                <i class="fa fa-user fa-lg"></i>
+                                            </a>
 
-                                    $list = array();
-                                    $extraction = array();
-                                    $buffer = array();
+                                            <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
+                                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit employee" href="{{ URL::to('users/' . $value->id . '/edit') }}">
+                                                 <i class="fa fa-pencil fa-lg"></i>
+                                            </a>
 
-                                    array_push($buffer, $current_user);
+                                            <!-- delete the employee (uses the destroy method DESTROY /employees/{id} -->
+                                            <!-- we will add this later since its a little more complicated than the other two buttons -->
+                                                {{ Form::open(array('url' => 'users/' . $value->id, 'class' => 'pull-right')) }}
+                                                {{ Form::hidden('_method', 'DELETE') }}
+                                                <div data-toggle="tooltip" data-placement="bottom" title="Delete employee" data-animation="true">
+                                                    {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
+                                                </div>
 
-                                    while(!empty($buffer)) {
-                                        $extraction = $buffer;
-                                        $buffer = array();
-                                        foreach ($extraction as $key => $parent) {
-                                            if(!in_array($parent, $list))
-                                            {
-                                                array_push($list, $parent);
-                                                $children = $parent->subordinates()->get();
-                                                foreach ($children as $key => $child) {
-                                                    array_push($buffer, $child);
-                                                }
-                                                
-                                            }
-                                        }
-                                    }
+                                             {{ Form::close() }}
+                                            
 
-                                ?>
-                                @foreach($list as $key => $value)
-                                    @if($value->supervisor_id==$current_id)
-                                        <tr>
-                                            <td>{{ $value->first_name }}</td>
-                                            <td>{{ $value->last_name }}</td>
-                                            <td>{{ $value->email }}</td>
-                                            <td>{{ $value->hiring_date }}</td>
-                                            <td>{{ $value->birth_date }}</td>
-                                            <td>{{ $value->department }}</td>
-                                            @foreach($users_two as $key => $supervisor)
-                                                @if($value->supervisor_id == $supervisor->id)
-                                                     <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
-                                                @endif
-                                            @endforeach
-                                            <td>{{ $value->position }}</td>
-
-                                            @if ($value->manager_check==1)
-                                            <td>Yes</td>
-                                            @else
-                                            <td>No</td>
-                                            @endif
-
-                                            <!-- we will also add show, edit, and delete buttons -->
-                                            <td class="table-actions">
-                                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $value->id) }}">
-                                                    <i class="fa fa-user fa-lg"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endif
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
-                            </table>
+                            </table>  
+                            
                         </div>
                     </div>
                 </div>
 
-                 <!-- TRAININGS CONTENT CONTAINER -->
-            <div class="row dashboard-body tabcontent" id="trainings">
-                <div class="col-md-6">
-                    <h5 class="dashboard-header"><i class="fa fa-area-chart"></i>Overall skills statistics</h5>
-
-                        <p>A work in progress...</p>
-
-                    <div class="dashboard-content">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row dashboard-header">
-                        <h5>
-                            <i class="fa fa-line-chart"></i>
-                            Overall training statistics
-                        </h5>
-                        <a class="crud-main-cta" href="trainings/create">&#43; Add Training</a> 
-                    </div>
-                    
-                    <div class="dashboard-content">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <td>Date</td>
-                                    <td>Title</td>
-                                    <td>Speaker</td>
-                                    <td>Venue</td>
-                                    <td class="no-stretch">Actions</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($trainings as $key => $value)
-                                <tr>
-                                    <td>{{ $value->date }}</td>
-                                    <td>{{ $value->title }}</td>
-                                    <td>{{ $value->speaker }}</td>
-                                    <td>{{ $value->venue }}</td>
-
-                                    <!-- we will also add show, edit, and delete buttons -->
-                                    <td class="table-actions no-stretch">
-
-                                        <!-- show the employee (uses the show method found at GET /employees/{id} -->
-                                        <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $value->id) }}">
-                                            <i class="fa fa-user fa-lg"></i>
-                                        </a>
-
-                                        <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
-                                        <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit employee" href="{{ URL::to('users/' . $value->id . '/edit') }}">
-                                             <i class="fa fa-pencil fa-lg"></i>
-                                        </a>
-
-                                        <!-- delete the employee (uses the destroy method DESTROY /employees/{id} -->
-                                        <!-- we will add this later since its a little more complicated than the other two buttons -->
-                                            {{ Form::open(array('url' => 'users/' . $value->id, 'class' => 'pull-right')) }}
-                                            {{ Form::hidden('_method', 'DELETE') }}
-                                            <div data-toggle="tooltip" data-placement="bottom" title="Delete employee" data-animation="true">
-                                                {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
-                                            </div>
-
-                                         {{ Form::close() }}
-                                        
-
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>  
-                        
-                    </div>
-                </div>
-            </div>
-
-        </section>
+            </section>
 
         </section>
 

@@ -52,27 +52,23 @@
                     @foreach($questions as $key => $value)
                         <tr>
                             <td>{{ $value->question_item }}</td>
-                            <!-- we will also add show, edit, and delete buttons -->
                             <td>
-                                {{ Form::radio('answer_attempt['.$var.']', $value->choice_1 ) }}
-                                {{ Form::label('choice_1', $value->choice_1) }}
-                                
-
-                                <br>
-                                {{ Form::radio('answer_attempt['.$var.']',  $value->choice_2 ) }}
-                                {{ Form::label('choice_1', $value->choice_2) }}
-                                
-
-                                <br>
-                                {{ Form::radio('answer_attempt['.$var.']',  $value->choice_3 ) }}
-                                {{ Form::label('choice_1', $value->choice_3) }}
-                                
-
-                                <br>
-                                {{ Form::radio('answer_attempt['.$var.']',  $value->choice_4 ) }}
-                                {{ Form::label('choice_1', $value->choice_4) }}
-                                
-                                
+                                <div class="quiz-item-row">
+                                    {{ Form::radio('answer_attempt['.$var.']', $value->choice_1 ) }}
+                                    {{ Form::label('choice_1', $value->choice_1) }}
+                                </div>
+                                <div class="quiz-item-row">
+                                    {{ Form::radio('answer_attempt['.$var.']',  $value->choice_2 ) }}
+                                    {{ Form::label('choice_1', $value->choice_2) }}
+                                </div>
+                                <div class="quiz-item-row">
+                                    {{ Form::radio('answer_attempt['.$var.']',  $value->choice_3 ) }}
+                                    {{ Form::label('choice_1', $value->choice_3) }}
+                                </div>
+                                <div class="quiz-item-row">
+                                   {{ Form::radio('answer_attempt['.$var.']',  $value->choice_4 ) }}
+                                    {{ Form::label('choice_1', $value->choice_4) }} 
+                                </div>
                             </td>
                             <?php 
                                 $var ++;
@@ -100,5 +96,14 @@
     $(document).ready(function() {
         var a = document.getElementById('quizzes');
         a.classList.toggle("active");
+
+        // $(".quiz-item-row input[type='radio']").click(function() {
+            
+        //     if ($(".quiz-item-row input[type='radio']").is(':checked')) { 
+        //         alert("it's checked");
+        //         $(".quiz-item-row").css('background-color', 'green');
+        //     }
+        // });
     });
+    
 </script>

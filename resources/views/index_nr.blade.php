@@ -7,17 +7,20 @@
 
         <?php 
             $current_user = Auth::user();
-            $current_id = Auth::user()->id;
-            
+            $current_id = Auth::user()->id; 
         ?>
-        @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
-        @endif
         
         <section class="row personal-details nr-pastel">
-
             @include('templates.dashboard-profile_photo', ['current_user' => $current_user, 'current_id' => $current_id])
         </section>
+
+        <!-- will be used to show any messages -->
+            @if (Session::has('message'))
+                <div class="alert alert-info" role="alert">
+                    <strong>Heads up</strong>
+                    {{ Session::get('message') }}
+                </div>
+            @endif
         
         <section class="container dashboard-container">
             <div class="row dashboard-body tabcontent" id="personal">
