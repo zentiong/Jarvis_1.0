@@ -66,7 +66,7 @@ body.newsletter .clicked { background-color: #000 !important; color: #F8E71C !im
 body.newsletter .login-button { margin-left: auto; text-align: right; display: flex; flex-flow: row nowrap; align-items: center; }
 body.newsletter .login-button .current-username { margin-bottom: 2px; font-family: Roboto, sans-serif; font-weight: 300; font-size: 0.9em; }
 body.newsletter .login-button .logout-link { color: #2F2F2F; border: 1px solid transparent; background-color: #F8E71C; color: #2F2F2F; cursor: pointer; border: 1px solid #95989A; border-radius: 2px; font-family: "Apercu Bold", sans-serif !important; font-size: 0.9em; }
-body.newsletter .login-button-yellow { right: 0; margin-right: 10px; color: #2F2F2F; border: 1px solid transparent; background-color: #F8E71C; color: #2F2F2F; cursor: pointer; display: inline-block; padding: 5px 15px; margin-left: auto !important; border: 1px solid #95989A; border-radius: 2px; font-family: "Apercu Bold", sans-serif !important; }
+body.newsletter .login-button-yellow { right: 0; color: #2F2F2F; border: 1px solid transparent; background-color: #F8E71C; color: #2F2F2F; cursor: pointer; display: inline-block; padding: 5px 15px; margin-left: auto !important; border: 1px solid #95989A; border-radius: 2px; font-family: "Apercu Bold", sans-serif !important; }
 body.newsletter section:nth-child(even), body.newsletter section:nth-child(odd) { padding: 40px 0; }
 body.newsletter section:nth-child(even) { background-color: #1f1f1f; }
 body.newsletter section:nth-child(odd) { background-color: none; }

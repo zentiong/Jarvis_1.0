@@ -74,6 +74,7 @@
 	            <label for="keep-logged-in">Keep me logged in</label>
 	            <input class="login-button-yellow" type="submit" style="display: table;" value="LOG IN">
                 <hr>
+                <small style="color: black;">Sign in another way</small>
 	            <a href="{{URL::to('auth/google')}}"><img src="{{ asset('images/btn_google_signin_light_normal_web@2x.png') }}" alt="Sign In with Google" style="width: 180px;"></a>
         </form>
         
