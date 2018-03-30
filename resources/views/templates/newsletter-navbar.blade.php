@@ -73,7 +73,7 @@
 	            <input type="checkbox" name="keep-logged-in" id="keep-logged-in" {{ old('remember') ? 'checked' : '' }}>
 	            <label for="keep-logged-in">Keep me logged in</label>
 	            <input class="login-button-yellow" type="submit" style="display: table;" value="LOG IN">
-	            <a href="{{URL::to('auth/google')}}">Log In via Google</a>
+	            <a href="{{URL::to('auth/google')}}"><i class="fa fa-google"></i>Sign In with Google</a>
         </form>
         
     </div>
@@ -88,21 +88,3 @@
 	     	</button>
     	</div>
  @endif
-
- <script type="text/javascript">
-	window.onload = function() {
-		var navButton = document.querySelector('.nav-opener');
-		console.log(`navButton: ${navButton}`);
-    	let expanded = navButton.getAttribute('aria-expanded') === 'true' || false;
-
-       	navButton.setAttribute('aria-expanded', !expanded);
-       	let menu = document.getElementById('nav-links').children;
-       	var i;
-       	for (i = 0; i < menu.length; i++) {
-           	menu[i].classList.toggle('open');
-       	}
-	}    
-	// $(document).ready(function() {
-	// 	alert("hello");
-	// });
-</script>
