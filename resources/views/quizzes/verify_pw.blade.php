@@ -3,9 +3,12 @@
 @section('body')
 
     <main class="container create-page">
-        <section class="crud-page-top">
-            <h1 class="crud-page-title">Input password</h1>
-            <h5>Quiz: <?php echo $quiz->topic ?></h5>
+        <section class="row crud-page-top">
+            <div>
+                <h1 class="crud-page-title">Input password</h1>
+                <h5>Quiz: <?php echo $quiz->topic ?></h5>
+            </div>
+            <a href="{{ URL::to('levels') }}" class="btn cancel-btn">Back to Dashboard</a>
         </section>
         <hr>
         <section>
@@ -40,7 +43,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var a = document.getElementById('quizzes');
+        var a = document.getElementById('levels');
         a.classList.toggle("active");
     });
 

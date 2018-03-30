@@ -93,7 +93,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var a = document.getElementById('training-sessions');
+        var a = document.getElementById('levels');
         a.classList.toggle("active");
     });
 </script>

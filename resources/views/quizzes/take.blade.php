@@ -40,8 +40,6 @@
                 <?php
                     $var = 0; 
                 ?>   
-                
-                <hr>
 
                 @foreach($questions as $key => $value)
                 <div class="take-quiz-wrapper">
