@@ -52,6 +52,7 @@ Class LevelingController extends Controller
         $result = array();
 
         $mg_emps = DB::select(DB::raw("select * from users where supervisor_id='$current_id'"));
+        $eum_names = DB::select(DB::raw("select id, concat(first_name, ' ' ,last_name) as name from users where supervisor_id='$current_id'"));
 
 
         $filter_data = DB::select(DB::raw("select skill_id, sum(skill_grade) as skill_grade,department from user_skills group by department,skill_id"));
@@ -372,6 +373,7 @@ Class LevelingController extends Controller
 						->with('now', $now)
 						->with('mg',$mg)
                         ->with('mg_emps',$mg_emps)
+                        ->with('eum_names',$eum_names)
                         ->with('grades',$grades);
 				}
 				else // Normal
