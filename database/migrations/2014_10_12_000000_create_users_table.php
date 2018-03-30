@@ -32,10 +32,6 @@ class CreateUsersTable extends Migration
 
             $table->string('profile_photo', 255)->nullable();
 
-            // TEST
-
-            $table->string('google_id')->nullable();
-
             $table->rememberToken();
             $table->timestamps();
         });
@@ -107,7 +103,7 @@ class CreateUsersTable extends Migration
         array(
             'first_name' => 'Vince',
             'last_name' => 'Agbayani',
-            'email' => 'va@va.com',
+            'email' => 'jvinceagbayani@gmail.com',
             'password' => bcrypt('password00'),
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',

@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 // Google
 
-
+use Illuminate\Support\Facades\Session;
 
 use App\User;
 use Auth;
@@ -91,29 +91,25 @@ class LoginController extends Controller
 
     public function handleGoogleCallback()
     {
-
+        /*
         $user_google = Socialite::driver('google')->user();
         $current_user = User::where('email',$user_google->getEmail())->first();
         Auth::loginUsingId($current_user->id);
         return redirect('/levels')->with('current_user',$current_user);
-
-            /*
+        */
+            
         try {
-
-            $user_google = Socialite::driver('google')->with(['email'])->user();
-
+            $user_google = Socialite::driver('google')->user();
             $current_user = User::where('email',$user_google->getEmail())->first();
-
             Auth::loginUsingId($current_user->id);
-
-            return redirect()->route('/levels')->with('current_user',$current_user);
+            return redirect('/levels');
 
         } catch (Exception $e) {
-
-            return redirect('/auth/google');
+            Session::flash('message', 'Invalid Email');
+            return redirect('/');
 
         }
-        */
+        
     }
 
     // Google
