@@ -30,10 +30,17 @@
     @extends('templates.newsletter-navbar')
 
     <main>
-        @if (Session::has('message'))
-            <div class="alert alert-info" role="alert">
-                {{ Session::get('message') }}
+         <!-- will be used to show any messages -->
+        @if (Session::has('message'))    
+        <div class="login-error-wrapper" id="login-error-wrapper" onclick="closeLoginError()">
+            <div class="help-block">
+                <i class="fa fa-exclamation-triangle fa-lg"></i>
+                <strong>{{ Session::get('message') }}. Contact HR or tech for support.</strong>
             </div>
+            <button class="btn">
+                CLOSE
+            </button>
+        </div>
         @endif
         <section class="container-fluid text-center" id="welcome-banner">
             <div class="container">
