@@ -1222,11 +1222,43 @@ body.dashboard {
 				font-weight: bold;
 			}
 		}
-
 		.answer-item-row.active {
 			background-color: $create-crud-sub;
 			color: $white-2;
 		}
+
+		.evaluate-training-wrapper {
+			> .form-group {
+				margin-bottom: 5em;
+			}
+
+			.evaluate-item-row {
+				margin: 0.5em 0;
+				color: $black-5;
+				background-color: $white-2; 
+				cursor: pointer;
+				padding: 0.9em 1.8em;
+
+				label {
+					margin-bottom: 0;
+					cursor: pointer;
+				}
+
+				input[type=radio] {
+					position: absolute;
+					visibility: hidden;
+				}
+
+				input[type=radio]:checked + label {
+					font-weight: bold;
+				}
+			}
+			.evaluate-item-row.active {
+				background-color: $create-crud-sub;
+				color: $white-2;
+			}
+		}
+		
 	}
 
 	.modal {

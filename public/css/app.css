@@ -230,6 +230,12 @@ body.dashboard main .answer-item-row label { margin-bottom: 0; padding-left: 6px
 body.dashboard main .answer-item-row input[type=radio] { visibility: hidden; }
 body.dashboard main .answer-item-row input[type=radio]:checked + label { font-weight: bold; }
 body.dashboard main .answer-item-row.active { background-color: #0059B6; color: #ebebeb; }
+body.dashboard main .evaluate-training-wrapper > .form-group { margin-bottom: 5em; }
+body.dashboard main .evaluate-training-wrapper .evaluate-item-row { margin: 0.5em 0; color: #575757; background-color: #ebebeb; cursor: pointer; padding: 0.9em 1.8em; }
+body.dashboard main .evaluate-training-wrapper .evaluate-item-row label { margin-bottom: 0; cursor: pointer; }
+body.dashboard main .evaluate-training-wrapper .evaluate-item-row input[type=radio] { position: absolute; visibility: hidden; }
+body.dashboard main .evaluate-training-wrapper .evaluate-item-row input[type=radio]:checked + label { font-weight: bold; }
+body.dashboard main .evaluate-training-wrapper .evaluate-item-row.active { background-color: #0059B6; color: #ebebeb; }
 body.dashboard .modal { width: 100vw; }
 body.dashboard .crud-page-actions { align-items: center; justify-content: space-between; padding: 0 15px; }
 body.dashboard .crud-page-actions div, body.dashboard .crud-page-actions ul { margin: 1em 0; }

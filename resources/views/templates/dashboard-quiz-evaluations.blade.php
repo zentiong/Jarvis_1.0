@@ -130,7 +130,7 @@
                             <span>{{$training->title}}</span>
 
                             {{ Form::hidden('training_id', $value = $eval->training_id) }}
-                            {{ Form::button('EVALUATE', array('type' => 'submit', 'class' => 'btn take-quiz-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Provide Assessment')) }}
+                            {{ Form::button('EVALUATE', array('type' => 'submit', 'class' => 'btn take-quiz-btn', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Provide feedback')) }}
                             {{ Form::close() }}
                         @endif
                     @endforeach 

@@ -7,39 +7,81 @@
 
     {{ Form::hidden('training_id', $value = $user_training->training_id) }}
     <main class="container create-page">
-        @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
-        @endif
+        <!-- will be used to show any messages -->
+            @if (Session::has('message'))
+                <div class="alert alert-info" role="alert">
+                    <strong>Heads up</strong>
+                    {{ Session::get('message') }}
+                </div>
+            @endif
         <section class="crud-page-top">
-            <h1 class="crud-page-title">Evaluate Training: {{ $training_title}}</h1>
+            <h1 class="crud-page-title">Evaluate Training</h1>
+            <h5>{{ $training_title}}</h5>
         </section>
-        <section>
-            
+        <hr>
+        <section class="evaluate-training-wrapper">
             <div class="form-group">
-                {{ Form::label('rating_training', 'How did you find the training?') }}
-                {{ Form::radio('rating_training', '1' ) }}
-                {{ Form::radio('rating_training', '2' ) }}
-                {{ Form::radio('rating_training', '3' ) }}
-                {{ Form::radio('rating_training', '4' ) }}
-                {{ Form::radio('rating_training', '5' ) }}
-
+                <h6><strong>How would you rate the training?</strong></h6>
+                <caption>(1 = really bad, 5 = really good)</caption>
+                <div data-toggle="buttons">
+                    <div class="evaluate-item-row btn">
+                        {{ Form::radio('rating_training', '1' ) }}
+                        {{ Form::label('rating_training', '1') }}
+                    </div>
+                    <div class="evaluate-item-row btn">
+                        {{ Form::radio('rating_training', '2' ) }}
+                        {{ Form::label('rating_training', '2') }}
+                    </div>
+                    <div class="evaluate-item-row btn">
+                        {{ Form::radio('rating_training', '3' ) }}
+                        {{ Form::label('rating_training', '3') }}
+                    </div>
+                    <div class="evaluate-item-row btn">
+                        {{ Form::radio('rating_training', '4' ) }}
+                        {{ Form::label('rating_training', '4') }}
+                    </div>
+                    <div class="evaluate-item-row btn">
+                        {{ Form::radio('rating_training', '5' ) }}
+                        {{ Form::label('rating_training', '5') }}
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                {{ Form::label('rating_speaker', 'How did you find the speaker?') }}
-                {{ Form::radio('rating_speaker', '1' ) }}
-                {{ Form::radio('rating_speaker', '2' ) }}
-                {{ Form::radio('rating_speaker', '3' ) }}
-                {{ Form::radio('rating_speaker', '4' ) }}
-                {{ Form::radio('rating_speaker', '5' ) }}
 
+            <div class="form-group" data-toggle="buttons">
+                <h6><strong>How would you rate the speaker?</strong></h6>
+                <caption>(1 = really bad, 5 = really good)</caption>
+                <!-- {{ Form::label('rating_speaker', 'How did you find the speaker?') }} -->
+                <div data-toggle="buttons">
+                    <div class="evaluate-item-row btn">
+                        {{ Form::radio('rating_speaker', '1' ) }}
+                        {{ Form::label('rating_speaker', '1') }}
+                    </div>
+                    <div class="evaluate-item-row btn">
+                        {{ Form::radio('rating_speaker', '2' ) }}
+                        {{ Form::label('rating_speaker', '2') }}
+                    </div>
+                    <div class="evaluate-item-row btn">
+                        {{ Form::radio('rating_speaker', '3' ) }}
+                        {{ Form::label('rating_speaker', '3') }}
+                    </div>
+                    <div class="evaluate-item-row btn">
+                        {{ Form::radio('rating_speaker', '4' ) }}
+                        {{ Form::label('rating_speaker', '4') }}
+                    </div>
+                    <div class="evaluate-item-row btn">
+                        {{ Form::radio('rating_speaker', '5' ) }}
+                        {{ Form::label('rating_speaker', '5') }}
+                    </div>
+                </div>
             </div>
+
             <div class="form-group">
-                {{ Form::label('evaluation', 'Any comments or suggestions?') }}
+                <h6><strong>{{ Form::label('evaluation', 'Any comments or suggestions?') }}</strong></h6>
                 {{ Form::text('evaluation', Request::old('evaluation'), array('class' => 'form-control', 'autofocus')) }}
             </div>
             <div class="form-group text-center create-bottom-wrapper">
                 <a href="{{ URL::to('levels') }}" class="btn cancel-btn">Cancel</a>
-                {{ Form::submit('Submit Feedback', array('class' => 'btn btn-primary create-btn text-center')) }}
+                {{ Form::submit('Submit feedback', array('class' => 'btn btn-primary create-btn text-center')) }}
             </div>
             {{ Form::close() }}
         </section>
