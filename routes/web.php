@@ -108,4 +108,13 @@ Route::resource('events', 'EventController');
 /*Auth */ 
 Auth::routes();
 
+/*Google*/
+
+Route::get('google', function () {
+    return view('googleAuth');
+});
+Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
+Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
+
+
 

@@ -23,6 +23,8 @@ use View;
 use Auth;
 use DB;
 
+
+
 Class LevelingController extends Controller
 {
 	public function index()
