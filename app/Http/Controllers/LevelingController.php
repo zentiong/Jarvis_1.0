@@ -31,7 +31,8 @@ Class LevelingController extends Controller
 	{
 		
 		
-		$current_user = Auth::user(); 
+		$current_user = Auth::user();
+        $current_id = $current_user->id; 
 		$dept = $current_user->department;
 		$mg = $current_user->manager_check;	
 		//$users = User::all();
@@ -46,10 +47,11 @@ Class LevelingController extends Controller
 		$user_assessments = User_Assessment::all();
 		$user_skills = User_Skill::all();
 		$now= date('Y-m-d');
-		$cwide_skills = DB::select(DB::raw("select skill_id, sum(skill_grade) as skill_grade from user_skills group by skill_id"));
         $trainings2 = Training::all();//where('date', '<', $now)->get();
         $quiz = array();
         $result = array();
+
+        $mg_emps = DB::select(DB::raw("select * from users where supervisor_id='$current_id'"));
 
 
         $filter_data = DB::select(DB::raw("select skill_id, sum(skill_grade) as skill_grade,department from user_skills group by department,skill_id"));
@@ -63,6 +65,40 @@ Class LevelingController extends Controller
                     $filter_data[$i]->skill_id = $value->name;
                 }
             }
+        }
+
+        // Overall skills Stats
+        $query3 = DB::select('SELECT s.name, AVG(us.skill_grade) as skill_grade FROM user_skills us, skills s WHERE s.id = us.skill_id GROUP BY s.name');
+        $query4 = DB::select('SELECT Distinct(department) FROM users');
+        $query5 = DB::select('SELECT us.department, s.name, us.skill_grade FROM user_skills us, skills s WHERE s.id = us.skill_id');
+        $counter = 0;
+        $result5 = array();
+        $holder = array();
+
+        $input = "";
+
+        foreach ($query3 as $key=>$value){
+            $input .= $value->name.':'.$value->skill_grade.':';
+        }
+
+        array_push($holder, 'All');
+        array_push($holder, $input);
+        array_push($result5, $holder);
+
+        foreach ($query4 as $key=>$dt) {
+            $input = "";
+            $temp = array();
+            foreach ($query5 as $key => $q) {
+                if($dt->department == $q->department){
+                    $input .= $q->name.":".$q->skill_grade.':';
+                }
+            }
+            if($input == ""){
+                    $input = "None:0";
+                }
+            array_push($temp, $dt->department);
+            array_push($temp, $input);
+            array_push($result5, $temp);
         }
 
         // ------- Grades ni Vicente -------
@@ -85,6 +121,10 @@ Class LevelingController extends Controller
             ->groupBy('grades.id')
             ->get();
         // ---------------------------------
+
+        // Overall assessment Stats
+        $result6 = DB::select('SELECT s.name, AVG(ua.rating)/5 as rating FROM skills s, user_assessments ua LEFT JOIN assessments a ON a.id = ua.assessment_id WHERE a.skill_id = s.id GROUP BY s.name');
+
         // Assessment criteria
         $query2 = DB::select('SELECT a.id, s.name, ai.criteria, AVG(g.grade) as grade from grades g LEFT JOIN assessment_items ai ON g.assessment_item_id = ai.id LEFT JOIN assessments a ON ai.assessment_id = a.id LEFT JOIN skills s ON a.skill_id = s.id GROUP BY ai.id');
         $counter = 0;
@@ -277,6 +317,8 @@ Class LevelingController extends Controller
 						->with('result2', $result2)
                         ->with('result3', $result3)
                         ->with('result4', $result4)
+                        ->with('result5', $result5)
+                        ->with('result6', $result6)
 						->with('mg',$mg);
 				}
 				else // HR
@@ -297,11 +339,12 @@ Class LevelingController extends Controller
             			->with('result2', $result2)
                         ->with('result3', $result3)
                         ->with('result4', $result4)
+                        ->with('result5', $result5)
+                        ->with('result6', $result6)
             			->with('assessments',$assessments)
             			->with('user_assessments',$user_assessments)
             			->with('user_skills',$user_skills)
             			->with('now', $now)
-            			->with('cwide_skills',$cwide_skills)
                         ->with('filter_data', $filter_data)
                         ->with('grades',$grades)
             			->with('mg',$mg);
@@ -328,6 +371,7 @@ Class LevelingController extends Controller
 						->with('user_skills',$user_skills)
 						->with('now', $now)
 						->with('mg',$mg)
+                        ->with('mg_emps',$mg_emps)
                         ->with('grades',$grades);
 				}
 				else // Normal

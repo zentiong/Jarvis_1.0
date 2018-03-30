@@ -139,7 +139,6 @@
                                 chart.data.labels = labels;
                                 chart.update();
                             }
-                            console.log(dwide_skill_data);
 
 
                             Chart.defaults.global.maintainAspectRatio = false;
@@ -286,6 +285,7 @@
                         </div>
 
                         <?php
+                        //for assessments
                         $init_criteria_label = array();
                         $init_criteria_score = array();
                         $ems_assessment_score = array();
@@ -321,7 +321,6 @@
 
                             }
                         }
-                        print_r($ems_assessment_score);
                         
 
                         foreach($ems_assessment_id as $key=>$value)
@@ -336,14 +335,66 @@
                                 }
                             }
                         }
-                        print_r($ems_assessment_id);
-                        print_r($ems_assessment_label);
-
 
                         ?>
+
+                        <?php
+                        //for employee skills
+                        $subs_skill_scores = array();
+                        $subs_skill_id = array();
+                        $subs_skill_labels = array();
+                        $subs_emp_id = array();
+
+                        foreach($mg_emps as $key=>$value)
+                        {
+                            array_push($subs_emp_id, $value->id);
+                        }
+
+                        foreach($user_skills as $key=>$value)
+                        {
+                            if(in_array($value->user_id, $subs_emp_id)==true)
+                            {
+                                if(in_array($value->skill_id, $subs_skill_id)==false)
+                                {
+                                    array_push($subs_skill_id, $value->skill_id);
+                                    array_push($subs_skill_scores, $value->skill_grade);
+                                }
+                                else
+                                {
+                                    $key = $key = array_search($value->skill_id, $subs_skill_id);
+                                    $subs_skill_scores[$key]+=$value->skill_grade;
+                                }
+                            }
+                        }
+
+                        foreach($skills as $key=>$value)
+                        {
+                            $ref_sk_id = $value->id;
+                            $name = $value->name;
+                            foreach($subs_skill_id as $key=>$value)
+                            {
+                                if($value==$ref_sk_id)
+                                {
+                                    array_push($subs_skill_labels, $name);
+                                }
+                            }
+                        }
+                        
+                        print_r($subs_skill_id);
+                        print_r($subs_skill_labels);
+                        print_r($subs_skill_scores);
+
+                        ?>
+
+
+
+
                         <button onclick="update_chart(eum_criteria_chart, 'by_criteria')">By Criteria</button>
                         <button onclick="update_chart(eum_criteria_chart, 'by_employee')">By Employee</button>
+                        <h1>Assessment Statistics - Subordinates</h1>
                         <canvas id="eum_criteria_chart" width="100" height="100px"></canvas>
+                        <h1>Skills Statistics - Subordinates</h1>
+                        <canvas id="eum_skills_chart" width="100" height="100px"></canvas>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
                         <script type="text/javascript">
 
@@ -357,13 +408,13 @@
                                 if(filter=="by_criteria")
                                 {
                                     target_chart.data.datasets[0].data = init_criteria_score;
-                                    target_chart.data.datasets[0].labels = init_criteria_label;
+                                    target_chart.data.labels = init_criteria_label;
                                     target_chart.update();
                                 }
                                 else
                                 {
                                     target_chart.data.datasets[0].data = ems_assessment_score;
-                                    target_chart.data.datasets[0].labels = ems_assessment_label;
+                                    target_chart.data.labels = ems_assessment_label;
                                     target_chart.update(); 
                                 }
                             }
@@ -379,6 +430,63 @@
                                     datasets: [{
                                         label: 'Total Assessment Scores',
                                         data: init_criteria_score,
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.5)',
+                                            'rgba(54, 162, 235, 0.5)',
+                                            'rgba(255, 206, 86, 0.5)',
+                                            'rgba(75, 192, 192, 0.5)',
+                                            'rgba(153, 102, 255, 0.5)',
+                                            'rgba(255, 159, 64, 0.5)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255,99,132,1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero:true
+                                            }
+                                        }],
+                                        xAxes: [{
+                                            ticks: {
+                                                beginAtZero:true
+                                            }
+                                        }]
+
+                                    }
+                                }
+                            });
+                        </script>
+                        <!--script for employee skills-->
+                        <script type="text/javascript">
+
+                            var subs_skill_scores = <?php echo json_encode($subs_skill_scores)?>;
+                            var subs_skill_labels = <?php echo json_encode($subs_skill_labels)?>;
+
+                            function update_chart(target_chart, filter)
+                            {
+                            }
+                            
+
+
+                            Chart.defaults.global.maintainAspectRatio = false;
+                            var ctx = document.getElementById("eum_skills_chart").getContext('2d');
+                            var eum_criteria_chart = new Chart(ctx, {
+                                type: 'horizontalBar',
+                                data: {
+                                    labels: subs_skill_labels,
+                                    datasets: [{
+                                        label: 'Skill Level',
+                                        data: subs_skill_scores,
                                         backgroundColor: [
                                             'rgba(255, 99, 132, 0.5)',
                                             'rgba(54, 162, 235, 0.5)',
