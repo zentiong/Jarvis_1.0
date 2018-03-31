@@ -41,6 +41,7 @@
                             <i class="fa fa-area-chart"></i>
                             Overall skills statistics
                         </h5>
+                        <button class="btn btn-sm btn-light toggle-card">TOGGLE VISIBILITY</button>
                         <div class="dashboard-content">
                             <canvas id="cw_overall_skills"></canvas>
                             <select id="chartCWSkills">
@@ -56,6 +57,7 @@
                             <i class="fa fa-font"></i>
                             Overall quiz statistics
                         </h5>
+                        <button class="btn btn-sm btn-light toggle-card">TOGGLE VISIBILITY</button>
                         <div class="dashboard-content">
                             <!-- data collection -->
                             <?php
@@ -130,14 +132,16 @@
                             <i class="fa fa-book"></i>
                             Overall assessment statistics
                         </h5>
+                        <button class="btn btn-sm btn-light toggle-card">TOGGLE VISIBILITY</button>
                         <div class="dashboard-content">
                             <canvas id="cw_overall_assessment"></canvas>
                         </div>
 
                         <h5 class="dashboard-header">
                             <i class="fa fa-columns"></i>
-                            Assessment Statistics Per Criteria
+                            Assessment statistics Per criteria
                         </h5>
+                        <button class="btn btn-sm btn-light toggle-card">TOGGLE VISIBILITY</button>
                         <div class="dashboard-content">
                             <canvas id="assessment_criteria"></canvas>
                             <select id="chartACriteria">
@@ -154,11 +158,11 @@
                         <div class="row dashboard-header">
                             <h5>
                                 <i class="fa fa-line-chart"></i>
-                                Training Details
+                                Overall training details
                             </h5>
                             <a class="crud-sub-cta" href="trainings/create">&#43; Add Training</a>
                         </div>
-                        
+                        <button class="btn btn-sm btn-light toggle-card">TOGGLE VISIBILITY</button>
                         <div class="dashboard-content">
                             <table class="table table-striped table-bordered">
                                 <thead>
@@ -213,6 +217,7 @@
                             <i class="fa fa-list-alt"></i>
                             Training attendance statistics
                         </h5>
+                        <button class="btn btn-sm btn-light toggle-card">TOGGLE VISIBILITY</button>
                         <div class="dashboard-content">
                             <canvas id="training_attendance" width=100></canvas>
                             <div class="row">
@@ -229,8 +234,9 @@
 
                         <h5 class="dashboard-header">
                             <i class="fa fa-check-circle-o"></i>
-                            Training Evaluations Statistics
+                            Training evaluations statistics
                         </h5>
+                        <button class="btn btn-sm btn-light toggle-card">TOGGLE VISIBILITY</button>
                         <div class="dashboard-content">
                             <canvas id="training_evals"></canvas>
                             <select id="chartEvals">
@@ -240,18 +246,20 @@
                             @endforeach
                             </select>
                         </div>
+
                         <h5 class="dashboard-header">
                             <i class="fa fa-paperclip"></i>
                             Trainings quiz statistics
                         </h5>
+                        <button class="btn btn-sm btn-light toggle-card">TOGGLE VISIBILITY</button>
                         <div class="dashboard-content">
-                                <canvas id="training_quiz"></canvas>
-                                <select id="chartTQuiz">
-                                    <option value="" disabled selected>Select your option</option>
+                            <canvas id="training_quiz"></canvas>
+                            <select id="chartTQuiz">
+                                <option value="" disabled selected>Select your option</option>
                                 @foreach($result3 as $key => $value)
                                     <option value="{{$value[0]}}|{{$value[1]}}|{{$value[2]}}">{{$value[0]}}</option>
                                 @endforeach
-                                </select>
+                            </select>
                         </div>
                     </div>
                 </div>

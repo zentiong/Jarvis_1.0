@@ -4,19 +4,19 @@
      <main class="container create-page">
         <section class="row crud-page-top">
             <h1 class="crud-page-title">Recommend Trainings</h1>
-            <p><strong>STEP 1: Choose a training</strong></p>
         </section>
         <section>
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
-                <div class="alert alert-info">
+                <div class="alert alert-info" role="alert">
                     <strong>Heads up</strong>
                     {{ Session::get('message') }}
                 </div>
             @endif
-            
+
+            <p><strong>STEP 1: Choose a training</strong></p>
+
             {{ Form::open(array('url' => 'recommend_who')) }}
-            
 
             <div class="form-group">
                 {{ Form::label('training', 'Training') }}

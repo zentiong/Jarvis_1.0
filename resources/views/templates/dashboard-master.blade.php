@@ -53,9 +53,20 @@
     }
 
     // prevents multiple form submissions
-        $("form").on('submit', function() {
-            $('.btn.create-btn, button.delete-btn, .btn.sign-up-btn, .btn.take-quiz-btn').attr('disabled','true');
+    $("form").on('submit', function() {
+        $('.btn.create-btn, button.delete-btn, .btn.sign-up-btn, .btn.take-quiz-btn').attr('disabled','true');
+    });
+
+    $(document).ready(function() {
+        $('.btn.toggle-card').click(function() {
+            if ($(this).next().css('display') == 'block') {
+                $(this).next().css('display', 'none');
+            }
+            else {
+                $(this).next().css('display', 'block');
+            }
         });
+    });
 
 </script>
 </html>

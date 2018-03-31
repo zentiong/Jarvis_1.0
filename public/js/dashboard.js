@@ -1,6 +1,6 @@
     function openTab(evt, cityName) {
         // Declare all variables
-        var i, tabcontent, tablinks;
+        let i, tabcontent, tablinks;
 
         // Get all elements with class="tabcontent" and hide them
         tabcontent = document.getElementsByClassName("tabcontent");
@@ -17,7 +17,7 @@
         // Show the current tab, and add an "active" class to the button that opened the tab
         document.getElementById(cityName).style.display = "flex";
         evt.currentTarget.className += " active";
-        var x = evt.currentTarget.classList;
+        let x = evt.currentTarget.classList;
         for (i = 0; i < x.length; i++) {
             if (x[i] == "tablinks") {
                 x[i].firstChild;
@@ -26,9 +26,11 @@
     }
 
     $(document).ready(function() {
-        var b = document.getElementById('non-personal');
-        var tabarray = document.getElementsByClassName('tablinks');
-        var initialTab = tabarray[0];
+        let b = document.getElementById('non-personal');
+        let c = document.getElementById('department-wide');
+        let tabarray = document.getElementsByClassName('tablinks');
+        let initialTab = tabarray[0];
         initialTab.classList.toggle('active');
         b.style.display = 'none';
+        c.style.display = 'none';
     });

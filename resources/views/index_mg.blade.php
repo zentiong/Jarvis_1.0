@@ -194,9 +194,6 @@
                     </div>
                     @include('templates.dashboard-quiz-evaluations')
                 </div>
-
-
-
                     @include('templates.dashboard-trainings')
 
                 </div>
@@ -204,91 +201,11 @@
                 <!-- NON-PERSONAL CONTENT CONTAINER -->
                 <div class="row dashboard-body tabcontent" id="non-personal">
                     <div class="col-md-12">
-                        <h5 class="dashboard-header"><i class="fa fa-users"></i>Department overview</h5>
-                        <div class="dashboard-content">
-
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <td>First Name</td>
-                                        <td>Last Name</td>
-                                        <td>Email</td>
-                                        <td>Hiring Date</td>
-                                        <td>Birth Date</td>
-                                        <td>Department</td>
-                                        <td>Supervisor</td>
-                                        <td>Position</td>
-                                        <td>Manager?</td>
-                                        <td>Actions</td>
-                                    </tr>
-                                </thead>
-                                
-                                <tbody>
-                                <?php
-
-                                    /* 
-                                        1) Buffer to Extraction Area
-                                        2) Extract
-                                        3) Extracted Children to Buffer
-                                        4) Parents to List
-
-                                    */
-
-                                    $list = array();
-                                    $extraction = array();
-                                    $buffer = array();
-
-                                    array_push($buffer, $current_user);
-
-                                    while(!empty($buffer)) {
-                                        $extraction = $buffer;
-                                        $buffer = array();
-                                        foreach ($extraction as $key => $parent) {
-                                            if(!in_array($parent, $list))
-                                            {
-                                                array_push($list, $parent);
-                                                $children = $parent->subordinates()->get();
-                                                foreach ($children as $key => $child) {
-                                                    array_push($buffer, $child);
-                                                }
-                                                
-                                            }
-                                        }
-                                    }
-
-                                ?>
-                                
-                                @foreach($list as $key => $user)
-                                    <tr>
-                                        <td>{{ $user->first_name }}</td>
-                                        <td>{{ $user->last_name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->hiring_date }}</td>
-                                        <td>{{ $user->birth_date }}</td>
-                                        <td>{{ $user->department }}</td>
-                                        @foreach($users_two as $key => $supervisor)
-                                            @if($user->supervisor_id == $supervisor->id)
-                                                 <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
-                                            @endif
-                                        @endforeach
-                                        <td>{{ $user->position }}</td>
-                                        @if ($user->manager_check==1)
-                                        <td>Yes</td>
-                                        @else
-                                        <td>No</td>
-                                        @endif
-                                        <!-- we will also add show, edit, and delete buttons -->
-                                        <td class="table-actions">
-                                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $user->id) }}">
-                                                <i class="fa fa-user fa-lg"></i>
-                                            </a>
-                                        </td>
-                                        </tr>                
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-
+                        <h5 class="dashboard-header">
+                            <i class="fa fa-area-chart"></i>
+                            Department skills statistics
+                        </h5>
+                        <button class="btn btn-sm btn-light toggle-card">TOGGLE VISIBILITY</button>
                         <?php
                         //for assessments
                         $init_criteria_label = array();
@@ -386,11 +303,7 @@
                         }
                         ?>
 
-
-
-
                         <div class="dashboard-content">
-                            <h1>Skills Statistics - Subordinates</h1>
                             <canvas id="eum_skills_chart" width="100" height="100px"></canvas>
                             <select id="skills_select" onchange="update_eskills_chart(eum_skills_chart,this)">
                                 <option value="" disabled selected>Select your option</option>
@@ -503,30 +416,102 @@
                                 }
                             });
                         </script>
+                    </div>
+                    <div class="col-md-12">
+                        <h5 class="dashboard-header">
+                            <i class="fa fa-users"></i>
+                            Department employees overview
+                        </h5>
+                        <button class="btn btn-sm btn-light toggle-card">TOGGLE VISIBILITY</button>
+                        <div class="dashboard-content">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td>First Name</td>
+                                        <td>Last Name</td>
+                                        <td>Email</td>
+                                        <td>Hiring Date</td>
+                                        <td>Birth Date</td>
+                                        <td>Department</td>
+                                        <td>Supervisor</td>
+                                        <td>Position</td>
+                                        <td>Manager?</td>
+                                        <td>Actions</td>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                <?php
 
+                                    /* 
+                                        1) Buffer to Extraction Area
+                                        2) Extract
+                                        3) Extracted Children to Buffer
+                                        4) Parents to List
 
+                                    */
 
+                                    $list = array();
+                                    $extraction = array();
+                                    $buffer = array();
 
+                                    array_push($buffer, $current_user);
+
+                                    while(!empty($buffer)) {
+                                        $extraction = $buffer;
+                                        $buffer = array();
+                                        foreach ($extraction as $key => $parent) {
+                                            if(!in_array($parent, $list))
+                                            {
+                                                array_push($list, $parent);
+                                                $children = $parent->subordinates()->get();
+                                                foreach ($children as $key => $child) {
+                                                    array_push($buffer, $child);
+                                                }
+                                                
+                                            }
+                                        }
+                                    }
+
+                                ?>
+                                
+                                @foreach($list as $key => $user)
+                                    <tr>
+                                        <td>{{ $user->first_name }}</td>
+                                        <td>{{ $user->last_name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->hiring_date }}</td>
+                                        <td>{{ $user->birth_date }}</td>
+                                        <td>{{ $user->department }}</td>
+                                        @foreach($users_two as $key => $supervisor)
+                                            @if($user->supervisor_id == $supervisor->id)
+                                                 <td>{{ $supervisor->first_name }} {{ $supervisor->last_name }}</td>
+                                            @endif
+                                        @endforeach
+                                        <td>{{ $user->position }}</td>
+                                        @if ($user->manager_check==1)
+                                        <td>Yes</td>
+                                        @else
+                                        <td>No</td>
+                                        @endif
+                                        <!-- we will also add show, edit, and delete buttons -->
+                                        <td class="table-actions">
+                                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View employee" href="{{ URL::to('users/' . $user->id) }}">
+                                                <i class="fa fa-user fa-lg"></i>
+                                            </a>
+                                        </td>
+                                        </tr>                
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-
             </section>
-        
        </section>
-
     </main>
-
-
     
 @endsection
-
-<style>
-td {
-    min-width: 50px;
-    border: 1px solid black;
-}
-
-</style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="{{ URL::asset('js/dashboard.js') }}"></script>

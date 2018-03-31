@@ -30,6 +30,11 @@ a {
 	text-decoration: none !important;
 }
 
+input[type=checkbox] {
+	height: 15px;
+	width: 15px;
+}
+
 .img-circle {
 	-webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -721,7 +726,7 @@ body.dashboard {
 	color: $black-2;
 	font-family: "Open Sans", sans-serif;
 	font-size: 90%;
-	padding-top: 70px;
+	padding-top: 50px;
 	padding-bottom: 50px;
 	position: relative;
 
@@ -901,11 +906,14 @@ body.dashboard {
 				max-height: -webkit-fill-available;
 				min-height: 1px;
 				height: auto;
+				overflow-x: auto;
 				width: 100%;
 
 				.row {
 					padding: 1em 2em;
 				}
+
+
 			}
 
 			.content-header {
@@ -1072,7 +1080,7 @@ body.dashboard {
 		.crud-page-top {
 			align-items: center;
 			justify-content: space-between;
-			margin: 1em 0;
+			margin: 2em 0 1em;
 		}
 		.thick-border {
 			background-color: $black-1;
@@ -1266,6 +1274,11 @@ body.dashboard {
 				color: $white-2;
 			}
 		}
+
+		.recommend-who-wrapper {
+			width: 70%;
+			margin: 0 auto;
+		}
 		
 	}
 
@@ -1314,6 +1327,10 @@ body.dashboard {
 			margin-bottom: 0.5em;
 			text-transform: uppercase;
 		}
+	}
+
+	.toggle-card {
+		margin-bottom: 16px;
 	}
 
 	.pagination {
