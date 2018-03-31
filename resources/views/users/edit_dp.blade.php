@@ -5,7 +5,7 @@
     <main class="container create-page">
         <section class="row crud-page-top">
             <div>
-                <h1 class="crud-page-title">Change Profile Photo: </h1>
+                <h1 class="crud-page-title">Change Profile Photo</h1>
                 <h5>{{ $user->first_name }} {{ $user->last_name }}</h5>
             </div>
             <a href="{{ URL::to('levels') }}" class="btn cancel-btn">Back to Dashboard</a>

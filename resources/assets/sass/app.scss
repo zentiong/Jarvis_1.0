@@ -717,6 +717,9 @@ body.dashboard {
 	color: $black-2;
 	font-family: "Open Sans", sans-serif;
 	font-size: 90%;
+	padding-top: 70px;
+	padding-bottom: 50px;
+	position: relative;
 
 	.branding {
 		border: 2px solid $black-1;
@@ -806,7 +809,6 @@ body.dashboard {
 	}
 
 	main {
-		margin-top: 2em;
 
 		.personal-details {
 			padding: 10px;
@@ -1066,7 +1068,7 @@ body.dashboard {
 		.crud-page-top {
 			align-items: center;
 			justify-content: space-between;
-			margin: 6em 0 2em;
+			margin: 1em 0;
 		}
 		.thick-border {
 			background-color: $black-1;
@@ -1409,7 +1411,11 @@ body.dashboard {
 		margin-top: 3em;
 		padding: 1em 5em;
 		line-height: 1.4;
-		height: fit-content;
+		height: 50px;
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
 
 		b {
 			color: #54749A;

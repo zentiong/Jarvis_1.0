@@ -53,7 +53,7 @@
               ?>
             
 
-            <table id="target_table" class="table table-striped table-bordered">
+            <table id="target_table" class="table table-striped table-bordered" style="height: fit-content;">
                 <thead>
                     <tr>
                         <td>First Name</td>
