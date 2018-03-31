@@ -59,12 +59,7 @@
 
     $(document).ready(function() {
         $('.btn.toggle-card').click(function() {
-            if ($(this).next().css('display') == 'block') {
-                $(this).next().css('display', 'none');
-            }
-            else {
-                $(this).next().css('display', 'block');
-            }
+            $(this).next().toggle(200);
         });
     });
 

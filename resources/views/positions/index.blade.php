@@ -24,7 +24,7 @@
                 </div>
             @endif
             <div class="horizontal-scroll">
-                <table class="table table-striped table-bordered">
+                <table class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr>
                             <td>Positions</td>

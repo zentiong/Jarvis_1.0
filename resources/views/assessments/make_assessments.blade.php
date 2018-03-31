@@ -20,7 +20,7 @@ or Supervisor sees assessments or dropdown skills?
 
  <main class="container create-page">
         <section class="row crud-page-top">
-            <h1 class="crud-page-title">Create Assessment</h1>
+            <h1 class="crud-page-title">Make an Assessment</h1>
             <a class="btn crud-main-cta" href="{{ URL::to('see_assessments') }}">See Assessments</a>
         </section>
         <hr>
@@ -36,7 +36,7 @@ or Supervisor sees assessments or dropdown skills?
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <td  class="no-stretch">Assessment ID</td>
+                    <td class="no-stretch">Assessment ID</td>
                     <td>Topic</td>
                     <td class="no-stretch">Actions</td>
                 </tr>
@@ -44,19 +44,16 @@ or Supervisor sees assessments or dropdown skills?
             <tbody>
             @foreach($assessments as $key => $value)
                 <tr>
-                
                     <td>{{ $value->id }}</td>
                     <td>
-
                     @foreach($skills as $key => $skill)
                         @if($skill->id == $value->skill_id)
                             {{$skill->name}}
                         @endif
                     @endforeach
                     </td>
-                    
-                    <td>
-                        <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Make an Assessment" href="{{ URL::to('assessments/' . $value->id . '/make') }}">
+                    <td class="table-actions">
+                        <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Make an assessment" href="{{ URL::to('assessments/' . $value->id . '/make') }}">
                                 <i class="fa fa-pencil fa-lg"></i>
                             </a>
                        
@@ -73,7 +70,7 @@ or Supervisor sees assessments or dropdown skills?
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var a = document.getElementById('assessments');
+        var a = document.getElementById('levels');
         a.classList.toggle("active");
     });
 

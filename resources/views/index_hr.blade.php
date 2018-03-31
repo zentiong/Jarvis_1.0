@@ -163,7 +163,7 @@
                         </div>
                         <button class="btn btn-sm btn-light toggle-card">TOGGLE VISIBILITY</button>
                         <div class="dashboard-content">
-                            <table class="table table-striped table-bordered">
+                            <table class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <td>Date</td>

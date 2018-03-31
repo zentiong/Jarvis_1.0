@@ -418,13 +418,16 @@
                         </script>
                     </div>
                     <div class="col-md-12">
-                        <h5 class="dashboard-header">
-                            <i class="fa fa-users"></i>
-                            Department employees overview
-                        </h5>
+                        <div class="row dashboard-header">
+                            <h5>
+                                <i class="fa fa-users"></i>
+                                Department employees overview
+                            </h5>
+                            <a id="users" href="{{ URL::to('make_assessments') }}" class="btn crud-sub-cta">Employee Assessment</a>
+                        </div>
                         <button class="btn btn-sm btn-light toggle-card">TOGGLE VISIBILITY</button>
                         <div class="dashboard-content">
-                            <table class="table table-striped table-bordered">
+                            <table class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <td>First Name</td>

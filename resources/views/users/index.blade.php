@@ -43,7 +43,7 @@
             
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
-                <div class="alert alert-info">
+                <div class="alert alert-info" role="alert">
                     {{ Session::get('message') }}
                     {{ Html::ul($errors->all()) }}
                 </div>
@@ -61,7 +61,7 @@
             </div>
             
             <div class="horizontal-scroll">
-                <table id="target_table" class="table table-striped table-bordered">
+                <table id="target_table" class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr>
                             <td>First Name</td>
