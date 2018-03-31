@@ -101,7 +101,6 @@
                                 {
                                     $cwide_quiz_data[$i] = $cwide_quiz_data[$i]/$q_counter[$i]; 
                                 }
-                                print_r($q_counter); 
      
                             ?>
                             <!-- end scores -->
