@@ -116,6 +116,9 @@
                     {{ Form::label('training', 'Training') }}
 
                     <select id="training_id" class="form-control" name="training_id">
+                        <?php
+                            $present = false;
+                        ?>
                         @foreach($trainings as $key => $training)
                         <?php
                             $taken = false;
@@ -136,10 +139,10 @@
                                 ?>
                                 <option value="<?php echo $training->id ?>">{{$training->title}}</option>                            
                             @endif
-                            @if(!$present)
-                                <option>No Training Available</option>   
-                            @endif
                         @endforeach
+                        @if(!$present)
+                            <option>No Training Available</option>   
+                        @endif
                     </select>
 
                 </div>
