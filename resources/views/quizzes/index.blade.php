@@ -26,64 +26,61 @@
             @endif
 
             <?php 
-            $user_id = Auth::user()->id;
-            $taken = false;
+                $user_id = Auth::user()->id;
+                $taken = false;
             ?>
-
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <td>Quiz ID</td>
-                        <td>Topic</td>
-                        <td>Training</td>
-                        <td class="no-stretch">Actions</td>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($quizzes as $key => $value)
-                    <tr>
-                        
-
-                        <td>{{ $value->quiz_id }}</td>
-                        <td>{{ $value->topic }}</td>
-                        <td>
-                        @foreach($trainings as $key => $training)
-                            @if($value->training_id == $training->id)
-                                {{$training->title}}
-                            @endif
-                        @endforeach
-                         </td>
-
-                        <!-- we will also add show, edit, and delete buttons -->
-                        <td class="table-actions no-stretch">
-
-                            <!-- show the quiz (uses the show method found at GET /quizzes/{id} -->
-                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View quiz" href="{{ URL::to('quizzes/' . $value->quiz_id . '/questions') }}">
-                                <i class="fa fa-user fa-lg"></i>
-                            </a>
-
-                            <!-- edit this quiz (uses the edit method found at GET /quizzes/{id}/edit -->
-                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit quiz" href="{{ URL::to('quizzes/' . $value->quiz_id . '/edit') }}">
-                                <i class="fa fa-pencil fa-lg"></i>
-                            </a>
-
-                            <!-- delete the quiz (uses the destroy method DESTROY /quizzes/{id} -->
-                            <!-- we will add this later since its a little more complicated than the other two buttons -->
-                                {{ Form::open(array('url' => 'quizzes/' . $value->quiz_id, 'class' => 'pull-right')) }}
-                                {{ Form::hidden('_method', 'DELETE') }}
-                                <div data-toggle="tooltip" data-placement="bottom" title="Delete quiz">
-                                    {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
-                                </div>
-                                <!-- {{ Form::submit('Delete this Quiz', array('class' => 'btn btn-warning')) }} -->
-                             {{ Form::close() }}
+            <div class="horizontal-scroll">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Quiz ID</td>
+                            <td>Topic</td>
+                            <td>Training</td>
+                            <td class="no-stretch">Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($quizzes as $key => $value)
+                        <tr>
                             
 
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+                            <td>{{ $value->quiz_id }}</td>
+                            <td>{{ $value->topic }}</td>
+                            <td>
+                            @foreach($trainings as $key => $training)
+                                @if($value->training_id == $training->id)
+                                    {{$training->title}}
+                                @endif
+                            @endforeach
+                             </td>
 
+                            <!-- we will also add show, edit, and delete buttons -->
+                            <td class="table-actions no-stretch">
+
+                                <!-- show the quiz (uses the show method found at GET /quizzes/{id} -->
+                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View quiz" href="{{ URL::to('quizzes/' . $value->quiz_id . '/questions') }}">
+                                    <i class="fa fa-user fa-lg"></i>
+                                </a>
+
+                                <!-- edit this quiz (uses the edit method found at GET /quizzes/{id}/edit -->
+                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit quiz" href="{{ URL::to('quizzes/' . $value->quiz_id . '/edit') }}">
+                                    <i class="fa fa-pencil fa-lg"></i>
+                                </a>
+
+                                <!-- delete the quiz (uses the destroy method DESTROY /quizzes/{id} -->
+                                <!-- we will add this later since its a little more complicated than the other two buttons -->
+                                    {{ Form::open(array('url' => 'quizzes/' . $value->quiz_id, 'class' => 'pull-right')) }}
+                                    {{ Form::hidden('_method', 'DELETE') }}
+                                    <div data-toggle="tooltip" data-placement="bottom" title="Delete quiz">
+                                        {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
+                                    </div>
+                                 {{ Form::close() }}
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </section>
 
         <!-- Modal -->

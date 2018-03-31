@@ -23,54 +23,55 @@
                     {{ Html::ul($errors->all()) }}
                 </div>
             @endif
+            <div class="horizontal-scroll">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Positions</td>
+                            <td>Job Grade </td>
+                            <td>Knowledge-based Weight</td>
+                            <td>Skills-based Weight</td>
+                            <td class="no-stretch">Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($positions as $key => $value)
+                        <tr>
+                            <td>{{ $value->name }}</td>
+                            <td>{{ $value->job_grade }}</td>
 
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <td>Positions</td>
-                        <td>Job Grade </td>
-                        <td>Knowledge-based Weight</td>
-                        <td>Skills-based Weight</td>
-                        <td class="no-stretch">Actions</td>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($positions as $key => $value)
-                    <tr>
-                        <td>{{ $value->name }}</td>
-                        <td>{{ $value->job_grade }}</td>
+                            @foreach($job_grades as $key => $job_grade)
+                                @if($job_grade->id == $value->job_grade)
+                                    <td>{{ $job_grade->knowledge_based_weight }}</td>
+                                    <td>{{ $job_grade->skills_based_weight }}</td>
+                                @endif
+                            @endforeach
+                            
+                            <td class="table-actions no-stretch">
+                                 <!-- show the employee (uses the show method found at GET /employees/{id} -->
+                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View position" href="{{ URL::to('positions/' . $value->id) }}">
+                                    <i class="fa fa-user fa-lg"></i>
+                                </a>
 
-                        @foreach($job_grades as $key => $job_grade)
-                            @if($job_grade->id == $value->job_grade)
-                                <td>{{ $job_grade->knowledge_based_weight }}</td>
-                                <td>{{ $job_grade->skills_based_weight }}</td>
-                            @endif
-                        @endforeach
-                        
-                        <td class="table-actions no-stretch">
-                             <!-- show the employee (uses the show method found at GET /employees/{id} -->
-                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View position" href="{{ URL::to('positions/' . $value->id) }}">
-                                <i class="fa fa-user fa-lg"></i>
-                            </a>
+                                <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
+                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit position" href="{{ URL::to('positions/' . $value->id . '/edit') }}">
+                                    <i class="fa fa-pencil fa-lg"></i>
+                                </a>
 
-                            <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
-                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit position" href="{{ URL::to('positions/' . $value->id . '/edit') }}">
-                                <i class="fa fa-pencil fa-lg"></i>
-                            </a>
-
-                                {{ Form::open(array('url' => 'positions/' . $value->id, 'class' => 'pull-right')) }}
-                                {{ Form::hidden('_method', 'DELETE') }}
-                                <div data-toggle="tooltip" data-placement="bottom" title="Remove position">
-                                    {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
-                                </div>
-                                <!-- {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }} -->
-                             {{ Form::close() }}
-                           
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+                                    {{ Form::open(array('url' => 'positions/' . $value->id, 'class' => 'pull-right')) }}
+                                    {{ Form::hidden('_method', 'DELETE') }}
+                                    <div data-toggle="tooltip" data-placement="bottom" title="Remove position">
+                                        {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
+                                    </div>
+                                    <!-- {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }} -->
+                                 {{ Form::close() }}
+                               
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </section>
 
         <!-- Modal -->

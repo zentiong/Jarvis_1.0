@@ -4,7 +4,10 @@
 
 	<main class="container create-page">
 		<section class="row crud-page-top">
-            <h1 class="crud-page-title">Edit Position</h1>
+            <div>
+                <h1 class="crud-page-title">Edit Position</h1>
+                <h5>{{ $position->name }}</h5>
+            </div>
             <a href="{{ URL::to('positions') }}" class="btn cancel-btn">Back to All Positions</a>
         </section>
         <hr>

@@ -18,41 +18,41 @@
             @endif
 
             <?php 
-            $user_id = Auth::user()->id;
+                $user_id = Auth::user()->id;
             ?>
+            <div class="horizontal-scroll">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Skill Name</td>
+                            <td>Description</td>
+                            <td class="no-stretch">Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($skills as $key => $value)
+                        <tr>
+                            <td>{{ $value->name}}</td>
+                            <td>{{ $value->description}}</td>
 
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <td>Skill Name</td>
-                        <td>Description</td>
-                        <td class="no-stretch">Actions</td>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($skills as $key => $value)
-                    <tr>
-                        <td>{{ $value->name}}</td>
-                        <td>{{ $value->description}}</td>
-
-                        <td class="table-actions">
-                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit skill" href="{{ URL::to('skills/' . $value->id . '/edit') }}">
-                                <i class="fa fa-pencil fa-lg"></i>
-                            </a>
-                            {{ Form::open(array('url' => 'skills/' . $value->id, 'class' => 'pull-right')) }}
-                            {{ Form::hidden('_method', 'DELETE') }}
-                            <div data-toggle="tooltip" data-placement="bottom" title="Remove skill">
-                                <!-- {{ Form::submit('Delete', array('class' => 'btn delete-btn')) }} -->
-                                {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
-                            </div>
-                            
-                            {{ Form::close() }}
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-            <br>
+                            <td class="table-actions">
+                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit skill" href="{{ URL::to('skills/' . $value->id . '/edit') }}">
+                                    <i class="fa fa-pencil fa-lg"></i>
+                                </a>
+                                {{ Form::open(array('url' => 'skills/' . $value->id, 'class' => 'pull-right')) }}
+                                {{ Form::hidden('_method', 'DELETE') }}
+                                <div data-toggle="tooltip" data-placement="bottom" title="Remove skill">
+                                    <!-- {{ Form::submit('Delete', array('class' => 'btn delete-btn')) }} -->
+                                    {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
+                                </div>
+                                
+                                {{ Form::close() }}
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
 
         </section>
 

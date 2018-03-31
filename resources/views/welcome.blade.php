@@ -62,10 +62,11 @@
                 <a href="{{ url('/date', ['month'=> $nextMonth, 'year' => $nextYear])}}" class="month-control">Next Month >></a>
                     
                 </form>
-
-                <?php
-                    echo draw_calendar($month,$year,$temp);
-                ?>
+                <div class="horizontal-scroll">
+                    <?php
+                        echo draw_calendar($month,$year,$temp);
+                    ?>
+                </div>
                 <p class="text-center">To sign up for events and trainings, log in to your account.</p>   
             </div>
             <div class="container">

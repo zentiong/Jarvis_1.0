@@ -31,45 +31,46 @@
                 </div>
             @endif
 
-            <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <td>Criteria </td>
-                    <td class="no-stretch">Actions</td>
-                </tr>
-            </thead>
+            <div class="horizontal-scroll">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Criteria </td>
+                            <td class="no-stretch">Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($assessment_items as $key => $value)
+                        <tr>
+                            <td>{{ $value->criteria }}</td>
 
-            <tbody>
-            @foreach($assessment_items as $key => $value)
-                <tr>
-                    <td>{{ $value->criteria }}</td>
+                            <!-- we will also add show, edit, and delete buttons -->
+                            <td class="table-actions">
 
-                    <!-- we will also add show, edit, and delete buttons -->
-                    <td class="table-actions">
+                                
+                               
+                                <!-- edit this assessment (uses the edit method found at GET /assessments/{id}/edit -->
+                                <!-- -->
+                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit this item" href="{{ URL::to('assessments/'.$assessment->id.'/assessment_items/'.$value->id.'/edit') }}">
+                                    <i class="fa fa-pencil fa-lg"></i>
+                                </a>
 
-                        
-                       
-                        <!-- edit this assessment (uses the edit method found at GET /assessments/{id}/edit -->
-                        <!-- -->
-                        <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit this item" href="{{ URL::to('assessments/'.$assessment->id.'/assessment_items/'.$value->id.'/edit') }}">
-                            <i class="fa fa-pencil fa-lg"></i>
-                        </a>
-
-                        <!-- delete the assessment (uses the destroy method DESTROY /assessments/{id} -->
-                        <!-- we will add this later since its a little more complicated than the other two buttons -->
-                            {{ Form::open(array('url' => 'assessments/'.$assessment->id.'/assessment_items/' . $value->id, 'class' => 'pull-right')) }}
-                            {{ Form::hidden('_method', 'DELETE') }}
-                            <div data-toggle="tooltip" data-placement="bottom" title="Delete this item" >
-                                {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
-                            </div>
-                         {{ Form::close() }}
-                        
-                        
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-            </table>
+                                <!-- delete the assessment (uses the destroy method DESTROY /assessments/{id} -->
+                                <!-- we will add this later since its a little more complicated than the other two buttons -->
+                                    {{ Form::open(array('url' => 'assessments/'.$assessment->id.'/assessment_items/' . $value->id, 'class' => 'pull-right')) }}
+                                    {{ Form::hidden('_method', 'DELETE') }}
+                                    <div data-toggle="tooltip" data-placement="bottom" title="Delete this item" >
+                                        {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
+                                    </div>
+                                 {{ Form::close() }}
+                                
+                                
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </section>
 
         <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -35,6 +35,8 @@ a { text-decoration: none !important; }
 
 .flex-row-center { display: flex; flex-flow: row nowrap; align-items: center; justify-content: center; }
 
+.horizontal-scroll { overflow-x: auto; }
+
 body.newsletter { background-color: #2F2F2F; color: #ebebeb; font-family: "Apercu Regular", sans-serif; padding-top: 70px; position: relative; font-size: 85%; }
 body.newsletter i.fa { margin-right: 0.8em; }
 body.newsletter .branding { border: 2px solid #F8E71C; color: #F8E71C; font-family: "Apercu Regular", sans-serif; font-size: 1.25em; padding: 0 5px; }
@@ -70,8 +72,7 @@ body.newsletter .login-button-yellow { right: 0; color: #2F2F2F; border: 1px sol
 body.newsletter section:nth-child(even), body.newsletter section:nth-child(odd) { padding: 40px 0; }
 body.newsletter section:nth-child(even) { background-color: #1f1f1f; }
 body.newsletter section:nth-child(odd) { background-color: none; }
-body.newsletter #calendar-container { overflow-x: auto; width: auto; }
-body.newsletter #calendar-container table.calendar { background-color: #1F1F1F; border-collapse: separate; border-spacing: 20px; font-family: 'Apercu Regular', sans-serif; margin: 0 auto; table-layout: fixed; width: 950px; }
+body.newsletter #calendar-container table.calendar { background-color: #1F1F1F; border-collapse: separate; border-spacing: 10px; font-family: 'Apercu Regular', sans-serif; margin: 0 auto; table-layout: fixed; width: 1000px; }
 body.newsletter #calendar-container table.calendar tr.calendar-row { margin-top: 35px; text-align: center; }
 body.newsletter #calendar-container table.calendar td.calendar-day-head { color: #BDBDBD; font-size: 1.25em; }
 body.newsletter #calendar-container table.calendar td.calendar-day { background-color: #47441B; color: #BDBDBD; height: 100px; }
@@ -264,10 +265,10 @@ body.dashboard .question-btn { border: 1px solid #959595; font-size: 0.8em; }
 body.dashboard footer { width: 100%; border-top: 1px solid #ebebeb; background-color: #fff; color: #BDBDBD; font-family: 'Open Sans', sans-serif; margin-top: 3em; padding: 1em 5em; line-height: 1.4; height: 50px; position: absolute; right: 0; bottom: 0; left: 0; }
 body.dashboard footer b { color: #54749A; }
 @media (max-width: 1000px) { body.dashboard #navigation #navOpener { display: inline; }
-  body.dashboard .nav-links { flex-flow: row wrap; position: absolute; left: 0; top: 30; width: 15em; }
+  body.dashboard .nav-links { flex-flow: row wrap; position: absolute; left: 0; top: 30; width: 100vw; }
   body.dashboard .nav-links li { border: 1px solid #95989A; box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.2), 1px 10px 15px rgba(0, 0, 0, 0.2); display: none; font-size: 2em; }
-  body.dashboard .nav-links li:nth-child(odd) { background-color: #ebebeb; }
   body.dashboard .nav-links .active { border: none; border-left: 4px solid #000; padding: 0 0.8em; }
-  body.dashboard .user-details { margin: 1em 0 0 0 !important; } }
+  body.dashboard .user-details { margin: 1em 0 0 0 !important; }
+  body.dashboard .employees-positions > div { width: 100% !important; } }
 
 /*# sourceMappingURL=app.css.map */

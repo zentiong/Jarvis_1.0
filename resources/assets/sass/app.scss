@@ -73,6 +73,10 @@ a {
 	justify-content: center;
 }
 
+.horizontal-scroll {
+	overflow-x: auto;
+}
+
 body.newsletter {
 	background-color: $newsletter-bg;
 	color: $white-2;
@@ -332,17 +336,17 @@ body.newsletter {
 	}
 
 	#calendar-container {
-		overflow-x: auto;
-    	width: auto;
+		// overflow-x: auto;
+  //   	width: auto;
 
 		table.calendar {
 			background-color: $black-2;
 			border-collapse: separate;
-			border-spacing: 20px;
+			border-spacing: 10px;
 			font-family: 'Apercu Regular', sans-serif;
 			margin: 0 auto;
 			table-layout: fixed;
-			width: 950px;
+			width: 1000px;
 
 			tr.calendar-row {
 				margin-top: 35px;
@@ -1436,7 +1440,7 @@ body.dashboard {
 			position: absolute;
 			left: 0;
 			top: 30;
-			width: 15em;
+			width: 100vw;
 
 			li {
 				border: 1px solid $gray-1;
@@ -1446,7 +1450,7 @@ body.dashboard {
 			}
 
 			li:nth-child(odd) {
-				background-color: $white-2;
+				// background-color: $white-2;
 			}
 
 			.active {
@@ -1458,6 +1462,10 @@ body.dashboard {
 
 		.user-details {
 			margin: 1em 0 0 0 !important;
+		}
+
+		.employees-positions > div {
+			width: 100% !important;
 		}
 
 	}

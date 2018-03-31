@@ -32,67 +32,68 @@
             $user_id = Auth::user()->id;
             ?>
 
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <td  class="no-stretch">Assessment ID</td>
-                        <td class="no-stretch"> Skill </td>
-                        <td> Criteria </td>
-                        <td class="no-stretch">Actions</td>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($assessments as $key => $assessment)
-                    <tr>
-                        <td>{{ $assessment->id }}</td>
-                        @foreach($skills as $key => $skill)
-                            @if($skill->id == $assessment->skill_id)
-                                <td> {{$skill->name}}</td>
-                                <?php 
-                                    array_push($temp_skills, $skill)
-                                ?>
-                            @endif
-                        @endforeach
+            <div class="horizontal-scroll">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <td  class="no-stretch">Assessment ID</td>
+                            <td class="no-stretch"> Skill </td>
+                            <td> Criteria </td>
+                            <td class="no-stretch">Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($assessments as $key => $assessment)
+                        <tr>
+                            <td>{{ $assessment->id }}</td>
+                            @foreach($skills as $key => $skill)
+                                @if($skill->id == $assessment->skill_id)
+                                    <td> {{$skill->name}}</td>
+                                    <?php 
+                                        array_push($temp_skills, $skill)
+                                    ?>
+                                @endif
+                            @endforeach
 
-                        <td>
-                            @foreach($assessment_items as $key => $item)
-                            @if($item->assessment_id == $assessment->id)
-                               {{$item->criteria}}
-                               <br>
-                            @endif
-                        @endforeach
-                        </td>
+                            <td>
+                                @foreach($assessment_items as $key => $item)
+                                @if($item->assessment_id == $assessment->id)
+                                   {{$item->criteria}}
+                                   <br>
+                                @endif
+                            @endforeach
+                            </td>
 
-                        <!-- we will also add show, edit, and delete buttons -->
-                        <td class="table-actions">
+                            <!-- we will also add show, edit, and delete buttons -->
+                            <td class="table-actions">
 
-                            
-                            <!-- show the quiz (uses the show method found at GET /assessments/{id} -->
-                            <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View assessment"  href="{{ URL::to('assessments/' . $assessment->id . '/assessment_items') }}">
-                                <i class="fa fa-user fa-lg"></i>
-                            </a>
-                            
-                            <!-- edit this assessment (uses the edit method found at GET /employees/{id}/edit -->
-                            <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit assessment" href="{{ URL::to('assessments/' . $assessment->id . '/edit') }}">
-                                <i class="fa fa-pencil fa-lg"></i>
-                            </a>
-                            
+                                
+                                <!-- show the quiz (uses the show method found at GET /assessments/{id} -->
+                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View assessment"  href="{{ URL::to('assessments/' . $assessment->id . '/assessment_items') }}">
+                                    <i class="fa fa-user fa-lg"></i>
+                                </a>
+                                
+                                <!-- edit this assessment (uses the edit method found at GET /employees/{id}/edit -->
+                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit assessment" href="{{ URL::to('assessments/' . $assessment->id . '/edit') }}">
+                                    <i class="fa fa-pencil fa-lg"></i>
+                                </a>
+                                
 
-                            <!-- delete the quiz (uses the destroy method DESTROY /assessments/{id} -->
-                            <!-- we will add this later since its a little more complicated than the other two buttons -->
-                            {{ Form::open(array('url' => 'assessments/' . $assessment->id, 'class' => 'pull-right')) }}
-                            {{ Form::hidden('_method', 'DELETE') }}
-                            <div data-toggle="tooltip" data-placement="bottom" title="Delete assessment" >
-                                {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
-                            </div>
-                            {{ Form::close() }}
+                                <!-- delete the quiz (uses the destroy method DESTROY /assessments/{id} -->
+                                <!-- we will add this later since its a little more complicated than the other two buttons -->
+                                {{ Form::open(array('url' => 'assessments/' . $assessment->id, 'class' => 'pull-right')) }}
+                                {{ Form::hidden('_method', 'DELETE') }}
+                                <div data-toggle="tooltip" data-placement="bottom" title="Delete assessment" >
+                                    {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
+                                </div>
+                                {{ Form::close() }}
 
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </section>
         <!-- Modal -->
 

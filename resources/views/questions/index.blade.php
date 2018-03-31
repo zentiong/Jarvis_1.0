@@ -57,9 +57,8 @@
                     @endforeach
 
 
-
-                    <table class="table table-striped table-bordered">
-                    
+            <div class="horizontal-scroll">
+                <table class="table table-striped table-bordered">    
                     <thead>
                         <tr>
                             <td>Question</td>
@@ -106,16 +105,14 @@
                                     <div data-toggle="tooltip" data-placement="bottom" title="Remove question item">
                                         {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'Remove', 'class' => 'btn delete-btn')) }}
                                     </div>
-                                 {{ Form::close() }}
-                                
+                                 {{ Form::close() }}    
                             </td>
                         </tr>
-
                         @endif
-
                     @endforeach
                     </tbody>
-                    </table>
+                </table>
+            </div>
                     <div class="text-right">
                         <button class="open-AddBookDialog btn question-btn" data-id="{{$section->id}}" type="button" data-toggle="modal" data-target="#createModal">&#43; Add question for this section</button>
                     </div>
@@ -176,7 +173,6 @@
                           </div>
                         </div>
                                         
-                            
                     <br>
                     <br>
                 @endforeach
