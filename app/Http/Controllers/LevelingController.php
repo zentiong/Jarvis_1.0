@@ -71,7 +71,7 @@ Class LevelingController extends Controller
         // Overall skills Stats
         $query3 = DB::select('SELECT s.name, AVG(us.skill_grade) as skill_grade FROM user_skills us, skills s WHERE s.id = us.skill_id GROUP BY s.name');
         $query4 = DB::select('SELECT Distinct(department) FROM users');
-        $query5 = DB::select('SELECT us.department, s.name, us.skill_grade FROM user_skills us, skills s WHERE s.id = us.skill_id');
+        $query5 = DB::select('SELECT us.department, s.name, us.skill_grade FROM user_skills us, skills s WHERE s.id = us.skill_id GROUP BY s.name, us.department');
         $counter = 0;
         $result5 = array();
         $holder = array();
