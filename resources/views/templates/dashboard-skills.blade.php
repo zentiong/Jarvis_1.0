@@ -46,7 +46,9 @@
                         <button onclick="update_data(myChart,tfive)">Relevant Skills</button>
                         <button onclick="update_data(myChart,score_data_all)">All Skills</button>
                         <canvas id="myChart" width=100></canvas>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+                        <script src="{{asset('js/Chart.bundle.js')}}"></script>
+                        <script src="{{asset('js/utils.js')}}"></script>
+
                         <script type="text/javascript">
 
                             var score_data_all = <?php echo json_encode($score_data_all)?>;
@@ -71,6 +73,21 @@
 
                             Chart.defaults.global.maintainAspectRatio = false;
                             var ctx = document.getElementById("myChart").getContext('2d');
+                            var color = Chart.helpers.color;
+                            var colorNames = Object.keys(chartColors);
+                            var bcolor = [];
+                            var bgcolor = [];
+
+                            for(var i=0; i<score_data_all.length; i++){
+                                var colorName = colorNames[i % colorNames.length];
+                                var dsColor = chartColors[colorName];
+
+                                bgcolor.push(color(dsColor).alpha(0.5).rgbString());
+                                bcolor.push(dsColor);
+                            }
+                            
+
+
                             var myChart = new Chart(ctx, {
                                 type: 'horizontalBar',
                                 data: {
@@ -78,22 +95,8 @@
                                     datasets: [{
                                         label: 'Skill Level by Percentage',
                                         data: score_data_all,
-                                        backgroundColor: [
-                                            'rgba(255, 99, 132, 0.5)',
-                                            'rgba(54, 162, 235, 0.5)',
-                                            'rgba(255, 206, 86, 0.5)',
-                                            'rgba(75, 192, 192, 0.5)',
-                                            'rgba(153, 102, 255, 0.5)',
-                                            'rgba(255, 159, 64, 0.5)'
-                                        ],
-                                        borderColor: [
-                                            'rgba(255,99,132,1)',
-                                            'rgba(54, 162, 235, 1)',
-                                            'rgba(255, 206, 86, 1)',
-                                            'rgba(75, 192, 192, 1)',
-                                            'rgba(153, 102, 255, 1)',
-                                            'rgba(255, 159, 64, 1)'
-                                        ],
+                                        backgroundColor: bgcolor,
+                                        borderColor: bcolor,
                                         borderWidth: 1
                                     }]
                                 },

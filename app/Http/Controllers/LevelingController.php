@@ -123,6 +123,10 @@ Class LevelingController extends Controller
             ->get();
         // ---------------------------------
 
+        // Overall quiz stats
+
+        $result7 = DB::select('SELECT s.name, SUM(sa.score)/SUM(sa.max_score) as rating FROM section_attempts sa LEFT JOIN sections se ON se.id=sa.section_id LEFT JOIN skills s ON s.id=se.skill_id GROUP BY s.name');
+
         // Overall assessment Stats
         $result6 = DB::select('SELECT s.name, AVG(ua.rating)/5 as rating FROM skills s, user_assessments ua LEFT JOIN assessments a ON a.id = ua.assessment_id WHERE a.skill_id = s.id GROUP BY s.name');
 
@@ -320,6 +324,7 @@ Class LevelingController extends Controller
                         ->with('result4', $result4)
                         ->with('result5', $result5)
                         ->with('result6', $result6)
+                        ->with('result7', $result7)
 						->with('mg',$mg);
 				}
 				else // HR
@@ -342,6 +347,7 @@ Class LevelingController extends Controller
                         ->with('result4', $result4)
                         ->with('result5', $result5)
                         ->with('result6', $result6)
+                        ->with('result7', $result7)
             			->with('assessments',$assessments)
             			->with('user_assessments',$user_assessments)
             			->with('user_skills',$user_skills)

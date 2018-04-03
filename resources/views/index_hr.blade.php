@@ -59,72 +59,7 @@
                         </h5>
                         <button class="btn btn-sm btn-light toggle-card">TOGGLE VISIBILITY</button>
                         <div class="dashboard-content">
-                            <!-- data collection -->
-                            <?php
-                            $cwide_quiz_data = array();
-                            $cwide_quiz_labels = array();
-                            $cwide_quiz_id = array();
-                            $q_counter = array();
-                            ?>
-
-
-                            <!-- scores -->
-                            <?php
-
-
-                                foreach($user_skills as $key=>$value)
-                                {
-                                    if($value->q_max_score==0)
-                                    {
-                                        $quiz_score=0;
-                                    }
-                                    else
-                                    {
-                                        $quiz_score = ($value->q_score/$value->q_max_score)*$value->knowledge_based_weight;
-                                    }
-                                    if(in_array($value->skill_id, $cwide_quiz_id)==false)
-                                    {
-                                        array_push($cwide_quiz_data, $quiz_score);
-                                        array_push($cwide_quiz_id, $value->skill_id);
-                                        array_push($q_counter, 1);
-                                        
-                                    }
-                                    else
-                                    {
-                                        $key = $key = array_search($value->skill_id, $cwide_quiz_id);
-                                        $cwide_quiz_data[$key]+=$quiz_score;
-                                        $q_counter[$key]+=1;
-                                    }
-                                }
-
-                                for($i=0;$i<sizeof($cwide_quiz_data);$i++)
-                                {
-                                    $cwide_quiz_data[$i] = $cwide_quiz_data[$i]/$q_counter[$i]; 
-                                }
-     
-                            ?>
-                            <!-- end scores -->
-
-                            <!-- labels -->
-
-                            <?php
-                            foreach($cwide_quiz_id as $key => $value)
-                            {
-                                $sk_id = $value;
-                                foreach($skills as $key => $value)
-                                {
-                                    if($sk_id==$value->id)
-                                    {
-                                        array_push($cwide_quiz_labels,$value->name);
-                                    }
-                                }
-                            }
-                            
-
-                            ?>
-                            <!-- end labels -->
-                            <!-- end of data collection -->
-                            <canvas id="cwide_quiz_chart" width=100></canvas>
+                            <canvas id="cw_overall_quiz" width=100></canvas>
                         </div>
                         
                         <h5 class="dashboard-header">
@@ -266,23 +201,6 @@
             <?php 
             $evals_to_take = array(); // user trainings where quiz has already been training
             ?>
-            
-
-           
-            
-            <!--@foreach($evals_to_take as $key => $eval)
-                @if($eval->evaluation==null)
-                {{ Form::open(array('url' => 'evaluate')) }}
-                @foreach($trainings_taken as $key => $training)
-                    @if($training->id == $eval->training_id)
-                        {{$training->title}}
-                    @endif
-                @endforeach            
-                {{ Form::hidden('training_id', $value = $eval->training_id) }}
-                {{ Form::submit('Provide Feedback', array('class' => 'btn btn-primary create-btn text-center')) }}
-                {{ Form::close() }}
-                @endif
-            @endforeach-->
                 </section>
 
             </section>
@@ -305,76 +223,10 @@
     </script> 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-
-    <!-- script for overall quiz-->
-    <script type="text/javascript">
-        $(document).ready(function() 
-        {
-
-            var score_data_all = <?php echo json_encode($cwide_quiz_data)?>;
-            var labels_all = <?php echo json_encode($cwide_quiz_labels)?>;
-            var tfive = [];
-            if(score_data_all.length>5)
-            {
-                tfive = score_data_all.slice(0,5);
-            }
-            else
-            {
-                tfive = score_data_all;
-            }
-
-
-            Chart.defaults.global.maintainAspectRatio = false;
-            var ctx = document.getElementById("cwide_quiz_chart").getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'horizontalBar',
-                data: {
-                    labels: labels_all,
-                    datasets: [{
-                        label: 'Quiz Score Total',
-                        data: score_data_all,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero:true
-                                }
-                            }],
-                            xAxes: [{
-                                ticks: {
-                                    beginAtZero:true
-                                }
-                            }]
-
-                        }
-                    }
-                });
-            });
-    </script>
-
-
-        
     <script src="{{asset('js/Chart.bundle.js')}}"></script>
     <script src="{{asset('js/utils.js')}}"></script>
+
+    <!-- training attendance stats-->
     <script type="text/javascript">
     $(document).ready(function() 
         {
@@ -822,6 +674,74 @@ $(document).ready(function()
         }
 
         newDataset.data.push(parseFloat(result6[i].rating)*100);
+        temp.push(newDataset);
+    }
+ 
+    horizontalBardata.datasets = temp;   
+
+    
+    var myChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: horizontalBardata,
+        options: {
+            title: {
+                display: true,
+                text: 'Assessment Ratings'
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }],
+                 xAxes: [{
+                    ticks: {
+                       min: 0,
+                       max: 100,
+                       callback: function(value) {
+                           return value + "%"
+                            }
+                       },
+                   scaleLabel: {
+                       display: true,
+                       labelString: "Percentage"
+                   }               
+                }]
+            }
+        }
+    });
+    
+
+});
+</script>
+
+<!-- Overall quiz stats -->
+<script type="text/javascript">
+$(document).ready(function() 
+ {
+    var ctx = document.getElementById("cw_overall_quiz").getContext('2d');
+    var result7 = <?php echo json_encode($result7)?>;
+    var temp = [];
+    var color = Chart.helpers.color;
+    var colorNames = Object.keys(chartColors);
+    var horizontalBardata = {
+        labels: [],
+        datasets: []
+    }
+
+    for (var i=0; i<result7.length; i++){
+        var colorName = colorNames[temp.length % colorNames.length];
+        var dsColor = chartColors[colorName];  
+        
+        
+        var newDataset = {
+            label: [result7[i].name],
+            backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+            borderColor: dsColor,
+            data: []
+        }
+
+        newDataset.data.push(parseFloat(result7[i].rating)*100);
         temp.push(newDataset);
     }
  

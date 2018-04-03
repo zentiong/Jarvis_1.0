@@ -30,172 +30,11 @@
                     <button class="btn tablinks" onclick="openTab(event, 'personal')">Personal</button>
                     <button class="btn tablinks"  onclick="openTab(event, 'non-personal')">Department-wide</button>
                 </div>
-                
-                <div class="row dashboard-body tabcontent" id="personal">
-                    <!-- data collection -->
-                    <?php
-                    $labels_arr_all = array();
-                    $score_data_all = array();
-                    $sk_id_arr = array();
-
-                    $dwide_skill_data = array();
-                    $dwide_label_data = array();
-                    $dwide_sk_id = array();
-                    
-                    ?>
-
-                    <!-- scores -->
-                    <?php
-                    foreach($user_skills as $key => $value)
-                    {
-                        if($value->user_id==$current_id)
-                        {
-                            array_push($score_data_all,$value->skill_grade);
-                            array_push($sk_id_arr,$value->skill_id);
-                        }
-                    }
-                    ?>
-                    <!-- end scores -->
-
-                    <!-- labels -->
-
-                    <?php
-                    foreach($sk_id_arr as $key => $value)
-                    {
-                        $sk_id = $value;
-                        foreach($skills as $key => $value)
-                        {
-                            if($sk_id==$value->id)
-                            {
-                                array_push($labels_arr_all,$value->name);
-                            }
-                        }
-                    }
-
-                    ?>
-                    <!-- end labels -->
-
-
-                    <!-- dept wide scores -->
-                    <?php
-                    $emp_under = array();
-                    foreach($users as $key=>$value)
-                    {
-                        if($value->supervisor_id==$current_user->id)
-                        {
-                            array_push($emp_under,$value->id);
-
-                        }
-                    }
-                    foreach($user_skills as $key => $value)
-                    {
-                        if(in_array($value->user_id, $emp_under))
-                        {
-                            array_push($dwide_skill_data,$value->skill_grade);
-                            array_push($dwide_sk_id,$value->skill_id);
-                        }
-                    }
-                    ?>
-                    <!-- end dept wide scores -->
-
-                    <!-- dept wide labels -->
-
-                    <?php
-                    foreach($dwide_sk_id as $key => $value)
-                    {
-                        $ref_id = $value;
-                        foreach($skills as $key => $value)
-                        {
-                            if($ref_id==$value->id)
-                            {
-                                array_push($dwide_label_data,$value->name);
-                            }
-                        }
-                    }
-
-                    ?>
-                    <!-- end labels -->
-
-
-
-                    <!-- end of data collection -->
-
        
             <!-- PERSONAL CONTENT CONTAINER -->
-            
-                <div class="col-md-7">
-                    <h5 class="dashboard-header"><i class="fa fa-bar-chart"></i>Skills</h5>
-                    <div class="dashboard-content">
-                        <button onclick="update_data(myChart,score_data_all,labels_all)">Personal Skills</button>
-                        <button onclick="update_data(myChart,dwide_skill_data,dwide_label_data)">Department Wide Skills</button>
-                        <canvas id="myChart" width=100></canvas>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-                        <script type="text/javascript">
-
-                            var score_data_all = <?php echo json_encode($score_data_all)?>;
-                            var labels_all = <?php echo json_encode($labels_arr_all)?>;
-
-                            var dwide_skill_data = <?php echo json_encode($dwide_skill_data)?>;
-                            var dwide_label_data = <?php echo json_encode($dwide_label_data)?>;
-
-                            function update_data(chart, data, labels) 
-                            {
-                                chart.data.datasets[0].data = data;
-                                chart.data.labels = labels;
-                                chart.update();
-                            }
-
-
-                            Chart.defaults.global.maintainAspectRatio = false;
-                            var ctx = document.getElementById("myChart").getContext('2d');
-                            var myChart = new Chart(ctx, {
-                                type: 'horizontalBar',
-                                data: {
-                                    labels: labels_all,
-                                    datasets: [{
-                                        label: 'Skill Level by Percentage',
-                                        data: score_data_all,
-                                        backgroundColor: [
-                                            'rgba(255, 99, 132, 0.5)',
-                                            'rgba(54, 162, 235, 0.5)',
-                                            'rgba(255, 206, 86, 0.5)',
-                                            'rgba(75, 192, 192, 0.5)',
-                                            'rgba(153, 102, 255, 0.5)',
-                                            'rgba(255, 159, 64, 0.5)'
-                                        ],
-                                        borderColor: [
-                                            'rgba(255,99,132,1)',
-                                            'rgba(54, 162, 235, 1)',
-                                            'rgba(255, 206, 86, 1)',
-                                            'rgba(75, 192, 192, 1)',
-                                            'rgba(153, 102, 255, 1)',
-                                            'rgba(255, 159, 64, 1)'
-                                        ],
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        yAxes: [{
-                                            ticks: {
-                                                beginAtZero:true
-                                            }
-                                        }],
-                                        xAxes: [{
-                                            ticks: {
-                                                beginAtZero:true
-                                            }
-                                        }]
-
-                                    }
-                                }
-                            });
-                        </script>
-                    </div>
-                    @include('templates.dashboard-quiz-evaluations')
-                </div>
+            <div class="row dashboard-body tabcontent" id="personal">
+                    @include('templates.dashboard-skills')
                     @include('templates.dashboard-trainings')
-
                 </div>
                 
                 <!-- NON-PERSONAL CONTENT CONTAINER -->
@@ -314,6 +153,8 @@
                             </select>
                         </div>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+                        <script src="{{asset('js/utils.js')}}"></script>
+                        <script src="{{asset('js/Chart.bundle.js')}}"></script>
                         <!--script for employee skills-->
                         <?php
                         for($i=0;$i<sizeof($user_skills);$i++   )
@@ -373,6 +214,21 @@
 
                             Chart.defaults.global.maintainAspectRatio = false;
                             var ctx = document.getElementById("eum_skills_chart").getContext('2d');
+
+                            var color = Chart.helpers.color;
+                            var colorNames = Object.keys(chartColors);
+                            var bcolor = [];
+                            var bgcolor = [];
+
+                            for(var i=0; i<subs_skill_scores.length; i++){
+                                var colorName = colorNames[i];
+                                var dsColor = chartColors[colorName];
+
+                                bgcolor.push(color(dsColor).alpha(0.5).rgbString());
+                                bcolor.push(dsColor);
+                            }
+                            
+
                             var eum_skills_chart = new Chart(ctx, {
                                 type: 'horizontalBar',
                                 data: {
@@ -380,22 +236,8 @@
                                     datasets: [{
                                         label: 'Skill Level',
                                         data: subs_skill_scores,
-                                        backgroundColor: [
-                                            'rgba(255, 99, 132, 0.5)',
-                                            'rgba(54, 162, 235, 0.5)',
-                                            'rgba(255, 206, 86, 0.5)',
-                                            'rgba(75, 192, 192, 0.5)',
-                                            'rgba(153, 102, 255, 0.5)',
-                                            'rgba(255, 159, 64, 0.5)'
-                                        ],
-                                        borderColor: [
-                                            'rgba(255,99,132,1)',
-                                            'rgba(54, 162, 235, 1)',
-                                            'rgba(255, 206, 86, 1)',
-                                            'rgba(75, 192, 192, 1)',
-                                            'rgba(153, 102, 255, 1)',
-                                            'rgba(255, 159, 64, 1)'
-                                        ],
+                                        backgroundColor: bgcolor,
+                                        borderColor: bcolor,
                                         borderWidth: 1
                                     }]
                                 },
