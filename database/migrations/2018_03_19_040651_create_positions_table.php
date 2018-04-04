@@ -34,6 +34,13 @@ class CreatePositionsTable extends Migration
             'job_grade' => '9'
 
         )  );
+
+        DB::table('positions')->insert(
+        array(
+            'name' => 'Executive',
+            'job_grade' => '12'
+
+        )  );
     }
 
     /**

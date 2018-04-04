@@ -170,6 +170,20 @@ class CreateUsersTable extends Migration
             'manager_check' => false
         ));
 
+         DB::table('users')->insert(
+        array(
+            'first_name' => 'Board',
+            'last_name' => 'Executive',
+            'email' => 'boardexec@ph.zalora.com',
+            'password' => bcrypt('password00'),
+            'hiring_date' => '2018-12-31',
+            'birth_date' => '2018-12-31',
+            'department' => 'Administration',
+            'supervisor_id' => '1', 
+            'position' => 'Executive',
+            'manager_check' => true
+        ));
+
     }
 
     /**
