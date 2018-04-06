@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Service;
 use App\Link;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,14 @@ class LinkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Service $service)
     {
         //
+        $links = Links::all();
+
+         return View::make('services.show')
+            ->with('service', $service)
+            ->with('links', $links);
     }
 
     /**
@@ -25,6 +31,7 @@ class LinkController extends Controller
     public function create()
     {
         //
+        return View::make('links.create');
     }
 
     /**
@@ -36,6 +43,26 @@ class LinkController extends Controller
     public function store(Request $request)
     {
         //
+        $link = new link;
+        $service_id = Input::get('service_id');
+        $link->service_id = Input::get('service_id');
+
+        $link->title = Input::get('title');
+        $link->description = Input::get('description');
+        $link->link = Input::get('link');
+
+        if($request->link_photo!=null) 
+            {
+                $photoName = time().'.'.$request->link_photo->getClientOriginalExtension();
+                $user->profile_photo = $photoName;
+                $request->link_photo->move(public_path('images/link_photos/'), $photoName);
+            }
+
+
+        $link->save();
+
+        Session::flash('message', 'Successfully added a new link!');
+        return Redirect::to('services/'.$service_id);
     }
 
     /**

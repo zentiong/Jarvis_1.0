@@ -23,7 +23,7 @@ class CreateLinksTable extends Migration
             //title
             $table->string('title', 255);
             //description
-            $table->string('description', 255);
+            $table->string('description', 1000);
             //logo
             $table->string('logo', 255)->nullable();
             //link

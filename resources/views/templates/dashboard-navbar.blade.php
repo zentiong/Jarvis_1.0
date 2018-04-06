@@ -38,6 +38,7 @@
             <li><a id="assessments"  href="{{ URL::to('assessments') }}">Assessments</a></li>
             <li><a id="training-sessions"  href="{{ URL::to('trainings') }}">Trainings</a></li>
             <li><a id="events"  href="{{ URL::to('events') }}">Events</a></li>
+            <li><a id="services" href="{{ URL::to('services') }}">Services</a></li>
             @endif
 
             <!-- @if ( Auth::user()->manager_check == 1)
