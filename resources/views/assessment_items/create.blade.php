@@ -5,7 +5,7 @@
 <br>
 	<main class="container create-page">
 		<section class="row crud-page-to">
-			<h1 class="crud-page-title">Add a Criteria</h1>
+			<h1 class="crud-page-title">Add Assessment Item</h1>
 			<a href="{{ ur()->previous() }}" class="btn cancel-btn">Go Back</a>
 		</section>
 		<hr>

@@ -74,6 +74,7 @@ body.newsletter .login-button-yellow { right: 0; color: #2F2F2F; border: 1px sol
 body.newsletter section:nth-child(even), body.newsletter section:nth-child(odd) { padding: 40px 0; }
 body.newsletter section:nth-child(even) { background-color: #1f1f1f; }
 body.newsletter section:nth-child(odd) { background-color: none; }
+body.newsletter section:first-child { padding: 20px; }
 body.newsletter #calendar-container table.calendar { background-color: #1F1F1F; border-collapse: separate; border-spacing: 10px; font-family: 'Apercu Regular', sans-serif; margin: 0 auto; table-layout: fixed; width: 1000px; }
 body.newsletter #calendar-container table.calendar tr.calendar-row { margin-top: 35px; text-align: center; }
 body.newsletter #calendar-container table.calendar td.calendar-day-head { color: #BDBDBD; font-size: 1.25em; }
@@ -262,7 +263,7 @@ body.dashboard .create-page .form-control.user-photo { background: none; }
 body.dashboard .create-page .form-control.user-photo input { text-transform: uppercase; }
 body.dashboard .create-page input[type="password"] { display: block; width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: .25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; }
 body.dashboard .create-bottom-wrapper { margin-top: 3em; display: flex; flex-flow: row nowrap; justify-content: center; align-items: center; }
-body.dashboard .create-bottom-wrapper > * { margin: auto 1em; width: 200px; }
+body.dashboard .create-bottom-wrapper > * { margin: auto 1em; text-transform: capitalize; width: 200px; }
 body.dashboard .cancel-btn { border: 1px solid; border-radius: 2px; }
 body.dashboard .modal-footer.create-bottom-wrapper { margin-top: 0; }
 body.dashboard .question-btn { border: 1px solid #959595; font-size: 0.8em; }

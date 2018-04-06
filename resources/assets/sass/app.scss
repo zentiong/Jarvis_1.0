@@ -340,6 +340,11 @@ body.newsletter {
 		background-color: none;
 	}
 
+	section:first-child {
+		// BANNER
+		padding: 20px;
+	}
+
 	#calendar-container {
 		// overflow-x: auto;
   //   	width: auto;
@@ -1406,6 +1411,7 @@ body.dashboard {
 
 		> * {
 			margin: auto 1em;
+			text-transform: capitalize;
 			width: 200px;
 		}
 	}

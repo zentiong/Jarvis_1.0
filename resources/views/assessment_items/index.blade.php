@@ -45,10 +45,7 @@
                             <td>{{ $value->criteria }}</td>
 
                             <!-- we will also add show, edit, and delete buttons -->
-                            <td class="table-actions">
-
-                                
-                               
+                            <td class="table-actions"> 
                                 <!-- edit this assessment (uses the edit method found at GET /assessments/{id}/edit -->
                                 <!-- -->
                                 <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit this item" href="{{ URL::to('assessments/'.$assessment->id.'/assessment_items/'.$value->id.'/edit') }}">
@@ -88,15 +85,12 @@
                     {{ Form::label('criteria', 'Criteria') }}
                     {{ Form::text('criteria', Request::old('criteria'), array('class' => 'form-control', 'autofocus', 'pattern' => '[a-zA-z ]+', 'required', 'title' => 'Please use alphabet characters only')) }}
                 </div>
-
-                <div class="form-group text-center create-bottom-wrapper">
-                    <a href="{{ URL::to('assessments/'.$assessment->id.'/assessment_items') }}" class="btn cancel-btn">Cancel</a>
-                    {{ Form::submit('Save changes', array('class' => 'btn btn-primary create-btn text-center')) }}
-                </div>
-                
-            {{ Form::close() }}
-
             </div>
+            <div class="modal-footer create-bottom-wrapper">
+                <a href="{{ URL::to('assessments/'.$assessment->id.'/assessment_items') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
+                {{ Form::submit('Save changes', array('class' => 'btn btn-primary create-btn text-center')) }}
+            </div>
+            {{ Form::close() }}
           </div>
         </div>
     </main>
