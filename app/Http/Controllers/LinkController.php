@@ -6,6 +6,12 @@ use App\Service;
 use App\Link;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect; 
+use View;
+
 class LinkController extends Controller
 {
     /**
@@ -54,7 +60,7 @@ class LinkController extends Controller
         if($request->link_photo!=null) 
             {
                 $photoName = time().'.'.$request->link_photo->getClientOriginalExtension();
-                $user->profile_photo = $photoName;
+                $link->logo = $photoName;
                 $request->link_photo->move(public_path('images/link_photos/'), $photoName);
             }
 

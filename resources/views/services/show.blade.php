@@ -11,7 +11,50 @@
         </section>
         <hr>
         <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Links</button>
+        <div class="horizontal-scroll">
+                <table class="table table-hover table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Logo</td>
+                            <td>Title</td>
+                            <td>Description</td>
+                            <td>Reference</td>
+                            <td class="no-stretch">Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($links as $key => $value)
+                        <tr>
+                            <td><img src="{{ $value->logo }}"</td>
+                            <td>{{ $value->title }}</td>
+                            <td>{{ $value->description }}</td>
+                            <td>{{ $value->link }}</td>
+                            
+                            <td class="table-actions no-stretch">
+                                 <!-- show the employee (uses the show method found at GET /employees/{id} -->
+                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View Service" href="{{ URL::to('links/' . $value->id) }}">
+                                    <i class="fa fa-user fa-lg"></i>
+                                </a>
 
+                                <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
+                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit Service" href="{{ URL::to('links/' . $value->id . '/edit') }}">
+                                    <i class="fa fa-pencil fa-lg"></i>
+                                </a>
+
+                                    {{ Form::open(array('url' => 'links/' . $value->id, 'class' => 'pull-right')) }}
+                                    {{ Form::hidden('_method', 'DELETE') }}
+                                    <div data-toggle="tooltip" data-placement="bottom" title="Remove Service">
+                                        {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
+                                    </div>
+                                    <!-- {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }} -->
+                                 {{ Form::close() }}
+                               
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
 
         <!-- Modal -->
         <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -41,7 +84,7 @@
                 </div>
                 <div class="form-group">
                     {{ Form::label('link', 'Where does this link to?') }}
-                    {{ Form::text('link', Request::old('link'), array('class' => 'form-control', 'autofocus', 'pattern' => '[a-zA-z ]+', 'required', 'title' => 'Please use alphabet characters only')) }}
+                    {{ Form::text('link', Request::old('link'), array('class' => 'form-control', 'autofocus', 'required')) }}
                 </div>
 
               </div>
