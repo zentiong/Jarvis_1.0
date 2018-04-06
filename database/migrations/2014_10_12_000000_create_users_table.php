@@ -19,14 +19,18 @@ class CreateUsersTable extends Migration
             $table->string('first_name', 255);
             $table->string('last_name', 255);
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
 
             $table->date('hiring_date', 255);
             $table->date('birth_date', 255);
 
             $table->string('department', 255);
-            $table->string('supervisor_id', 255);
-            $table->string('position', 255);
+
+            $table->integer('supervisor_id')->unsigned()->nullable();
+            $table->foreign('supervisor_id')->references('id')->on('users');
+
+            $table->integer('position')->unsigned()->nullable();
+            $table->foreign('position')->references('id')->on('positions');
 
             $table->boolean('manager_check')->default(false);
 
@@ -48,11 +52,26 @@ class CreateUsersTable extends Migration
             'birth_date' => '2018-12-31',
             'department' => 'Executive Board',
             'supervisor_id' => '1',
-            'position' => 'Developer',
+            'position' => '1',
             'manager_check' => true
 
 
         )  );
+
+        DB::table('users')->insert(
+        array(
+            'first_name' => 'Zen',
+            'last_name' => 'Tiongson',
+            'email' => 'zt@zt.com',
+            'password' => bcrypt('password00'),
+            'hiring_date' => '2018-12-31',
+            'birth_date' => '2018-12-31',
+            'department' => 'Finance',
+            'supervisor_id' => '1', 
+            'position' => '1',
+            'manager_check' => true,
+            'profile_photo' => 'zen.jpg'
+        ));   
 
         DB::table('users')->insert(
         array(
@@ -63,26 +82,13 @@ class CreateUsersTable extends Migration
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
             'department' => 'Human Resources',
-            'supervisor_id' => '3', 
-            'position' => 'Developer',
+            'supervisor_id' => '2', 
+            'position' => '1',
             'manager_check' => false,
             'profile_photo' => 'ferny.jpg'
         ));   
 
-         DB::table('users')->insert(
-        array(
-            'first_name' => 'Zen',
-            'last_name' => 'Tiongson',
-            'email' => 'zt@zt.com',
-            'password' => bcrypt('password00'),
-            'hiring_date' => '2018-12-31',
-            'birth_date' => '2018-12-31',
-            'department' => 'Finance',
-            'supervisor_id' => '1', 
-            'position' => 'Developer',
-            'manager_check' => true,
-            'profile_photo' => 'zen.jpg'
-        ));   
+         
 
          DB::table('users')->insert(
         array(
@@ -93,8 +99,8 @@ class CreateUsersTable extends Migration
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
             'department' => 'Human Resources',
-            'supervisor_id' => '3', 
-            'position' => 'Developer',
+            'supervisor_id' => '2', 
+            'position' => '1',
             'manager_check' => false,
             'profile_photo' => 'stephen.jpg'
         ));   
@@ -108,8 +114,8 @@ class CreateUsersTable extends Migration
             'hiring_date' => '2018-12-31',
             'birth_date' => '2018-12-31',
             'department' => 'Customer Service',
-            'supervisor_id' => '3', 
-            'position' => 'Developer',
+            'supervisor_id' => '2', 
+            'position' => '1',
             'manager_check' => false,
             'profile_photo' => 'vicente.jpg'
         ));   
@@ -124,7 +130,7 @@ class CreateUsersTable extends Migration
             'birth_date' => '2018-12-31',
             'department' => 'Human Resources',
             'supervisor_id' => '1', 
-            'position' => 'Developer',
+            'position' => '1',
             'manager_check' => true
         ));
 
@@ -138,7 +144,7 @@ class CreateUsersTable extends Migration
             'birth_date' => '2018-12-31',
             'department' => 'Finance',
             'supervisor_id' => '1', 
-            'position' => 'Developer',
+            'position' => '1',
             'manager_check' => false
         ));
 
@@ -152,7 +158,7 @@ class CreateUsersTable extends Migration
             'birth_date' => '2018-12-31',
             'department' => 'Finance',
             'supervisor_id' => '1', 
-            'position' => 'Developer',
+            'position' => '1',
             'manager_check' => true
         ));
 
@@ -166,7 +172,7 @@ class CreateUsersTable extends Migration
             'birth_date' => '2018-12-31',
             'department' => 'Human Resources',
             'supervisor_id' => '1', 
-            'position' => 'Developer',
+            'position' => '1',
             'manager_check' => false
         ));
 
@@ -180,7 +186,7 @@ class CreateUsersTable extends Migration
             'birth_date' => '2018-12-31',
             'department' => 'Administration',
             'supervisor_id' => '1', 
-            'position' => 'Executive',
+            'position' => '1',
             'manager_check' => true
         ));
 
