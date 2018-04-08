@@ -11,6 +11,7 @@
         </section>
         <hr>
         <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Links</button>
+        <br>
         <div class="horizontal-scroll">
                 <table class="table table-hover table-striped table-bordered">
                     <thead>
@@ -25,25 +26,22 @@
                     <tbody>
                     @foreach($links as $key => $value)
                         <tr>
-                            <td><img src="{{ $value->logo }}"</td>
+                            <td><img src="{{ asset( 'images/link_photos/'.$value->logo) }}" style="height: 50px; width: 50px;"> </td>
                             <td>{{ $value->title }}</td>
                             <td>{{ $value->description }}</td>
                             <td>{{ $value->link }}</td>
                             
                             <td class="table-actions no-stretch">
                                  <!-- show the employee (uses the show method found at GET /employees/{id} -->
-                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View Service" href="{{ URL::to('links/' . $value->id) }}">
-                                    <i class="fa fa-user fa-lg"></i>
-                                </a>
 
                                 <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
-                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit Service" href="{{ URL::to('links/' . $value->id . '/edit') }}">
+                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit Link" href="{{ URL::to('links/' . $value->id . '/edit') }}">
                                     <i class="fa fa-pencil fa-lg"></i>
                                 </a>
 
                                     {{ Form::open(array('url' => 'links/' . $value->id, 'class' => 'pull-right')) }}
                                     {{ Form::hidden('_method', 'DELETE') }}
-                                    <div data-toggle="tooltip" data-placement="bottom" title="Remove Service">
+                                    <div data-toggle="tooltip" data-placement="bottom" title="Remove Link">
                                         {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
                                     </div>
                                     <!-- {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }} -->
@@ -61,7 +59,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Service</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Link</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -71,16 +69,16 @@
                 {{ Form::hidden('service_id', $value = $service->id) }}
                 <div class="form-group">
                     {{Form::label('link_photo', 'Logo',['class' => 'control-label'])}}
-                    <div class="form-control user-photo">{{Form::file('user_photo'),Request::old('profile_photo') }} 
+                    <div class="form-control user-photo">{{Form::file('link_photo')}} 
                     </div>
                 </div>
                 <div class="form-group">
                     {{ Form::label('title', 'Title') }}
-                    {{ Form::text('title', Request::old('title'), array('class' => 'form-control', 'autofocus', 'pattern' => '[a-zA-z ]+', 'required', 'title' => 'Please use alphabet characters only')) }}
+                    {{ Form::text('title', Request::old('title'), array('class' => 'form-control', 'autofocus', 'required')) }}
                 </div>
                 <div class="form-group">
                     {{ Form::label('description', 'Description') }}
-                    {{ Form::text('description', Request::old('description'), array('class' => 'form-control', 'autofocus', 'pattern' => '[a-zA-z ]+', 'required', 'title' => 'Please use alphabet characters only')) }}
+                    {{ Form::text('description', Request::old('description'), array('class' => 'form-control', 'autofocus', 'required' )) }}
                 </div>
                 <div class="form-group">
                     {{ Form::label('link', 'Where does this link to?') }}

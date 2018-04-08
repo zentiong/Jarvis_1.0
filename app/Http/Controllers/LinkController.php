@@ -79,7 +79,7 @@ class LinkController extends Controller
      */
     public function show(Link $link)
     {
-        //
+        
     }
 
     /**
@@ -90,7 +90,8 @@ class LinkController extends Controller
      */
     public function edit(Link $link)
     {
-        //
+        return View::make('links.edit')
+             ->with('link', $link);
     }
 
     /**
@@ -103,6 +104,24 @@ class LinkController extends Controller
     public function update(Request $request, Link $link)
     {
         //
+        $service_id =  $link->service_id;
+
+        $link->title = Input::get('title');
+        $link->description = Input::get('description');
+        $link->link = Input::get('link');
+
+        if($request->link_photo!=null) 
+        {
+            $photoName = time().'.'.$request->link_photo->getClientOriginalExtension();
+            $link->logo = $photoName;
+            $request->link_photo->move(public_path('images/link_photos/'), $photoName);
+        }
+
+
+        $link->save();
+
+        Session::flash('message', 'Successfully added a new link!');
+        return Redirect::to('services/'.$service_id);
     }
 
     /**
@@ -113,6 +132,10 @@ class LinkController extends Controller
      */
     public function destroy(Link $link)
     {
-        //
+        $service_id = $link->service_id;
+        $link->delete();
+
+        Session::flash('message', 'Successfully deleted Link!');
+        return Redirect::to('Link/'.$service_id);
     }
 }

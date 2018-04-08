@@ -67,7 +67,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {   
-        $links = Link::all();
+        $links = Link::where('service_id',$service->id)->get();
 
         return View::make('services.show')
             ->with('service', $service)

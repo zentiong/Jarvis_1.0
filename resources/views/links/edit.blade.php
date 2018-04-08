@@ -5,8 +5,8 @@
 	<main class="container create-page">
 		<section class="row crud-page-top">
             <div>
-                <h1 class="crud-page-title">Edit Service</h1>
-                <h5>{{ $service->name }}</h5>
+                <h1 class="crud-page-title">Edit Link</h1>
+                <h5>{{ $link->title }}</h5>
             </div>
             <a href="{{ URL::to('services') }}" class="btn cancel-btn">Back to All Services</a>
         </section>
@@ -20,14 +20,28 @@
                 </div>
             @endif
 
-			{{ Form::model($service, 
-			array('route' => array('services.update', $service->id), 'method' => 'PUT')) }}
+			{{ Form::model($link, 
+			array('route' => array('links.update', $link->id), 'method' => 'PUT', 'files' => true)) }}
 
-				
-			    <div class="form-group">
-			        {{ Form::label('name', 'Service Name') }}
-			        {{ Form::text('name', Request::old('name'), array('class' => 'form-control', 'autofocus', 'pattern' => '[a-zA-z ]+', 'required', 'title' => 'Please use alphabet characters only')) }}
-			    </div>
+                <div class="form-group">
+                    {{Form::label('link_photo', 'Logo',['class' => 'control-label'])}}
+                    <div class="form-control user-photo">{{Form::file('link_photo')}} 
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ Form::label('title', 'Title') }}
+                    {{ Form::text('title', Request::old('title'), array('class' => 'form-control', 'autofocus', 'required')) }}
+                </div>
+                <div class="form-group">
+                    {{ Form::label('description', 'Description') }}
+                    {{ Form::text('description', Request::old('description'), array('class' => 'form-control', 'autofocus', 'required' )) }}
+                </div>
+                <div class="form-group">
+                    {{ Form::label('link', 'Where does this link to?') }}
+                    {{ Form::text('link', Request::old('link'), array('class' => 'form-control', 'autofocus', 'required')) }}
+                </div>
+
+              </div>
 
 				<div class="form-group text-center create-bottom-wrapper">
 					<a href="{{ URL::to('services') }}" class="btn cancel-btn">Cancel</a>
