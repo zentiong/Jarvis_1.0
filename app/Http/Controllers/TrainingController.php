@@ -10,6 +10,9 @@ use App\Quiz;
 use App\User_Quiz;
 use App\Event;
 
+use App\Service;
+use App\Link;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -239,6 +242,9 @@ class TrainingController extends Controller
         foreach ($happenings as $happening) {
             array_push($temp, $happening);
         }
+
+        $services = Service::all();
+        $links = Link::all();
                 // load the view and pass the employees
         return View::make('welcome')
             ->with('events', $events)
@@ -251,7 +257,9 @@ class TrainingController extends Controller
             ->with('nextMonth', $nextMonth)
             ->with('prevYear', $prevYear)
             ->with('nextYear', $nextYear)
-            ->with('trainings', $trainings);
+            ->with('trainings', $trainings)
+            ->with('services', $services)
+            ->with('links', $links);
     }
 
     public function landing2($month, $year){
@@ -303,6 +311,9 @@ class TrainingController extends Controller
             array_push($temp, $happening);
         }
 
+        $services = Service::all();
+        $links = Link::all();
+
 
         // load the view and pass the employees
         return View::make('welcome')
@@ -316,7 +327,9 @@ class TrainingController extends Controller
             ->with('prevYear', $prevYear)
             ->with('nextYear', $nextYear)
             ->with('temp', $temp)
-            ->with('trainings', $trainings);
+            ->with('trainings', $trainings)
+            ->with('services', $services)
+            ->with('links', $links);
     }
 
     /**

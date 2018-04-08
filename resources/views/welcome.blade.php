@@ -118,16 +118,19 @@
                 </div>
             </div>          
         </section>
+
         <section class="container-fluid" id="services-container">
             <div class="container">
                 <h1 class="section-label">SERVICES</h1>
             </div>
+
             <!-- HR SERVICES -->
             <div class="container">
                 <div class="text-right subsection-label-container">
                     <hr class="divider-1">
                     <span class="subsection-label">HR Services</span>
                 </div>
+               
                 <!-- RECRUITMENT -->
                 <div class="service-label-container">
                     <span class="hr-service-label">Recruitment</span>
@@ -302,6 +305,50 @@
                     </div>
                 </div>
             </div>
+
+
+            <section class="container-fluid" id="services-container">
+            <div class="container">
+                <h1 class="section-label">SERVICES 2</h1>
+            </div>
+            <!-- HR SERVICES -->
+            <div class="container">
+            <div class="text-right subsection-label-container">
+                    <hr class="divider-1">
+                    <span class="subsection-label">HR Services</span>
+                </div>
+            @foreach($services as $key => $service)
+                <div class="service-label-container">
+                    <span class="hr-service-label">{{$service->name}}</span>
+                    <hr class="divider-2">
+                </div>
+                <div class="row">
+                @foreach($links as $key => $link)
+                    @if($link->service_id == $service->id)
+                        <div class="col-md-6">
+                            <div class="hr-service">
+                                <a href="{{$link->link}}" target="_blank" class="link-wrapper">
+                                    <?php
+                                        $logo = asset('images/link_photos/'.$link->logo);
+                                    ?>
+                                    <img src="{{ $logo }}" alt="{{$link->title}}">
+                                    <div class="text">
+                                        <h6 class="title">{{$link->title}}</h6>
+                                        <div class="description">
+                                           {{ $link->description }}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+                </div>
+            @endforeach
+            </div>
+            <!-- 
+            TEST
+            -->
             <!-- OTHER SERVICES -->
             <div class="container">
                 <div class="text-right subsection-label-container">
