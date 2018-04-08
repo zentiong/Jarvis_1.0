@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     {{ Form::label('description', 'Description') }}
-                    {{ Form::text('description', Request::old('description'), array('class' => 'form-control', 'autofocus', 'required' )) }}
+                    {{ Form::text('description', Request::old('description'), array('class' => '', 'autofocus', 'required' )) }}
                 </div>
                 <div class="form-group">
                     {{ Form::label('link', 'Where does this link to?') }}

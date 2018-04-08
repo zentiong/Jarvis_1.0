@@ -118,7 +118,7 @@
                 </div>
             </div>          
         </section>
-
+        <?php /*
         <section class="container-fluid" id="services-container">
             <div class="container">
                 <h1 class="section-label">SERVICES</h1>
@@ -306,10 +306,11 @@
                 </div>
             </div>
 
+            */?>    
 
             <section class="container-fluid" id="services-container">
             <div class="container">
-                <h1 class="section-label">SERVICES 2</h1>
+                <h1 class="section-label">SERVICES</h1>
             </div>
             <!-- HR SERVICES -->
             <div class="container">
