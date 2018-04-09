@@ -346,14 +346,27 @@ class QuizController extends Controller
 
             $user_quiz->save();
 
+            // Retake - 1 retake policy
+
+            $check = User_Quiz::where('user_id',$user_quiz->user_id)
+            ->where('quiz_id',$user_quiz->quiz_id)->get();
+
+            $check_count = count($check);
+
+            if(count($check)>1)
+            {
+                $user_quiz->retaken +=1;
+                $user_quiz->save();
+            }
+
             if($user_quiz->status == true)
             {
-                Session::flash('message', 'Successfully taken quiz! You passed! Congratulations!');
+                Session::flash('message', 'Successfully taken quiz! You passed! Congratulations! Count: '.$check_count);
             }
 
             else 
             {
-                Session::flash('message', 'Quiz Attempt Recorded. Status: Failed. You may take the quiz again.');
+                Session::flash('message', 'Quiz Attempt Recorded. Status: Failed. You may take the quiz again. Count: '.$check_count);
             }
         
         return Redirect::to('levels');
