@@ -48,7 +48,7 @@
                 ?>
                 @foreach($user_quizzes as $key => $user_quiz)
                 <?php
-                    if(($user_quiz->user_id==$current_id)and($quiz_to_take->quiz_id==$user_quiz->quiz_id))
+                    if(($user_quiz->user_id==$current_id)and($quiz_to_take->quiz_id==$user_quiz->quiz_id)and($user_quiz->status==1)) // if passed
                         {
                             $taken = true;
                         }
@@ -109,7 +109,10 @@
             
             @if($user_training->training_id == $answered->id)
             <?php
+                if(!in_array($user_training, $evals_to_take))
+                {
                 array_push($evals_to_take,$user_training);
+            }
             ?>
 
             @endif

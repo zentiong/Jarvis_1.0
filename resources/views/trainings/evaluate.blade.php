@@ -16,7 +16,8 @@
             @endif
         <section class="crud-page-top">
             <h1 class="crud-page-title">Evaluate Training</h1>
-            <h5>{{ $training_title}}</h5>
+            <h5>Title: {{ $training->title}}</h5>
+            <h5>Speaker: {{ $training->speaker}}</h5>
         </section>
         <hr>
         <section class="evaluate-training-wrapper">

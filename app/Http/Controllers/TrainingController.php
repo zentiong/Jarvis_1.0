@@ -140,12 +140,12 @@ class TrainingController extends Controller
     public function evaluate()
     {
         $training_id = Input::get('training_id');
-        $training_title = Training::find($training_id)->title;
+        $training = Training::find($training_id);
         $user_training = User_Training::where('training_id',$training_id)
         ->where('user_id',Auth::user()->id)->first();
         return View::make('trainings.evaluate')
         ->with('user_training', $user_training)
-        ->with('training_title', $training_title);
+        ->with('training', $training);
     }
 
     public function store_evaluation()
