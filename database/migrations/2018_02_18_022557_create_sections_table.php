@@ -18,7 +18,7 @@ class CreateSectionsTable extends Migration
             $table->timestamps();
 
             $table->integer('quiz_id')->unsigned();
-            $table->foreign('quiz_id')->references('quiz_id')->on('quizzes');
+            $table->foreign('quiz_id')->references('quiz_id')->on('quizzes')->onDelete('cascade');
 
             $table->integer('skill_id')->unsigned();
             $table->foreign('skill_id')->references('id')->on('skills');

@@ -18,7 +18,7 @@ class CreateAssessmentItemsTable extends Migration
             $table->timestamps();
 
             $table->integer('assessment_id')->unsigned();
-            $table->foreign('assessment_id')->references('id')->on('assessments');
+            $table->foreign('assessment_id')->references('id')->on('assessments')->onDelete('cascade');
 
             $table->longText('criteria');
 

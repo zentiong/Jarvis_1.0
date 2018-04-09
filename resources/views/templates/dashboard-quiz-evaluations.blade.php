@@ -19,7 +19,7 @@
 
     @foreach($trainings as $key => $training)
         @foreach($user_trainings_taken as $key => $user_training_taken)
-            @if($training->id == $user_training_taken->training_id)
+            @if(($training->id == $user_training_taken->training_id)and($training->date))
                 <?php
                 array_push($trainings_taken, $training)
                 ?>

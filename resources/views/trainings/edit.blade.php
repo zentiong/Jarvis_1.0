@@ -23,7 +23,7 @@
 
                 <div class="form-group">
                     {{ Form::label('title', 'Title') }}
-                    {{ Form::text('title', Request::old('title'), array('class' => 'form-control', 'autofocus', 'pattern' => '[a-zA-z ]+', 'required', 'title' => 'Please use alphabet characters only')) }}
+                    {{ Form::text('title', Request::old('title'), array('class' => 'form-control', 'autofocus', 'required')) }}
                 </div>
 
                 <div class="form-group">

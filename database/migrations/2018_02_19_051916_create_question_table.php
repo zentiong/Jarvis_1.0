@@ -18,7 +18,7 @@ class CreateQuestionTable extends Migration
             $table->timestamps();
 
             $table->integer('section_id')->unsigned();
-            $table->foreign('section_id')->references('id')->on('sections');
+            $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
 
             $table->string('question_item', 255);
             $table->string('answer_item', 255);
