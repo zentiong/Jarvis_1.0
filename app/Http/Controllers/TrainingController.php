@@ -101,16 +101,35 @@ class TrainingController extends Controller
             $users = User::where('supervisor_id', Auth::user()->id)->get();
         }
         
+        if(Input::get('send_to_all')==true)
+        {
+            foreach ($users as $key => $user) {
+                $check = User_Training::where('training_id', Input::get('training'))
+                ->where('user_id',$user->id)->first();
 
-        foreach ($users as $key => $user) {
+                if($check == NULL)
+                {
+                    $user_training = new User_Training;
+                    $user_training->training_id = Input::get('training');
+                    $user_training->user_id = $user->id;
+                    $user_training->recommended = true;
+                    $user_training->save();
+                }
+            }
+        }
 
-            if(Input::get($user->id)!=NULL)
-            {
-                $user_training = new User_Training;
-                $user_training->training_id = Input::get('training');
-                $user_training->user_id = Input::get($user->id);
-                $user_training->recommended = true;
-                $user_training->save();
+        else
+        {
+            foreach ($users as $key => $user) {
+    
+                if(Input::get($user->id)!=NULL)
+                {
+                    $user_training = new User_Training;
+                    $user_training->training_id = Input::get('training');
+                    $user_training->user_id = Input::get($user->id);
+                    $user_training->recommended = true;
+                    $user_training->save();
+                }
             }
         }
 

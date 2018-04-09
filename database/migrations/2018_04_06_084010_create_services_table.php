@@ -19,7 +19,33 @@ class CreateServicesTable extends Migration
 
             $table->string('name', 255);
         });
+
+         DB::table('services')->insert(
+        array(
+            'name' => 'RECRUITMENT',
+        )  );
+
+         DB::table('services')->insert(
+        array(
+            'name' => 'COMPENSATION & BENEFITS',
+        )  );
+
+         DB::table('services')->insert(
+        array(
+            'name' => 'EMPLOYEE RELATIONS',
+        )  );
+
+         DB::table('services')->insert(
+        array(
+            'name' => 'ADMIN',
+        )  );
+
+
+
+
     }
+
+
 
     /**
      * Reverse the migrations.

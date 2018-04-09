@@ -26,6 +26,8 @@ class CreateUserQuizTable extends Migration
             $table->integer('score')->default(0);
             $table->integer('max_score')->default(0);
 
+            $table->boolean('status')->default(false);
+
         });
     }
 

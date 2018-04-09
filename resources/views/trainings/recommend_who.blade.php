@@ -32,6 +32,15 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr>
+                                <td class="table-actions">
+                                {{ Form::checkbox('send_to_all',true) }}
+
+                                </td>
+                                <td >
+                                    <b> Send to All </b>
+                                </td>
+                            </tr>
                              @foreach($users as $key => $user)
                                 @if($user->id!=Auth::user()->id)
                                 <?php
@@ -50,8 +59,8 @@
                                     @if($recommended)
                                         Already Recommended
                                     @else
-                                    {{ Form::checkbox($user->id,$user->id, true) }}
-                                
+                                    {{ Form::checkbox($user->id,$user->id) }}
+                                    
                                     @endif 
                                     </td>
                                     <td>
@@ -60,6 +69,7 @@
                                 </tr>
                                 @endif
                             @endforeach
+                            
                         </tbody>
                     </table>
                 </div>
