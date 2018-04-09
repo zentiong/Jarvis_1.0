@@ -233,7 +233,7 @@ class QuizController extends Controller
                             ->where('skill_id', $skill_id)->first();
 
                             $user = User::find(Auth::user()->id);
-                            $user_position = $user->position; //string
+                            $user_position = Position::find($user->position); //string
 
                             $positions = Position::all();
 
@@ -338,11 +338,23 @@ class QuizController extends Controller
             // WORKING GREAT
             $user_quiz->score = $init_quiz_score;
 
+            // Pass or Fail
+            if(($user_quiz->score / $user_quiz->max_score) > 0.7) //70 % Passing Score
+            {
+                $user_quiz->status = true;
+            }
+
             $user_quiz->save();
 
-        // redirect
-            Session::flash('message', 'Successfully taken quiz! Congratulations!'
-         );
+            if($user_quiz->status == true)
+            {
+                Session::flash('message', 'Successfully taken quiz! You passed! Congratulations!');
+            }
+
+            else 
+            {
+                Session::flash('message', 'Quiz Attempt Recorded. Status: Failed. You may take the quiz again.');
+            }
         
         return Redirect::to('levels');
 
