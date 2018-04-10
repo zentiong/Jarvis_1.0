@@ -198,7 +198,7 @@
                                 <!-- Department -->
                                 <div class="form-group">
                                     {{ Form::label('department', 'Department') }}
-                                    {{ Form::select('department', array('Finance' => 'Finance', 'Human Resources' => 'Human Resources', 'Customer Service' => 'Customer Service',  'Buying' => 'Buying',  'Administration' => 'Administration',  'Information Technology' => 'Information Technology',  'Marketing' => 'Marketing',  'Production' => 'Production',  'Logistics' => 'Logistics'), Request::old('department'), array('class' => 'form-control')) }}
+                                    {{ Form::select('department', array('Finance' => 'Finance', 'Human Resources' => 'Human Resources', 'Customer Service' => 'Customer Service',  'Buying' => 'Buying',  'Administration' => 'Administration',  'Information Technology' => 'Information Technology',  'Marketing' => 'Marketing',  'Production' => 'Production',  'Logistics' => 'Logistics',  'Project Management and Customer Experience' => 'Project Management and Customer Experience',  'Warehousing' => 'Warehousing'), Request::old('department'), array('class' => 'form-control')) }}
                                 </div>
                             </div>
                             <div class="col-md-6">
