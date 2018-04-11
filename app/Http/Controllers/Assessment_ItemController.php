@@ -87,7 +87,7 @@ class Assessment_ItemController extends Controller
 
             // redirect
             Session::flash('message', 'Successfully created assessment_item!');
-            return Redirect::to('assessments');
+            return Redirect::to('assessments/'.$id.'/assessment_items');
         }
     }
 

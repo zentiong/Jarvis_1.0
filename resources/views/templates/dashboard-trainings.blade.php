@@ -54,7 +54,7 @@
     @endif
     <div class="dashboard-content">
             <div class="incoming-wrapper">
-                <h6 class="content-header light"><b>Upcoming trainings</b></h6>
+                <h6 class="content-header light"><b>Upcoming live trainings</b></h6>
                 @foreach($trainings_general as $key => $training)
                     {{ $present = false }}
                     @if($training->date >= $now) 
