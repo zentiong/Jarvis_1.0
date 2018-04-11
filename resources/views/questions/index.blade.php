@@ -2,10 +2,10 @@
 
 @section('body')
 
-    <main class="container create-page">
-        <section class="row crud-page-top">
+    <main class="container">
+        <section class="row questions-index">
             <div>
-                <h1 class="crud-page-title">Questions</h1> 
+                <h1 class="crud-page-title">Add Questions</h1> 
                 <h5>Quiz Topic: {{ $quiz->topic }}</h5>
             </div>
             <a href="{{ URL::to('quizzes') }}" class="btn cancel-btn">Back to All Quizzes</a>
@@ -48,13 +48,20 @@
                 <!--
                     If skill is already there, no section
                 -->
-
-                 @foreach($sections as $key => $section)
+                
+                @foreach($sections as $key => $section)
                     @foreach($skills as $key => $skill)
                         @if($skill->id == $section->skill_id)
+                        <div class="flex-row-between">
                             <h6><b>Skill: {{$skill->name}}</b></h6>
+                            <div style="margin-bottom: 10px;">
+                                <button class="open-AddBookDialog btn question-btn" data-id="{{$section->id}}" type="button" data-toggle="modal" data-target="#createModal">&#43; Add question for this section</button>
+                            </div>
+                         </div>
                         @endif
                     @endforeach
+               
+
 
 
             <div class="horizontal-scroll">
@@ -113,9 +120,7 @@
                     </tbody>
                 </table>
             </div>
-                    <div class="text-right">
-                        <button class="open-AddBookDialog btn question-btn" data-id="{{$section->id}}" type="button" data-toggle="modal" data-target="#createModal">&#43; Add question for this section</button>
-                    </div>
+                    
                     
                      <!-- Modal -->
                      

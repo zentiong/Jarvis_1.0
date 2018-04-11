@@ -77,6 +77,12 @@ input[type=checkbox] {
 	align-items: center;
 	justify-content: center;
 }
+.flex-row-between {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: space-between;
+}
 
 .horizontal-scroll {
 	overflow-x: auto;
@@ -123,7 +129,7 @@ body.newsletter {
 
     		li {
     			display: inline;
-    			margin: 0 1.1em;
+    			margin: 0 1em;
 
     			a {
     				color: $white-2;
@@ -769,7 +775,7 @@ body.dashboard {
 
     		li {
     			display: inline;
-    			margin: 0 1em;
+    			margin: 0 0.9em;
 
     			a {
     				color: $black-1;
@@ -1086,6 +1092,12 @@ body.dashboard {
 			align-items: center;
 			justify-content: space-between;
 			margin: 2em 0 1em;
+		}
+		.questions-index {
+			max-width: 750px;
+			margin: 2em auto 1em;
+			align-items: center;
+			justify-content: space-between;
 		}
 		.thick-border {
 			background-color: $black-1;
