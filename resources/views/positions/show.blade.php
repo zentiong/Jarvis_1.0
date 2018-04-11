@@ -5,8 +5,8 @@
     <main class="container create-page">
         <section class="row crud-page-top">
             <div>
-                <h1 class="crud-page-title">{{ $position->name }} Position</h1>
-                <h5>Current Employee List</h5>
+                <h1 class="crud-page-title">{{ $position->name }}</h1>
+                <h5>Current Employees List</h5>
             </div>
             <a href="{{ URL::to('positions') }}" class="btn cancel-btn">Back to All Positions</a>
         </section>
