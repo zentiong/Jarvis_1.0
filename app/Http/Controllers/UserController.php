@@ -42,7 +42,7 @@ class UserController extends Controller
     public function index()
     {
         // get all the users
-        $users = User::orderBy('last_name')->paginate(3); // 3 for testing, ought to be 10
+        $users = User::orderBy('last_name')->paginate(10); // 3 for testing, ought to be 10
         $users_two = User::all();
         $managers = User::where('manager_check',1)->get();
         $positions = Position::all();
