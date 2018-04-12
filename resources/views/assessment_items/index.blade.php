@@ -12,7 +12,7 @@
                     </div>
                     @endif
                 @endforeach
-                <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Assessment Item</button>
+                <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Criteria</button>
             </div>
 
             <!-- will be used to show any messages -->
@@ -48,7 +48,7 @@
                             <td class="table-actions"> 
                                 <!-- edit this assessment (uses the edit method found at GET /assessments/{id}/edit -->
                                 <!-- -->
-                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit this item" href="{{ URL::to('assessments/'.$assessment->id.'/assessment_items/'.$value->id.'/edit') }}">
+                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit criteria" href="{{ URL::to('assessments/'.$assessment->id.'/assessment_items/'.$value->id.'/edit') }}">
                                     <i class="fa fa-pencil fa-lg"></i>
                                 </a>
 
@@ -56,7 +56,7 @@
                                 <!-- we will add this later since its a little more complicated than the other two buttons -->
                                     {{ Form::open(array('url' => 'assessments/'.$assessment->id.'/assessment_items/' . $value->id, 'class' => 'pull-right')) }}
                                     {{ Form::hidden('_method', 'DELETE') }}
-                                    <div data-toggle="tooltip" data-placement="bottom" title="Delete this item" >
+                                    <div data-toggle="tooltip" data-placement="bottom" title="Delete criteria" >
                                         {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
                                     </div>
                                  {{ Form::close() }}
@@ -74,7 +74,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Assessment Item</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Criteria For This Assessment</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -88,7 +88,7 @@
             </div>
             <div class="modal-footer create-bottom-wrapper">
                 <a href="{{ URL::to('assessments/'.$assessment->id.'/assessment_items') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
-                {{ Form::submit('Save changes', array('class' => 'btn btn-primary create-btn text-center')) }}
+                {{ Form::submit('Save Criteria', array('class' => 'btn btn-primary create-btn text-center')) }}
             </div>
             {{ Form::close() }}
           </div>
