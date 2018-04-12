@@ -13,7 +13,6 @@
                     @endif
                 @endforeach
             </div>
-            
             <a href="{{ url()->previous() }}" class="btn cancel-btn">Go Back</a>
         </section>
         <hr>
