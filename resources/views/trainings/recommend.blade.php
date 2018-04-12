@@ -3,8 +3,9 @@
 @section('body')
      <main class="container create-page">
         <section class="row crud-page-top">
-            <h1 class="crud-page-title">Recommend Trainings</h1>
+            <h1 class="crud-page-title">Recommend Training</h1>
         </section>
+        <hr>
         <section>
             <!-- will be used to show any messages -->
             @if (Session::has('message'))

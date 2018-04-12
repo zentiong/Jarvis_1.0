@@ -5,12 +5,15 @@
 
  <main class="container create-page">
         <section class="row crud-page-top">
-            <h1 class="crud-page-title">Assessing:    
+            <div>
+                <h1 class="crud-page-title">Making an assessment</h1>    
                 @foreach($skills as $key => $skill)
                     @if($skill->id == $assessment->skill_id)
-                        {{$skill->name}}
+                        <h5>Skill: {{$skill->name}}</h5>
                     @endif
-                @endforeach</h1>
+                @endforeach
+            </div>
+            
             <a href="{{ url()->previous() }}" class="btn cancel-btn">Go Back</a>
         </section>
         <hr>
@@ -46,7 +49,7 @@
             @endforeach
             </select>
         </div>
-        
+        <h6><strong>Rate criteria</strong></h6>
         <div class="evaluate-training-wrapper">
             <table class="table table-bordered">
                 <thead>
