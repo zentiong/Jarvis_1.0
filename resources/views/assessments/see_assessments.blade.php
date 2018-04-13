@@ -9,8 +9,8 @@ $user_id = Auth::user()->id; /* Supervisor */
 
  <main class="container create-page">
         <section class="row crud-page-top">
-            <h1 class="crud-page-title">See Assessment</h1>
-            <a class="btn crud-main-cta" href="{{ URL::to('make_assessments') }}">Create Another Assessment</a>
+            <h1 class="crud-page-title">See Assessments</h1>
+            <a href="{{ url()->previous() }}" class="btn cancel-btn">Go Back</a>
         </section>
         <hr>
         <!-- will be used to show any messages -->
@@ -75,3 +75,11 @@ $user_id = Auth::user()->id; /* Supervisor */
 @endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var a = document.getElementById('levels');
+        a.classList.toggle("active");
+    });
+
+</script>

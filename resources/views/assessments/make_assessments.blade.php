@@ -37,7 +37,7 @@ or Supervisor sees assessments or dropdown skills?
             <thead>
                 <tr>
                     <td class="no-stretch">Assessment ID</td>
-                    <td>Topic</td>
+                    <td>Skill</td>
                     <td class="no-stretch">Actions</td>
                 </tr>
             </thead>
