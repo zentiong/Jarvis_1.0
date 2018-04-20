@@ -12,11 +12,11 @@
 @font-face { font-family: "Apercu Bold"; font-display: auto; src: url("../fonts/apercu-bold-webfont.eot?") format("eot"), url("../fonts/apercu-bold-webfont.woff") format("woff"), url("../fonts/apercu-bold-webfont.ttf") format("truetype"); }
 @font-face { font-family: "Apercu Light"; font-display: auto; src: url("../fonts/apercu-light-webfont.eot?") format("eot"), url("../fonts/apercu-light-bold.woff") format("woff"), url("../fonts/apercu-light-webfont.ttf") format("truetype"); }
 @font-face { font-family: "Apercu Italic"; font-display: auto; src: url("../fonts/apercu-italic-webfont.eot?") format("eot"), url("../fonts/apercu-italic-bold.woff") format("woff"), url("../fonts/apercu-italic-webfont.ttf") format("truetype"); }
-@font-face { font-family: "Rockwell Regular"; font-display: auto; src: url("../fonts/rockwell-regular.ttf") format("ttf"); }
-@font-face { font-family: "Helvetica Neue Regular"; font-display: auto; src: url("../fonts/HelveticaNeue.ttf") format("ttf"); }
-@font-face { font-family: "Helvetica Neue Bold"; font-display: auto; src: url("../fonts/HelveticaNeue-Bold.ttf") format("ttf"); }
-@font-face { font-family: "Helvetica Neue Condensed Bold"; font-display: auto; src: url("../fonts/HelveticaNeue-CondensedBold.ttf") format("ttf"); }
-@font-face { font-family: "Helvetica Neue Light"; font-display: auto; src: url("../fonts/HelveticaNeue-Light.ttf") format("ttf"); }
+@font-face { font-family: "Rockwell Regular"; font-display: auto; src: url("../fonts/rockwell-regular.ttf") format("truetype"); }
+@font-face { font-family: "Helvetica Neue Regular"; font-display: auto; src: url("../fonts/HelveticaNeue.ttf") format("truetype"); }
+@font-face { font-family: "Helvetica Neue Bold"; font-display: auto; src: url("../fonts/HelveticaNeue-Bold.ttf") format("truetype"); }
+@font-face { font-family: "Helvetica Neue Condensed Bold"; font-display: auto; src: url("../fonts/HelveticaNeue-CondensedBold.ttf") format("truetype"); }
+@font-face { font-family: "Helvetica Neue Light"; font-display: auto; src: url("../fonts/HelveticaNeue-Light.ttf") format("truetype"); }
 button { cursor: pointer; }
 
 .branding { border: 2px solid #F8E71C; color: #F8E71C; font-family: "Apercu Regular", sans-serif; font-size: 1.25em; padding: 0 5px; }
