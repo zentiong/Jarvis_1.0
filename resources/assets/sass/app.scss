@@ -88,6 +88,10 @@ input[type=checkbox] {
 	overflow-x: auto;
 }
 
+.overflow-x-auto {
+	overflow-x: auto;
+}
+
 body.newsletter {
 	background-color: $newsletter-bg;
 	color: $white-2;
@@ -894,7 +898,7 @@ body.dashboard {
 			}
 
 			.dashboard-body {
-				margin-bottom: 3em;
+				margin: 0 0 3em;
 			}
 
 			.dashboard-header {
@@ -917,14 +921,11 @@ body.dashboard {
 				max-height: -webkit-fill-available;
 				min-height: 1px;
 				height: auto;
-				overflow-x: auto;
 				width: 100%;
 
 				.row {
 					padding: 1em 2em;
 				}
-
-
 			}
 
 			.content-header {

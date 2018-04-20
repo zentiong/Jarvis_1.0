@@ -38,8 +38,8 @@
                         </div>
                         <div class="col-md-6">
                             <p><strong>Email address:</strong> {{ $user->email }}</p>
-                            <p><strong>Hiring Date:</strong> {{ $user->hiring_date }}<br>
-                            <strong>Birth Date:</strong> {{ $user->birth_date }}</p>
+                            <p><strong>Hiring Date:</strong> {{ date('F d, Y', strtotime($user->hiring_date)) }}<br>
+                            <strong>Birth Date:</strong> {{ date('F d, Y', strtotime($user->birth_date)) }}</p>
                             <strong>Department:</strong> {{ $user->department }}<br>
                             <strong>Supervisor ID:</strong> {{ $user->supervisor_id }}<br>
                             <strong>Position:</strong> {{ $user->position }}<br>

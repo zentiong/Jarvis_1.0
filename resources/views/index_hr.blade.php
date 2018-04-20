@@ -97,7 +97,7 @@
                             <a class="crud-sub-cta" href="trainings/create">&#43; Add Training</a>
                         </div>
                         <button class="btn btn-sm btn-light toggle-card">TOGGLE VISIBILITY</button>
-                        <div class="dashboard-content">
+                        <div class="dashboard-content horizontal-scroll">
                             <table class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
@@ -111,7 +111,7 @@
                                 <tbody>
                                 @foreach($trainings as $key => $value)
                                     <tr>
-                                        <td>{{ $value->date }}</td>
+                                        <td>{{ date('F d, Y', strtotime($value->date)) }}</td>
                                         <td>{{ $value->title }}</td>
                                         <td>{{ $value->speaker }}</td>
                                         <td>{{ $value->venue }}</td>

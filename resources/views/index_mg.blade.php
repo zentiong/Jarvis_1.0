@@ -268,7 +268,7 @@
                             <a id="users" href="{{ URL::to('make_assessments') }}" class="btn crud-sub-cta">Employee Assessment</a>
                         </div>
                         <button class="btn btn-sm btn-light toggle-card">TOGGLE VISIBILITY</button>
-                        <div class="dashboard-content">
+                        <div class="dashboard-content horizontal-scroll">
                             <table class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
@@ -325,8 +325,8 @@
                                         <td>{{ $user->first_name }}</td>
                                         <td>{{ $user->last_name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->hiring_date }}</td>
-                                        <td>{{ $user->birth_date }}</td>
+                                        <td>{{ date('F d, Y', strtotime($user->hiring_date)) }}</td>
+                                        <td>{{ date('F d, Y', strtotime($user->birth_date)) }}</td>
                                         <td>{{ $user->department }}</td>
                                         @foreach($users_two as $key => $supervisor)
                                             @if($user->supervisor_id == $supervisor->id)

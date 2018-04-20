@@ -34,7 +34,7 @@
                             {{$user->department}} 
                         </div>
                     </div>
-                    <a href="<?php echo '../users/'.$user->id?>" target="_blank">LINK TO <br> PROFILE</a>
+                    <a href="<?php echo '../users/'.$user->id?>" target="_blank" rel="noopener">LINK TO <br> PROFILE</a>
                 </div>
             @endforeach
         </section>

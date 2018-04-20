@@ -1,23 +1,65 @@
-@import 'font-mixins';
-
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Roboto:100,300,400,400i,500,500i,700,700i,900');
 
 @import url('https://fonts.googleapis.com/css?family=Courgette');
 
-@include font-face("Apercu Regular", "../fonts/apercu-regular-webfont", null, null, eot woff);
+@font-face {
+	font-family: "Apercu Regular";
+	font-display: auto;
+	src: url("../fonts/apercu-regular-webfont.eot?") format("eot"),
+		 url("../fonts/apercu-regular-webfont.woff") format("woff"),
+		 url("../fonts/apercu-regular-webfont.ttf") format("truetype");
+}
 
-@include font-face("Apercu Bold", "../fonts/apercu-bold-webfont", null, null, eot woff);
+@font-face {
+	font-family: "Apercu Bold";
+	font-display: auto;
+	src: url("../fonts/apercu-bold-webfont.eot?") format("eot"),
+		 url("../fonts/apercu-bold-webfont.woff") format("woff"),
+		 url("../fonts/apercu-bold-webfont.ttf") format("truetype");
+}
 
-@include font-face("Apercu Light", "../fonts/apercu-light-webfont", null, null, eot woff);
+@font-face {
+	font-family: "Apercu Light";
+	font-display: auto;
+	src: url("../fonts/apercu-light-webfont.eot?") format("eot"),
+		 url("../fonts/apercu-light-bold.woff") format("woff"),
+		 url("../fonts/apercu-light-webfont.ttf") format("truetype");
+}
 
-@include font-face("Apercu Italic", "../fonts/apercu-italic-webfont", null, null, eot woff);
+@font-face {
+	font-family: "Apercu Italic";
+	font-display: auto;
+	src: url("../fonts/apercu-italic-webfont.eot?") format("eot"),
+		 url("../fonts/apercu-italic-bold.woff") format("woff"),
+		 url("../fonts/apercu-italic-webfont.ttf") format("truetype");
+}
 
-@include font-face ("Rockwell Regular", "../fonts/rockwell-regular", null, null, ttf);
+@font-face {
+	font-family: "Rockwell Regular";
+	font-display: auto;
+	src: url("../fonts/rockwell-regular.ttf") format("ttf");
+}
 
-@include font-face ("Helvetica Neue Regular", "../fonts/HelveticaNeue", null, null, ttf);
+@font-face {
+	font-family: "Helvetica Neue Regular";
+	font-display: auto;
+	src: url("../fonts/HelveticaNeue.ttf") format("ttf");
+}
 
-@include font-face ("Helvetica Neue Bold", "../fonts/HelveticaNeue-Bold", null, null, ttf);
+@font-face {
+	font-family: "Helvetica Neue Bold";
+	font-display: auto;
+	src: url("../fonts/HelveticaNeue-Bold.ttf") format("ttf");
+}
 
-@include font-face ("Helvetica Neue Condensed Bold", "../fonts/HelveticaNeue-CondensedBold", null, null, ttf);
+@font-face {
+	font-family: "Helvetica Neue Condensed Bold";
+	font-display: auto;
+	src: url("../fonts/HelveticaNeue-CondensedBold.ttf") format("ttf");
+}
 
-@include font-face ("Helvetica Neue Light", "../fonts/HelveticaNeue-Light", null, null, ttf);
+@font-face {
+	font-family: "Helvetica Neue Light";
+	font-display: auto;
+	src: url("../fonts/HelveticaNeue-Light.ttf") format("ttf");
+}

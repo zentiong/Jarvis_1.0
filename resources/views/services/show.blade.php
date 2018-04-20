@@ -6,6 +6,7 @@
         <section class="row crud-page-top">
             <div>
                 <h1 class="crud-page-title">{{ $service->name }}</h1>
+                <h5>Service</h5>
             </div>
             <a href="{{ URL::to('services') }}" class="btn cancel-btn">Back to All Services</a>
         </section>

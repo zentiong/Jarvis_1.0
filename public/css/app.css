@@ -8,15 +8,15 @@
 */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Roboto:100,300,400,400i,500,500i,700,700i,900");
 @import url("https://fonts.googleapis.com/css?family=Courgette");
-@font-face { font-family: "Apercu Regular"; src: url("../fonts/apercu-regular-webfont.eot?") format("eot"), url("../fonts/apercu-regular-webfont.woff") format("woff"); }
-@font-face { font-family: "Apercu Bold"; src: url("../fonts/apercu-bold-webfont.eot?") format("eot"), url("../fonts/apercu-bold-webfont.woff") format("woff"); }
-@font-face { font-family: "Apercu Light"; src: url("../fonts/apercu-light-webfont.eot?") format("eot"), url("../fonts/apercu-light-webfont.woff") format("woff"); }
-@font-face { font-family: "Apercu Italic"; src: url("../fonts/apercu-italic-webfont.eot?") format("eot"), url("../fonts/apercu-italic-webfont.woff") format("woff"); }
-@font-face { font-family: "Rockwell Regular"; src: url("../fonts/rockwell-regular.ttf") format("truetype"); }
-@font-face { font-family: "Helvetica Neue Regular"; src: url("../fonts/HelveticaNeue.ttf") format("truetype"); }
-@font-face { font-family: "Helvetica Neue Bold"; src: url("../fonts/HelveticaNeue-Bold.ttf") format("truetype"); }
-@font-face { font-family: "Helvetica Neue Condensed Bold"; src: url("../fonts/HelveticaNeue-CondensedBold.ttf") format("truetype"); }
-@font-face { font-family: "Helvetica Neue Light"; src: url("../fonts/HelveticaNeue-Light.ttf") format("truetype"); }
+@font-face { font-family: "Apercu Regular"; font-display: auto; src: url("../fonts/apercu-regular-webfont.eot?") format("eot"), url("../fonts/apercu-regular-webfont.woff") format("woff"), url("../fonts/apercu-regular-webfont.ttf") format("truetype"); }
+@font-face { font-family: "Apercu Bold"; font-display: auto; src: url("../fonts/apercu-bold-webfont.eot?") format("eot"), url("../fonts/apercu-bold-webfont.woff") format("woff"), url("../fonts/apercu-bold-webfont.ttf") format("truetype"); }
+@font-face { font-family: "Apercu Light"; font-display: auto; src: url("../fonts/apercu-light-webfont.eot?") format("eot"), url("../fonts/apercu-light-bold.woff") format("woff"), url("../fonts/apercu-light-webfont.ttf") format("truetype"); }
+@font-face { font-family: "Apercu Italic"; font-display: auto; src: url("../fonts/apercu-italic-webfont.eot?") format("eot"), url("../fonts/apercu-italic-bold.woff") format("woff"), url("../fonts/apercu-italic-webfont.ttf") format("truetype"); }
+@font-face { font-family: "Rockwell Regular"; font-display: auto; src: url("../fonts/rockwell-regular.ttf") format("ttf"); }
+@font-face { font-family: "Helvetica Neue Regular"; font-display: auto; src: url("../fonts/HelveticaNeue.ttf") format("ttf"); }
+@font-face { font-family: "Helvetica Neue Bold"; font-display: auto; src: url("../fonts/HelveticaNeue-Bold.ttf") format("ttf"); }
+@font-face { font-family: "Helvetica Neue Condensed Bold"; font-display: auto; src: url("../fonts/HelveticaNeue-CondensedBold.ttf") format("ttf"); }
+@font-face { font-family: "Helvetica Neue Light"; font-display: auto; src: url("../fonts/HelveticaNeue-Light.ttf") format("ttf"); }
 button { cursor: pointer; }
 
 .branding { border: 2px solid #F8E71C; color: #F8E71C; font-family: "Apercu Regular", sans-serif; font-size: 1.25em; padding: 0 5px; }
@@ -40,6 +40,8 @@ input[type=checkbox] { height: 15px; width: 15px; }
 .flex-row-between { display: flex; flex-flow: row nowrap; align-items: center; justify-content: space-between; }
 
 .horizontal-scroll { overflow-x: auto; }
+
+.overflow-x-auto { overflow-x: auto; }
 
 body.newsletter { background-color: #2F2F2F; color: #ebebeb; font-family: "Apercu Regular", sans-serif; padding-top: 70px; position: relative; font-size: 85%; }
 body.newsletter i.fa { margin-right: 0.8em; }
@@ -165,11 +167,11 @@ body.dashboard main .dashboard-container .dashboard-tab-container { font-family:
 body.dashboard main .dashboard-container .dashboard-tab-container .tablinks { background: transparent; border: 1px solid #95989A; border-radius: 1px; color: #464646; font-size: 1em; padding: 5px; text-transform: uppercase; position: relative; width: 200px; }
 body.dashboard main .dashboard-container .dashboard-tab-container .tablinks.active { background-color: #000; color: #fff; border: none; }
 body.dashboard main .dashboard-container .dashboard-tab-container .tablinks.active:focus { box-shadow: none; }
-body.dashboard main .dashboard-container .dashboard-body { margin-bottom: 3em; }
+body.dashboard main .dashboard-container .dashboard-body { margin: 0 0 3em; }
 body.dashboard main .dashboard-container .dashboard-header { align-items: center; justify-content: space-between; margin: 2em 0 0.5em; }
 body.dashboard main .dashboard-container .dashboard-header h5 { margin: 0; }
 body.dashboard main .dashboard-container .dashboard-header i { margin-right: 0.5em; }
-body.dashboard main .dashboard-container .dashboard-content { background-color: #fff; border: 1px solid #eee; margin-bottom: 1em; max-height: -webkit-fill-available; min-height: 1px; height: auto; overflow-x: auto; width: 100%; }
+body.dashboard main .dashboard-container .dashboard-content { background-color: #fff; border: 1px solid #eee; margin-bottom: 1em; max-height: -webkit-fill-available; min-height: 1px; height: auto; width: 100%; }
 body.dashboard main .dashboard-container .dashboard-content .row { padding: 1em 2em; }
 body.dashboard main .dashboard-container .content-header { padding: 1em; }
 body.dashboard main .dashboard-container .content-header.dark { border-bottom: 1px solid #ebebeb; }
