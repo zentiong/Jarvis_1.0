@@ -139,23 +139,9 @@ class AssessmentController extends Controller
                             ->where('skill_id', $skill_id)->first();
         }
 
-
         $user = User::find(Input::get('user'));
-
-        $user_position = $user->position; //string
-
-        $positions = Position::all();
-
-        foreach ($positions as $key => $position) {
-            if($user_position == $position->name)
-            {
-                $user_position = $position; //object itself
-            }
-        }
-
-        
+        $user_position = Position::find($user->position);
         $user_job_grade = Job_Grade::find($user_position->job_grade); 
-
 
         if($user_skill==null) {
 
