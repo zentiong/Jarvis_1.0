@@ -84,7 +84,7 @@
                         {{ Form::label('position', 'Position') }}
                         <select id="position" class="form-control" name="position">
                             @foreach($positions as $key => $value)
-                            <option value="<?php echo $value->name ?>">
+                            <option value="<?php echo $value->id ?>">
                                 {{$value->name}} 
                             </option>
                             @endforeach
