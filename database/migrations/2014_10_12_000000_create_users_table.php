@@ -190,6 +190,76 @@ class CreateUsersTable extends Migration
             'manager_check' => true
         ));
 
+        DB::table('users')->insert(
+        array(
+            'first_name' => 'Eunice',
+            'last_name' => 'Santos',
+            'email' => 'es@es.com',
+            'password' => bcrypt('password00'),
+            'hiring_date' => '2018-12-31',
+            'birth_date' => '2018-12-31',
+            'department' => 'Finance',
+            'supervisor_id' => '2', 
+            'position' => '1',
+            'manager_check' => false,
+        ));
+
+        DB::table('users')->insert(
+        array(
+            'first_name' => 'Roni',
+            'last_name' => 'Reyes',
+            'email' => 'rr@rr.com',
+            'password' => bcrypt('password00'),
+            'hiring_date' => '2018-12-31',
+            'birth_date' => '2018-12-31',
+            'department' => 'Human Resources',
+            'supervisor_id' => '2', 
+            'position' => '1',
+            'manager_check' => false,
+        ));
+
+        DB::table('users')->insert(
+        array(
+            'first_name' => 'Cindy',
+            'last_name' => 'Santos',
+            'email' => 'cs@cs.com',
+            'password' => bcrypt('password00'),
+            'hiring_date' => '2018-12-31',
+            'birth_date' => '2018-12-31',
+            'department' => 'Customer Service',
+            'supervisor_id' => '2', 
+            'position' => '1',
+            'manager_check' => false,
+        ));
+
+        DB::table('users')->insert(
+        array(
+            'first_name' => 'Ricky',
+            'last_name' => 'Flores',
+            'email' => 'rf@rf.com',
+            'password' => bcrypt('password00'),
+            'hiring_date' => '2018-12-31',
+            'birth_date' => '2018-12-31',
+            'department' => 'Customer Service',
+            'supervisor_id' => '2', 
+            'position' => '1',
+            'manager_check' => true,
+        ));
+
+        DB::table('users')->insert(
+        array(
+            'first_name' => 'Anne',
+            'last_name' => 'Cruz',
+            'email' => 'ac@ac.com',
+            'password' => bcrypt('password00'),
+            'hiring_date' => '2018-12-31',
+            'birth_date' => '2018-12-31',
+            'department' => 'Finance',
+            'supervisor_id' => '2', 
+            'position' => '1',
+            'manager_check' => true,
+        ));
+
     }
 
     /**
