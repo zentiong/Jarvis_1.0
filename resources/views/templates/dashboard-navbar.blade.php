@@ -23,7 +23,7 @@
         <div class="hamburger-line"></div>
     </button>
     <a class="home-link" href="{{ URL::to('/') }}">
-        <span class="branding">Alfred 3.0</span>
+        <span class="branding">Jarvis 1.0</span>
     </a>
     <ul class="nav-links" id="nav-links">  
         @if (Route::has('login'))

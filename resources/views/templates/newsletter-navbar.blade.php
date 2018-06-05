@@ -4,7 +4,7 @@
 
 <nav role="navigation">
     <a class="home-link" href="{{ URL::to('/') }}">
-        <span class="branding">Alfred 3.0</span>
+        <span class="branding">Jarvis 1.0</span>
     </a>
 	@if (Route::has('login'))
     <!-- LOGGED IN STATE -->

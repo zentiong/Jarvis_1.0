@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Alfred 3.0 - ZALORA</title>
+    <title>Jarvis 1.0 - ENTREGO</title>
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicons/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicons/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicons/favicon-16x16.png') }}">
@@ -44,7 +44,7 @@
         @endif
         <section class="container-fluid text-center" id="welcome-banner">
             <div class="container">
-                <h1>ALFRED 3.0</h1>
+                <h1>JARVIS 1.0</h1>
                 <h5>Your upgraded personal HR Corp Serv assistant.</h5>
             </div>
         </section>
