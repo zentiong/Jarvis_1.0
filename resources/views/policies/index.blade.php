@@ -37,17 +37,13 @@
                     <tbody>
                     @foreach($policies as $key => $value)
                         <tr>
-                            <td><img src="{{ asset( 'images/link_photos/'.$value->logo) }}" style="height: 50px; width: 50px;"> </td>
+                            <td><img src="{{ asset( 'images/policy_photos/'.$value->logo) }}" style="height: 50px; width: 50px;"> </td>
                             <td>{{ $value->title }}</td>
                             <td>{{ $value->description }}</td>
                             <td>{{ $value->link }}</td>
-                            
+
                             <td class="table-actions no-stretch">
                                  <!-- show the employee (uses the show method found at GET /employees/{id} -->
-                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View Policy" href="{{ URL::to('policies/' . $value->id) }}">
-                                    <i class="fa fa-user fa-lg"></i>
-                                </a>
-
                                 <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
                                 <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit Policy" href="{{ URL::to('policies/' . $value->id . '/edit') }}">
                                     <i class="fa fa-pencil fa-lg"></i>
@@ -79,11 +75,24 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                {{ Form::open(array('url' => 'policies')) }}
+               <div class="modal-body">
+                {{ Form::open(array('url' => 'policies', 'files'=>true)) }}
                 <div class="form-group">
-                    {{ Form::label('name', 'Policy Name') }}
-                    {{ Form::text('name', Request::old('name'), array('class' => 'form-control', 'autofocus', 'pattern' => '[a-zA-z ]+', 'required', 'title' => 'Please use alphabet characters only')) }}
+                    {{Form::label('policy_photo', 'Logo',['class' => 'control-label'])}}
+                    <div class="form-control user-photo">{{Form::file('policy_photo')}} 
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ Form::label('title', 'Title') }}
+                    {{ Form::text('title', Request::old('title'), array('class' => 'form-control', 'autofocus', 'required')) }}
+                </div>
+                <div class="form-group">
+                    {{ Form::label('description', 'Description') }}
+                    {{ Form::text('description', Request::old('description'), array('class' => 'form-control', 'autofocus', 'required' )) }}
+                </div>
+                <div class="form-group">
+                    {{ Form::label('link', 'Where does this link to?') }}
+                    {{ Form::text('link', Request::old('link'), array('class' => 'form-control', 'autofocus', 'required')) }}
                 </div>
 
               </div>
