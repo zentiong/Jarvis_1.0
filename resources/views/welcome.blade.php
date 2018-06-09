@@ -158,6 +158,8 @@
                 </div>
             @endforeach
             </div>
+
+
             <!-- 
             TEST
             -->
@@ -249,6 +251,30 @@
             </div>
             <div class="container">
                 <div class="row policy-portal-container">
+
+                    @foreach($policies as $key => $policy)
+
+                        <div class="col-md-6">
+                            <div class="policy">
+                                <a href="{{$policy->link}}" target="_blank" rel="noopener" class="link-wrapper-3">
+                                    <?php
+                                        $logo = asset('images/link_photos/'.$policy->logo);
+                                    ?>
+                                <img data-src="{{ $logo }}" alt="{{$policy->title}}">
+                                <div class="text">
+                                    <h5 class="title">{{$policy->title}}</h5>
+                                    <div class="description">
+                                        {{$policy->description}}
+                                    </div>
+                                </div>
+                            </a>
+
+                            </div>
+                        </div>
+
+                    @endforeach
+
+
                     <!-- LEFT -->
                     <div class="col-md-6">
                         <!-- BENEFIT PAGE -->
