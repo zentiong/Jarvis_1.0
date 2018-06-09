@@ -258,7 +258,7 @@
                             <div class="policy">
                                 <a href="{{$policy->link}}" target="_blank" rel="noopener" class="link-wrapper-3">
                                     <?php
-                                        $logo = asset('images/link_photos/'.$policy->logo);
+                                        $logo = asset('images/policy_photos/'.$policy->logo);
                                     ?>
                                 <img data-src="{{ $logo }}" alt="{{$policy->title}}">
                                 <div class="text">
@@ -273,86 +273,6 @@
                         </div>
 
                     @endforeach
-
-
-                    <!-- LEFT -->
-                    <div class="col-md-6">
-                        <!-- BENEFIT PAGE -->
-                        <div class="policy">
-                            <a href="https://drive.google.com/open?id=0B68wCGt4E6QgZkdzSWxoV3VoTG8" target="_blank" rel="noopener" class="link-wrapper-3">
-                                <img data-src="{{ asset('images/policy-portal/employee.png')}}" alt="Benefit Page">
-                                <div class="text">
-                                    <h5 class="title">Benefit Page</h5>
-                                    <div class="description">
-                                        List of benefits available for all employee of ZALORA. [Contains guidelines on how to avail and manage benefits]
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- OPE GUIDELINES -->
-                        <div class="policy">
-                            <a href="https://drive.google.com/open?id=0B68wCGt4E6Qgc0dqcEk1enRtN3c" target="_blank" rel="noopener" class="link-wrapper-3">
-                                <img data-src="{{ asset('images/policy-portal/invoice.png')}}" alt="OPE Guidelines">
-                                <div class="text">
-                                    <h5 class="title">OPE Guidelines</h5>
-                                    <div class="description">
-                                        Guidelines on how involved employees can liquidate valid receipts.
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- HR TIMEKEEPING POLICY -->
-                        <div class="policy">
-                            <a href="https://drive.google.com/open?id=0B68wCGt4E6Qgbk5GclBtdjZKSUk" target="_blank" rel="noopener" class="link-wrapper-3">
-                                <img data-src="{{ asset('images/policy-portal/alarm-clock.png')}}" alt="HR Timekeeping Policy">
-                                <div class="text">
-                                    <h5 class="title">HR Timekeeping Policy</h5>
-                                    <div class="description">
-                                        Rules concerning how hours (undertime, overtime, or absences) are taken into account for employee compensation.
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- RIGHT -->
-                    <div class="col-md-6">
-                        <!-- EMPLOYEE HANDBOOK -->
-                        <div class="policy">
-                            <a href="https://drive.google.com/open?id=0B8KFcMH_9clsUlp2VTVxdHZ1T2c" target="_blank" rel="noopener" class="link-wrapper-3">
-                                <img data-src="{{ asset('images/policy-portal/notebook.png')}}" alt="Employee Handbook">
-                                <div class="text">
-                                    <h5 class="title">ZALORA Employee Handbook</h5>
-                                    <div class="description">
-                                        For access to the company handbook. Find guidelines on company procedures, policies, and culture here.
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- CODE OF CONDUCT -->
-                        <div class="policy">
-                            <a href="https://drive.google.com/open?id=0B68wCGt4E6QgYndEWFBudV9wY2phQkR5YXhrcDhJR3ZiRXJr" target="_blank" rel="noopener" class="link-wrapper-3">
-                                <img data-src="{{ asset('images/policy-portal/agenda.png')}}" alt="Code of Conduct">
-                                <div class="text">
-                                    <h5 class="title">Code of Conduct</h5>
-                                    <div class="description">
-                                        ZALORA PH's business principles.
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- NON-TRADE TIMELINE -->
-                        <div class="policy">
-                            <a href="https://drive.google.com/open?id=0B68wCGt4E6QgTUVlZzVXNHFOSzg" target="_blank" rel="noopener" class="link-wrapper-3">
-                                <img data-src="{{ asset('images/policy-portal/choices.png')}}" alt="Non-Trade Timeline">
-                                <div class="text">
-                                    <h5 class="title">Non-Trade Timeline</h5>
-                                    <div class="description">
-                                        Requirements and process timeline when requesting for a non-trade item or service with Admin via Wrike.
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
