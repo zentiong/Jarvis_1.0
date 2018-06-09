@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Jarvis 1.0 - ENTREGO</title>
+    <title>Jarvis - ENTREGO</title>
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicons/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicons/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicons/favicon-16x16.png') }}">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="manifest" href="{{ asset('favicons/manifest.json') }}">
     <link rel="mask-icon" href="{{ asset('favicons/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
@@ -44,7 +45,7 @@
         @endif
         <section class="container-fluid text-center" id="welcome-banner">
             <div class="container">
-                <h1>JARVIS 1.0</h1>
+                <h1>JARVIS</h1>
                 <h5>Your upgraded personal HR Corp Serv assistant.</h5>
             </div>
         </section>
@@ -68,57 +69,8 @@
                     ?>
                 </div>
                 <p class="text-center">To sign up for events and trainings, log in to your account.</p>   
-            </div>
-            <div class="container">
-                <div class="text-right subsection-label-container">
-                    <hr class="divider-1">
-                    <span class="subsection-label">Quick Links</span>
-                </div>
-                <div class="row text-center quick-links-container">
-                    <!-- HRIS -->
-                    <div class="quick-link">
-                        <a href="http://intranet.zalphil.com/hris/" target="_blank" rel="noopener">
-                            <div class="mx-auto img-container">
-                                <img class="hris" data-src="{{ asset('images/quick-links/hris.png')}}" alt="HRIS">
-                            </div>
-                            <h5 class="label">HRIS</h5>
-                            <span>For checking employee profiles, and filling overtime and work from home applications.</span>
-                        </a>
-                    </div>
-                    <!-- ONLINE PAYSLIP -->
-                    <div class="quick-link">
-                        <a href="http://intranet.zalphil.com/online-paystatement/" target="_blank" rel="noopener">
-                            <div class="mx-auto img-container">
-                                <img class="online-payslip" data-src="{{ asset('images/quick-links/payslip.png')}}" alt="Online PaySlip">
-                            </div>
-                            <h5 class="label">Online PaySlip</h5>
-                            <span>For viewing individual pay statements. This can be accessed in BGC, WH, and Hubs.</span>
-                        </a>
-                    </div>
-                    <!-- ORACLE -->
-                    <div class="quick-link">
-                        <a href="https://hcch.hcm.em2.oraclecloud.com/" target="_blank" rel="noopener">
-                            <div class="mx-auto img-container">
-                                <img class="oracle" data-src="{{ asset('images/quick-links/OracleYellow.png')}}" alt="Oracle">
-                            </div>
-                            <h5 class="label">Oracle</h5>
-                            <span>Contains the organization structure of Zalora with sub-departments. Also for filling leaves (VL, SL,CTO, CL, ML,PL, SPL).</span>
-                        </a>
-                    </div>
-                    <!-- WRIKE -->
-                    <div class="quick-link">
-                        <a href="https://www.wrike.com/workspace.htm" target="_blank" rel="noopener">
-                            <div class="mx-auto img-container">
-                                <img class="wrike" data-src="{{ asset('images/quick-links/WrikeYellow.png')}}" alt="Wrike">
-                            </div>
-                            <h5 class="label">Wrike</h5>
-                            <span>For requests regarding procurement for different projects under the company. [Limited Access]</span>
-                        </a>
-                    </div>
-                </div>
-            </div>          
+            </div>         
         </section>  
-
         <section class="container-fluid" id="services-container">
             <div class="container">
                 <h1 class="section-label">SERVICES</h1>
@@ -273,80 +225,6 @@
                         </div>
 
                     @endforeach
-                </div>
-            </div>
-        </section>
-        <section class="container-fluid" id="engagements-container">
-            <div class="container">
-                <h1 class="section-label">ENGAGEMENTS</h1>
-            </div>
-            <div class="container">
-                <!-- BAP / ZECC -->
-                <div class="engagement bap">
-                    <a href="https://www.zalora.com.ph/bap/" target="_blank" rel="noopener">
-                        <img data-src="{{ asset('images/engagements/BAP.png') }}" alt="BAP">
-                    </a>
-                    <a href="https://drive.google.com/open?id=0B68wCGt4E6QgRXRLZ0JreTBkTFU" target="_blank" rel="noopener">
-                        <span>ABOUT ZECC</span>
-                    </a>
-                </div>
-                <!-- ASK ZALORA PH -->
-                <div class="engagement ask-zalora">
-                    <a href="http://freesuggestionbox.com/pub/ynhudtu" target="_blank" rel="noopener">
-                        <span>Got concerns or suggestions but you're too shy to voice them out? Submit them at our anonymous message box!</span>
-                        <span>AskZaloraPH</span>
-                    </a>
-                </div>
-                <!-- Z-LIBRARY -->
-                <div class="engagement z-library text-center">
-                    <div class="title">Z-Library</div>
-                    <ul>
-                        <li>
-                            <a href="https://drive.google.com/open?id=0B68wCGt4E6QgTzBWdWxhU3U0Sm8">
-                                <img data-src="{{ asset('images/engagements/procedures.png') }}" alt="Procedures">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://awesome-table.com/-KuRu48pL633raFqMpPH/view">
-                                <img data-src="{{ asset('images/engagements/catalogue.png') }}" alt="Catalogue">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdlSkaZltyvtmcIqkNkZX98CYftGOUAdNOCkxBoNsRIzswJbw/viewform">
-                                <img data-src="{{ asset('images/engagements/borrow.png') }}" alt="Borrow">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://tinyurl.com/ZLIBBookRequest">
-                                <img data-src="{{ asset('images/engagements/request.png') }}" alt="Request">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- LEARN UP BANNER -->
-                <div class="engagement learn-up-banner">
-                    <img data-src="{{ asset('images/engagements/learn-up-logo.png') }}" alt="Learn Up Logo">
-                    <span>INSTRUCTOR SIGN-UP</span>
-                    <span>LEARN-UP DRIVE</span>
-                </div>
-                <!-- MEMORIEZ / ZCOOP -->
-                <div class="engagement memoriez-zcoop">
-                    <a href="https://drive.google.com/drive/folders/0B2ehw7WQ8Dk3TTFTSDVJQXF0MlE?usp=sharing" class="memoriez">
-                        <div class="top-text text-center">
-                            Share Your MemorieZ:
-                        </div>
-                        <div class="bottom-text">
-                            Upload your pictures and videos in our community drive!
-                        </div>
-                    </a>
-                    <a href="https://drive.google.com/open?id=0B68wCGt4E6Qgb1JuMTNwWl9jek0" class="zcoop">
-                        <div class="top-text text-center">
-                            Zcoop Database:
-                        </div>
-                        <div class="bottom-text">
-                            Check out past Zcoops here!
-                        </div>
-                    </a>
                 </div>
             </div>
         </section>

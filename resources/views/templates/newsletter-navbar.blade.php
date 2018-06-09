@@ -4,7 +4,7 @@
 
 <nav role="navigation">
     <a class="home-link" href="{{ URL::to('/') }}">
-        <span class="branding">Jarvis 1.0</span>
+        <span class="branding">Jarvis</span>
     </a>
 	@if (Route::has('login'))
     <!-- LOGGED IN STATE -->
@@ -54,8 +54,8 @@
             <form class="form-horizontal" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-	        	<label for="email">ZALORA Email Address</label>
-	            <input type="email" name="email" id="email" placeholder="name@ph.zalora.com" value="{{ old('email') }}" required>
+	        	<label for="email">ENTREGO Email Address</label>
+	            <input type="email" name="email" id="email" placeholder="name@company.com" value="{{ old('email') }}" required>
 	            
             </div>
             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
