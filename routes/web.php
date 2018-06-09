@@ -122,6 +122,6 @@ Route::resource('services', 'ServiceController');
 Route::resource('links', 'LinkController');
 
 /*Policies */
-Route::resource('links', 'LinkController');
+Route::resource('policies', 'PolicyController');
 
 

@@ -5,8 +5,8 @@
     <main class="container-fluid">
         <section class="container">
             <div class="row crud-page-top">
-                <h1 class="crud-page-title">Services</h1>
-                <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Service</button>
+                <h1 class="crud-page-title">Policies</h1>
+                <button class="btn crud-main-cta" type="button" data-toggle="modal" data-target="#createModal">&#43; Add Policy</button>
             </div>
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
@@ -27,29 +27,35 @@
                 <table class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr>
-                            <td>Name</td>
+                             <td>Logo</td>
+                            <td>Title</td>
+                            <td>Description</td>
+                            <td>Reference</td>
                             <td class="no-stretch">Actions</td>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($services as $key => $value)
+                    @foreach($policies as $key => $value)
                         <tr>
-                            <td>{{ $value->name }}</td>
+                            <td><img src="{{ asset( 'images/link_photos/'.$value->logo) }}" style="height: 50px; width: 50px;"> </td>
+                            <td>{{ $value->title }}</td>
+                            <td>{{ $value->description }}</td>
+                            <td>{{ $value->link }}</td>
                             
                             <td class="table-actions no-stretch">
                                  <!-- show the employee (uses the show method found at GET /employees/{id} -->
-                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View Service" href="{{ URL::to('services/' . $value->id) }}">
+                                <a class="btn show-btn" data-toggle="tooltip" data-placement="bottom" title="View Policy" href="{{ URL::to('policies/' . $value->id) }}">
                                     <i class="fa fa-user fa-lg"></i>
                                 </a>
 
                                 <!-- edit this employee (uses the edit method found at GET /employees/{id}/edit -->
-                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit Service" href="{{ URL::to('services/' . $value->id . '/edit') }}">
+                                <a class="btn edit-btn" data-toggle="tooltip" data-placement="bottom" title="Edit Policy" href="{{ URL::to('policies/' . $value->id . '/edit') }}">
                                     <i class="fa fa-pencil fa-lg"></i>
                                 </a>
 
-                                    {{ Form::open(array('url' => 'services/' . $value->id, 'class' => 'pull-right')) }}
+                                    {{ Form::open(array('url' => 'policies/' . $value->id, 'class' => 'pull-right')) }}
                                     {{ Form::hidden('_method', 'DELETE') }}
-                                    <div data-toggle="tooltip" data-placement="bottom" title="Remove Service">
+                                    <div data-toggle="tooltip" data-placement="bottom" title="Remove Policy">
                                         {{ Form::button('<i class="fa fa-trash-o fa-lg"></i>', array('type' => 'submit', 'class' => 'btn delete-btn')) }}
                                     </div>
                                     <!-- {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }} -->
@@ -68,22 +74,22 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Service</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Policy</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                {{ Form::open(array('url' => 'services')) }}
+                {{ Form::open(array('url' => 'policies')) }}
                 <div class="form-group">
-                    {{ Form::label('name', 'Service Name') }}
+                    {{ Form::label('name', 'Policy Name') }}
                     {{ Form::text('name', Request::old('name'), array('class' => 'form-control', 'autofocus', 'pattern' => '[a-zA-z ]+', 'required', 'title' => 'Please use alphabet characters only')) }}
                 </div>
 
               </div>
               <div class="modal-footer create-bottom-wrapper">
                 <a href="{{ URL::to('positions') }}" class="btn cancel-btn" data-dismiss="modal">Cancel</a>
-                {{ Form::submit('Create Service', array('class' => 'btn btn-primary create-btn text-center')) }}
+                {{ Form::submit('Create Policy', array('class' => 'btn btn-primary create-btn text-center')) }}
               </div>
               {{ Form::close() }}
             </div>
@@ -98,7 +104,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var a = document.getElementById('services');
+        var a = document.getElementById('policies');
         a.classList.toggle("active");
     });
 
