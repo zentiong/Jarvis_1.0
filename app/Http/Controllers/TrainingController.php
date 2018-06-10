@@ -13,6 +13,7 @@ use App\Event;
 use App\Service;
 use App\Link;
 use App\Policy;
+use App\Hr;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -266,6 +267,7 @@ class TrainingController extends Controller
         $services = Service::all();
         $links = Link::all();
         $policies = Policy::all();
+        $hrs = Hr::all();
 
                 // load the view and pass the employees
         return View::make('welcome')
@@ -282,7 +284,8 @@ class TrainingController extends Controller
             ->with('trainings', $trainings)
             ->with('services', $services)
             ->with('links', $links)
-            ->with('policies',$policies);
+            ->with('policies',$policies)
+            ->with('hrs', $hrs);
     }
 
     public function landing2($month, $year){
@@ -337,6 +340,7 @@ class TrainingController extends Controller
         $services = Service::all();
         $links = Link::all();
         $policies = Policy::all();
+        $hrs = Hr::all();
 
 
         // load the view and pass the employees
@@ -354,7 +358,8 @@ class TrainingController extends Controller
             ->with('trainings', $trainings)
             ->with('services', $services)
             ->with('links', $links)
-            ->with('policies',$policies);
+            ->with('policies',$policies)
+            ->with('hrs', $hrs);
     }
 
     /**

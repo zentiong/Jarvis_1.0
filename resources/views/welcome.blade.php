@@ -234,102 +234,18 @@
             </div>
             <div class="container">
                 <div class="hr-corp-row">
-                    <!-- DL -->
-                    <div class="hr-corp-single">
-                        <img data-src="{{ asset('images/hr-corp/DL.png') }}" alt="DL">
+                    @foreach($hrs as $key => $hr)
+                        <div class="hr-corp-single">
+                        <?php
+                            $photo = asset('images/hr_photos/'.$hr->photo);
+                        ?>
+                        <img data-src="{{ $photo }}" alt="{{$hr->name}}">
                         <div class="label">
-                            <h6>Flip DL Ruby</h6>
-                            <small>Department Head of HR and Corporate Services 2.0</small>
+                            <h6>{{$hr->name}}</h6>
+                            <small>{{$hr->position}}</small>
                         </div>
                     </div>
-                    <!-- GLENDA -->
-                    <div class="hr-corp-single">
-                        <img data-src="{{ asset('images/hr-corp/Glenda.png') }}" alt="Glenda">
-                        <div class="label">
-                            <h6>Glenda Hernandez</h6>
-                            <small>HR Business Partner</small>
-                        </div>
-                    </div>
-                    <!-- MARIEL -->
-                    <div class="hr-corp-single">
-                        <img data-src="{{ asset('images/hr-corp/Mariel.png') }}" alt="Mariel">
-                        <div class="label">
-                            <h6>Mariel Caidic</h6>
-                            <small>Compensation &amp; Benefits Officer</small>
-                        </div>
-                    </div>
-                    <!-- FAYE -->
-                    <div class="hr-corp-single">
-                        <img data-src="{{ asset('images/hr-corp/Faye.png') }}" alt="Faye">
-                        <div class="label">
-                            <h6>Faye Tresvalles</h6>
-                            <small>Recruitment Officer</small>
-                        </div>
-                    </div>
-                    <!-- KATH -->
-                    <div class="hr-corp-single">
-                        <img data-src="{{ asset('images/hr-corp/KB.png') }}" alt="Kath">
-                        <div class="label">
-                            <h6>Kath Barco</h6>
-                            <small>Regional Talent Acquisition</small>
-                        </div>
-                    </div>
-                    <!-- ANNE -->
-                    <div class="hr-corp-single">
-                        <img data-src="{{ asset('images/hr-corp/Anne.png') }}" alt="Anne">
-                        <div class="label">
-                            <h6>Anne Liangco</h6>
-                            <small>Entrepreneur-in-Residence</small>
-                        </div>
-                    </div>
-                    <!-- MARY -->
-                    <div class="hr-corp-single">
-                        <img data-src="{{ asset('images/hr-corp/Cat.png') }}" alt="Mary">
-                        <div class="label">
-                            <h6>Mary Catherine Naguit</h6>
-                            <small>Manager (Administration and Procurement)</small>
-                        </div>
-                    </div>
-                    <!-- ARCHIE -->
-                    <div class="hr-corp-single">
-                        <img data-src="{{ asset('images/hr-corp/Archie.png') }}" alt="Archie">
-                        <div class="label">
-                            <h6>Archie Del Mundo</h6>
-                            <small>Senior Executive (Procurement)</small>
-                        </div>
-                    </div>
-                    <!-- RICHARD -->
-                    <div class="hr-corp-single">
-                        <img data-src="{{ asset('images/hr-corp/Richard.png') }}" alt="Richard">
-                        <div class="label">
-                            <h6>Richard Ayuban</h6>
-                            <small>Administrative Executive</small>
-                        </div>
-                    </div>
-                    <!-- JOHN -->
-                    <div class="hr-corp-single">
-                        <img data-src="{{ asset('images/hr-corp/Pat.png') }}" alt="John">
-                        <div class="label">
-                            <h6>John Patrick Avilla</h6>
-                            <small>Procurement Officer</small>
-                        </div>
-                    </div>
-                    <!-- APRIL -->
-                    <div class="hr-corp-single">
-                        <img data-src="{{ asset('images/hr-corp/April.png') }}" alt="April">
-                        <div class="label">
-                            <h6>April de Guzman</h6>
-                            <small>Administrative Assistant</small>
-                        </div>
-                    </div>
-                    <!-- J-ANN -->
-                    <div class="hr-corp-single">
-                        <img data-src="{{ asset('images/hr-corp/Jae Sy.png') }}" alt="J-Ann">
-                        <div class="label">
-                            <h6>J-Ann Sy</h6>
-                            <small>Regional Travel Specialist</small>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>

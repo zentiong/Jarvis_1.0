@@ -121,7 +121,10 @@ Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 Route::resource('services', 'ServiceController');
 Route::resource('links', 'LinkController');
 
-/*Policies */
+/* Policies */
 Route::resource('policies', 'PolicyController');
+
+/* Hr */
+Route::resource('hrs', 'HrController');
 
 

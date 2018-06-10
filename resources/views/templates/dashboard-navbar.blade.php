@@ -40,6 +40,7 @@
             <li><a id="events"  href="{{ URL::to('events') }}">Events</a></li>
             <li><a id="services" href="{{ URL::to('services') }}">Services</a></li>
             <li><a id="policies" href="{{ URL::to('policies') }}">Policies</a></li>
+            <li><a id="HR" href="{{ URL::to('hrs') }}">HR</a></li>
             @endif
 
             <!-- @if ( Auth::user()->manager_check == 1)
